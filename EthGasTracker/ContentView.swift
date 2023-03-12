@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  EthGasTracker
 //
-//  Created by Tem on 3/9/23.
+//  Created by Tem on 3/11/23.
 //
 
 import SwiftUI
@@ -10,17 +10,12 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            GasView()
+            Spacer()
+            FetchStatusView()
         }
-        .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        .padding(20)
+//        .border(.black)
+//        .padding(30)
     }
 }
