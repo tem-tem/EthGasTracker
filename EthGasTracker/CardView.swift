@@ -28,17 +28,10 @@ struct CardView: View {
                         Text(subtitle)
                     }.font(.caption)
                     Text(value)
-                        .font(.system(size: value.count > 3 ? 24 : 60, weight: .medium))
+                        .font(.system(size: CGFloat(getFontSize(from: value)), weight: .medium))
                         .frame(height: 90, alignment: .bottom)
 //                                .font(.largeTitle)
                         .foregroundColor(valueColor)
-//                        .onChange(of: low, perform: {_ in
-//                            lowColor = getColor(prev: prevLow, curr: low)
-//
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                                lowColor = Color.primary
-//                            }
-//                        })
                 }
                 
                 Spacer()
@@ -48,8 +41,21 @@ struct CardView: View {
         .padding(10)
         .shadow(color: .purple, radius: 50)
         .frame(maxWidth: .infinity, minHeight: 150)
-        .background(LinearGradient(gradient: Gradient(colors: [bgBase.opacity(0.3), bgAccent.opacity(0.1)]), startPoint: .bottomLeading, endPoint: .topTrailing))
+        .background(LinearGradient(gradient: Gradient(colors: [bgBase.opacity(0.3), bgAccent.opacity(0.25)]), startPoint: .bottomLeading, endPoint: .topTrailing))
         .cornerRadius(20)
+    }
+    
+    func getFontSize(from value: String) -> Int {
+        switch true {
+        case value.count < 4:
+            return 60
+        case value.count < 5:
+            return 50
+        case value.count < 6:
+            return 40
+        default:
+            return 24
+        }
     }
 }
 

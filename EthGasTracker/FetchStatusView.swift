@@ -13,10 +13,14 @@ struct FetchStatusView: View {
     @AppStorage("high") var high: String?
     @AppStorage("avg") var avg: String?
     @AppStorage("low") var low: String?
+    @AppStorage("base") var base: String?
     @AppStorage("lastBlock") var lastBlock: String?
+    
     @AppStorage("prevHigh") var prevHigh: String?
     @AppStorage("prevAvg") var prevAvg: String?
     @AppStorage("prevLow") var prevLow: String?
+    @AppStorage("prevBase") var prevBase: String?
+    
     @AppStorage("timestamp") var timestamp: String?
     @State private var secondsLeft = 10
     
@@ -113,10 +117,12 @@ struct FetchStatusView: View {
             prevHigh = high
             prevAvg = avg
             prevLow = low
+            prevBase = base
             
             high = response?.result?.FastGasPrice
             avg = response?.result?.ProposeGasPrice
             low = response?.result?.SafeGasPrice
+            base = response?.result?.suggestBaseFee
             lastBlock = response?.result?.LastBlock
             timestamp = String(Date().timeIntervalSince1970)
         }
