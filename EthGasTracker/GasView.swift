@@ -22,105 +22,152 @@ struct GasView: View {
     @State private var lowColor: Color = Color.primary
     
     var body: some View {
-        VStack(alignment: .trailing, spacing: 10) {
-            HStack(alignment: .top) {
-                HStack(alignment: .top) {
-                    Image(systemName: "cube").frame(width: 10).font(.system(size: 18, weight: .light))
-                    Text("LAST BLOCK")
-                        .font(.system(size: 20, weight: .light))
+        VStack(alignment: .trailing, spacing: 20) {
+            HStack(alignment: .top, spacing: 20) {
+                ZStack {
+                    Image(systemName: "arrow.up.right")
+                        .font(.system(size: 80, weight: .black))
+                        .foregroundColor(Color.red.opacity(0.2))
+                    HStack {
+                        VStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                Text("HIGH")
+                                Text("LAST: ") +
+                                Text(prevHigh ?? "0")
+                            }.font(.caption)
+                            
+                            Text(high ?? "0")
+                                .font(.system(size: 80, weight: .light))
+    //                            .font(.largeTitle)
+                                .foregroundColor(highColor)
+                                .onChange(of: high, perform: {_ in
+                                    highColor = getColor(prev: prevHigh, curr: high)
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        highColor = Color.primary
+                                    }
+                                })
+                        }
+                        Spacer()
+                    }
+                    
                 }
-                Spacer()
-                Text(lastBlock ?? "0")
-                    .font(.system(size: 20, weight: .light))
-//                    .padding(.vertical, -30)
-//                    .padding(.bottom, 10)
-            }
-            .padding(10)
-            .padding(.bottom, 10)
-//            Divider()
-            HStack(alignment: .top) {
-                HStack(alignment: .top) {
-                    Image(systemName: "arrow.down.forward").padding(.top, 0).frame(width: 10).font(.system(size: 20, weight: .light))
-                    VStack(alignment: .leading) {
-                        Text("LOW").font(.system(size: 20, weight: .light))
-                        Text("LAST: ").font(.caption) +
-                        Text(prevLow ?? "0").font(.caption)
+                .padding(10)
+                .frame(maxWidth: .infinity, minHeight: 150)
+                .background(Color.red.opacity(0.25))
+                .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.red, lineWidth: 1)
+                )
+                
+                ZStack {
+                    Image(systemName: "circle.slash")
+                        .font(.system(size: 80, weight: .black))
+                        .foregroundColor(Color.green.opacity(0.2))
+                    HStack {
+                        VStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                Text("AVERAGE")
+                                Text("LAST: ") +
+                                Text(prevAvg ?? "0")
+                            }.font(.caption)
+                            
+                            Text(avg ?? "0")
+                                .font(.system(size: 80, weight: .light))
+                                .foregroundColor(avgColor)
+                                .onChange(of: avg, perform: {_ in
+                                    avgColor = getColor(prev: prevAvg, curr: avg)
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        avgColor = Color.primary
+                                    }
+                                })
+                        }
+                        
+                        Spacer()
+                        
                     }
                 }
-                Spacer()
-                Text(low ?? "0")
-                    .font(.system(size: 80, weight: .light))
-                    .padding(.vertical, -15)
-                    .padding(.bottom, 50)
-                    .foregroundColor(lowColor)
-                    .onChange(of: low, perform: {_ in
-                        lowColor = getColor(prev: prevLow, curr: low)
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            lowColor = Color.primary
-                        }
-                    })
+                .padding(10)
+                .frame(maxWidth: .infinity, minHeight: 150)
+                .background(Color.green.opacity(0.25))
+                .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.green, lineWidth: 1)
+                )
             }
-            .padding(10)
-            .background(Color.green.opacity(0.25))
-            .cornerRadius(10)
-            .shadow(radius: 4)
-//            Divider()
-            HStack(alignment: .top) {
-                HStack(alignment: .top) {
-                    Image(systemName: "circle.slash").frame(width: 10).font(.system(size: 16, weight: .light))
-                    VStack(alignment: .leading) {
-                        Text("AVERAGE").font(.system(size: 20, weight: .light)).padding(.leading, -3)
-                        Text("LAST: ").font(.caption) +
-                        Text(prevAvg ?? "0").font(.caption)
+            HStack(alignment: .top, spacing: 20) {
+                ZStack {
+                    Image(systemName: "arrow.down.forward")
+                        .font(.system(size: 80, weight: .black))
+                        .foregroundColor(Color.blue.opacity(0.2))
+                    HStack {
+                        VStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                Text("LOW")
+                                Text("LAST: ") +
+                                Text(prevLow ?? "0")
+                            }.font(.caption)
+                            Text(low ?? "0")
+                                .font(.system(size: 80, weight: .light))
+                                .foregroundColor(lowColor)
+                                .onChange(of: low, perform: {_ in
+                                    lowColor = getColor(prev: prevLow, curr: low)
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        lowColor = Color.primary
+                                    }
+                                })
+                        }
+                        
+                        Spacer()
+                        
                     }
                 }
-                Spacer()
-                Text(avg ?? "0")
-                    .font(.system(size: 80, weight: .light))
-                    .padding(.vertical, -15)
-                    .padding(.bottom, 50)
-                    .foregroundColor(avgColor)
-                    .onChange(of: avg, perform: {_ in
-                        avgColor = getColor(prev: prevAvg, curr: avg)
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            avgColor = Color.primary
-                        }
-                    })
-            }
-            .padding(10)
-            .background(Color.blue.opacity(0.25))
-            .cornerRadius(10)
-            .shadow(radius: 4)
-//            Divider()
-            HStack(alignment: .top) {
-                HStack(alignment: .top) {
-                    Image(systemName: "arrow.up.right").padding(.top, 3).frame(width: 10).font(.system(size: 20, weight: .light))
+                .padding(10)
+                .frame(maxWidth: .infinity, minHeight: 150)
+                .background(Color.blue.opacity(0.25))
+                .cornerRadius(20)
+    //            .shadow(radius: 4)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.blue, lineWidth: 1)
+                )
+    //            Divider()
+                
+                ZStack {
+                    Image(systemName: "cube")
+                        .font(.system(size: 80, weight: .black))
+                        .foregroundColor(Color(.systemGray5))
                     VStack(alignment: .leading) {
-                        Text("HIGH").font(.system(size: 20, weight: .light))
-                        Text("LAST: ").font(.caption) +
-                        Text(prevHigh ?? "0").font(.caption)
+                        HStack(alignment: .center) {
+    //                        Image(systemName: "cube")
+                            Text("LAST BLOCK").font(.caption)
+                            Spacer()
+                        }
+    //                    Spacer()
+                        Text(lastBlock ?? "0")
+                            .font(.system(size: 20, weight: .light))
+        //                    .padding(.vertical, -30)
+                            .padding(.top, 60)
+                        
                     }
                 }
-                Spacer()
-                Text(high ?? "0")
-                    .font(.system(size: 80, weight: .light))
-                    .padding(.vertical, -15)
-                    .padding(.bottom, 50)
-                    .foregroundColor(highColor)
-                    .onChange(of: high, perform: {_ in
-                        highColor = getColor(prev: prevHigh, curr: high)
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            highColor = Color.primary
-                        }
-                    })
+                .padding(10)
+                .frame(maxWidth: .infinity, minHeight: 150, maxHeight: 150)
+                .background(Color(.systemGray6))
+                .cornerRadius(20)
+    //            .shadow(radius: 4)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color(.systemGray), lineWidth: 1)
+                )
+                
             }
-            .padding(10)
-            .background(Color.red.opacity(0.25))
-            .cornerRadius(10)
-            .shadow(radius: 4)
+            
+//            .shadow(radius: 4)
 //            Divider()
         }
     }
@@ -133,12 +180,6 @@ struct GasView: View {
             status = Color.red
         }
         return status
-    }
-}
-
-struct GasView_Previews: PreviewProvider {
-    static var previews: some View {
-        GasView()
     }
 }
 
