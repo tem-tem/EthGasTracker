@@ -20,155 +20,78 @@ struct GasView: View {
     @State private var highColor: Color = Color.primary
     @State private var avgColor: Color = Color.primary
     @State private var lowColor: Color = Color.primary
+    @State private var lastBlockColor: Color = Color.primary
     
     var body: some View {
         VStack(alignment: .trailing, spacing: 20) {
             HStack(alignment: .top, spacing: 20) {
-                ZStack {
-                    Image(systemName: "arrow.up.right")
-                        .font(.system(size: 80, weight: .black))
-                        .foregroundColor(Color.red.opacity(0.2))
-                    HStack {
-                        VStack(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                Text("HIGH")
-                                Text("LAST: ") +
-                                Text(prevHigh ?? "0")
-                            }.font(.caption)
-                            
-                            Text(high ?? "0")
-                                .font(.system(size: 80, weight: .light))
-    //                            .font(.largeTitle)
-                                .foregroundColor(highColor)
-                                .onChange(of: high, perform: {_ in
-                                    highColor = getColor(prev: prevHigh, curr: high)
-                                    
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        highColor = Color.primary
-                                    }
-                                })
-                        }
-                        Spacer()
-                    }
-                    
-                }
-                .padding(10)
-                .frame(maxWidth: .infinity, minHeight: 150)
-                .background(Color.red.opacity(0.25))
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.red, lineWidth: 1)
-                )
                 
-                ZStack {
-                    Image(systemName: "circle.slash")
-                        .font(.system(size: 80, weight: .black))
-                        .foregroundColor(Color.green.opacity(0.2))
-                    HStack {
-                        VStack(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                Text("AVERAGE")
-                                Text("LAST: ") +
-                                Text(prevAvg ?? "0")
-                            }.font(.caption)
-                            
-                            Text(avg ?? "0")
-                                .font(.system(size: 80, weight: .light))
-                                .foregroundColor(avgColor)
-                                .onChange(of: avg, perform: {_ in
-                                    avgColor = getColor(prev: prevAvg, curr: avg)
-                                    
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        avgColor = Color.primary
-                                    }
-                                })
-                        }
-                        
-                        Spacer()
-                        
+                CardView(
+                    title: "HIGH",
+                    subtitle: "LAST: \(prevHigh ?? "0")",
+                    value: high ?? "0",
+                    icon: "arrow.up.right",
+                    bgBase: Color.red,
+                    bgAccent: Color.purple,
+                    valueColor: $highColor
+                ).onChange(of: high, perform: {_ in
+                    highColor = getColor(prev: prevHigh, curr: high)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        highColor = Color.primary
                     }
-                }
-                .padding(10)
-                .frame(maxWidth: .infinity, minHeight: 150)
-                .background(Color.green.opacity(0.25))
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.green, lineWidth: 1)
-                )
+                })
+                
+                CardView(
+                    title: "AVERAGE",
+                    subtitle: "LAST: \(prevAvg ?? "0")",
+                    value: avg ?? "0",
+                    icon: "circle.slash",
+                    bgBase: Color.green,
+                    bgAccent: Color.blue,
+                    valueColor: $avgColor
+                ).onChange(of: low, perform: {_ in
+                    lowColor = getColor(prev: prevLow, curr: low)
+
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        lowColor = Color.primary
+                    }
+                })
             }
             HStack(alignment: .top, spacing: 20) {
-                ZStack {
-                    Image(systemName: "arrow.down.forward")
-                        .font(.system(size: 80, weight: .black))
-                        .foregroundColor(Color.blue.opacity(0.2))
-                    HStack {
-                        VStack(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                Text("LOW")
-                                Text("LAST: ") +
-                                Text(prevLow ?? "0")
-                            }.font(.caption)
-                            Text(low ?? "0")
-                                .font(.system(size: 80, weight: .light))
-                                .foregroundColor(lowColor)
-                                .onChange(of: low, perform: {_ in
-                                    lowColor = getColor(prev: prevLow, curr: low)
-                                    
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        lowColor = Color.primary
-                                    }
-                                })
-                        }
-                        
-                        Spacer()
-                        
+                CardView(
+                    title: "LOW",
+                    subtitle: "LAST: \(prevLow ?? "0")",
+                    value: low ?? "0",
+                    icon: "arrow.down.forward",
+                    bgBase: Color.purple,
+                    bgAccent: Color.blue,
+                    valueColor: $lowColor
+                ).onChange(of: low, perform: {_ in
+                    lowColor = getColor(prev: prevLow, curr: low)
+
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        lowColor = Color.primary
                     }
-                }
-                .padding(10)
-                .frame(maxWidth: .infinity, minHeight: 150)
-                .background(Color.blue.opacity(0.25))
-                .cornerRadius(20)
-    //            .shadow(radius: 4)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.blue, lineWidth: 1)
-                )
-    //            Divider()
+                })
                 
-                ZStack {
-                    Image(systemName: "cube")
-                        .font(.system(size: 80, weight: .black))
-                        .foregroundColor(Color(.systemGray5))
-                    VStack(alignment: .leading) {
-                        HStack(alignment: .center) {
-    //                        Image(systemName: "cube")
-                            Text("LAST BLOCK").font(.caption)
-                            Spacer()
-                        }
-    //                    Spacer()
-                        Text(lastBlock ?? "0")
-                            .font(.system(size: 20, weight: .light))
-        //                    .padding(.vertical, -30)
-                            .padding(.top, 60)
-                        
+                CardView(
+                    title: "LAST BLOCK",
+                    subtitle: "",
+                    value: lastBlock ?? "0",
+                    icon: "cube",
+                    bgBase: Color.gray,
+                    bgAccent: Color(.systemGray4),
+                    valueColor: $lastBlockColor
+                ).onChange(of: lastBlock, perform: {_ in
+                    lastBlockColor = Color.green
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        lastBlockColor = Color.primary
                     }
-                }
-                .padding(10)
-                .frame(maxWidth: .infinity, minHeight: 150, maxHeight: 150)
-                .background(Color(.systemGray6))
-                .cornerRadius(20)
-    //            .shadow(radius: 4)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color(.systemGray), lineWidth: 1)
-                )
+                })
                 
             }
-            
-//            .shadow(radius: 4)
-//            Divider()
         }
     }
     

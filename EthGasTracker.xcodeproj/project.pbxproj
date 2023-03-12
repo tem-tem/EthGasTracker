@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A32173C629BE85B5005E8931 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32173C529BE85B5005E8931 /* CardView.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
 		A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2A29BAFBC6005CC9E1 /* Preview Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A32173C529BE85B5005E8931 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
 		A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				A384EB3829BBE913005CC9E1 /* Info.plist */,
 				A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */,
 				A3E3656229BD476B00DC3016 /* ContentView.swift */,
+				A32173C529BE85B5005E8931 /* CardView.swift */,
 				A3E3656429BD51AB00DC3016 /* GasView.swift */,
 				A3E3656829BDE58A00DC3016 /* ChartView.swift */,
 				A3E3655C29BD305F00DC3016 /* FetchStatusView.swift */,
@@ -172,6 +175,7 @@
 				A3E3656529BD51AB00DC3016 /* GasView.swift in Sources */,
 				A384EB3329BAFD3B005CC9E1 /* Gas.xcdatamodeld in Sources */,
 				A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */,
+				A32173C629BE85B5005E8931 /* CardView.swift in Sources */,
 				A3E3655D29BD305F00DC3016 /* FetchStatusView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

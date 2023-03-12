@@ -10,9 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
+            FetchStatusView().padding(.bottom, 20)
             GasView()
             Spacer()
-            FetchStatusView()
         }
         .padding(20)
 //        .border(.black)
