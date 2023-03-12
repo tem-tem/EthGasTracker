@@ -12,12 +12,15 @@ struct GasView: View {
     @AppStorage("avg") var avg: String?
     @AppStorage("low") var low: String?
     @AppStorage("base") var base: String?
-    @AppStorage("lastBlock") var lastBlock: String?
+    @AppStorage("usage") var usage: String?
     
     @AppStorage("prevHigh") var prevHigh: String?
     @AppStorage("prevAvg") var prevAvg: String?
     @AppStorage("prevLow") var prevLow: String?
     @AppStorage("prevBase") var prevBase: String?
+    @AppStorage("prevUsage") var prevUsage: String?
+    
+    @AppStorage("lastBlock") var lastBlock: String?
     
     @State private var highColor: Color = Color.primary
     @State private var avgColor: Color = Color.primary
@@ -85,7 +88,7 @@ struct GasView: View {
                     value: shortenNumber(base ?? "0"),
                     icon: "light.max",
                     bgBase: Color.yellow,
-                    bgAccent: Color.red,
+                    bgAccent: Color.green,
                     valueColor: $baseColor
                 ).onChange(of: base, perform: {_ in
                     baseColor = getColor(prev: prevBase, curr: base)
@@ -96,21 +99,40 @@ struct GasView: View {
                 })
             }
             
-            CardView(
-                title: "LAST BLOCK",
-                subtitle: "",
-                value: lastBlock ?? "0",
-                icon: "cube",
-                bgBase: Color.gray,
-                bgAccent: Color(.systemGray4),
-                valueColor: $lastBlockColor
-            ).onChange(of: lastBlock, perform: {_ in
-                lastBlockColor = Color.green
+            HStack(alignment: .top, spacing: 20) {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    lastBlockColor = Color.primary
-                }
-            })
+                CardView(
+                    title: "GAS USAGE",
+                    subtitle: "",
+                    value:  "\(Int((Float(usage ?? "0") ?? 0) * 100))%",
+                    icon: "chart.bar.fill",
+                    bgBase: Color.orange,
+                    bgAccent: Color.pink,
+                    valueColor: $lastBlockColor
+                ).onChange(of: lastBlock, perform: {_ in
+                    lastBlockColor = Color.green
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        lastBlockColor = Color.primary
+                    }
+                })
+                
+                CardView(
+                    title: "LAST BLOCK",
+                    subtitle: "",
+                    value: lastBlock ?? "0",
+                    icon: "cube",
+                    bgBase: Color(.systemBackground),
+                    bgAccent: Color(.systemGray),
+                    valueColor: $lastBlockColor
+                ).onChange(of: lastBlock, perform: {_ in
+                    lastBlockColor = Color.green
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        lastBlockColor = Color.primary
+                    }
+                })
+            }
         }
     }
     

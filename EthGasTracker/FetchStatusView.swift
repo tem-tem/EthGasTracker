@@ -14,12 +14,14 @@ struct FetchStatusView: View {
     @AppStorage("avg") var avg: String?
     @AppStorage("low") var low: String?
     @AppStorage("base") var base: String?
+    @AppStorage("usage") var usage: String?
     @AppStorage("lastBlock") var lastBlock: String?
     
     @AppStorage("prevHigh") var prevHigh: String?
     @AppStorage("prevAvg") var prevAvg: String?
     @AppStorage("prevLow") var prevLow: String?
     @AppStorage("prevBase") var prevBase: String?
+    @AppStorage("prevUsage") var prevUsage: String?
     
     @AppStorage("timestamp") var timestamp: String?
     @State private var secondsLeft = 10
@@ -62,8 +64,8 @@ struct FetchStatusView: View {
             GeometryReader { metrics in
                 ZStack(alignment: .trailing) {
                     RoundedRectangle(cornerRadius: 5)
-//                        .fill(LinearGradient(gradient: Gradient(colors: [.blue, .red]), startPoint: .leading, endPoint: .trailing))
-                        .fill(Color(.systemGray6))
+                        .fill(LinearGradient(gradient: Gradient(colors: [.blue, .green]), startPoint: .leading, endPoint: .trailing))
+                        .opacity(0.25)
                     RoundedRectangle(cornerRadius: 0)
                         .fill(Color(.systemBackground))
                         .frame(width: (metrics.size.width * CGFloat(secondsLeft == 0 ? 10 : secondsLeft ) / 10), alignment: .trailing)
@@ -118,11 +120,14 @@ struct FetchStatusView: View {
             prevAvg = avg
             prevLow = low
             prevBase = base
+            prevUsage = usage
             
             high = response?.result?.FastGasPrice
             avg = response?.result?.ProposeGasPrice
             low = response?.result?.SafeGasPrice
             base = response?.result?.suggestBaseFee
+            usage = calculateAverage(numbersString: response?.result?.gasUsedRatio ?? "0")
+            
             lastBlock = response?.result?.LastBlock
             timestamp = String(Date().timeIntervalSince1970)
         }
@@ -144,4 +149,13 @@ struct FetchStatusView: View {
         }
         return timeTillNextCall
     }
+    
+    func calculateAverage(numbersString: String) -> String? {
+        let numbers = numbersString.split(separator: ",")
+                                   .compactMap { Float($0) }
+        guard !numbers.isEmpty else { return nil }
+        let average = numbers.reduce(0, +) / Float(numbers.count)
+        return String(format: "%.2f", average)
+    }
+
 }
