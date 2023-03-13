@@ -24,7 +24,7 @@ struct FetchStatusView: View {
     @AppStorage("prevUsage") var prevUsage: String?
     
     @AppStorage("timestamp") var timestamp: String?
-    @State private var secondsLeft = 10
+    @State private var secondsLeft = 1
     
     @State private var pending = false
     @State private var fetchError = false
@@ -34,47 +34,42 @@ struct FetchStatusView: View {
     var body: some View {
         VStack() {
             HStack {
-                if (fetchError) {
-                    Text("Something is wrong 🤷‍♂️")
-                } else {
-                    Text("LAST UPDATE")
-                }
                 Spacer()
-                VStack {
-                    if (pending) {
-                        ProgressView()
-                    } else {
-                        if networkMonitor.isConnected {
-                            if (fetchError) {
-                                Image(systemName: "exclamationmark.triangle").foregroundColor(.orange).onTapGesture {
-                                    pending = true
-                                    fetchError = false
-                                    fetchGas(completion: handleResponse)
-                                }
-                            } else {
-                                Text(formatter.string(from: Date(timeIntervalSince1970: Double(timestamp ?? "0.0")!)))
+                if (pending) {
+                    ProgressView()
+                } else {
+                    if networkMonitor.isConnected {
+                        if (fetchError) {
+                            Text("Something is wrong 🤷‍♂️")
+                            Image(systemName: "exclamationmark.triangle").foregroundColor(.orange).onTapGesture {
+                                pending = true
+                                fetchError = false
+                                fetchGas(completion: handleResponse)
                             }
                         } else {
-                            Image(systemName: "xmark.icloud").foregroundColor(.red)
+                            Text("Last Update:")
+                            Text(formatter.string(from: Date(timeIntervalSince1970: Double(timestamp ?? "0.0")!)))
                         }
+                    } else {
+                        Text("No internet")
+                        Image(systemName: "xmark.icloud").foregroundColor(.red)
                     }
                 }
             }.font(.system(size: 20, weight: .light))
 
-            GeometryReader { metrics in
-                ZStack(alignment: .trailing) {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(LinearGradient(gradient: Gradient(colors: [.blue, .green]), startPoint: .leading, endPoint: .trailing))
-                        .opacity(0.25)
-                    RoundedRectangle(cornerRadius: 0)
-                        .fill(Color(.systemBackground))
-                        .frame(width: (metrics.size.width * CGFloat(secondsLeft == 0 ? 10 : secondsLeft ) / 10), alignment: .trailing)
-                        .animation(.easeInOut(duration: secondsLeft == 10 ? 0.2 : 1))
-                }
-                .frame(height: 5)
-                .opacity(fetchError ? 0 : 1)
-
-            }
+//            GeometryReader { metrics in
+//                ZStack(alignment: .trailing) {
+//                    RoundedRectangle(cornerRadius: 5)
+//                        .fill(LinearGradient(gradient: Gradient(colors: [.blue, .green]), startPoint: .leading, endPoint: .trailing))
+//                        .opacity(0.25)
+//                    RoundedRectangle(cornerRadius: 0)
+//                        .fill(Color(.systemBackground))
+//                        .frame(width: (metrics.size.width * CGFloat(secondsLeft == 0 ? 10 : secondsLeft ) / 10), alignment: .trailing)
+//                        .animation(.easeInOut(duration: secondsLeft == 10 ? 0.2 : 1))
+//                }
+//                .frame(height: 5)
+//                .opacity(fetchError ? 0 : 1)
+//            }
         }
         .frame(height: 30)
         .onAppear() {
@@ -137,7 +132,7 @@ struct FetchStatusView: View {
     }
     
     func getTimeTillNextCall() -> Int {
-        var timeTillNextCall = 10
+        var timeTillNextCall = 0
         if (timestamp != nil) {
             let timestampAsDate = Date(timeIntervalSince1970: Double(timestamp ?? "0.0")!)
             let elapsed = Date().timeIntervalSince(timestampAsDate)
