@@ -22,9 +22,9 @@ struct GasView: View {
     
     @AppStorage("lastBlock") var lastBlock: String?
     
-    @State private var highColor: Color = Color.primary
-    @State private var avgColor: Color = Color.primary
-    @State private var lowColor: Color = Color.primary
+    @State private var highColor: Color = Color.red
+    @State private var avgColor: Color = Color.blue
+    @State private var lowColor: Color = Color.green
     @State private var baseColor: Color = Color.primary
     @State private var lastBlockColor: Color = Color.primary
     
@@ -32,18 +32,49 @@ struct GasView: View {
         VStack(alignment: .trailing, spacing: 20) {
             HStack(alignment: .top, spacing: 20) {
                 CardView(
-                    title: "HIGH",
-                    subtitle: "LAST: \(prevHigh ?? "0")",
-                    value: shortenNumber(high ?? "0"),
-                    icon: "arrow.up.right",
-                    bgBase: Color.red,
-                    bgAccent: Color.purple,
-                    valueColor: $highColor
-                ).onChange(of: high, perform: {_ in
-                    highColor = getColor(prev: prevHigh, curr: high)
+                    title: "GAS USAGE",
+                    subtitle: "",
+                    value:  "\(Int((Float(usage ?? "0") ?? 0) * 100))%",
+                    icon: "chart.bar.fill",
+                    bgBase: Color(.systemBackground),
+                    bgAccent: Color(.systemGray),
+                    valueColor: $lastBlockColor,
+                    secondary: true
+                ).onChange(of: lastBlock, perform: {_ in
+                    lastBlockColor = Color.green
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        highColor = Color.primary
+                        lastBlockColor = Color.primary
+                    }
+                })
+                
+                CardView(
+                    title: "LOW",
+                    subtitle: "LAST: \(prevLow ?? "0")",
+                    value: shortenNumber(low ?? "0"),
+                    icon: "arrow.down.forward",
+                    bgBase: Color.green,
+                    bgAccent: Color.blue,
+                    valueColor: $lowColor,
+                    emojii: "🐌"
+                )
+            }
+            
+            HStack(alignment: .top, spacing: 20) {
+                CardView(
+                    title: "BASE FEE",
+                    subtitle: "LAST: \(prevBase ?? "0")",
+                    value: shortenNumber(base ?? "0"),
+                    icon: "light.max",
+                    bgBase: Color(.systemBackground),
+                    bgAccent: Color(.systemGray),
+                    valueColor: $baseColor,
+                    secondary: true
+                ).onChange(of: base, perform: {_ in
+                    baseColor = getColor(prev: prevBase, curr: base)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        baseColor = Color.primary
                     }
                 })
                 
@@ -52,71 +83,14 @@ struct GasView: View {
                     subtitle: "LAST: \(prevAvg ?? "0")",
                     value: shortenNumber(avg ?? "0"),
                     icon: "circle.slash",
-                    bgBase: Color.green,
-                    bgAccent: Color.blue,
-                    valueColor: $avgColor
-                ).onChange(of: avg, perform: {_ in
-                    avgColor = getColor(prev: prevAvg, curr: avg)
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        avgColor = Color.primary
-                    }
-                })
+                    bgBase: Color.blue,
+                    bgAccent: Color.purple,
+                    valueColor: $avgColor,
+                    emojii: "🧘‍♂️"
+                )
             }
             
             HStack(alignment: .top, spacing: 20) {
-                CardView(
-                    title: "LOW",
-                    subtitle: "LAST: \(prevLow ?? "0")",
-                    value: shortenNumber(low ?? "0"),
-                    icon: "arrow.down.forward",
-                    bgBase: Color.purple,
-                    bgAccent: Color.blue,
-                    valueColor: $lowColor
-                ).onChange(of: low, perform: {_ in
-                    lowColor = getColor(prev: prevLow, curr: low)
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        lowColor = Color.primary
-                    }
-                })
-                
-                
-                CardView(
-                    title: "BASE FEE",
-                    subtitle: "LAST: \(prevBase ?? "0")",
-                    value: shortenNumber(base ?? "0"),
-                    icon: "light.max",
-                    bgBase: Color.yellow,
-                    bgAccent: Color.green,
-                    valueColor: $baseColor
-                ).onChange(of: base, perform: {_ in
-                    baseColor = getColor(prev: prevBase, curr: base)
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        baseColor = Color.primary
-                    }
-                })
-            }
-            
-            HStack(alignment: .top, spacing: 20) {
-                
-                CardView(
-                    title: "GAS USAGE",
-                    subtitle: "",
-                    value:  "\(Int((Float(usage ?? "0") ?? 0) * 100))%",
-                    icon: "chart.bar.fill",
-                    bgBase: Color.orange,
-                    bgAccent: Color.pink,
-                    valueColor: $lastBlockColor
-                ).onChange(of: lastBlock, perform: {_ in
-                    lastBlockColor = Color.green
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        lastBlockColor = Color.primary
-                    }
-                })
-                
                 CardView(
                     title: "LAST BLOCK",
                     subtitle: "",
@@ -124,7 +98,8 @@ struct GasView: View {
                     icon: "cube",
                     bgBase: Color(.systemBackground),
                     bgAccent: Color(.systemGray),
-                    valueColor: $lastBlockColor
+                    valueColor: $lastBlockColor,
+                    secondary: true
                 ).onChange(of: lastBlock, perform: {_ in
                     lastBlockColor = Color.green
                     
@@ -132,6 +107,17 @@ struct GasView: View {
                         lastBlockColor = Color.primary
                     }
                 })
+                
+                CardView(
+                    title: "HIGH",
+                    subtitle: "LAST: \(prevHigh ?? "0")",
+                    value: shortenNumber(high ?? "0"),
+                    icon: "arrow.up.right",
+                    bgBase: Color.red,
+                    bgAccent: Color.purple,
+                    valueColor: $highColor,
+                    emojii: "🚀"
+                )
             }
         }
     }
