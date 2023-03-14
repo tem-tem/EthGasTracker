@@ -31,13 +31,19 @@ struct FetchStatusView: View {
     
     @State private var drawingWidth = false
     
+    @State private var timerString = "00:00"
+//    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     let formatter = DateFormatter()
     
     var body: some View {
         VStack() {
             HStack {
-                Text("Last Update: ") +
-                Text(formatter.string(from: Date(timeIntervalSince1970: Double(timestamp ?? "0.0")!))).font(.caption.bold())
+                Text("Updated ") +
+//                Text(formatter.string(from: Date(timeIntervalSince1970: Double(timestamp ?? "0.0")!)))
+                Text(timerString)
+                    .font(.caption.bold()) +
+                Text(" ago")
                 
                 Spacer()
                 
@@ -85,10 +91,19 @@ struct FetchStatusView: View {
             secondsLeft = getTimeTillNextCall()
             countdown()
             drawingWidth = true
+            timer()
+            
         }
         .onChange(of: high, perform: { _ in
             dataController.addGasPrice(low: low ?? "0", avg: avg ?? "0", high: high ?? "0")
         })
+    }
+    
+    func timer() {
+        timerString = Date().passedTime(from: Date(timeIntervalSince1970: Double(timestamp ?? "0.0")!))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            timer()
+        }
     }
     
     func countdown() {
@@ -145,8 +160,6 @@ struct FetchStatusView: View {
             let elapsed = Date().timeIntervalSince(timestampAsDate)
             if (elapsed < 10) {
                 timeTillNextCall = Int(elapsed)
-            } else {
-                timeTillNextCall = 0
             }
         }
         return timeTillNextCall
@@ -160,4 +173,30 @@ struct FetchStatusView: View {
         return String(format: "%.2f", average)
     }
 
+}
+
+extension Date {
+    func passedTime(from date: Date) -> String {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute, .second], from: date, to: self)
+        
+        guard let hours = components.hour,
+              let minutes = components.minute,
+              let seconds = components.second
+        else {
+            return ""
+        }
+        
+        let timeString: String
+        
+        if hours > 0 {
+            timeString = String(format: "%d:%d:%d", hours, minutes, seconds)
+        } else if minutes > 0 {
+            timeString = String(format: "%d:%d", minutes, seconds)
+        } else {
+            timeString = String(format: "%ds", seconds)
+        }
+        
+        return timeString
+    }
 }
