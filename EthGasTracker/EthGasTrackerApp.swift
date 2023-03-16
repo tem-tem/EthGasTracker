@@ -36,9 +36,11 @@ struct EthGasTracker: App {
 //            }
 //                .onChange(of: scene) { newValue in
 //                    switch newValue {
-//                    case .background:
-//                        print("Entered Background")
-//                        appDelegate.schedule()
+//                    case .active:
+//                        fetcherViewModel.fetchData()
+////                    case .background:
+////                        print("Entered Background")
+////                        appDelegate.schedule()
 //                    default:
 //                        break
 //                    }

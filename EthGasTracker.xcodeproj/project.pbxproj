@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A32173C629BE85B5005E8931 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32173C529BE85B5005E8931 /* CardView.swift */; };
+		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
+		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
+		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
+		A34D907429C2B52E002F2310 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907329C2B52E002F2310 /* TimerView.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
 		A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2A29BAFBC6005CC9E1 /* Preview Assets.xcassets */; };
@@ -15,15 +19,20 @@
 		A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3429BAFDA1005CC9E1 /* DataController.swift */; };
 		A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655829BC39BC00DC3016 /* AppDelegate.swift */; };
 		A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655A29BD2EF800DC3016 /* Fetch.swift */; };
-		A3E3655D29BD305F00DC3016 /* FetchStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655C29BD305F00DC3016 /* FetchStatusView.swift */; };
+		A3E3655D29BD305F00DC3016 /* FetchStatusViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655C29BD305F00DC3016 /* FetchStatusViewOld.swift */; };
 		A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */; };
 		A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656229BD476B00DC3016 /* ContentView.swift */; };
 		A3E3656529BD51AB00DC3016 /* GasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656429BD51AB00DC3016 /* GasView.swift */; };
 		A3E3656929BDE58A00DC3016 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656829BDE58A00DC3016 /* ChartView.swift */; };
+		A3F4BAD129C2441B003ABA1D /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = A3F4BAD029C2441B003ABA1D /* Starscream */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A32173C529BE85B5005E8931 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
+		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
+		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		A34D907329C2B52E002F2310 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
 		A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -33,7 +42,7 @@
 		A384EB3829BBE913005CC9E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A3E3655829BC39BC00DC3016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3E3655A29BD2EF800DC3016 /* Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
-		A3E3655C29BD305F00DC3016 /* FetchStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStatusView.swift; sourceTree = "<group>"; };
+		A3E3655C29BD305F00DC3016 /* FetchStatusViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStatusViewOld.swift; sourceTree = "<group>"; };
 		A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		A3E3656229BD476B00DC3016 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A3E3656429BD51AB00DC3016 /* GasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasView.swift; sourceTree = "<group>"; };
@@ -45,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F4BAD129C2441B003ABA1D /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,12 +83,16 @@
 				A384EB3829BBE913005CC9E1 /* Info.plist */,
 				A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */,
 				A3E3656229BD476B00DC3016 /* ContentView.swift */,
+				A34D907129C2B1A9002F2310 /* StatusBar.swift */,
 				A32173C529BE85B5005E8931 /* CardView.swift */,
 				A3E3656429BD51AB00DC3016 /* GasView.swift */,
 				A3E3656829BDE58A00DC3016 /* ChartView.swift */,
-				A3E3655C29BD305F00DC3016 /* FetchStatusView.swift */,
-				A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */,
+				A3E3655C29BD305F00DC3016 /* FetchStatusViewOld.swift */,
+				A34D907329C2B52E002F2310 /* TimerView.swift */,
+				A34D906F29C2918D002F2310 /* FetchView.swift */,
+				A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */,
 				A3E3655A29BD2EF800DC3016 /* Fetch.swift */,
+				A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */,
 				A3E3655829BC39BC00DC3016 /* AppDelegate.swift */,
 				A384EB3429BAFDA1005CC9E1 /* DataController.swift */,
 				A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */,
@@ -112,6 +126,9 @@
 			dependencies = (
 			);
 			name = EthGasTracker;
+			packageProductDependencies = (
+				A3F4BAD029C2441B003ABA1D /* Starscream */,
+			);
 			productName = EthGasTracker;
 			productReference = A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -140,6 +157,9 @@
 				Base,
 			);
 			mainGroup = A384EB1729BAFBC5005CC9E1;
+			packageReferences = (
+				A3F4BACF29C2441B003ABA1D /* XCRemoteSwiftPackageReference "Starscream" */,
+			);
 			productRefGroup = A384EB2129BAFBC5005CC9E1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -166,17 +186,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A34D907429C2B52E002F2310 /* TimerView.swift in Sources */,
 				A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */,
 				A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */,
 				A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */,
 				A3E3656929BDE58A00DC3016 /* ChartView.swift in Sources */,
 				A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */,
 				A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */,
+				A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */,
+				A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */,
 				A3E3656529BD51AB00DC3016 /* GasView.swift in Sources */,
 				A384EB3329BAFD3B005CC9E1 /* Gas.xcdatamodeld in Sources */,
 				A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */,
 				A32173C629BE85B5005E8931 /* CardView.swift in Sources */,
-				A3E3655D29BD305F00DC3016 /* FetchStatusView.swift in Sources */,
+				A3E3655D29BD305F00DC3016 /* FetchStatusViewOld.swift in Sources */,
+				A34D907029C2918D002F2310 /* FetchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,7 +343,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -353,7 +377,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -387,6 +411,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A3F4BACF29C2441B003ABA1D /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A3F4BAD029C2441B003ABA1D /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3F4BACF29C2441B003ABA1D /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */ = {

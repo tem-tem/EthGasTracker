@@ -12,7 +12,8 @@ struct CardView: View {
     
     var title: String
     var subtitle: String
-    var value: String
+    var value: String?
+    var multiValue: [String]?
     var icon: String
     var bgBase: Color
     var bgAccent: Color
@@ -36,16 +37,36 @@ struct CardView: View {
                             Text(subtitle)
                         }.font(.caption)
                     }
+                    Spacer()
                     HStack(alignment: .bottom) {
 //                        Spacer()
-                        Text(value)
-                            .font(.system(size: CGFloat(getFontSize(from: value)), weight: .medium))
-                            .frame(height: 90, alignment: .bottom)
-    //                                .font(.largeTitle)
-                            .foregroundColor(valueColor)
-                            .opacity(secondary ? 0.8 : 1)
+                        if value != nil {
+                            Text(value ?? "")
+    //                            .frame(minHeight: 120, alignment: .bottom)
+                                .font(.system(size: CGFloat(getFontSize(from: value ?? "0")), weight: .medium))
+                                .padding(.bottom, secondary ? 10 : 0)
+        //                                .font(.largeTitle)
+                                .foregroundColor(valueColor)
+                                .opacity(secondary ? 0.8 : 1)
+                        } else {
+                            VStack(alignment: .leading, spacing: 10) {
+                                ForEach((multiValue ?? [""]).indices, id: \.self) { index in
+                                    let val = multiValue?[index] ?? ""
+                                    Text(val)
+                                        .font(.system(size: CGFloat(getFontSize(from: val)), weight: .medium))
+                                        .foregroundColor(valueColor)
+                                        .opacity(secondary ? 0.8 : 1)
+                                        
+                                    if index != (multiValue?.count ?? 1) - 1 {
+                                        Divider()
+                                    }
+                                }
+                            }
+                        }
                     }
-                }.opacity(secondary ? 0.8 : 1)
+                }
+                .frame(height: 150)
+                .opacity(secondary ? 0.8 : 1)
                 
                 Spacer()
                 
