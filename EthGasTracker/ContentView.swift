@@ -21,19 +21,29 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-            StatusBar()
-                .padding(.bottom, 10)
-            GasView()
-                .opacity(isFresh ? 1 : 0.6)
-                .saturation(isFresh ? 1 : 0)
-                .animation(.easeInOut(duration: isFresh ? 0.1 : 0.5), value: isFresh)
-            Spacer()
-            Text("Captured on \(formattedTimestamp)").font(.caption).foregroundColor(.gray)
-        }
-        .padding(20)
-        .onAppear {
-            self.isFresh = lessThan15secondsAgo(lastUpdate)
+        ZStack {
+            VStack {
+                Spacer()
+//                AnimatedGIF(imageName: "bad")
+//                    .opacity(0.01)
+                AnimatedGIF(imageName: "vibe-cat").padding(.bottom, 30)
+                    .opacity(0.1)
+                AnimatedGIF(imageName: "lightweight").padding(.bottom, 30)
+            }
+            VStack {
+                ScrollView {
+                    RetroGasView()
+                        .opacity(isFresh ? 1 : 0.6)
+                        .saturation(isFresh ? 1 : 0)
+                        .animation(.easeInOut(duration: isFresh ? 0.1 : 0.5), value: isFresh)
+                        .padding(20)
+                }
+                Spacer()
+                StatusBar()
+                    .padding(.bottom, 10)
+                Text("Captured on \(formattedTimestamp)").font(.caption).foregroundColor(.gray).padding(.bottom, 10)
+            }
+            
         }
         .onReceive(Timer.publish(every: 1, on: .main, in: .default).autoconnect()) { _ in
             self.isFresh = lessThan15secondsAgo(lastUpdate)
@@ -46,9 +56,24 @@ struct ContentView: View {
                 break
             }
         }
+        .onChange(of: lastUpdate) { _ in
+            simpleSuccess()
+        }
     }
     
     func lessThan15secondsAgo(_ stamp: Double) -> Bool {
         return Date(timeIntervalSince1970: TimeInterval(stamp)) > Date(timeIntervalSinceNow: -15)
+    }
+    
+    func simpleSuccess() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+    }
+}
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }

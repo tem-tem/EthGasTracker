@@ -45,7 +45,7 @@ struct GasView: View {
                 CardView(
                     title: "HIGH",
                     subtitle: "",
-                    value: shortenNumber(high ?? "0"),
+                    value: (high ?? "0"),
                     icon: "arrow.up.right",
                     bgBase: Color.red,
                     bgAccent: Color.purple,
@@ -60,7 +60,7 @@ struct GasView: View {
                     subtitle: "",
                     value: String(format: "%.8f", Float(base) ?? 0.0),
                     icon: "light.max",
-                    bgBase: Color(.systemBackground),
+                    bgBase: Color(.systemGray3),
                     bgAccent: Color(.systemGray),
                     valueColor: $baseColor,
                     secondary: true
@@ -69,7 +69,7 @@ struct GasView: View {
                 CardView(
                     title: "AVERAGE",
                     subtitle: "",
-                    value: shortenNumber(avg ?? "0"),
+                    value: (avg ?? "0"),
                     icon: "circle.slash",
                     bgBase: Color.blue,
                     bgAccent: Color.purple,
@@ -84,7 +84,7 @@ struct GasView: View {
                     subtitle: "",
                     value:  "\(Int((Float(usage ?? "0") ?? 0) * 100))%",
                     icon: "chart.bar.fill",
-                    bgBase: Color(.systemBackground),
+                    bgBase: Color(.systemGray3),
                     bgAccent: Color(.systemGray),
                     valueColor: $lastBlockColor,
                     secondary: true
@@ -93,7 +93,7 @@ struct GasView: View {
                 CardView(
                     title: "LOW",
                     subtitle: "",
-                    value: shortenNumber(low ?? "0"),
+                    value: (low ?? "0"),
                     icon: "arrow.down.forward",
                     bgBase: Color.green,
                     bgAccent: Color.blue,

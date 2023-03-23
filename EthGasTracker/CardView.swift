@@ -65,7 +65,7 @@ struct CardView: View {
                         }
                     }
                 }
-                .frame(height: 150)
+                .frame(height: 120)
                 .opacity(secondary ? 0.8 : 1)
                 
                 Spacer()

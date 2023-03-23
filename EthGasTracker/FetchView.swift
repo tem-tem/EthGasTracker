@@ -18,10 +18,10 @@ struct FetchView: View {
     private let dotSize: CGFloat = 5
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             switch fetcherViewModel.status {
             case .idle:
-                TimerView()
+                TimerView().font(.subheadline)
             case .fetching:
                 Text("Fetching")
                     .opacity(fadeInFetching ? 1 : 0)
@@ -31,11 +31,11 @@ struct FetchView: View {
                     }
                     .onDisappear {
                         fadeInFetching = false
-                    }
+                    }.font(.subheadline)
             case .failure(let error):
-                Text("\(error.localizedDescription)")
+                Text("\(error.localizedDescription)").multilineTextAlignment(.center).font(.subheadline)
             case .success:
-                Text("OK")
+                Text("OK").font(.subheadline)
             }
             
             ZStack(alignment: .center) {
@@ -45,7 +45,7 @@ struct FetchView: View {
                 switch fetcherViewModel.status {
                 case .idle:
                     RoundedRectangle(cornerRadius: dotSize)
-                        .fill(.green)
+                        .fill(.gray)
                         .frame(width: animateLoadingBar ? 100 : dotSize, alignment: .center)
                         .animation(.easeInOut(duration: 10), value: animateLoadingBar)
                         .onAppear {
