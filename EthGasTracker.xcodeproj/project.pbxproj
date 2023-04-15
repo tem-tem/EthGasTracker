@@ -23,6 +23,7 @@
 		A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2A29BAFBC6005CC9E1 /* Preview Assets.xcassets */; };
 		A384EB3329BAFD3B005CC9E1 /* Gas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */; };
 		A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3429BAFDA1005CC9E1 /* DataController.swift */; };
+		A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00229EA467100E45DEF /* PlainGasView.swift */; };
 		A39E790129C3EEEB00F6C17A /* PilotCommandHalftone-vm5RE.otf in Resources */ = {isa = PBXBuildFile; fileRef = A35C815D29C3ECB400B00411 /* PilotCommandHalftone-vm5RE.otf */; };
 		A39E790229C3EEED00F6C17A /* PilotCommandCondensed-x358r.otf in Resources */ = {isa = PBXBuildFile; fileRef = A35C815A29C3EAA100B00411 /* PilotCommandCondensed-x358r.otf */; };
 		A39E790429C3F07A00F6C17A /* PilotCommandGradient-rgGry.otf in Resources */ = {isa = PBXBuildFile; fileRef = A39E790329C3F07A00F6C17A /* PilotCommandGradient-rgGry.otf */; };
@@ -58,6 +59,7 @@
 		A384EB3229BAFD3B005CC9E1 /* Gas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gas.xcdatamodel; sourceTree = "<group>"; };
 		A384EB3429BAFDA1005CC9E1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A384EB3829BBE913005CC9E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A394E00229EA467100E45DEF /* PlainGasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainGasView.swift; sourceTree = "<group>"; };
 		A39E790329C3F07A00F6C17A /* PilotCommandGradient-rgGry.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PilotCommandGradient-rgGry.otf"; path = "../../../../fonts/pilot-command-font/PilotCommandGradient-rgGry.otf"; sourceTree = "<group>"; };
 		A39E790529C3F2FC00F6C17A /* RetroGasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroGasView.swift; sourceTree = "<group>"; };
 		A3E3655829BC39BC00DC3016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				A3E3656229BD476B00DC3016 /* ContentView.swift */,
 				A317CCE729CBF06E001B8492 /* AnimatedGIF.swift */,
 				A39E790529C3F2FC00F6C17A /* RetroGasView.swift */,
+				A394E00229EA467100E45DEF /* PlainGasView.swift */,
 				A34D907129C2B1A9002F2310 /* StatusBar.swift */,
 				A32173C529BE85B5005E8931 /* CardView.swift */,
 				A35C815E29C3ECD500B00411 /* RetroText.swift */,
@@ -226,6 +229,7 @@
 				A34D907429C2B52E002F2310 /* TimerView.swift in Sources */,
 				A35C815F29C3ECD500B00411 /* RetroText.swift in Sources */,
 				A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */,
+				A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */,
 				A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */,
 				A39E790629C3F2FC00F6C17A /* RetroGasView.swift in Sources */,
 				A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */,

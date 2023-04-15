@@ -23,16 +23,8 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             VStack {
-                Spacer()
-//                AnimatedGIF(imageName: "bad")
-//                    .opacity(0.01)
-                AnimatedGIF(imageName: "vibe-cat").padding(.bottom, 30)
-                    .opacity(0.1)
-                AnimatedGIF(imageName: "lightweight").padding(.bottom, 30)
-            }
-            VStack {
                 ScrollView {
-                    RetroGasView()
+                    PlainGasView()
                         .opacity(isFresh ? 1 : 0.6)
                         .saturation(isFresh ? 1 : 0)
                         .animation(.easeInOut(duration: isFresh ? 0.1 : 0.5), value: isFresh)
@@ -43,7 +35,6 @@ struct ContentView: View {
                     .padding(.bottom, 10)
                 Text("Captured on \(formattedTimestamp)").font(.caption).foregroundColor(.gray).padding(.bottom, 10)
             }
-            
         }
         .onReceive(Timer.publish(every: 1, on: .main, in: .default).autoconnect()) { _ in
             self.isFresh = lessThan15secondsAgo(lastUpdate)
