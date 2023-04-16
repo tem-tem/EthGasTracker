@@ -15,28 +15,44 @@ struct PlainGasView: View {
     var body: some View {
         VStack (alignment: .center) {
             HStack {
-                Text("Ethereum Gas Price")
+                Text("Ethereum Gas Price").bold()
                 Spacer()
             }
             Divider()
                 .padding(1)
             VStack(spacing: 0) {
-                Text(avg).font(.system(size: 100).bold()).padding(.bottom, -10)
-                Text("Average")
-            }.padding(.bottom, 20)
+                Text(avg).font(.system(size: 100).bold())
+                    .padding(.bottom, -10)
+                HStack {
+                    Image(systemName: "circle.slash").foregroundColor(.blue)
+                    Text("Average").font(.caption)
+                }
+            }.padding(.bottom, -50)
             
             HStack {
                 VStack (alignment: .leading) {
-                    Text(low).font(.system(size: 70)).padding(.bottom, -20)
-                    Text("Low")
+                    Text(low).font(.system(size: 70).weight(.thin))
+                        .padding(.bottom, -10)
+//                    Text("Low").font(.caption)
+//                        .padding(.leading, 5)
+                    HStack {
+                        Image(systemName: "arrow.down").foregroundColor(.green)
+                        Text("Low").font(.caption)
+                    }
                 }
                 Spacer()
                 VStack (alignment: .trailing) {
-                    Text(high).font(.system(size: 70)).padding(.bottom, -20)
-                    Text("High")
+                    Text(high).font(.system(size: 70).weight(.thin))
+                        .padding(.bottom, -10)
+//                    Text("High").font(.caption)
+//                        .padding(.trailing, 5)
+                    HStack {
+                        Image(systemName: "arrow.up").foregroundColor(.red)
+                        Text("High").font(.caption)
+                    }
+                    .padding(.trailing, 5)
                 }
             }
-            Spacer()
         }
     }
 }

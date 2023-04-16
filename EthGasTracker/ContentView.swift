@@ -12,6 +12,7 @@ struct ContentView: View {
     @AppStorage("lastUpdate") var lastUpdate: Double = 0
     @AppStorage("timestamp") var timestamp: Double = 0
     @State private var isFresh = true
+    @State private var showingSheet = false
     
     var formattedTimestamp: String {
         let formatter = DateFormatter()
@@ -22,33 +23,63 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                ScrollView {
+            ScrollView {
+                VStack {
                     PlainGasView()
                         .opacity(isFresh ? 1 : 0.6)
                         .saturation(isFresh ? 1 : 0)
                         .animation(.easeInOut(duration: isFresh ? 0.1 : 0.5), value: isFresh)
-                        .padding(20)
+                        .padding(10)
+                    StatusBar()
+                        .padding(.bottom, 10)
+                    Text("Captured on \(formattedTimestamp)").font(.caption).foregroundColor(.gray)
+                        .padding(.bottom, 50)
+    //                Spacer()
+                    NotificationView().padding(10)
+    //                Spacer()
                 }
-                Spacer()
-                StatusBar()
-                    .padding(.bottom, 10)
-                Text("Captured on \(formattedTimestamp)").font(.caption).foregroundColor(.gray).padding(.bottom, 10)
             }
-        }
-        .onReceive(Timer.publish(every: 1, on: .main, in: .default).autoconnect()) { _ in
-            self.isFresh = lessThan15secondsAgo(lastUpdate)
-        }
-        .onChange(of: scene) { newValue in
-            switch newValue {
-            case .active:
+            .onReceive(Timer.publish(every: 1, on: .main, in: .default).autoconnect()) { _ in
                 self.isFresh = lessThan15secondsAgo(lastUpdate)
-            default:
-                break
             }
-        }
-        .onChange(of: lastUpdate) { _ in
-            simpleSuccess()
+            .onChange(of: scene) { newValue in
+                switch newValue {
+                case .active:
+                    self.isFresh = lessThan15secondsAgo(lastUpdate)
+                default:
+                    break
+                }
+            }
+            .onChange(of: lastUpdate) { _ in
+                simpleSuccess()
+            }
+            
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        showingSheet.toggle()
+                    }) {
+                        Text("Add Notification").bold()
+                    }
+                    .sheet(isPresented: $showingSheet) {
+                        ThresholdInputView(onSubmit: {result in
+                            showingSheet = !result
+                        }).padding(20)
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal, 40)
+                .padding(.top, 10)
+                .padding(.bottom, 10)
+                .background(LinearGradient(
+                    gradient: Gradient(colors: [Color(.systemBackground), Color(.systemBackground), Color(.systemBackground).opacity(0)]),
+                    startPoint: .bottom,
+                    endPoint: .top))
+            }
+            
         }
     }
     
