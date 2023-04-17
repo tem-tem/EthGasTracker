@@ -23,17 +23,22 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack {
                     PlainGasView()
                         .opacity(isFresh ? 1 : 0.6)
                         .saturation(isFresh ? 1 : 0)
                         .animation(.easeInOut(duration: isFresh ? 0.1 : 0.5), value: isFresh)
                         .padding(10)
+                    
+                    Text("Captured on \(formattedTimestamp)")
+                        .font(.caption)
+//                        .foregroundColor(.gray)
+                        .padding(.top, 40)
                     StatusBar()
-                        .padding(.bottom, 10)
-                    Text("Captured on \(formattedTimestamp)").font(.caption).foregroundColor(.gray)
+//                        .padding(10)
                         .padding(.bottom, 50)
+//                        .padding(.bottom, -5)
     //                Spacer()
                     NotificationView().padding(10)
     //                Spacer()

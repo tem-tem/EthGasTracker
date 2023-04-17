@@ -18,7 +18,8 @@ struct ThresholdInputView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var comparison = "less_than_or_equal_to"
-    @State private var displayComparison = "LOWER"
+    @State private var displayComparison = "LOWER/HIGHER"
+    @State private var displayComparisonColor = Color.blue
     
     private enum Field: Int, Hashable {
         case threshold
@@ -28,10 +29,14 @@ struct ThresholdInputView: View {
     
     var body: some View {
         VStack (alignment: .center) {
-            Text("Current average is \(avg)")
+            Text("Current average is \(avg) gwei")
             Spacer()
             Text("You will be notified when")
-            Text("gas is ") + Text(displayComparison).bold().foregroundColor(displayComparison == "LOWER" ? .green : .red) + Text(" than")
+            Text("gas is ") +
+            Text(displayComparison)
+                .bold()
+                .foregroundColor(displayComparisonColor) +
+            Text(" than")
             
             TextField(avg, text: $thresholdPrice)
                 .keyboardType(.decimalPad)
@@ -45,7 +50,7 @@ struct ThresholdInputView: View {
             Button(action: {
                 sendThresholdHandler(action: "add", appDelegate: appDelegate, thresholdPrice: thresholdPrice, comparison: comparison)
             }) {
-                Text("Set Threshold Price")
+                Text("Set Notification")
                     .foregroundColor(Color(.systemBackground))
                     .padding()
                     .background(Color.primary)
@@ -55,13 +60,20 @@ struct ThresholdInputView: View {
             focusedField = true
         }
         .onChange(of: thresholdPrice, perform: {newThresholdPrice in
-            if (Float(newThresholdPrice) ?? 0 < Float(avg) ?? 0) {
-                comparison = "less_than_or_equal_to"
-                displayComparison = "LOWER"
-            }
-            if (Float(newThresholdPrice) ?? 0 > Float(avg) ?? 0) {
-                comparison = "greater_than"
-                displayComparison = "HIGHER"
+            if (newThresholdPrice.count == 0) {
+                displayComparison = "LOWER/HIGHER"
+                displayComparisonColor = Color.blue
+            } else {
+                if (Float(newThresholdPrice) ?? 0 < Float(avg) ?? 0) {
+                    comparison = "less_than_or_equal_to"
+                    displayComparison = "LOWER"
+                    displayComparisonColor = Color.green
+                }
+                if (Float(newThresholdPrice) ?? 0 > Float(avg) ?? 0) {
+                    comparison = "greater_than"
+                    displayComparison = "HIGHER"
+                    displayComparisonColor = Color.red
+                }
             }
         })
     }

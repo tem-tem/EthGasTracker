@@ -27,7 +27,9 @@ struct PlainGasView: View {
                     Image(systemName: "circle.slash").foregroundColor(.blue)
                     Text("Average").font(.caption)
                 }
-            }.padding(.bottom, -50)
+            }
+            .padding(.top, -1)
+            .padding(.bottom, 10)
             
             HStack {
                 VStack (alignment: .leading) {
