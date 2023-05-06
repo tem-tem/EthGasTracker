@@ -29,7 +29,6 @@
 		A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655A29BD2EF800DC3016 /* Fetch.swift */; };
 		A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */; };
 		A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656229BD476B00DC3016 /* ContentView.swift */; };
-		A3F4BAD129C2441B003ABA1D /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = A3F4BAD029C2441B003ABA1D /* Starscream */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +64,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3F4BAD129C2441B003ABA1D /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +182,6 @@
 			);
 			name = EthGasTracker;
 			packageProductDependencies = (
-				A3F4BAD029C2441B003ABA1D /* Starscream */,
 			);
 			productName = EthGasTracker;
 			productReference = A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */;
@@ -215,7 +212,6 @@
 			);
 			mainGroup = A384EB1729BAFBC5005CC9E1;
 			packageReferences = (
-				A3F4BACF29C2441B003ABA1D /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			productRefGroup = A384EB2129BAFBC5005CC9E1 /* Products */;
 			projectDirPath = "";
@@ -475,25 +471,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A3F4BACF29C2441B003ABA1D /* XCRemoteSwiftPackageReference "Starscream" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/daltoniam/Starscream.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A3F4BAD029C2441B003ABA1D /* Starscream */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A3F4BACF29C2441B003ABA1D /* XCRemoteSwiftPackageReference "Starscream" */;
-			productName = Starscream;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */ = {
