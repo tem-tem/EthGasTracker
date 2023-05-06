@@ -7,12 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A317CCE829CBF06E001B8492 /* AnimatedGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317CCE729CBF06E001B8492 /* AnimatedGIF.swift */; };
-		A317CCEA29CBF0DB001B8492 /* vibe-cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCE929CBF0DB001B8492 /* vibe-cat.gif */; };
-		A317CCEC29CBF33D001B8492 /* eyes.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCEB29CBF33D001B8492 /* eyes.gif */; };
-		A317CCEE29CBF390001B8492 /* bad.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCED29CBF390001B8492 /* bad.gif */; };
 		A317CCF029CBF497001B8492 /* lightweight.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCEF29CBF497001B8492 /* lightweight.gif */; };
-		A32173C629BE85B5005E8931 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32173C529BE85B5005E8931 /* CardView.swift */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
 		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
@@ -34,17 +29,11 @@
 		A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655A29BD2EF800DC3016 /* Fetch.swift */; };
 		A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */; };
 		A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656229BD476B00DC3016 /* ContentView.swift */; };
-		A3E3656529BD51AB00DC3016 /* GasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656429BD51AB00DC3016 /* GasView.swift */; };
 		A3F4BAD129C2441B003ABA1D /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = A3F4BAD029C2441B003ABA1D /* Starscream */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A317CCE729CBF06E001B8492 /* AnimatedGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGIF.swift; sourceTree = "<group>"; };
-		A317CCE929CBF0DB001B8492 /* vibe-cat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "vibe-cat.gif"; path = "../../../../../Downloads/vibe-cat.gif"; sourceTree = "<group>"; };
-		A317CCEB29CBF33D001B8492 /* eyes.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = eyes.gif; path = ../../../../../Downloads/eyes.gif; sourceTree = "<group>"; };
-		A317CCED29CBF390001B8492 /* bad.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = bad.gif; path = ../../../../../Downloads/bad.gif; sourceTree = "<group>"; };
 		A317CCEF29CBF497001B8492 /* lightweight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = lightweight.gif; path = ../../../../../Downloads/lightweight.gif; sourceTree = "<group>"; };
-		A32173C529BE85B5005E8931 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
 		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
@@ -69,7 +58,6 @@
 		A3E3655A29BD2EF800DC3016 /* Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		A3E3656229BD476B00DC3016 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A3E3656429BD51AB00DC3016 /* GasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +72,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A32A163F2A06A78800F04CC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A32A16432A06A8F700F04CC7 /* Gas */,
+				A32A16422A06A8C600F04CC7 /* StatusBarFetcher */,
+				A32A16412A06A8B000F04CC7 /* Notification */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A32A16402A06A87000F04CC7 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				A394E00929EA505000E45DEF /* SendThreshold.swift */,
+				A3E3655A29BD2EF800DC3016 /* Fetch.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		A32A16412A06A8B000F04CC7 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				A394E00429EA4C8D00E45DEF /* NotificationView.swift */,
+				A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */,
+				A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		A32A16422A06A8C600F04CC7 /* StatusBarFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				A34D907329C2B52E002F2310 /* TimerView.swift */,
+				A34D907129C2B1A9002F2310 /* StatusBar.swift */,
+				A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */,
+				A34D906F29C2918D002F2310 /* FetchView.swift */,
+			);
+			path = StatusBarFetcher;
+			sourceTree = "<group>";
+		};
+		A32A16432A06A8F700F04CC7 /* Gas */ = {
+			isa = PBXGroup;
+			children = (
+				A394E00229EA467100E45DEF /* PlainGasView.swift */,
+			);
+			path = Gas;
+			sourceTree = "<group>";
+		};
 		A384EB1729BAFBC5005CC9E1 = {
 			isa = PBXGroup;
 			children = (
@@ -107,30 +143,16 @@
 				A384EB3829BBE913005CC9E1 /* Info.plist */,
 				A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */,
 				A3E3656229BD476B00DC3016 /* ContentView.swift */,
+				A32A16402A06A87000F04CC7 /* api */,
+				A32A163F2A06A78800F04CC7 /* Views */,
 				A394E00D29EA54B300E45DEF /* NotificationDelegate.swift */,
 				A394E00F29EA55F400E45DEF /* NotificationManager.swift */,
-				A394E00929EA505000E45DEF /* SendThreshold.swift */,
 				A394E01529EB1AE000E45DEF /* ThresholdStorage.swift */,
-				A394E00429EA4C8D00E45DEF /* NotificationView.swift */,
-				A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */,
-				A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */,
-				A394E00229EA467100E45DEF /* PlainGasView.swift */,
-				A317CCE729CBF06E001B8492 /* AnimatedGIF.swift */,
-				A34D907129C2B1A9002F2310 /* StatusBar.swift */,
-				A32173C529BE85B5005E8931 /* CardView.swift */,
-				A3E3656429BD51AB00DC3016 /* GasView.swift */,
-				A34D907329C2B52E002F2310 /* TimerView.swift */,
-				A34D906F29C2918D002F2310 /* FetchView.swift */,
-				A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */,
-				A3E3655A29BD2EF800DC3016 /* Fetch.swift */,
 				A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */,
 				A3E3655829BC39BC00DC3016 /* AppDelegate.swift */,
 				A384EB3429BAFDA1005CC9E1 /* DataController.swift */,
 				A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */,
 				A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */,
-				A317CCE929CBF0DB001B8492 /* vibe-cat.gif */,
-				A317CCEB29CBF33D001B8492 /* eyes.gif */,
-				A317CCED29CBF390001B8492 /* bad.gif */,
 				A317CCEF29CBF497001B8492 /* lightweight.gif */,
 				A384EB2929BAFBC6005CC9E1 /* Preview Content */,
 			);
@@ -209,12 +231,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A317CCEC29CBF33D001B8492 /* eyes.gif in Resources */,
 				A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */,
-				A317CCEE29CBF390001B8492 /* bad.gif in Resources */,
 				A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */,
 				A317CCF029CBF497001B8492 /* lightweight.gif in Resources */,
-				A317CCEA29CBF0DB001B8492 /* vibe-cat.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,15 +255,12 @@
 				A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */,
 				A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */,
 				A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */,
-				A3E3656529BD51AB00DC3016 /* GasView.swift in Sources */,
 				A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */,
 				A384EB3329BAFD3B005CC9E1 /* Gas.xcdatamodeld in Sources */,
 				A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */,
 				A394E01629EB1AE000E45DEF /* ThresholdStorage.swift in Sources */,
 				A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */,
-				A32173C629BE85B5005E8931 /* CardView.swift in Sources */,
 				A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */,
-				A317CCE829CBF06E001B8492 /* AnimatedGIF.swift in Sources */,
 				A34D907029C2918D002F2310 /* FetchView.swift in Sources */,
 				A394E00529EA4C8D00E45DEF /* NotificationView.swift in Sources */,
 			);
@@ -390,7 +406,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -425,7 +441,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

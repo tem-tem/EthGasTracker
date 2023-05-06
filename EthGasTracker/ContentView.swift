@@ -13,6 +13,7 @@ struct ContentView: View {
     @AppStorage("timestamp") var timestamp: Double = 0
     @State private var isFresh = true
     @State private var showingSheet = false
+    @ThresholdsStorage(key: "thresholds") var thresholds: [Threshold] = []
     
     var formattedTimestamp: String {
         let formatter = DateFormatter()
@@ -64,15 +65,17 @@ struct ContentView: View {
                 
                 HStack {
                     Spacer()
-                    Button(action: {
-                        showingSheet.toggle()
-                    }) {
-                        Text("Add Notification").bold()
-                    }
-                    .sheet(isPresented: $showingSheet) {
-                        ThresholdInputView(onSubmit: {result in
-                            showingSheet = !result
-                        }).padding(20)
+                    if (thresholds.count == 0) {
+                        Button(action: {
+                            showingSheet.toggle()
+                        }) {
+                            Text("Add Notification").bold()
+                        }
+                        .sheet(isPresented: $showingSheet) {
+                            ThresholdInputView(onSubmit: {result in
+                                showingSheet = !result
+                            }).padding(20)
+                        }
                     }
                     Spacer()
                 }

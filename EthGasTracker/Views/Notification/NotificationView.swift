@@ -25,5 +25,10 @@ struct NotificationView: View {
                 ThresholdListView(deleting: $deleting)
             }
         }
+        .onChange(of: thresholds.count) { count in
+            if count == 0 {
+                deleting = false
+            }
+        }
     }
 }
