@@ -14,45 +14,96 @@ struct PlainGasView: View {
     
     var body: some View {
         VStack (alignment: .center) {
-            HStack {
-                Text("Ethereum Gas Price").bold()
-                Spacer()
-            }
-            Divider()
-                .padding(1)
-            VStack(spacing: 0) {
-                Text(avg).font(.system(size: 100).bold())
-                    .padding(.bottom, -10)
+            ZStack {
+                AvgChart()
+                    .frame(height: 120)
+                    .padding(.leading, 20)
+                    .padding(.top, 20)
+                
+                Rectangle()
+                  .fill(LinearGradient(
+                    gradient: .init(colors: [Color(.systemBackground), Color(.systemBackground).opacity(0), Color(.systemBackground).opacity(0)]),
+                    startPoint: .leading,
+                    endPoint: .trailing
+                  ))
+                  .frame(height: 140)
+                
                 HStack {
-                    Image(systemName: "circle.slash").foregroundColor(.blue)
-                    Text("Average").font(.caption)
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("AVERAGE")
+                            .foregroundColor(Color("avg"))
+                            .font(.body.bold())
+                            .padding(.leading, 10)
+                        Text(avg)
+                            .font(
+                                .system(size: 80)
+                                .bold()
+                            )
+                            .padding(.bottom, -10)
+                            .padding(.top, -10)
+                    }
+                    .padding(.top, -1)
+                    .padding(.bottom, 10)
+                    
+                    Spacer()
                 }
             }
-            .padding(.top, -1)
-            .padding(.bottom, 10)
             
             HStack {
-                VStack (alignment: .leading) {
-                    Text(low).font(.system(size: 70).weight(.thin))
-                        .padding(.bottom, -10)
-//                    Text("Low").font(.caption)
-//                        .padding(.leading, 5)
+                ZStack {
+                    LowChart()
+                        .frame(height: 50)
+                        .padding(.leading, 20)
+                        .padding(.trailing, 10)
+                        .padding(.top, 20)
+                    
+                    Rectangle()
+                      .fill(LinearGradient(
+                        gradient: .init(colors: [Color(.systemBackground), Color(.systemBackground).opacity(0)]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                      ))
+                      .frame(height: 140)
+                    
                     HStack {
-                        Image(systemName: "arrow.down").foregroundColor(.green)
-                        Text("Low").font(.caption)
+                        VStack (alignment: .leading) {
+                            Text("LOW")
+                                .foregroundColor(Color("low"))
+                                .font(.caption.bold())
+                                .padding(.leading, 4)
+                            Text(low).font(.system(size: 40))
+                                .padding(.bottom, -10)
+                        }
+                        Spacer()
                     }
                 }
                 Spacer()
-                VStack (alignment: .trailing) {
-                    Text(high).font(.system(size: 70).weight(.thin))
-                        .padding(.bottom, -10)
-//                    Text("High").font(.caption)
-//                        .padding(.trailing, 5)
+                ZStack {
+                    HighChart()
+                        .frame(height: 50)
+                        .padding(.leading, 20)
+                        .padding(.trailing, 10)
+                        .padding(.top, 20)
+                    
+                    Rectangle()
+                      .fill(LinearGradient(
+                        gradient: .init(colors: [Color(.systemBackground),  Color(.systemBackground).opacity(0)]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                      ))
+                      .frame(height: 140)
+                    
                     HStack {
-                        Image(systemName: "arrow.up").foregroundColor(.red)
-                        Text("High").font(.caption)
+                        VStack (alignment: .leading) {
+                            Text("HIGH")
+                                .foregroundColor(Color("high"))
+                                .font(.caption.bold())
+                                .padding(.leading, 4)
+                            Text(high).font(.system(size: 40))
+                                .padding(.bottom, -10)
+                        }
+                        Spacer()
                     }
-                    .padding(.trailing, 5)
                 }
             }
         }

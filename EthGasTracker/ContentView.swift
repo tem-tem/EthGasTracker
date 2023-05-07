@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.scenePhase) var scene
-    @AppStorage("lastUpdate") var lastUpdate: Double = 0
     @AppStorage("timestamp") var timestamp: Double = 0
     @State private var isFresh = true
     @State private var showingSheet = false
@@ -30,33 +29,33 @@ struct ContentView: View {
                         .opacity(isFresh ? 1 : 0.6)
                         .saturation(isFresh ? 1 : 0)
                         .animation(.easeInOut(duration: isFresh ? 0.1 : 0.5), value: isFresh)
-                        .padding(10)
-                    
-                    Text("Captured on \(formattedTimestamp)")
-                        .font(.caption)
-//                        .foregroundColor(.gray)
-                        .padding(.top, 40)
-                    StatusBar()
-//                        .padding(10)
-                        .padding(.bottom, 50)
-//                        .padding(.bottom, -5)
-    //                Spacer()
+                        .padding(.horizontal, 10)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Captured on \(formattedTimestamp)")
+                                .font(.caption)
+//                                .padding(.top, 40)
+                            StatusBar()
+                                .padding(.bottom, 50)
+                        }
+                        Spacer()
+                    }
+                        .padding(.horizontal, 10)
                     NotificationView().padding(10)
-    //                Spacer()
                 }
             }
-            .onReceive(Timer.publish(every: 1, on: .main, in: .default).autoconnect()) { _ in
-                self.isFresh = lessThan15secondsAgo(lastUpdate)
+            .onReceive(Timer.publish(every: 10, on: .main, in: .default).autoconnect()) { _ in
+                self.isFresh = lessThan60secondsAgo(timestamp)
             }
             .onChange(of: scene) { newValue in
                 switch newValue {
                 case .active:
-                    self.isFresh = lessThan15secondsAgo(lastUpdate)
+                    self.isFresh = true
                 default:
                     break
                 }
             }
-            .onChange(of: lastUpdate) { _ in
+            .onChange(of: timestamp) { _ in
                 simpleSuccess()
             }
             
@@ -91,8 +90,8 @@ struct ContentView: View {
         }
     }
     
-    func lessThan15secondsAgo(_ stamp: Double) -> Bool {
-        return Date(timeIntervalSince1970: TimeInterval(stamp)) > Date(timeIntervalSinceNow: -15)
+    func lessThan60secondsAgo(_ stamp: Double) -> Bool {
+        return Date(timeIntervalSince1970: TimeInterval(stamp)) > Date(timeIntervalSinceNow: -60)
     }
     
     func simpleSuccess() {

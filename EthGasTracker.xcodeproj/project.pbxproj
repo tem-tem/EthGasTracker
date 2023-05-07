@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A317CCF029CBF497001B8492 /* lightweight.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCEF29CBF497001B8492 /* lightweight.gif */; };
+		A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A16452A06A9F700F04CC7 /* AvgChart.swift */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
 		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
@@ -23,6 +24,8 @@
 		A394E00E29EA54B300E45DEF /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00D29EA54B300E45DEF /* NotificationDelegate.swift */; };
 		A394E01029EA55F400E45DEF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00F29EA55F400E45DEF /* NotificationManager.swift */; };
 		A394E01629EB1AE000E45DEF /* ThresholdStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E01529EB1AE000E45DEF /* ThresholdStorage.swift */; };
+		A3A4D4E12A082E47008E4CE7 /* LowChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E02A082E47008E4CE7 /* LowChart.swift */; };
+		A3A4D4E32A0835C2008E4CE7 /* HighChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */; };
 		A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */; };
 		A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */; };
 		A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655829BC39BC00DC3016 /* AppDelegate.swift */; };
@@ -33,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		A317CCEF29CBF497001B8492 /* lightweight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = lightweight.gif; path = ../../../../../Downloads/lightweight.gif; sourceTree = "<group>"; };
+		A32A16452A06A9F700F04CC7 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
 		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
@@ -51,6 +55,8 @@
 		A394E00D29EA54B300E45DEF /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		A394E00F29EA55F400E45DEF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		A394E01529EB1AE000E45DEF /* ThresholdStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdStorage.swift; sourceTree = "<group>"; };
+		A3A4D4E02A082E47008E4CE7 /* LowChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowChart.swift; sourceTree = "<group>"; };
+		A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighChart.swift; sourceTree = "<group>"; };
 		A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdInputView.swift; sourceTree = "<group>"; };
 		A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdListView.swift; sourceTree = "<group>"; };
 		A3E3655829BC39BC00DC3016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +79,7 @@
 		A32A163F2A06A78800F04CC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A32A16442A06A9E400F04CC7 /* Chart */,
 				A32A16432A06A8F700F04CC7 /* Gas */,
 				A32A16422A06A8C600F04CC7 /* StatusBarFetcher */,
 				A32A16412A06A8B000F04CC7 /* Notification */,
@@ -116,6 +123,16 @@
 				A394E00229EA467100E45DEF /* PlainGasView.swift */,
 			);
 			path = Gas;
+			sourceTree = "<group>";
+		};
+		A32A16442A06A9E400F04CC7 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				A32A16452A06A9F700F04CC7 /* AvgChart.swift */,
+				A3A4D4E02A082E47008E4CE7 /* LowChart.swift */,
+				A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 		A384EB1729BAFBC5005CC9E1 = {
@@ -242,8 +259,10 @@
 			files = (
 				A34D907429C2B52E002F2310 /* TimerView.swift in Sources */,
 				A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */,
+				A3A4D4E12A082E47008E4CE7 /* LowChart.swift in Sources */,
 				A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */,
 				A394E01029EA55F400E45DEF /* NotificationManager.swift in Sources */,
+				A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */,
 				A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */,
 				A394E00E29EA54B300E45DEF /* NotificationDelegate.swift in Sources */,
 				A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */,
@@ -256,6 +275,7 @@
 				A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */,
 				A394E01629EB1AE000E45DEF /* ThresholdStorage.swift in Sources */,
 				A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */,
+				A3A4D4E32A0835C2008E4CE7 /* HighChart.swift in Sources */,
 				A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */,
 				A34D907029C2918D002F2310 /* FetchView.swift in Sources */,
 				A394E00529EA4C8D00E45DEF /* NotificationView.swift in Sources */,
@@ -397,7 +417,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,7 +452,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -18,8 +18,8 @@ struct FetchView: View {
     private let dotSize: CGFloat = 3
     
     var body: some View {
-        VStack(alignment: .center) {
-            ZStack(alignment: .center) {
+        VStack(alignment: .leading) {
+            ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: dotSize)
                     .fill(Color(.systemGray6))
                 

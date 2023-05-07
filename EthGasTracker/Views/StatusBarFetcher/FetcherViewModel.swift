@@ -18,6 +18,12 @@ enum FetchStatus {
 
 class FetcherViewModel: ObservableObject {
     @Published var status: FetchStatus = .idle
+    @Published var gasList: [GasData] = [] {
+        didSet {
+            saveGasDataListToUserDefaults()
+        }
+    }
+    
     @AppStorage("LastBlock") var lastBlock: String = ""
     @AppStorage("SafeGasPrice") var safeGasPrice: String = ""
     @AppStorage("ProposeGasPrice") var proposeGasPrice: String = ""
@@ -27,19 +33,21 @@ class FetcherViewModel: ObservableObject {
     @AppStorage("timestamp") var timestamp: Int = 0
     @AppStorage("lastUpdate") var lastUpdate: Double = 0
     
-    @AppStorage("ethbtc") var ethbtc: String = ""
-    @AppStorage("ethbtc_timestamp") var ethbtc_timestamp: String = ""
-    @AppStorage("ethusd") var ethusd: String = ""
-    @AppStorage("ethusd_timestamp") var ethusd_timestamp: String = ""
+    @AppStorage("avgMin") var avgMin: Double = 0.0
+    @AppStorage("avgMax") var avgMax: Double = 9999.0
+    @AppStorage("highMin") var highMin: Double = 0.0
+    @AppStorage("highMax") var highMax: Double = 9999.0
+    @AppStorage("lowMin") var lowMin: Double = 0.0
+    @AppStorage("lowMax") var lowMax: Double = 9999.0
     
     private var cancellables = Set<AnyCancellable>()
     private var timer: Timer?
     
-    private let api = MyAPI() // replace with your own API client
-//    private let storage = MyStorage() // replace with your own storage solution
+    private let api = MyAPI()
 
     init() {
         fetchData()
+        loadGasDataListFromUserDefaults()
         startTimer()
     }
 
@@ -52,55 +60,85 @@ class FetcherViewModel: ObservableObject {
     func fetchData() {
         status = .fetching
         
-        api.fetchGas { [weak self] response, error in
+        api.fetchGasList { [weak self] response, error in
             if let error = error {
                 self?.status = .failure(error)
                 return
             }
             
-            guard let gasData: GasData = response?.gasData else {
+            guard let gasListData = response?.gas_list else {
                 self?.status = .failure(NSError(domain: "Invalid response", code: 0, userInfo: nil))
                 return
             }
             
-            
-            guard let ethData: EthData = response?.ethPrice else {
-                self?.status = .failure(NSError(domain: "Invalid response", code: 0, userInfo: nil))
-                return
-            }
-            
-            // Update the @AppStorage properties on the main thread
+            // Update the @Published property on the main thread
             DispatchQueue.main.async {
-                self?.lastBlock = gasData.LastBlock
-                self?.safeGasPrice = gasData.SafeGasPrice
-                self?.proposeGasPrice = gasData.ProposeGasPrice
-                self?.fastGasPrice = gasData.FastGasPrice
-                self?.suggestBaseFee = gasData.suggestBaseFee
-                self?.timestamp = gasData.timestamp
-                self?.gasUsedRatio = self?.calculateAverage(numbersString: gasData.gasUsedRatio) ?? "..."
-                
-                self?.ethbtc = ethData.ethbtc
-                self?.ethusd = ethData.ethusd
-                self?.ethbtc_timestamp = ethData.ethbtc_timestamp
-                self?.ethusd_timestamp = ethData.ethusd_timestamp
-                
-                self?.lastUpdate = Date().timeIntervalSince1970
-                
+                self?.gasList = gasListData
                 self?.status = .idle
+                
+                self?.lastBlock = gasListData.first?.LastBlock ?? "0"
+                self?.safeGasPrice = gasListData.first?.SafeGasPrice ?? "0"
+                self?.proposeGasPrice = gasListData.first?.ProposeGasPrice ?? "0"
+                self?.fastGasPrice = gasListData.first?.FastGasPrice ?? "0"
+                self?.suggestBaseFee = gasListData.first?.suggestBaseFee ?? "0"
+                self?.timestamp = gasListData.first?.timestamp ?? 0
+                
+                let minMaxAverage = getMinMax(from: gasListData, keyPath: \.ProposeGasPrice)
+                self?.avgMin = minMaxAverage.min ?? 9999.9
+                self?.avgMax = minMaxAverage.max ?? 0.0
+                
+                let minMaxHigh = getMinMax(from: gasListData, keyPath: \.FastGasPrice)
+                self?.highMin = minMaxHigh.min ?? 9999.9
+                self?.highMax = minMaxHigh.max ?? 0.0
+                
+                let minMaxLow = getMinMax(from: gasListData, keyPath: \.SafeGasPrice)
+                self?.lowMin = minMaxLow.min ?? 9999.9
+                self?.lowMax = minMaxLow.max ?? 0.0
             }
         }
     }
     
-    private func calculateAverage(numbersString: String) -> String? {
-        let numbers = numbersString.split(separator: ",")
-                                   .compactMap { Float($0) }
-        guard !numbers.isEmpty else { return nil }
-        let average = numbers.reduce(0, +) / Float(numbers.count)
-        return String(format: "%.2f", average)
+    private func saveGasDataListToUserDefaults() {
+        if let encodedGasDataList = try? JSONEncoder().encode(gasList) {
+            UserDefaults.standard.setValue(encodedGasDataList, forKey: gasListKey)
+        }
     }
+    
+    private func loadGasDataListFromUserDefaults() {
+        if let data = UserDefaults.standard.data(forKey: gasListKey),
+           let decodedGasDataList = try? JSONDecoder().decode([GasData].self, from: data) {
+            gasList = decodedGasDataList
+        }
+    }
+    
+//    private func calculateAverage(numbersString: String) -> String? {
+//        let numbers = numbersString.split(separator: ",")
+//                                   .compactMap { Float($0) }
+//        guard !numbers.isEmpty else { return nil }
+//        let average = numbers.reduce(0, +) / Float(numbers.count)
+//        return String(format: "%.2f", average)
+//    }
 
 
     deinit {
         timer?.invalidate()
     }
 }
+
+func getMinMax(from gasPrices: [GasData], keyPath: KeyPath<GasData, String>) -> (min: Double?, max: Double?) {
+    guard let initialGasPrice = gasPrices.first else {
+        return (min: 0, max: 0)
+    }
+
+    let minMax = gasPrices.prefix(CHART_RANGE).reduce((min: Double(initialGasPrice[keyPath: keyPath]), max: Double(initialGasPrice[keyPath: keyPath]))) { (currentMinMax, gasPrice) -> (Double, Double) in
+        let currentMin = currentMinMax.min
+        let currentMax = currentMinMax.max
+        let newMin = min(currentMin ?? 0, Double(gasPrice[keyPath: keyPath]) ?? 0)
+        let newMax = max(currentMax ?? 0, Double(gasPrice[keyPath: keyPath]) ?? 0)
+
+        return (min: newMin , max: newMax )
+    }
+
+    return minMax
+}
+
