@@ -42,7 +42,7 @@ struct BarsChart: View {
                     endPoint: .top
                 )
             )
-//            .cornerRadius(10)
+            .cornerRadius(0)
             .annotation(position: .top, alignment: .center) {
                 Text("\(Int(item.average_gas_price))")
                     .foregroundColor(colorForValue(value: item.average_gas_price, min: minInStats ?? 0.0, max: maxInStats ?? 0.0))

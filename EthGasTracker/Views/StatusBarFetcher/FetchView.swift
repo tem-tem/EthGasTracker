@@ -18,7 +18,7 @@ struct FetchView: View {
     private let dotSize: CGFloat = 3
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .trailing) {
             switch fetcherViewModel.status {
             case .idle:
                 TimerView().font(.caption)
@@ -38,7 +38,8 @@ struct FetchView: View {
             case .success:
                 Text("OK").font(.caption)
             }
-            ZStack(alignment: .leading) {
+            
+            ZStack(alignment: .trailing) {
                 RoundedRectangle(cornerRadius: dotSize)
                     .fill(Color(.systemGray6))
                 

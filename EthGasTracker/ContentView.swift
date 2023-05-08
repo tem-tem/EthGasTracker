@@ -26,12 +26,17 @@ struct ContentView: View {
             ScrollView(showsIndicators: false) {
                 VStack {
                     HStack {
-                        VStack(alignment: .leading) {
+                        if #available(iOS 16.1, *) {
+                            Text("Gas").font(.largeTitle).bold().fontDesign(.serif).padding(.bottom, -10)
+                        } else {
+                            Text("Gas").font(.largeTitle).bold().padding(.bottom, -10)
+                        }
+                        Spacer()
+                        VStack(alignment: .trailing) {
                             StatusBar()
                             Text("\(formattedTimestamp)")
                                 .font(.caption)
                         }
-                        Spacer()
                     }
                     .padding(.horizontal, 10)
                     PlainGasView()
@@ -41,7 +46,8 @@ struct ContentView: View {
                         .padding(.horizontal, 10)
                     
                     VStack(alignment: .leading) {
-                        Text("Last 48 Hours").bold()
+                        Text("Last 48 hours").font(.title2).bold()
+                        Divider()
                         ScrollViewReader { scrollProxy in
                             ScrollView(.horizontal) {
                                 BarsChart()

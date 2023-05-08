@@ -33,7 +33,7 @@ struct PlainGasView: View {
                         Text("AVERAGE")
                             .foregroundColor(Color("avg"))
                             .font(.body.bold())
-                            .padding(.leading, 10)
+                            .padding(.leading, 2)
                         Text(avg)
                             .font(
                                 .system(size: 80)

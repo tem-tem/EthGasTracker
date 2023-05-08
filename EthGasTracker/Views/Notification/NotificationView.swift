@@ -15,7 +15,7 @@ struct NotificationView: View {
         VStack {
             if (thresholds.count > 0) {
                 HStack {
-                    Text("Notifications").bold()
+                    Text("Alert").font(.title2).bold().padding(.bottom, -10)
                     Spacer()
                     Button(deleting ? "Done" : "Delete") {
                         deleting.toggle()
