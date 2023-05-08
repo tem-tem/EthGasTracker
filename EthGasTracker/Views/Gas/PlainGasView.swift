@@ -41,6 +41,9 @@ struct PlainGasView: View {
                             )
                             .padding(.bottom, -10)
                             .padding(.top, -10)
+                        Text("GWEI")
+                            .font(.body.bold())
+                            .padding(.leading, 10)
                     }
                     .padding(.top, -1)
                     .padding(.bottom, 10)
@@ -73,6 +76,9 @@ struct PlainGasView: View {
                                 .padding(.leading, 4)
                             Text(low).font(.system(size: 40))
                                 .padding(.bottom, -10)
+                            Text("GWEI")
+                                .font(.caption.bold())
+                                .padding(.leading, 4)
                         }
                         Spacer()
                     }
@@ -101,6 +107,9 @@ struct PlainGasView: View {
                                 .padding(.leading, 4)
                             Text(high).font(.system(size: 40))
                                 .padding(.bottom, -10)
+                            Text("GWEI")
+                                .font(.caption.bold())
+                                .padding(.leading, 4)
                         }
                         Spacer()
                     }

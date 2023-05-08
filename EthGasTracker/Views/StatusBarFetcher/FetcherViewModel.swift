@@ -23,6 +23,11 @@ class FetcherViewModel: ObservableObject {
             saveGasDataListToUserDefaults()
         }
     }
+    @Published var stats: [Stat] = [] {
+        didSet {
+            saveStatsToUserDefaults()
+        }
+    }
     
     @AppStorage("LastBlock") var lastBlock: String = ""
     @AppStorage("SafeGasPrice") var safeGasPrice: String = ""
@@ -39,6 +44,8 @@ class FetcherViewModel: ObservableObject {
     @AppStorage("highMax") var highMax: Double = 9999.0
     @AppStorage("lowMin") var lowMin: Double = 0.0
     @AppStorage("lowMax") var lowMax: Double = 9999.0
+    @AppStorage("minInStats") var minInStats: Double?
+    @AppStorage("maxInStats") var maxInStats: Double?
     
     private var cancellables = Set<AnyCancellable>()
     private var timer: Timer?
@@ -46,14 +53,16 @@ class FetcherViewModel: ObservableObject {
     private let api = MyAPI()
 
     init() {
-        fetchData()
         loadGasDataListFromUserDefaults()
         startTimer()
+        loadStatsFromUserDefaults()
+        fetchStatsOnAppear()
     }
 
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
             self?.fetchData()
+            self?.fetchStatsOnAppear()
         }
     }
     
@@ -111,13 +120,74 @@ class FetcherViewModel: ObservableObject {
         }
     }
     
-//    private func calculateAverage(numbersString: String) -> String? {
-//        let numbers = numbersString.split(separator: ",")
-//                                   .compactMap { Float($0) }
-//        guard !numbers.isEmpty else { return nil }
-//        let average = numbers.reduce(0, +) / Float(numbers.count)
-//        return String(format: "%.2f", average)
-//    }
+    func fetchStatsOnAppear() {
+//        let latestTimestamp = stats.first?.timestamp_utc
+        if (stats.count > 0) {
+            guard let latestTimestamp = stats.first?.timestamp_utc else {
+                return
+            }
+            guard let latestStatDate = dateStringToDate(latestTimestamp) else {
+                return
+            }
+            
+            let currentTimestampUTC = Double(currentUTCTimestamp())
+            guard currentTimestampUTC - latestStatDate.timeIntervalSince1970 > 3600 else {
+                return
+            }
+            updateStats()
+        } else {
+            updateStats()
+        }
+    }
+    
+    private func updateStats() -> Void {
+        api.fetchStats { [weak self] result, error in
+            if let error = error {
+                print("Error fetching stats: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let statsData = result?.stats else {
+                print("Invalid stats response")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self?.stats = statsData
+                
+                self?.maxInStats = statsData.max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
+                self?.minInStats = statsData.min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
+            }
+        }
+    }
+    
+    private func currentUTCTimestamp() -> Int {
+        let currentDate = Date()
+        let utcTimestamp = Int(currentDate.timeIntervalSince1970)
+        
+        return utcTimestamp
+    }
+    
+    private func dateStringToDate(_ dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        return dateFormatter.date(from: dateString)
+    }
+
+    private func saveStatsToUserDefaults() {
+        if let encodedStats = try? JSONEncoder().encode(stats) {
+            UserDefaults.standard.setValue(encodedStats, forKey: statsKey)
+        }
+    }
+    
+    private func loadStatsFromUserDefaults() {
+        if let data = UserDefaults.standard.data(forKey: statsKey),
+           let decodedStats = try? JSONDecoder().decode([Stat].self, from: data) {
+            stats = decodedStats
+        }
+    }
 
 
     deinit {

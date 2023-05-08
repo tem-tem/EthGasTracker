@@ -26,6 +26,7 @@
 		A394E01629EB1AE000E45DEF /* ThresholdStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E01529EB1AE000E45DEF /* ThresholdStorage.swift */; };
 		A3A4D4E12A082E47008E4CE7 /* LowChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E02A082E47008E4CE7 /* LowChart.swift */; };
 		A3A4D4E32A0835C2008E4CE7 /* HighChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */; };
+		A3A4D4E52A084FA6008E4CE7 /* BarsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E42A084FA6008E4CE7 /* BarsChart.swift */; };
 		A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */; };
 		A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */; };
 		A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655829BC39BC00DC3016 /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		A394E01529EB1AE000E45DEF /* ThresholdStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdStorage.swift; sourceTree = "<group>"; };
 		A3A4D4E02A082E47008E4CE7 /* LowChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowChart.swift; sourceTree = "<group>"; };
 		A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighChart.swift; sourceTree = "<group>"; };
+		A3A4D4E42A084FA6008E4CE7 /* BarsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsChart.swift; sourceTree = "<group>"; };
 		A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdInputView.swift; sourceTree = "<group>"; };
 		A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdListView.swift; sourceTree = "<group>"; };
 		A3E3655829BC39BC00DC3016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				A32A16452A06A9F700F04CC7 /* AvgChart.swift */,
 				A3A4D4E02A082E47008E4CE7 /* LowChart.swift */,
 				A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */,
+				A3A4D4E42A084FA6008E4CE7 /* BarsChart.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				A34D907429C2B52E002F2310 /* TimerView.swift in Sources */,
 				A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */,
 				A3A4D4E12A082E47008E4CE7 /* LowChart.swift in Sources */,
+				A3A4D4E52A084FA6008E4CE7 /* BarsChart.swift in Sources */,
 				A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */,
 				A394E01029EA55F400E45DEF /* NotificationManager.swift in Sources */,
 				A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */,

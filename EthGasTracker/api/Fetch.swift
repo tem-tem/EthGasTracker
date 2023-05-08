@@ -8,8 +8,8 @@
 import Foundation
 
 class MyAPI {
-    func fetchGas(completion: @escaping (ServerResponse?, Error?) -> Void) {
-        guard let url = URL(string: "http://65.109.175.89:8000/") else {
+    func fetchStats(completion: @escaping (StatsResponse?, Error?) -> Void) {
+        guard let url = URL(string: "http://65.109.175.89:8000/stats") else {
             completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
             return
         }
@@ -27,7 +27,7 @@ class MyAPI {
 
             do {
                 let decoder = JSONDecoder()
-                let results = try decoder.decode(ServerResponse.self, from: data)
+                let results = try decoder.decode(StatsResponse.self, from: data)
                 completion(results, nil)
             } catch let error {
                 completion(nil, error)
@@ -35,15 +35,7 @@ class MyAPI {
         }
 
         task.resume()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            if task.state == .running {
-                task.cancel()
-                completion(nil, NSError(domain: "Timeout", code: 0, userInfo: nil))
-            }
-        }
     }
-    
     
     func fetchGasList(completion: @escaping (GasListServerResponse?, Error?) -> Void) {
         guard let url = URL(string: "http://65.109.175.89:8000/gas_list") else {
@@ -127,6 +119,27 @@ class GasListLoader {
     func loadGasDataListFromUserDefaults() -> [GasData] {
         if let data = UserDefaults.standard.data(forKey: gasListKey),
            let decodedGasList = try? JSONDecoder().decode([GasData].self, from: data) {
+            return decodedGasList
+        }
+        return []
+    }
+}
+
+struct Stat: Codable {
+    let average_gas_price: Double
+    let timestamp_utc: String
+}
+
+struct StatsResponse: Codable {
+    let stats: [Stat]
+}
+
+let statsKey = "StatsList" 
+
+class StatsLoader {
+    func loadStatsFromUserDefaults() -> [Stat] {
+        if let data = UserDefaults.standard.data(forKey: statsKey),
+           let decodedGasList = try? JSONDecoder().decode([Stat].self, from: data) {
             return decodedGasList
         }
         return []

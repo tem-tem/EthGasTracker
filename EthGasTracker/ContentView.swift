@@ -25,22 +25,37 @@ struct ContentView: View {
         ZStack {
             ScrollView(showsIndicators: false) {
                 VStack {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            StatusBar()
+                            Text("\(formattedTimestamp)")
+                                .font(.caption)
+                        }
+                        Spacer()
+                    }
+                    .padding(.horizontal, 10)
                     PlainGasView()
                         .opacity(isFresh ? 1 : 0.6)
                         .saturation(isFresh ? 1 : 0)
                         .animation(.easeInOut(duration: isFresh ? 0.1 : 0.5), value: isFresh)
                         .padding(.horizontal, 10)
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Captured on \(formattedTimestamp)")
-                                .font(.caption)
-//                                .padding(.top, 40)
-                            StatusBar()
-                                .padding(.bottom, 50)
+                    
+                    VStack(alignment: .leading) {
+                        Text("Last 48 Hours").bold()
+                        ScrollViewReader { scrollProxy in
+                            ScrollView(.horizontal) {
+                                BarsChart()
+                                    .frame(height: 200)
+                                    .padding(.bottom, 20)
+                                    .id("barChart")
+                            }
+                            .onAppear {
+                                scrollToTheEnd(using: scrollProxy)
+                            }
                         }
-                        Spacer()
                     }
-                        .padding(.horizontal, 10)
+                    .padding(10)
+                    
                     NotificationView().padding(10)
                 }
             }
@@ -97,6 +112,12 @@ struct ContentView: View {
     func simpleSuccess() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
+    }
+    
+    private func scrollToTheEnd(using scrollProxy: ScrollViewProxy) {
+        withAnimation {
+            scrollProxy.scrollTo("barChart", anchor: .trailing)
+        }
     }
 }
 

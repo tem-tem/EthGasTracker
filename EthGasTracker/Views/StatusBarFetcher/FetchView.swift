@@ -19,6 +19,25 @@ struct FetchView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            switch fetcherViewModel.status {
+            case .idle:
+                TimerView().font(.caption)
+//                Text("")
+            case .fetching:
+                Text("Fetching")
+                    .opacity(fadeInFetching ? 1 : 0)
+                    .animation(.easeInOut(duration: 0.3).delay(1), value: fadeInFetching)
+                    .onAppear {
+                        fadeInFetching = true
+                    }
+                    .onDisappear {
+                        fadeInFetching = false
+                    }.font(.caption)
+            case .failure(let error):
+                Text("\(error.localizedDescription)").multilineTextAlignment(.center).font(.subheadline)
+            case .success:
+                Text("OK").font(.caption)
+            }
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: dotSize)
                     .fill(Color(.systemGray6))
@@ -51,31 +70,12 @@ struct FetchView: View {
             }
             .frame(width: 100, height: dotSize)
             
-            switch fetcherViewModel.status {
-            case .idle:
-                TimerView().font(.caption)
-//                Text("")
-            case .fetching:
-                Text("Fetching")
-                    .opacity(fadeInFetching ? 1 : 0)
-                    .animation(.easeInOut(duration: 0.3).delay(1), value: fadeInFetching)
-                    .onAppear {
-                        fadeInFetching = true
-                    }
-                    .onDisappear {
-                        fadeInFetching = false
-                    }.font(.caption)
-            case .failure(let error):
-                Text("\(error.localizedDescription)").multilineTextAlignment(.center).font(.subheadline)
-            case .success:
-                Text("OK").font(.caption)
-            }
-            
         }
         .onChange(of: scene) { newValue in
             switch newValue {
             case .active:
                 fetcherViewModel.fetchData()
+                fetcherViewModel.fetchStatsOnAppear()
             default:
                 break
             }
