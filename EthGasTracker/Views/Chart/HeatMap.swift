@@ -59,10 +59,12 @@ struct HeatMap: View {
                 width: .inset(2),
                 height: .inset(2)
             )
+            .interpolationMethod(.catmullRom)
+            .cornerRadius(5)
             
             .annotation(position: .overlay) { _ in
                 Text("\(Int(item.average_gas_price)) ")
-                    .foregroundColor(colorForValue(value: item.average_gas_price, min: minInStats, max: maxInStats))
+                    .foregroundColor(colorForValue(value: item.average_gas_price, min: minInStats, max: maxInStats).opacity(0.8))
             }
             .foregroundStyle(by: .value("Number", item.average_gas_price))
         }
