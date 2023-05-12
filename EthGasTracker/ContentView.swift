@@ -12,6 +12,7 @@ struct ContentView: View {
     @AppStorage("timestamp") var timestamp: Double = 0
     @State private var isFresh = true
     @State private var showingSheet = false
+    @State private var showingHeatmap = false
     @ThresholdsStorage(key: "thresholds") var thresholds: [Threshold] = []
     
     var formattedTimestamp: String {
@@ -26,10 +27,17 @@ struct ContentView: View {
             ScrollView(showsIndicators: false) {
                 VStack {
                     HStack {
-                        if #available(iOS 16.1, *) {
-                            Text("Gas").font(.largeTitle).bold().fontDesign(.serif).padding(.bottom, -10)
-                        } else {
-                            Text("Gas").font(.largeTitle).bold().padding(.bottom, -10)
+                        VStack {
+//                            Image("star")
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(width: 20)
+//                                .offset(x: 10)
+//                                .opacity(0.5)
+                            Text("Gas")
+                                .font(.largeTitle).bold()
+                                .padding(.bottom, -10)
+                                .padding(.top, -15)
                         }
                         Spacer()
                         VStack(alignment: .trailing) {
@@ -46,7 +54,21 @@ struct ContentView: View {
                         .padding(.horizontal, 10)
                     
                     VStack(alignment: .leading) {
-                        Text("Last 48 hours").font(.title2).bold()
+                        HStack {
+                            Text("Last 48 hours").font(.title2).bold()
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                showingHeatmap.toggle()
+                            }) {
+                                Text("More").bold()
+                            }
+                            .sheet(isPresented: $showingHeatmap) {
+                                HeatMapView()
+                                .padding(10)
+                            }
+                        }
                         Divider()
                         ScrollViewReader { scrollProxy in
                             ScrollView(.horizontal) {
@@ -56,7 +78,7 @@ struct ContentView: View {
                                     .id("barChart")
                             }
                             .onAppear {
-                                scrollToTheEnd(using: scrollProxy)
+                                scrollToTheEnd(using: scrollProxy, id: "barChart")
                             }
                         }
                     }
@@ -76,8 +98,9 @@ struct ContentView: View {
                     break
                 }
             }
-            .onChange(of: timestamp) { _ in
+            .onChange(of: timestamp) { newTimestamp in
                 simpleSuccess()
+                self.isFresh = lessThan60secondsAgo(newTimestamp)
             }
             
             VStack {
@@ -120,9 +143,9 @@ struct ContentView: View {
         generator.notificationOccurred(.success)
     }
     
-    private func scrollToTheEnd(using scrollProxy: ScrollViewProxy) {
+    private func scrollToTheEnd(using scrollProxy: ScrollViewProxy, id: String) {
         withAnimation {
-            scrollProxy.scrollTo("barChart", anchor: .trailing)
+            scrollProxy.scrollTo(id, anchor: .trailing)
         }
     }
 }

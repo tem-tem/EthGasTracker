@@ -30,6 +30,7 @@
 		A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */; };
 		A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */; };
 		A3DB1D672A0E4DA500372A58 /* HeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DB1D662A0E4DA500372A58 /* HeatMap.swift */; };
+		A3DB1D692A0E75EE00372A58 /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DB1D682A0E75EE00372A58 /* HeatMapView.swift */; };
 		A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655829BC39BC00DC3016 /* AppDelegate.swift */; };
 		A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655A29BD2EF800DC3016 /* Fetch.swift */; };
 		A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */; };
@@ -63,6 +64,7 @@
 		A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdInputView.swift; sourceTree = "<group>"; };
 		A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdListView.swift; sourceTree = "<group>"; };
 		A3DB1D662A0E4DA500372A58 /* HeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMap.swift; sourceTree = "<group>"; };
+		A3DB1D682A0E75EE00372A58 /* HeatMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
 		A3E3655829BC39BC00DC3016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3E3655A29BD2EF800DC3016 /* Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */,
 				A3A4D4E42A084FA6008E4CE7 /* BarsChart.swift */,
 				A3DB1D662A0E4DA500372A58 /* HeatMap.swift */,
+				A3DB1D682A0E75EE00372A58 /* HeatMapView.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			files = (
 				A34D907429C2B52E002F2310 /* TimerView.swift in Sources */,
 				A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */,
+				A3DB1D692A0E75EE00372A58 /* HeatMapView.swift in Sources */,
 				A3A4D4E12A082E47008E4CE7 /* LowChart.swift in Sources */,
 				A3A4D4E52A084FA6008E4CE7 /* BarsChart.swift in Sources */,
 				A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */,

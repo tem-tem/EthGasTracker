@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Charts
-let calendar = Calendar.current
 
 struct BarsChart: View {
     private var statsLoader = StatsLoader()
@@ -21,7 +20,7 @@ struct BarsChart: View {
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
+        formatter.dateFormat = "HH:00"
         return formatter
     }()
     
@@ -54,12 +53,12 @@ struct BarsChart: View {
                     if (maxIn48Stats == item.average_gas_price) {
                         Text("MAX")
                             .foregroundColor(colorForValue(value: item.average_gas_price, min: minIn48Stats, max: maxIn48Stats))
-                            .font(.caption)
+                            .font(.caption2)
                     }
                     if (minIn48Stats == item.average_gas_price) {
                         Text("MIN")
                             .foregroundColor(colorForValue(value: item.average_gas_price, min: minIn48Stats, max: maxIn48Stats))
-                            .font(.caption)
+                            .font(.caption2)
                     }
                     Spacer()
                     Text(dateFormatter.string(from: dateStringToDate(item.timestamp_utc)))
@@ -77,7 +76,6 @@ struct BarsChart: View {
                 } else {
                     AxisGridLine()
                 }
-                
             }
         }
         .chartYAxis(.hidden)
@@ -86,14 +84,6 @@ struct BarsChart: View {
             maxIn48Stats = stats.max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 99999
             minIn48Stats = stats.min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 0
         }
-    }
-    
-    func dateStringToDate(_ dateString: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-
-        return dateFormatter.date(from: dateString) ?? Date()
     }
     
     func colorForValue(value: Double, min minValue: Double, max maxValue: Double) -> Color {
@@ -117,6 +107,14 @@ struct BarsChart: View {
         
         return colors.reversed()[index]
     }
+}
+
+func dateStringToDate(_ dateString: String) -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+    return dateFormatter.date(from: dateString) ?? Date()
 }
 
 extension Color {

@@ -34,7 +34,7 @@ struct FetchView: View {
                         fadeInFetching = false
                     }.font(.caption)
             case .failure(let error):
-                Text("\(error.localizedDescription)").multilineTextAlignment(.center).font(.subheadline)
+                Text("\(error.localizedDescription)").multilineTextAlignment(.trailing).font(.caption2)
             case .success:
                 Text("OK").font(.caption)
             }
