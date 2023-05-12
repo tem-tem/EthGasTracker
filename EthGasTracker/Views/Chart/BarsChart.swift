@@ -12,10 +12,8 @@ let calendar = Calendar.current
 struct BarsChart: View {
     private var statsLoader = StatsLoader()
     private var stats: [Stat]
-    @AppStorage("minInStats") var minInStats: Double?
-    @AppStorage("maxInStats") var maxInStats: Double?
-    
-    private let avgColors = [Color("avg").opacity(0), Color("avg").opacity(0.5)]
+    @AppStorage("minIn48Stats") var minIn48Stats: Double = 0
+    @AppStorage("maxIn48Stats") var maxIn48Stats: Double = 1
     
     init() {
         stats = statsLoader.loadStatsFromUserDefaults()
@@ -27,17 +25,19 @@ struct BarsChart: View {
         return formatter
     }()
     
+    private let barWidth = 40
+    
     var body: some View {
-        Chart(stats, id: \.timestamp_utc) { item in
+        Chart(stats.prefix(48), id: \.timestamp_utc) { item in
             
             BarMark(
                 x: .value("Hour", dateStringToDate(item.timestamp_utc)),
                 y: .value("Price", item.average_gas_price),
-                width: 40
+                width: MarkDimension(integerLiteral: barWidth)
             )
             .foregroundStyle(
                 .linearGradient(
-                    colors: [colorForValue(value: item.average_gas_price, min: minInStats ?? 0.0, max: maxInStats ?? 0.0).opacity(0), colorForValue(value: item.average_gas_price, min: minInStats ?? 0.0, max: maxInStats ?? 0.0).opacity(0.5)],
+                    colors: [colorForValue(value: item.average_gas_price, min: minIn48Stats, max: maxIn48Stats).opacity(0), colorForValue(value: item.average_gas_price, min: minIn48Stats, max: maxIn48Stats).opacity(0.5)],
                     startPoint: .bottom,
                     endPoint: .top
                 )
@@ -45,28 +45,28 @@ struct BarsChart: View {
             .cornerRadius(0)
             .annotation(position: .top, alignment: .center) {
                 Text("\(Int(item.average_gas_price))")
-                    .foregroundColor(colorForValue(value: item.average_gas_price, min: minInStats ?? 0.0, max: maxInStats ?? 0.0))
+                    .foregroundColor(colorForValue(value: item.average_gas_price, min: minIn48Stats, max: maxIn48Stats))
                     .font(.caption)
             }
             .annotation(position: .overlay, alignment: .center) {
                 VStack(alignment: .center, spacing: 0) {
-                    Rectangle().fill(colorForValue(value: item.average_gas_price, min: minInStats ?? 0.0, max: maxInStats ?? 0.0)).frame(height: 2).padding(.top, -6)
-                    if ((maxInStats ?? 0.0) == (item.average_gas_price)) {
+                    Rectangle().fill(colorForValue(value: item.average_gas_price, min: minIn48Stats, max: maxIn48Stats)).frame(height: 2).padding(.top, -6)
+                    if (maxIn48Stats == item.average_gas_price) {
                         Text("MAX")
-                            .foregroundColor(colorForValue(value: item.average_gas_price, min: minInStats ?? 0.0, max: maxInStats ?? 0.0))
+                            .foregroundColor(colorForValue(value: item.average_gas_price, min: minIn48Stats, max: maxIn48Stats))
                             .font(.caption)
                     }
-                    if ((minInStats ?? 0.0) == (item.average_gas_price)) {
+                    if (minIn48Stats == item.average_gas_price) {
                         Text("MIN")
-                            .foregroundColor(colorForValue(value: item.average_gas_price, min: minInStats ?? 0.0, max: maxInStats ?? 0.0))
+                            .foregroundColor(colorForValue(value: item.average_gas_price, min: minIn48Stats, max: maxIn48Stats))
                             .font(.caption)
                     }
                     Spacer()
                     Text(dateFormatter.string(from: dateStringToDate(item.timestamp_utc)))
-                        .foregroundColor(colorForValue(value: item.average_gas_price, min: minInStats ?? 0.0, max: maxInStats ?? 0.0))
+                        .foregroundColor(colorForValue(value: item.average_gas_price, min: minIn48Stats, max: maxIn48Stats))
                         .font(.caption)
                     
-                }.frame(width: 40)
+                }.frame(width: CGFloat(barWidth))
             }
         }
         .chartXAxis {
@@ -81,11 +81,10 @@ struct BarsChart: View {
             }
         }
         .chartYAxis(.hidden)
-        .frame(width: CGFloat(stats.count) * 50)
+        .frame(width: CGFloat(48) * CGFloat(barWidth + 5))
         .onAppear {
-            
-            maxInStats = stats.max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
-            minInStats = stats.min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
+            maxIn48Stats = stats.max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 99999
+            minIn48Stats = stats.min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 0
         }
     }
     
@@ -99,7 +98,8 @@ struct BarsChart: View {
     
     func colorForValue(value: Double, min minValue: Double, max maxValue: Double) -> Color {
         guard minValue <= value, value <= maxValue else {
-            fatalError("Value must be between min and max.")
+            print("Value must be between min and max.")
+            return Color("avg")
         }
         
         let colors = [
@@ -114,7 +114,6 @@ struct BarsChart: View {
         let range = maxValue - minValue
         let step = Int(Int(range) / (colors.count - 1))
         let index = Int(Int((value - minValue)) / step)
-        let colorIndex = min(Int(value), (colors.count - 1))
         
         return colors.reversed()[index]
     }
