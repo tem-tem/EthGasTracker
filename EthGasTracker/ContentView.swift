@@ -28,12 +28,6 @@ struct ContentView: View {
                 VStack {
                     HStack {
                         VStack {
-//                            Image("star")
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fit)
-//                                .frame(width: 20)
-//                                .offset(x: 10)
-//                                .opacity(0.5)
                             Text("Gas")
                                 .font(.largeTitle).bold()
                                 .padding(.bottom, -10)
