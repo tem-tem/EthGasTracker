@@ -35,6 +35,7 @@
 		A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655A29BD2EF800DC3016 /* Fetch.swift */; };
 		A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */; };
 		A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656229BD476B00DC3016 /* ContentView.swift */; };
+		A3F731EF2A11CD4200AB10D2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F731EE2A11CD4200AB10D2 /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		A3E3655A29BD2EF800DC3016 /* Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		A3E3656229BD476B00DC3016 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A3F731EE2A11CD4200AB10D2 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */,
 				A317CCEF29CBF497001B8492 /* lightweight.gif */,
 				A384EB2929BAFBC6005CC9E1 /* Preview Content */,
+				A3F731EE2A11CD4200AB10D2 /* Helpers.swift */,
 			);
 			path = EthGasTracker;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */,
 				A3A4D4E32A0835C2008E4CE7 /* HighChart.swift in Sources */,
 				A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */,
+				A3F731EF2A11CD4200AB10D2 /* Helpers.swift in Sources */,
 				A34D907029C2918D002F2310 /* FetchView.swift in Sources */,
 				A394E00529EA4C8D00E45DEF /* NotificationView.swift in Sources */,
 			);

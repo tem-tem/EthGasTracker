@@ -11,11 +11,12 @@ import Charts
 let CHART_RANGE = 12
 
 struct HighChart: View {
-    private var gasListLoader = GasListLoader()
-    private var gasList: [GasData]
-    
     @AppStorage("highMin") var highMin: Double = 0.0
     @AppStorage("highMax") var highMax: Double = 9999.0
+    @AppStorage("dataUpdateToggle") var dataUpdateToggle = false
+    
+    private var gasListLoader = GasListLoader()
+    private var gasList: [GasData]
     
     private let curColor = Color("high")
     private let curGradient: LinearGradient
@@ -71,7 +72,7 @@ struct HighChart: View {
         .chartYScale(domain: highMin...highMax)
         .chartXAxis(.hidden)
         .chartYAxis(.hidden)
-        .animation(.easeIn)
+        .animation(.easeIn, value: dataUpdateToggle)
     }
 }
 

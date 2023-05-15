@@ -44,8 +44,12 @@ class FetcherViewModel: ObservableObject {
     @AppStorage("highMax") var highMax: Double = 9999.0
     @AppStorage("lowMin") var lowMin: Double = 0.0
     @AppStorage("lowMax") var lowMax: Double = 9999.0
-    @AppStorage("minInStats") var minInStats: Double?
-    @AppStorage("maxInStats") var maxInStats: Double?
+    @AppStorage("minIn48Stats") var minIn48Stats: Double?
+    @AppStorage("maxIn48Stats") var maxIn48Stats: Double?
+    @AppStorage("minInAllStats") var minInAllStats: Double?
+    @AppStorage("maxInAllStats") var maxInAllStats: Double?
+    
+    @AppStorage("dataUpdateToggle") var dataUpdateToggle = false
     
     private var cancellables = Set<AnyCancellable>()
     private var timer: Timer?
@@ -103,6 +107,8 @@ class FetcherViewModel: ObservableObject {
                 let minMaxLow = getMinMax(from: gasListData, keyPath: \.SafeGasPrice)
                 self?.lowMin = minMaxLow.min ?? 9999.9
                 self?.lowMax = minMaxLow.max ?? 0.0
+                
+                self?.dataUpdateToggle.toggle()
             }
         }
     }
@@ -155,8 +161,10 @@ class FetcherViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self?.stats = statsData
                 
-                self?.maxInStats = statsData.max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
-                self?.minInStats = statsData.min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
+                self?.maxIn48Stats = statsData.prefix(48).max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
+                self?.minIn48Stats = statsData.prefix(48).min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
+                self?.maxInAllStats = statsData.max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
+                self?.minInAllStats = statsData.min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
             }
         }
     }

@@ -11,8 +11,8 @@ import Charts
 struct HeatMap: View {
     private var statsLoader = StatsLoader()
     private var stats: [Stat]
-    @AppStorage("minInStats") var minInStats: Double = 0
-    @AppStorage("maxInStats") var maxInStats: Double = 100
+    @AppStorage("minInAllStats") var minInAllStats: Double = 0
+    @AppStorage("maxInAllStats") var maxInAllStats: Double = 1000
     
     init() {
         stats = statsLoader.loadStatsFromUserDefaults()
@@ -64,7 +64,7 @@ struct HeatMap: View {
             
             .annotation(position: .overlay) { _ in
                 Text("\(Int(item.average_gas_price)) ")
-                    .foregroundColor(colorForValue(value: item.average_gas_price, min: minInStats, max: maxInStats).opacity(0.8))
+                    .foregroundColor(colorForValue(value: item.average_gas_price, min: minInAllStats, max: maxInAllStats).opacity(0.8))
             }
             .foregroundStyle(by: .value("Number", item.average_gas_price))
         }
@@ -83,9 +83,10 @@ struct HeatMap: View {
         .chartYAxis(.hidden)
         .onAppear {
             start = lastIndexWithZeroHours(stats: stats)
-            if (maxInStats > 100) {
-                width = (String(abs(Int(maxInStats))).count) * 20
-                
+            maxInAllStats = stats.max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 1000
+            minInAllStats = stats.min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 0
+            if (maxInAllStats > 100) {
+                width = (String(abs(Int(maxInAllStats))).count) * 20
             }
         }
     }
@@ -98,28 +99,6 @@ struct HeatMap: View {
         let dayString = dateFormatter.string(from: today)
         
         return dayString
-    }
-    
-    func colorForValue(value: Double, min minValue: Double, max maxValue: Double) -> Color {
-        guard minValue <= value, value <= maxValue else {
-            print("Value must be between min and max.")
-            return Color("avg")
-        }
-        
-        let colors = [
-            Color(hex: "F94144"),
-            Color(hex: "F3722C"),
-            Color(hex: "F8961E"),
-            Color(hex: "F9C74F"),
-            Color(hex: "90BE6D"),
-            Color(hex: "43AA8B")
-        ]
-        
-        let range = maxValue - minValue
-        let step = Int(Int(range) / (colors.count - 1))
-        let index = Int(Int((value - minValue)) / step)
-        
-        return colors.reversed()[index]
     }
 }
 

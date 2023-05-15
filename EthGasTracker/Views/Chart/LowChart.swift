@@ -9,11 +9,12 @@ import SwiftUI
 import Charts
 
 struct LowChart: View {
-    private var gasListLoader = GasListLoader()
-    private var gasList: [GasData]
-    
     @AppStorage("lowMin") var lowMin: Double = 0.0
     @AppStorage("lowMax") var lowMax: Double = 9999.0
+    @AppStorage("dataUpdateToggle") var dataUpdateToggle = false
+    
+    private var gasListLoader = GasListLoader()
+    private var gasList: [GasData]
     
     private let curColor = Color("low")
     private let curGradient: LinearGradient
@@ -70,7 +71,7 @@ struct LowChart: View {
         .chartLegend(.hidden)
         .chartXAxis(.hidden)
         .chartYAxis(.hidden)
-        .animation(.easeIn)
+        .animation(.easeIn, value: dataUpdateToggle)
     }
 }
 

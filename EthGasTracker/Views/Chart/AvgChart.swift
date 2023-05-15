@@ -9,11 +9,12 @@ import SwiftUI
 import Charts
 
 struct AvgChart: View {
-    private var gasListLoader = GasListLoader()
-    private var gasList: [GasData]
-    
     @AppStorage("avgMin") var avgMin: Double = 0.0
     @AppStorage("avgMax") var avgMax: Double = 9999.0
+    @AppStorage("dataUpdateToggle") var dataUpdateToggle = false
+    
+    private var gasListLoader = GasListLoader()
+    private var gasList: [GasData]
     
     private let curColor = Color("avg")
     private let curGradient: LinearGradient
@@ -66,7 +67,7 @@ struct AvgChart: View {
 //            }
         }
         .chartYScale(domain: avgMin...avgMax)
-        .animation(.easeIn)
+        .animation(.easeIn, value: dataUpdateToggle)
 //        .chartXAxis(.hidden)
 //        .chartYAxis(.hidden)
     }

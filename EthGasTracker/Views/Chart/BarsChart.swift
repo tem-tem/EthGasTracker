@@ -13,6 +13,8 @@ struct BarsChart: View {
     private var stats: [Stat]
     @AppStorage("minIn48Stats") var minIn48Stats: Double = 0
     @AppStorage("maxIn48Stats") var maxIn48Stats: Double = 1
+    @AppStorage("minInAllStats") var minInAllStats: Double = 0
+    @AppStorage("maxInAllStats") var maxInAllStats: Double = 1000
     
     init() {
         stats = statsLoader.loadStatsFromUserDefaults()
@@ -81,31 +83,9 @@ struct BarsChart: View {
         .chartYAxis(.hidden)
         .frame(width: CGFloat(48) * CGFloat(barWidth + 5))
         .onAppear {
-            maxIn48Stats = stats.max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 99999
-            minIn48Stats = stats.min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 0
+            maxIn48Stats = stats.prefix(48).max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 99999
+            minIn48Stats = stats.prefix(48).min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price ?? 0
         }
-    }
-    
-    func colorForValue(value: Double, min minValue: Double, max maxValue: Double) -> Color {
-        guard minValue <= value, value <= maxValue else {
-            print("Value must be between min and max.")
-            return Color("avg")
-        }
-        
-        let colors = [
-            Color(hex: "F94144"),
-            Color(hex: "F3722C"),
-            Color(hex: "F8961E"),
-            Color(hex: "F9C74F"),
-            Color(hex: "90BE6D"),
-            Color(hex: "43AA8B")
-        ]
-        
-        let range = maxValue - minValue
-        let step = Int(Int(range) / (colors.count - 1))
-        let index = Int(Int((value - minValue)) / step)
-        
-        return colors.reversed()[index]
     }
 }
 

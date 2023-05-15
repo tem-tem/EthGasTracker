@@ -75,7 +75,7 @@ class MyAPI {
 }
 
 
-struct GasData: Codable, Identifiable {
+struct GasData: Codable, Identifiable, Equatable {
     let LastBlock: String
     let SafeGasPrice: String
     let ProposeGasPrice: String
