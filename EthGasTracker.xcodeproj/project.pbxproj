@@ -25,6 +25,7 @@
 		A38C565F2A12C7C5004ABF21 /* EthGasWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38C565E2A12C7C5004ABF21 /* EthGasWidget.swift */; };
 		A38C56612A12C7C6004ABF21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38C56602A12C7C6004ABF21 /* Assets.xcassets */; };
 		A38C56652A12C7C6004ABF21 /* EthGasWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A38C56532A12C7C5004ABF21 /* EthGasWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A38C566C2A12D39F004ABF21 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655A29BD2EF800DC3016 /* Fetch.swift */; };
 		A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00229EA467100E45DEF /* PlainGasView.swift */; };
 		A394E00529EA4C8D00E45DEF /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00429EA4C8D00E45DEF /* NotificationView.swift */; };
 		A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00929EA505000E45DEF /* SendThreshold.swift */; };
@@ -405,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A38C566C2A12D39F004ABF21 /* Fetch.swift in Sources */,
 				A38C565D2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift in Sources */,
 				A38C565B2A12C7C5004ABF21 /* EthGasWidgetBundle.swift in Sources */,
 				A38C565F2A12C7C5004ABF21 /* EthGasWidget.swift in Sources */,

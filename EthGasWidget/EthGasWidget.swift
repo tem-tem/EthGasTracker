@@ -8,47 +8,70 @@
 import WidgetKit
 import SwiftUI
 
+// a data that i populate the widget with
+struct GasListEntry: TimelineEntry {
+    let date: Date
+    let gasList: [GasData]
+}
+
 struct Provider: TimelineProvider {
+    private let api = MyAPI()
+    
+    typealias Entry = GasListEntry
     // when there's no data
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+    func placeholder(in context: Context) -> GasListEntry {
+        GasListEntry(date: Date(), gasList: [])
     }
 
     // show actual data (e.g. picking a widget to put on)
-//    recommended to not do network calls lol
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
-        completion(entry)
-    }
-
-//    timeline is array of entries
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate)
-            entries.append(entry)
+    func getSnapshot(in context: Context, completion: @escaping (GasListEntry) -> Void) {
+        let entry = GasListEntry(date: Date(), gasList: [])
+            completion(entry)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+    
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        
+        api.fetchGasList { response, error in
+            if let error = error {
+                print("Error fetching", error)
+                return
+            }
+            
+            guard let gasListData = response?.gas_list else {
+                print("Invalid response", response)
+//                self?.status = .failure(NSError(domain: "Invalid response", code: 0, userInfo: nil))
+                return
+            }
+            
+            let date = Date()
+            let entry = GasListEntry(date: date, gasList: gasListData)
+            let nextUpdate = Calendar.current.date(byAdding: .minute, value: 5, to: date) ?? date
+            let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
+            completion(timeline)
+        }
     }
 }
 
-// a data that i populate the widget with
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-}
 
 // view
 struct EthGasWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
+        VStack(alignment: .leading) {
+            Text("AVERAGE").font(.caption)
+            Text(entry.gasList.first?.ProposeGasPrice ?? "00")
+                .font(.largeTitle).bold()
+                .padding(.leading, -2)
+            Text("GWEI")
+            Spacer()
+            Text(Date(timeIntervalSince1970: TimeInterval(entry.gasList.first?.timestamp ?? 0)), style: .relative)
+                .font(.caption2)
+                .foregroundColor(.gray)
+            + Text(" ago")
+                .font(.caption2)
+                .foregroundColor(.gray)
+        }.padding()
     }
 }
 
@@ -66,7 +89,15 @@ struct EthGasWidget: Widget {
 
 struct EthGasWidget_Previews: PreviewProvider {
     static var previews: some View {
-        EthGasWidgetEntryView(entry: SimpleEntry(date: Date()))
+        EthGasWidgetEntryView(entry: GasListEntry(date: Date(), gasList: []))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
+}
+
+extension Date {
+    func relativeTime(in locale: Locale = .current) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return formatter.localizedString(for: self, relativeTo: Date())
     }
 }
