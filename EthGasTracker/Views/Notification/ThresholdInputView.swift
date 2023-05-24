@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct ThresholdInputView: View {
     var onSubmit: (_: Bool) -> Void
     
     @EnvironmentObject var appDelegate: AppDelegate
+    
+    @Environment(\.requestReview) var requestReview
+    @AppStorage("requestReviewTimestamp") private var requestReviewTimestamp = 0.0
+    
     @AppStorage("ProposeGasPrice") var avg = "00"
     @ThresholdsStorage(key: "thresholds") var thresholds: [Threshold] = []
     @State private var thresholdPrice: String = ""
@@ -108,6 +113,18 @@ struct ThresholdInputView: View {
         })
     }
     
+    func askForReview() {
+        let twoWeeks = 14 * 24 * 60 * 60.0
+        let currentTime = Date.now.timeIntervalSince1970
+        
+        if (requestReviewTimestamp + twoWeeks < currentTime) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+                requestReview()
+                requestReviewTimestamp = Date.now.timeIntervalSince1970
+            }
+        }
+    }
+    
     func sendThresholdHandler(action: String, appDelegate: AppDelegate, thresholdPrice: String, comparison: String, muteDuration: Int) {
         if let deviceToken = appDelegate.deviceToken {
             sendThresholdPrice(
@@ -124,6 +141,7 @@ struct ThresholdInputView: View {
                             self.thresholds.append(newThresholds.last!)
                         }
                         onSubmit(true)
+                        askForReview()
                     case .failure(let error):
                         alertTitle = "Error"
                         alertMessage = error.localizedDescription

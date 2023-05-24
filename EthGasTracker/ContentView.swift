@@ -41,6 +41,7 @@ struct ContentView: View {
                         }
                     }
                     .padding(.horizontal, 10)
+                    Divider()
                     PlainGasView()
                         .opacity(isFresh ? 1 : 0.6)
                         .saturation(isFresh ? 1 : 0)
@@ -59,7 +60,7 @@ struct ContentView: View {
                                 Text("More").bold()
                             }
                             .sheet(isPresented: $showingHeatmap) {
-                                HeatMapView()
+                                HeatMapView(isPresented: $showingHeatmap)
                                 .padding(10)
                             }
                         }

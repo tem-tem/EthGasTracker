@@ -58,13 +58,14 @@ func minAndMaxGasPrices(averageGasPrices: [String: Double]) -> (min: (String, Do
 
 
 struct HeatMapView: View {
+    @Binding var isPresented: Bool
     private var statsLoader = StatsLoader()
     private var stats: [Stat]
     @State private var avgList: [String: Double]
     @State private var minAvg: Double
     @State private var maxAvg: Double
     
-    init() {
+    init(isPresented canShow: Binding<Bool>) {
         stats = statsLoader.loadStatsFromUserDefaults()
         let avgListByHour = averageGasPricesByHour(stats: stats)
         
@@ -79,6 +80,8 @@ struct HeatMapView: View {
         }
         
         avgList = avgListByHour
+        
+        self._isPresented = canShow
     }
     
     
@@ -112,6 +115,13 @@ struct HeatMapView: View {
                     }
                 }
                 
+            }
+            HStack {
+                Spacer()
+                Button("Dismiss") {
+                    isPresented = false
+                }
+                Spacer()
             }
         }
     }
@@ -148,6 +158,6 @@ struct HeatMapView: View {
 
 struct HeatMapView_Previews: PreviewProvider {
     static var previews: some View {
-        HeatMapView()
+        HeatMapView(isPresented: .constant(true))
     }
 }
