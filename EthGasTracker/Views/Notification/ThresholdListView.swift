@@ -22,25 +22,25 @@ struct ThresholdListView: View {
                 HStack {
                     VStack(alignment: .leading) {
                         if (threshold.comparison == "less_than_or_equal_to") {
-                            Text("< \(Int(threshold.thresholdPrice))")
+                            Text("Average ≤ \(Int(threshold.thresholdPrice))")
                                 .font(.largeTitle)
                                 .fontWeight(.thin)
                                 .foregroundColor(threshold.enabled ?? false ? .primary : .secondary)
                         } else {
-                            Text("\(Int(threshold.thresholdPrice))+")
+                            Text("Average is \(Int(threshold.thresholdPrice))+")
                                 .font(.largeTitle)
                                 .fontWeight(.thin)
                                 .foregroundColor(threshold.enabled ?? false ? .primary : .secondary)
                         }
-                        if (threshold.comparison == "less_than_or_equal_to") {
-                            Text("Drops below \(Int(threshold.thresholdPrice)) gwei")
+                        if (threshold.mute_duration < 300) {
+                            Text("Not limited").foregroundColor(.orange)
                                 .font(.caption)
-                                .fontWeight(.light)
-                                .foregroundColor(threshold.enabled ?? false ? .primary : .secondary)
+                                .fontWeight(.thin)
+                                .foregroundColor(threshold.enabled ?? false ? .orange : .secondary)
                         } else {
-                            Text("Higher than \(Int(threshold.thresholdPrice)) gwei")
+                            Text("One per \(NotificationLimit(rawValue: threshold.mute_duration)?.description ?? "")")
                                 .font(.caption)
-                                .fontWeight(.light)
+                                .fontWeight(.thin)
                                 .foregroundColor(threshold.enabled ?? false ? .primary : .secondary)
                         }
                     }
@@ -61,7 +61,7 @@ struct ThresholdListView: View {
                             get: { threshold.enabled ?? false },
                             set: { newValue in
                                 let action = newValue ? "add" : "remove"
-                                sendThresholdHandler(action: action, appDelegate: appDelegate, thresholdPrice: "\(Int(threshold.thresholdPrice))", comparison: threshold.comparison)
+                                sendThresholdHandler(action: action, appDelegate: appDelegate, thresholdPrice: "\(Int(threshold.thresholdPrice))", comparison: threshold.comparison, mute_duration: threshold.mute_duration)
                             }
                         ))
                             .labelsHidden()
@@ -76,7 +76,7 @@ struct ThresholdListView: View {
     }
     
     func deleteThreshold(threshold: Threshold, thresholds: inout [Threshold]) {
-        sendThresholdHandler(action: "remove", appDelegate: appDelegate, thresholdPrice: "\(threshold.thresholdPrice)", comparison: threshold.comparison)
+        sendThresholdHandler(action: "remove", appDelegate: appDelegate, thresholdPrice: "\(threshold.thresholdPrice)", comparison: threshold.comparison, mute_duration: threshold.mute_duration)
         let thresholdId = threshold.id
         if let index = thresholds.firstIndex(where: { $0.id == thresholdId }) {
             thresholds.remove(at: index)
@@ -84,14 +84,14 @@ struct ThresholdListView: View {
     }
 
     
-    func sendThresholdHandler(action: String, appDelegate: AppDelegate, thresholdPrice: String, comparison: String) {
+    func sendThresholdHandler(action: String, appDelegate: AppDelegate, thresholdPrice: String, comparison: String, mute_duration: Int) {
         if let deviceToken = appDelegate.deviceToken {
             sendThresholdPrice(
                 action: action,
                 deviceToken: deviceToken,
                 threshold: thresholdPrice,
                 comparison: comparison,
-                mute_duration: 60
+                mute_duration: mute_duration
             ) { result in
                 DispatchQueue.main.async {
                     switch result {

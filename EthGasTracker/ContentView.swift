@@ -67,7 +67,7 @@ struct ContentView: View {
                         ScrollViewReader { scrollProxy in
                             ScrollView(.horizontal) {
                                 BarsChart()
-                                    .frame(height: 200)
+                                    .frame(height: 150)
                                     .padding(.bottom, 20)
                                     .id("barChart")
                             }

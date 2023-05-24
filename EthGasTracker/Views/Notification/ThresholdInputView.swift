@@ -21,6 +21,8 @@ struct ThresholdInputView: View {
     @State private var displayComparison = "LOWER/HIGHER"
     @State private var displayComparisonColor = Color.blue
     
+    @State private var selectedLimit = NotificationLimit.thirty
+    
     private enum Field: Int, Hashable {
         case threshold
     }
@@ -29,9 +31,9 @@ struct ThresholdInputView: View {
     
     var body: some View {
         VStack (alignment: .center) {
-            Text("Current average is \(avg) gwei")
+            Text("Current average is \(avg) gwei").font(.caption)
             Spacer()
-            Text("You will be notified when")
+            Text("Alert when")
             Text("gas is ") +
             Text(displayComparison)
                 .bold()
@@ -45,18 +47,46 @@ struct ThresholdInputView: View {
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
                 .focused($focusedField, equals: true)
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        Button(action: {
+                            hideKeyboard()
+                        }) {
+                            Image(systemName: "keyboard.chevron.compact.down")
+                        }
+                    }
+                }
+            Divider()
+            NotificationLimitPicker(selectedLimit: $selectedLimit)
 
             Spacer()
-            Button(action: {
-                sendThresholdHandler(action: "add", appDelegate: appDelegate, thresholdPrice: thresholdPrice, comparison: comparison)
-            }) {
-                Text("Set Notification")
-                    .foregroundColor(Color(.systemBackground))
-                    .padding()
-                    .background(Color.primary)
-                    .cornerRadius(100)
+            
+            HStack {
+                Button {
+                    onSubmit(true)
+                } label: {
+                    Text("Dismiss")
+//                        .foregroundColor(Color(.systemBackground))
+                        .padding()
+//                        .background(Color.primary)
+                        .cornerRadius(100)
+                }
+                Spacer()
+                Button(action: {
+                    sendThresholdHandler(action: "add", appDelegate: appDelegate, thresholdPrice: thresholdPrice, comparison: comparison, muteDuration: selectedLimit.rawValue)
+                }) {
+                    Text("Set Alert")
+                        .foregroundColor(Color(.systemBackground))
+                        .padding()
+                        .background(Color.primary)
+                        .cornerRadius(100)
+                }.opacity(thresholdPrice.count > 0 ? 1 : 0.5)
+                
             }
-        }.onAppear {
+            
+        }
+        .frame(height: 400)
+        .onAppear {
             focusedField = true
         }
         .onChange(of: thresholdPrice, perform: {newThresholdPrice in
@@ -78,14 +108,14 @@ struct ThresholdInputView: View {
         })
     }
     
-    func sendThresholdHandler(action: String, appDelegate: AppDelegate, thresholdPrice: String, comparison: String) {
+    func sendThresholdHandler(action: String, appDelegate: AppDelegate, thresholdPrice: String, comparison: String, muteDuration: Int) {
         if let deviceToken = appDelegate.deviceToken {
             sendThresholdPrice(
                 action: action,
                 deviceToken: deviceToken,
                 threshold: thresholdPrice,
                 comparison: comparison,
-                mute_duration: 10
+                mute_duration: muteDuration
             ) { result in
                 DispatchQueue.main.async {
                     switch result {
@@ -110,6 +140,11 @@ struct ThresholdInputView: View {
         onSubmit(false)
     }
 }
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
 
 struct ThresholdInputView_Previews: PreviewProvider {
     static var previews: some View {
@@ -118,3 +153,4 @@ struct ThresholdInputView_Previews: PreviewProvider {
         })
     }
 }
+
