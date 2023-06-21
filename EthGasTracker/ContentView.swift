@@ -12,8 +12,11 @@ struct ContentView: View {
     @AppStorage("timestamp") var timestamp: Double = 0
     @State private var isFresh = true
     @State private var showingSheet = false
+    @State private var showingSettings = false
     @State private var showingHeatmap = false
     @ThresholdsStorage(key: "thresholds") var thresholds: [Threshold] = []
+    
+    @AppStorage("settings.hapticFeedback") private var hapticFeedback = true
     
     var formattedTimestamp: String {
         let formatter = DateFormatter()
@@ -94,7 +97,9 @@ struct ContentView: View {
                 }
             }
             .onChange(of: timestamp) { newTimestamp in
-                simpleSuccess()
+                if (hapticFeedback) {
+                    runHapticFeedback()
+                }
                 self.isFresh = lessThan60secondsAgo(newTimestamp)
             }
             
@@ -102,6 +107,15 @@ struct ContentView: View {
                 Spacer()
                 
                 HStack {
+                    Button(action: {
+                        showingSettings.toggle()
+                    }) {
+                        Image(systemName: "ellipsis")
+                    }
+                    .sheet(isPresented: $showingSettings) {
+                        SettingsView()
+                            .presentationDetents([.medium])
+                    }
                     Spacer()
                     if (thresholds.count == 0) {
                         Button(action: {
@@ -116,6 +130,11 @@ struct ContentView: View {
                         }
                     }
                     Spacer()
+                    Button(action: {
+                        print("")
+                    }) {
+                        Image(systemName: "ellipsis")
+                    }.opacity(0)
                 }
                 .padding(.horizontal, 40)
                 .padding(.top, 10)
@@ -133,7 +152,7 @@ struct ContentView: View {
         return Date(timeIntervalSince1970: TimeInterval(stamp)) > Date(timeIntervalSinceNow: -60)
     }
     
-    func simpleSuccess() {
+    func runHapticFeedback() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }

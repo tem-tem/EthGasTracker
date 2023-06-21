@@ -13,12 +13,13 @@
 		A32081102A42718D00857E02 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810F2A42718D00857E02 /* GridView.swift */; };
 		A32081122A427AE800857E02 /* EthGasWidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081112A427AE800857E02 /* EthGasWidgetLarge.swift */; };
 		A32081142A427E2100857E02 /* EthGasWidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */; };
+		A32081162A42922D00857E02 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081152A42922D00857E02 /* SettingsView.swift */; };
+		A32081182A42A36200857E02 /* FeedbackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081172A42A36200857E02 /* FeedbackButtonView.swift */; };
 		A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A16452A06A9F700F04CC7 /* AvgChart.swift */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
 		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
 		A34D907429C2B52E002F2310 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907329C2B52E002F2310 /* TimerView.swift */; };
-		A37D69152A1E35F500ECF1CA /* NotificationLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */; };
 		A3501C8C2A35F79600057C1C /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A3501C8D2A35F8BA00057C1C /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A16452A06A9F700F04CC7 /* AvgChart.swift */; };
 		A3501C8F2A361C1600057C1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		A3501C962A36A75400057C1C /* HighChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */; };
 		A3501C982A36AAE600057C1C /* EthGasWidgetAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */; };
 		A3501C9A2A36B47700057C1C /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C992A36B47700057C1C /* LockScreenWidget.swift */; };
+		A37D69152A1E35F500ECF1CA /* NotificationLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
 		A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2A29BAFBC6005CC9E1 /* Preview Assets.xcassets */; };
@@ -92,17 +94,19 @@
 		A320810F2A42718D00857E02 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		A32081112A427AE800857E02 /* EthGasWidgetLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetLarge.swift; sourceTree = "<group>"; };
 		A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetMedium.swift; sourceTree = "<group>"; };
+		A32081152A42922D00857E02 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A32081172A42A36200857E02 /* FeedbackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackButtonView.swift; sourceTree = "<group>"; };
 		A32A16452A06A9F700F04CC7 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
 		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		A34D907329C2B52E002F2310 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationLimitPicker.swift; sourceTree = "<group>"; };
 		A3501C8E2A3601FF00057C1C /* EthGasWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EthGasWidgetExtension.entitlements; sourceTree = "<group>"; };
 		A3501C902A36A15200057C1C /* EthGasWidgetLow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetLow.swift; sourceTree = "<group>"; };
 		A3501C942A36A70C00057C1C /* EthGasWidgetHigh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetHigh.swift; sourceTree = "<group>"; };
 		A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetAll.swift; sourceTree = "<group>"; };
 		A3501C992A36B47700057C1C /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
+		A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationLimitPicker.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
 		A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				A32A16432A06A8F700F04CC7 /* Gas */,
 				A32A16422A06A8C600F04CC7 /* StatusBarFetcher */,
 				A32A16412A06A8B000F04CC7 /* Notification */,
+				A32081152A42922D00857E02 /* SettingsView.swift */,
+				A32081172A42A36200857E02 /* FeedbackButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -432,11 +438,13 @@
 				A384EB3329BAFD3B005CC9E1 /* Gas.xcdatamodeld in Sources */,
 				A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */,
 				A394E01629EB1AE000E45DEF /* ThresholdStorage.swift in Sources */,
+				A32081162A42922D00857E02 /* SettingsView.swift in Sources */,
 				A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */,
 				A3A4D4E32A0835C2008E4CE7 /* HighChart.swift in Sources */,
 				A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */,
 				A3F731EF2A11CD4200AB10D2 /* Helpers.swift in Sources */,
 				A34D907029C2918D002F2310 /* FetchView.swift in Sources */,
+				A32081182A42A36200857E02 /* FeedbackButtonView.swift in Sources */,
 				A394E00529EA4C8D00E45DEF /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
