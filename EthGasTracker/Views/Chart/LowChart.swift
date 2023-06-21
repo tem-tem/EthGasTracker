@@ -9,18 +9,22 @@ import SwiftUI
 import Charts
 
 struct LowChart: View {
-    @AppStorage("lowMin") var lowMin: Double = 0.0
-    @AppStorage("lowMax") var lowMax: Double = 9999.0
     @AppStorage("dataUpdateToggle") var dataUpdateToggle = false
     
-    private var gasListLoader = GasListLoader()
-    private var gasList: [GasData]
+    var gasList: [GasData]
+    var lowMin: Double
+    var lowMax: Double
+//    private var gasListLoader = GasListLoader()
+//    private var gasList: [GasData]
     
     private let curColor = Color("low")
     private let curGradient: LinearGradient
 
-    init() {
-        gasList = gasListLoader.loadGasDataListFromUserDefaults()
+    init(gasList inputGasData: [GasData], min: Double, max: Double) {
+        gasList = inputGasData
+        lowMin = min
+        lowMax = max
+//        gasList = gasListLoader.loadGasDataListFromUserDefaults()
         curGradient = LinearGradient(
             gradient: Gradient (
                 colors: [
@@ -75,8 +79,8 @@ struct LowChart: View {
     }
 }
 
-struct LowChart_Previews: PreviewProvider {
-    static var previews: some View {
-        LowChart()
-    }
-}
+//struct LowChart_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LowChart()
+//    }
+//}

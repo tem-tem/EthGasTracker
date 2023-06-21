@@ -8,17 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		A317CCF029CBF497001B8492 /* lightweight.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCEF29CBF497001B8492 /* lightweight.gif */; };
+		A320810C2A42680D00857E02 /* EthGasWidgetSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810B2A42680D00857E02 /* EthGasWidgetSmall.swift */; };
+		A320810E2A426D4900857E02 /* EthGasWidgetHigh2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810D2A426D4900857E02 /* EthGasWidgetHigh2.swift */; };
+		A32081102A42718D00857E02 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810F2A42718D00857E02 /* GridView.swift */; };
+		A32081122A427AE800857E02 /* EthGasWidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081112A427AE800857E02 /* EthGasWidgetLarge.swift */; };
+		A32081142A427E2100857E02 /* EthGasWidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */; };
 		A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A16452A06A9F700F04CC7 /* AvgChart.swift */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
 		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
 		A34D907429C2B52E002F2310 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907329C2B52E002F2310 /* TimerView.swift */; };
 		A37D69152A1E35F500ECF1CA /* NotificationLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */; };
+		A3501C8C2A35F79600057C1C /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
+		A3501C8D2A35F8BA00057C1C /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A16452A06A9F700F04CC7 /* AvgChart.swift */; };
+		A3501C8F2A361C1600057C1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
+		A3501C922A36A15200057C1C /* EthGasWidgetLow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C902A36A15200057C1C /* EthGasWidgetLow.swift */; };
+		A3501C932A36A32600057C1C /* LowChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E02A082E47008E4CE7 /* LowChart.swift */; };
+		A3501C952A36A70C00057C1C /* EthGasWidgetHigh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C942A36A70C00057C1C /* EthGasWidgetHigh.swift */; };
+		A3501C962A36A75400057C1C /* HighChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */; };
+		A3501C982A36AAE600057C1C /* EthGasWidgetAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */; };
+		A3501C9A2A36B47700057C1C /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C992A36B47700057C1C /* LockScreenWidget.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
 		A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2A29BAFBC6005CC9E1 /* Preview Assets.xcassets */; };
 		A384EB3329BAFD3B005CC9E1 /* Gas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */; };
 		A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3429BAFDA1005CC9E1 /* DataController.swift */; };
+		A38C56562A12C7C5004ABF21 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56552A12C7C5004ABF21 /* WidgetKit.framework */; };
+		A38C56582A12C7C5004ABF21 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56572A12C7C5004ABF21 /* SwiftUI.framework */; };
+		A38C565B2A12C7C5004ABF21 /* EthGasWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38C565A2A12C7C5004ABF21 /* EthGasWidgetBundle.swift */; };
+		A38C565D2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38C565C2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift */; };
+		A38C565F2A12C7C5004ABF21 /* EthGasWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38C565E2A12C7C5004ABF21 /* EthGasWidget.swift */; };
+		A38C56612A12C7C6004ABF21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38C56602A12C7C6004ABF21 /* Assets.xcassets */; };
+		A38C56652A12C7C6004ABF21 /* EthGasWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A38C56532A12C7C5004ABF21 /* EthGasWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A38C566C2A12D39F004ABF21 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655A29BD2EF800DC3016 /* Fetch.swift */; };
 		A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00229EA467100E45DEF /* PlainGasView.swift */; };
 		A394E00529EA4C8D00E45DEF /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00429EA4C8D00E45DEF /* NotificationView.swift */; };
 		A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00929EA505000E45DEF /* SendThreshold.swift */; };
@@ -39,14 +61,48 @@
 		A3F731EF2A11CD4200AB10D2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F731EE2A11CD4200AB10D2 /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A38C56632A12C7C6004ABF21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A384EB1829BAFBC5005CC9E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A38C56522A12C7C5004ABF21;
+			remoteInfo = EthGasWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A38C56662A12C7C6004ABF21 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A38C56652A12C7C6004ABF21 /* EthGasWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A317CCEF29CBF497001B8492 /* lightweight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = lightweight.gif; path = ../../../../../Downloads/lightweight.gif; sourceTree = "<group>"; };
+		A320810B2A42680D00857E02 /* EthGasWidgetSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetSmall.swift; sourceTree = "<group>"; };
+		A320810D2A426D4900857E02 /* EthGasWidgetHigh2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetHigh2.swift; sourceTree = "<group>"; };
+		A320810F2A42718D00857E02 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		A32081112A427AE800857E02 /* EthGasWidgetLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetLarge.swift; sourceTree = "<group>"; };
+		A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetMedium.swift; sourceTree = "<group>"; };
 		A32A16452A06A9F700F04CC7 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
 		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		A34D907329C2B52E002F2310 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationLimitPicker.swift; sourceTree = "<group>"; };
+		A3501C8E2A3601FF00057C1C /* EthGasWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EthGasWidgetExtension.entitlements; sourceTree = "<group>"; };
+		A3501C902A36A15200057C1C /* EthGasWidgetLow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetLow.swift; sourceTree = "<group>"; };
+		A3501C942A36A70C00057C1C /* EthGasWidgetHigh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetHigh.swift; sourceTree = "<group>"; };
+		A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetAll.swift; sourceTree = "<group>"; };
+		A3501C992A36B47700057C1C /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
 		A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +110,14 @@
 		A384EB3229BAFD3B005CC9E1 /* Gas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gas.xcdatamodel; sourceTree = "<group>"; };
 		A384EB3429BAFDA1005CC9E1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A384EB3829BBE913005CC9E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A38C56532A12C7C5004ABF21 /* EthGasWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EthGasWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A38C56552A12C7C5004ABF21 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A38C56572A12C7C5004ABF21 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A38C565A2A12C7C5004ABF21 /* EthGasWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetBundle.swift; sourceTree = "<group>"; };
+		A38C565C2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		A38C565E2A12C7C5004ABF21 /* EthGasWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidget.swift; sourceTree = "<group>"; };
+		A38C56602A12C7C6004ABF21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A38C56622A12C7C6004ABF21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A394E00229EA467100E45DEF /* PlainGasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainGasView.swift; sourceTree = "<group>"; };
 		A394E00429EA4C8D00E45DEF /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A394E00629EA4E3000E45DEF /* EthGasTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EthGasTracker.entitlements; sourceTree = "<group>"; };
@@ -80,6 +144,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A38C56502A12C7C5004ABF21 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A38C56582A12C7C5004ABF21 /* SwiftUI.framework in Frameworks */,
+				A38C56562A12C7C5004ABF21 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +225,10 @@
 		A384EB1729BAFBC5005CC9E1 = {
 			isa = PBXGroup;
 			children = (
+				A3501C8E2A3601FF00057C1C /* EthGasWidgetExtension.entitlements */,
 				A384EB2229BAFBC5005CC9E1 /* EthGasTracker */,
+				A38C56592A12C7C5004ABF21 /* EthGasWidget */,
+				A38C56542A12C7C5004ABF21 /* Frameworks */,
 				A384EB2129BAFBC5005CC9E1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -161,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */,
+				A38C56532A12C7C5004ABF21 /* EthGasWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +274,36 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		A38C56542A12C7C5004ABF21 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A38C56552A12C7C5004ABF21 /* WidgetKit.framework */,
+				A38C56572A12C7C5004ABF21 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A38C56592A12C7C5004ABF21 /* EthGasWidget */ = {
+			isa = PBXGroup;
+			children = (
+				A38C565A2A12C7C5004ABF21 /* EthGasWidgetBundle.swift */,
+				A38C565C2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift */,
+				A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */,
+				A38C565E2A12C7C5004ABF21 /* EthGasWidget.swift */,
+				A320810B2A42680D00857E02 /* EthGasWidgetSmall.swift */,
+				A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */,
+				A32081112A427AE800857E02 /* EthGasWidgetLarge.swift */,
+				A320810F2A42718D00857E02 /* GridView.swift */,
+				A320810D2A426D4900857E02 /* EthGasWidgetHigh2.swift */,
+				A3501C902A36A15200057C1C /* EthGasWidgetLow.swift */,
+				A3501C942A36A70C00057C1C /* EthGasWidgetHigh.swift */,
+				A38C56602A12C7C6004ABF21 /* Assets.xcassets */,
+				A38C56622A12C7C6004ABF21 /* Info.plist */,
+				A3501C992A36B47700057C1C /* LockScreenWidget.swift */,
+			);
+			path = EthGasWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -207,10 +314,12 @@
 				A384EB1C29BAFBC5005CC9E1 /* Sources */,
 				A384EB1D29BAFBC5005CC9E1 /* Frameworks */,
 				A384EB1E29BAFBC5005CC9E1 /* Resources */,
+				A38C56662A12C7C6004ABF21 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A38C56642A12C7C6004ABF21 /* PBXTargetDependency */,
 			);
 			name = EthGasTracker;
 			packageProductDependencies = (
@@ -218,6 +327,23 @@
 			productName = EthGasTracker;
 			productReference = A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A38C56522A12C7C5004ABF21 /* EthGasWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A38C56692A12C7C6004ABF21 /* Build configuration list for PBXNativeTarget "EthGasWidgetExtension" */;
+			buildPhases = (
+				A38C564F2A12C7C5004ABF21 /* Sources */,
+				A38C56502A12C7C5004ABF21 /* Frameworks */,
+				A38C56512A12C7C5004ABF21 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EthGasWidgetExtension;
+			productName = EthGasWidgetExtension;
+			productReference = A38C56532A12C7C5004ABF21 /* EthGasWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -230,6 +356,9 @@
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					A384EB1F29BAFBC5005CC9E1 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					A38C56522A12C7C5004ABF21 = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
@@ -250,6 +379,7 @@
 			projectRoot = "";
 			targets = (
 				A384EB1F29BAFBC5005CC9E1 /* EthGasTracker */,
+				A38C56522A12C7C5004ABF21 /* EthGasWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -262,6 +392,15 @@
 				A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */,
 				A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */,
 				A317CCF029CBF497001B8492 /* lightweight.gif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A38C56512A12C7C5004ABF21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3501C8F2A361C1600057C1C /* Assets.xcassets in Resources */,
+				A38C56612A12C7C6004ABF21 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +441,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A38C564F2A12C7C5004ABF21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A38C566C2A12D39F004ABF21 /* Fetch.swift in Sources */,
+				A3501C982A36AAE600057C1C /* EthGasWidgetAll.swift in Sources */,
+				A3501C8D2A35F8BA00057C1C /* AvgChart.swift in Sources */,
+				A38C565D2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift in Sources */,
+				A320810E2A426D4900857E02 /* EthGasWidgetHigh2.swift in Sources */,
+				A3501C922A36A15200057C1C /* EthGasWidgetLow.swift in Sources */,
+				A38C565B2A12C7C5004ABF21 /* EthGasWidgetBundle.swift in Sources */,
+				A3501C932A36A32600057C1C /* LowChart.swift in Sources */,
+				A320810C2A42680D00857E02 /* EthGasWidgetSmall.swift in Sources */,
+				A38C565F2A12C7C5004ABF21 /* EthGasWidget.swift in Sources */,
+				A3501C8C2A35F79600057C1C /* FetcherViewModel.swift in Sources */,
+				A3501C962A36A75400057C1C /* HighChart.swift in Sources */,
+				A3501C9A2A36B47700057C1C /* LockScreenWidget.swift in Sources */,
+				A32081122A427AE800857E02 /* EthGasWidgetLarge.swift in Sources */,
+				A32081102A42718D00857E02 /* GridView.swift in Sources */,
+				A32081142A427E2100857E02 /* EthGasWidgetMedium.swift in Sources */,
+				A3501C952A36A70C00057C1C /* EthGasWidgetHigh.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A38C56642A12C7C6004ABF21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A38C56522A12C7C5004ABF21 /* EthGasWidgetExtension */;
+			targetProxy = A38C56632A12C7C6004ABF21 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A384EB2C29BAFBC6005CC9E1 /* Debug */ = {
@@ -422,6 +593,7 @@
 		A384EB2F29BAFBC6005CC9E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EthGasTracker/EthGasTracker.entitlements;
@@ -457,6 +629,7 @@
 		A384EB3029BAFBC6005CC9E1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EthGasTracker/EthGasTracker.entitlements;
@@ -489,6 +662,64 @@
 			};
 			name = Release;
 		};
+		A38C56672A12C7C6004ABF21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = EthGasWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WGB8QNZPMK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EthGasWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EthGasWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker.EthGasWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A38C56682A12C7C6004ABF21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = EthGasWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WGB8QNZPMK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EthGasWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EthGasWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker.EthGasWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -506,6 +737,15 @@
 			buildConfigurations = (
 				A384EB2F29BAFBC6005CC9E1 /* Debug */,
 				A384EB3029BAFBC6005CC9E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A38C56692A12C7C6004ABF21 /* Build configuration list for PBXNativeTarget "EthGasWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A38C56672A12C7C6004ABF21 /* Debug */,
+				A38C56682A12C7C6004ABF21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

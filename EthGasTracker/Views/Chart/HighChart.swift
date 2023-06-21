@@ -8,21 +8,23 @@
 import SwiftUI
 import Charts
 
-let CHART_RANGE = 12
-
 struct HighChart: View {
-    @AppStorage("highMin") var highMin: Double = 0.0
-    @AppStorage("highMax") var highMax: Double = 9999.0
     @AppStorage("dataUpdateToggle") var dataUpdateToggle = false
     
-    private var gasListLoader = GasListLoader()
-    private var gasList: [GasData]
+//    private var gasListLoader = GasListLoader()
+    var gasList: [GasData]
+    var highMin: Double
+    var highMax: Double
     
     private let curColor = Color("high")
     private let curGradient: LinearGradient
 
-    init() {
-        gasList = gasListLoader.loadGasDataListFromUserDefaults()
+    init(gasList inputGasList: [GasData], min: Double, max: Double) {
+        gasList = inputGasList
+        highMin = min
+        highMax = max
+        
+//        gasList = gasListLoader.loadGasDataListFromUserDefaults()
         curGradient = LinearGradient(
             gradient: Gradient (
                 colors: [
@@ -76,8 +78,8 @@ struct HighChart: View {
     }
 }
 
-struct HighChart_Previews: PreviewProvider {
-    static var previews: some View {
-        HighChart()
-    }
-}
+//struct HighChart_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HighChart()
+//    }
+//}
