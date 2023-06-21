@@ -8,11 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		A317CCF029CBF497001B8492 /* lightweight.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCEF29CBF497001B8492 /* lightweight.gif */; };
+		A320810C2A42680D00857E02 /* EthGasWidgetSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810B2A42680D00857E02 /* EthGasWidgetSmall.swift */; };
+		A320810E2A426D4900857E02 /* EthGasWidgetHigh2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810D2A426D4900857E02 /* EthGasWidgetHigh2.swift */; };
+		A32081102A42718D00857E02 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810F2A42718D00857E02 /* GridView.swift */; };
+		A32081122A427AE800857E02 /* EthGasWidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081112A427AE800857E02 /* EthGasWidgetLarge.swift */; };
+		A32081142A427E2100857E02 /* EthGasWidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */; };
 		A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A16452A06A9F700F04CC7 /* AvgChart.swift */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
 		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
 		A34D907429C2B52E002F2310 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907329C2B52E002F2310 /* TimerView.swift */; };
+		A3501C8C2A35F79600057C1C /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
+		A3501C8D2A35F8BA00057C1C /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A16452A06A9F700F04CC7 /* AvgChart.swift */; };
+		A3501C8F2A361C1600057C1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
+		A3501C922A36A15200057C1C /* EthGasWidgetLow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C902A36A15200057C1C /* EthGasWidgetLow.swift */; };
+		A3501C932A36A32600057C1C /* LowChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E02A082E47008E4CE7 /* LowChart.swift */; };
+		A3501C952A36A70C00057C1C /* EthGasWidgetHigh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C942A36A70C00057C1C /* EthGasWidgetHigh.swift */; };
+		A3501C962A36A75400057C1C /* HighChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */; };
+		A3501C982A36AAE600057C1C /* EthGasWidgetAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */; };
+		A3501C9A2A36B47700057C1C /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C992A36B47700057C1C /* LockScreenWidget.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
 		A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2A29BAFBC6005CC9E1 /* Preview Assets.xcassets */; };
@@ -72,11 +86,21 @@
 
 /* Begin PBXFileReference section */
 		A317CCEF29CBF497001B8492 /* lightweight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = lightweight.gif; path = ../../../../../Downloads/lightweight.gif; sourceTree = "<group>"; };
+		A320810B2A42680D00857E02 /* EthGasWidgetSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetSmall.swift; sourceTree = "<group>"; };
+		A320810D2A426D4900857E02 /* EthGasWidgetHigh2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetHigh2.swift; sourceTree = "<group>"; };
+		A320810F2A42718D00857E02 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		A32081112A427AE800857E02 /* EthGasWidgetLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetLarge.swift; sourceTree = "<group>"; };
+		A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetMedium.swift; sourceTree = "<group>"; };
 		A32A16452A06A9F700F04CC7 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
 		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		A34D907329C2B52E002F2310 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		A3501C8E2A3601FF00057C1C /* EthGasWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EthGasWidgetExtension.entitlements; sourceTree = "<group>"; };
+		A3501C902A36A15200057C1C /* EthGasWidgetLow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetLow.swift; sourceTree = "<group>"; };
+		A3501C942A36A70C00057C1C /* EthGasWidgetHigh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetHigh.swift; sourceTree = "<group>"; };
+		A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetAll.swift; sourceTree = "<group>"; };
+		A3501C992A36B47700057C1C /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
 		A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -198,6 +222,7 @@
 		A384EB1729BAFBC5005CC9E1 = {
 			isa = PBXGroup;
 			children = (
+				A3501C8E2A3601FF00057C1C /* EthGasWidgetExtension.entitlements */,
 				A384EB2229BAFBC5005CC9E1 /* EthGasTracker */,
 				A38C56592A12C7C5004ABF21 /* EthGasWidget */,
 				A38C56542A12C7C5004ABF21 /* Frameworks */,
@@ -260,9 +285,18 @@
 			children = (
 				A38C565A2A12C7C5004ABF21 /* EthGasWidgetBundle.swift */,
 				A38C565C2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift */,
+				A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */,
 				A38C565E2A12C7C5004ABF21 /* EthGasWidget.swift */,
+				A320810B2A42680D00857E02 /* EthGasWidgetSmall.swift */,
+				A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */,
+				A32081112A427AE800857E02 /* EthGasWidgetLarge.swift */,
+				A320810F2A42718D00857E02 /* GridView.swift */,
+				A320810D2A426D4900857E02 /* EthGasWidgetHigh2.swift */,
+				A3501C902A36A15200057C1C /* EthGasWidgetLow.swift */,
+				A3501C942A36A70C00057C1C /* EthGasWidgetHigh.swift */,
 				A38C56602A12C7C6004ABF21 /* Assets.xcassets */,
 				A38C56622A12C7C6004ABF21 /* Info.plist */,
+				A3501C992A36B47700057C1C /* LockScreenWidget.swift */,
 			);
 			path = EthGasWidget;
 			sourceTree = "<group>";
@@ -362,6 +396,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3501C8F2A361C1600057C1C /* Assets.xcassets in Resources */,
 				A38C56612A12C7C6004ABF21 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,9 +442,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A38C566C2A12D39F004ABF21 /* Fetch.swift in Sources */,
+				A3501C982A36AAE600057C1C /* EthGasWidgetAll.swift in Sources */,
+				A3501C8D2A35F8BA00057C1C /* AvgChart.swift in Sources */,
 				A38C565D2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift in Sources */,
+				A320810E2A426D4900857E02 /* EthGasWidgetHigh2.swift in Sources */,
+				A3501C922A36A15200057C1C /* EthGasWidgetLow.swift in Sources */,
 				A38C565B2A12C7C5004ABF21 /* EthGasWidgetBundle.swift in Sources */,
+				A3501C932A36A32600057C1C /* LowChart.swift in Sources */,
+				A320810C2A42680D00857E02 /* EthGasWidgetSmall.swift in Sources */,
 				A38C565F2A12C7C5004ABF21 /* EthGasWidget.swift in Sources */,
+				A3501C8C2A35F79600057C1C /* FetcherViewModel.swift in Sources */,
+				A3501C962A36A75400057C1C /* HighChart.swift in Sources */,
+				A3501C9A2A36B47700057C1C /* LockScreenWidget.swift in Sources */,
+				A32081122A427AE800857E02 /* EthGasWidgetLarge.swift in Sources */,
+				A32081102A42718D00857E02 /* GridView.swift in Sources */,
+				A32081142A427E2100857E02 /* EthGasWidgetMedium.swift in Sources */,
+				A3501C952A36A70C00057C1C /* EthGasWidgetHigh.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = EthGasWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WGB8QNZPMK;
@@ -643,6 +692,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = EthGasWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WGB8QNZPMK;

@@ -16,6 +16,8 @@ enum FetchStatus {
     case failure(Error)
 }
 
+let CHART_RANGE = 12
+
 class FetcherViewModel: ObservableObject {
     @Published var status: FetchStatus = .idle
     @Published var gasList: [GasData] = [] {

@@ -11,11 +11,24 @@ struct PlainGasView: View {
     @AppStorage("FastGasPrice") var high = "00"
     @AppStorage("ProposeGasPrice") var avg = "00"
     @AppStorage("SafeGasPrice") var low = "00"
+    @AppStorage("avgMin") var avgMin: Double = 0.0
+    @AppStorage("avgMax") var avgMax: Double = 999.0
+    @AppStorage("lowMin") var lowMin: Double = 0.0
+    @AppStorage("lowMax") var lowMax: Double = 9999.0
+    @AppStorage("highMin") var highMin: Double = 0.0
+    @AppStorage("highMax") var highMax: Double = 9999.0
+    
+    private var gasListLoader = GasListLoader()
+    private var gasList: [GasData]
+    
+    init() {
+        gasList = gasListLoader.loadGasDataListFromUserDefaults()
+    }
     
     var body: some View {
         VStack (alignment: .center) {
             ZStack {
-                AvgChart()
+                AvgChart(gasList: gasList, min: avgMin, max: avgMax)
                     .frame(height: 120)
                     .padding(.leading, 20)
                     .padding(.top, 20)
@@ -54,7 +67,9 @@ struct PlainGasView: View {
             
             HStack {
                 ZStack {
-                    LowChart()
+                    LowChart(
+                        gasList: gasList, min: lowMin, max: lowMax
+                    )
                         .frame(height: 50)
                         .padding(.leading, 20)
                         .padding(.trailing, 10)
@@ -85,7 +100,9 @@ struct PlainGasView: View {
                 }
                 Spacer()
                 ZStack {
-                    HighChart()
+                    HighChart(
+                        gasList: gasList, min: highMin, max: highMax
+                    )
                         .frame(height: 50)
                         .padding(.leading, 20)
                         .padding(.trailing, 10)

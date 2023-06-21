@@ -8,6 +8,7 @@
 import SwiftUI
 import BackgroundTasks
 import UserNotifications
+import WidgetKit
 
 func requestNotificationPermission() {
     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
@@ -42,6 +43,10 @@ struct EthGasTracker: App {
                 .environmentObject(notificationManager)
                 .environmentObject(appDelegate)
                 .onAppear(perform: requestNotificationPermission)
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                    // Reload all timelines of your widget when the app becomes active.
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
         }
     }
 }
