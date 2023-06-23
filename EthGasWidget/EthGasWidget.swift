@@ -178,10 +178,10 @@ struct EthGasWidgetEntryView : View {
                     + Text(" ago")
                         .font(.caption2)
                     Spacer()
-                    Image("star")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
+//                    Image("star")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 20, height: 20)
                 }
                 Spacer()
             }

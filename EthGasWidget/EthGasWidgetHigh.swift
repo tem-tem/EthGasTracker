@@ -39,10 +39,10 @@ struct EthGasWidgetHighEntryView : View {
                     + Text(" ago")
                         .font(.caption2)
                     Spacer()
-                    Image("star")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
+//                    Image("star")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 20, height: 20)
                 }
                 Spacer()
             }
@@ -78,7 +78,7 @@ struct EthGasWidgetHigh: Widget {
 
 struct EthGasWidgetHigh_Previews: PreviewProvider {
     static var previews: some View {
-        EthGasWidgetLowEntryView(
+        EthGasWidgetHighEntryView(
             entry: GasListEntry(
                 date: Date(),
                 gasList: [

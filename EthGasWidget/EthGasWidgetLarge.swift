@@ -12,24 +12,35 @@ import Charts
 // view
 struct EthGasWidgetLargeEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
         ZStack {
             VStack {
-                
                 ZStack {
                     AvgChart(
                         gasList: entry.gasList,
                         min: entry.avgMin,
                         max: entry.avgMax
                     )
-    //                .frame(height: 90)
                     .padding(.trailing)
-                    .opacity(0.4)
+                    .opacity(0.8)
                     
+                    Rectangle()
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [
+                                    Color(colorScheme == .dark ? .black : .white),
+                                    Color(colorScheme == .dark ? .black : .white).opacity(0),
+                                    Color(colorScheme == .dark ? .black : .white).opacity(0)
+                                ]),
+                                startPoint: .bottomLeading,
+                                endPoint: .topTrailing
+                            )
+                        )
                     HStack {
                         Text(entry.gasList.first?.ProposeGasPrice ?? "00")
-                            .font(.system(size: 100, design: .rounded)).bold()
+                            .font(.system(size: 150, design: .rounded)).bold()
                             .minimumScaleFactor(0.1) // It will scale down to 10% of the original font size if needed
                             .lineLimit(1)
                             .foregroundStyle(
@@ -38,7 +49,9 @@ struct EthGasWidgetLargeEntryView : View {
                             )
                             .shadow(color: Color(.systemBackground), radius: 5)
                         Spacer()
-                    }.padding(.leading)
+                    }
+                    .padding(.leading)
+                    .padding(.bottom)
                 }
                 HStack {
                     ZStack {
@@ -47,7 +60,7 @@ struct EthGasWidgetLargeEntryView : View {
                             min: entry.lowMin,
                             max: entry.lowMax
                         )
-                        .frame(height: 90)
+                        .frame(height: 60)
                         .padding(.trailing)
                         .opacity(0.4)
                         
@@ -72,7 +85,7 @@ struct EthGasWidgetLargeEntryView : View {
                             min: entry.highMin,
                             max: entry.highMax
                         )
-                        .frame(height: 90)
+                        .frame(height: 60)
                         .padding(.trailing)
                         .opacity(0.4)
                         
@@ -90,9 +103,8 @@ struct EthGasWidgetLargeEntryView : View {
                             Spacer()
                         }.padding(.leading)
                     }
-                    
-                }
-                VStack {
+                }.padding(.bottom)
+                HStack(alignment: .center) {
                     Text(Date(timeIntervalSince1970: TimeInterval(entry.gasList.first?.timestamp ?? 0)), style: .relative)
                         .font(.caption2)
                     + Text(" ago")

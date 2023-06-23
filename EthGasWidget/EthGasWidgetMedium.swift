@@ -12,6 +12,7 @@ import Charts
 // view
 struct EthGasWidgetMediumEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
         ZStack {
@@ -24,16 +25,16 @@ struct EthGasWidgetMediumEntryView : View {
                 .padding(.trailing)
                 .padding(.top)
                 .padding(.bottom)
-                .opacity(0.4)
+                .opacity(0.8)
                 Spacer()
             }
             Rectangle()
                 .fill(
                     LinearGradient(
                         gradient: Gradient(colors: [
-                            Color(.systemBackground),
-                            Color(.systemBackground).opacity(0),
-                            Color(.systemBackground).opacity(0)
+                            Color(colorScheme == .dark ? .black : .white),
+                            Color(colorScheme == .dark ? .black : .white).opacity(0),
+                            Color(colorScheme == .dark ? .black : .white).opacity(0)
                         ]),
                         startPoint: .bottomLeading,
                         endPoint: .topTrailing
@@ -83,8 +84,8 @@ struct EthGasWidgetMedium: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             EthGasWidgetMediumEntryView(entry: entry)
         }
-        .configurationDisplayName("Average Graph")
-        .description("Includes high and low.")
+        .configurationDisplayName("Average with Graph")
+        .description("+ high and low.")
         .supportedFamilies([.systemMedium])
     }
 }

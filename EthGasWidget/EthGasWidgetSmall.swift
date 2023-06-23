@@ -75,7 +75,7 @@ struct EthGasWidgetSmall: Widget {
             EthGasWidgetSmallEntryView(entry: entry)
         }
         .configurationDisplayName("Average")
-        .description("Includes high and low.")
+        .description("+ high and low.")
         .supportedFamilies([.systemSmall])
     }
 }

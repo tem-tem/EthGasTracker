@@ -26,7 +26,7 @@ struct PlainGasView: View {
     }
     
     var body: some View {
-        VStack (alignment: .center) {
+        VStack (alignment: .center, spacing: 0) {
             ZStack {
                 AvgChart(gasList: gasList, min: avgMin, max: avgMax)
                     .frame(height: 120)

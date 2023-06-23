@@ -28,7 +28,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             ScrollView(showsIndicators: false) {
-                VStack {
+                VStack(spacing: 0) {
                     HStack {
                         VStack {
                             Text("Gas")
@@ -44,7 +44,9 @@ struct ContentView: View {
                         }
                     }
                     .padding(.horizontal, 10)
+                    .padding(.bottom, 5)
                     Divider()
+                        .padding(.bottom, 5)
                     PlainGasView()
                         .opacity(isFresh ? 1 : 0.6)
                         .saturation(isFresh ? 1 : 0)
@@ -80,9 +82,17 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .padding(10)
+                    .padding(.top, 10)
+                    .padding(.horizontal, 10)
                     
-                    NotificationView().padding(10)
+//                    MessagesView()
+//                        .cornerRadius(15)
+//                        .frame(height: 100)
+//                        .padding(10)
+                    
+                    NotificationView()
+                        .padding(10)
+                        .padding(.bottom, 50)
                 }
             }
             .onReceive(Timer.publish(every: 10, on: .main, in: .default).autoconnect()) { _ in
@@ -111,7 +121,10 @@ struct ContentView: View {
                         showingSettings.toggle()
                     }) {
                         Image(systemName: "ellipsis")
+                            .frame(width: 20, height: 20)
+                            .padding(10)
                     }
+//                    .border(.red)
                     .sheet(isPresented: $showingSettings) {
                         SettingsView()
                             .presentationDetents([.medium])
@@ -134,6 +147,8 @@ struct ContentView: View {
                         print("")
                     }) {
                         Image(systemName: "ellipsis")
+                            .frame(width: 20, height: 20)
+                            .padding(10)
                     }.opacity(0)
                 }
                 .padding(.horizontal, 40)

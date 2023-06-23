@@ -65,10 +65,10 @@ struct EthGasWidgetAllEntryView : View {
                     + Text(" ago")
                         .font(.caption2)
                     Spacer()
-                    Image("star")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 10, height: 10)
+//                    Image("star")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 10, height: 10)
                 }
                 Spacer()
             }
@@ -127,7 +127,7 @@ struct EthGasWidgetAll: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             EthGasWidgetAllEntryView(entry: entry)
         }
-        .configurationDisplayName("All Three Graphs")
+        .configurationDisplayName("Three Graphs")
 //        .description("Average, high, and low fees.")
         .supportedFamilies([.systemSmall])
     }

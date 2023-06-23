@@ -15,6 +15,7 @@
 		A32081142A427E2100857E02 /* EthGasWidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */; };
 		A32081162A42922D00857E02 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081152A42922D00857E02 /* SettingsView.swift */; };
 		A32081182A42A36200857E02 /* FeedbackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081172A42A36200857E02 /* FeedbackButtonView.swift */; };
+		A320811A2A43C85E00857E02 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081192A43C85E00857E02 /* MessagesView.swift */; };
 		A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A16452A06A9F700F04CC7 /* AvgChart.swift */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
@@ -96,6 +97,7 @@
 		A32081132A427E2100857E02 /* EthGasWidgetMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetMedium.swift; sourceTree = "<group>"; };
 		A32081152A42922D00857E02 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A32081172A42A36200857E02 /* FeedbackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackButtonView.swift; sourceTree = "<group>"; };
+		A32081192A43C85E00857E02 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		A32A16452A06A9F700F04CC7 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				A32A16412A06A8B000F04CC7 /* Notification */,
 				A32081152A42922D00857E02 /* SettingsView.swift */,
 				A32081172A42A36200857E02 /* FeedbackButtonView.swift */,
+				A32081192A43C85E00857E02 /* MessagesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */,
 				A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */,
 				A3DB1D672A0E4DA500372A58 /* HeatMap.swift in Sources */,
+				A320811A2A43C85E00857E02 /* MessagesView.swift in Sources */,
 				A394E00E29EA54B300E45DEF /* NotificationDelegate.swift in Sources */,
 				A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */,
 				A37D69152A1E35F500ECF1CA /* NotificationLimitPicker.swift in Sources */,
