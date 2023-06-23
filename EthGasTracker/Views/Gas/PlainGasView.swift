@@ -48,10 +48,14 @@ struct PlainGasView: View {
                             .font(.body.bold())
                             .padding(.leading, 2)
                         Text(avg)
-                            .font(
-                                .system(size: 80)
-                                .bold()
+                            .font(.system(size: 90, design: .rounded)).bold()
+                            .minimumScaleFactor(0.1) // It will scale down to 10% of the original font size if needed
+                            .lineLimit(1)
+                            .foregroundStyle(
+                                Color("avg").gradient
+                                    .shadow(.inner(color: Color("avgLight").opacity(1), radius: 4, x: 0, y: 0))
                             )
+                            .shadow(color: Color(.systemBackground), radius: 5)
                             .padding(.bottom, -10)
                             .padding(.top, -10)
                         Text("GWEI")
@@ -89,7 +93,15 @@ struct PlainGasView: View {
                                 .foregroundColor(Color("low"))
                                 .font(.caption.bold())
                                 .padding(.leading, 4)
-                            Text(low).font(.system(size: 40))
+                            Text(low)
+                                .font(.system(size: 40, design: .rounded)).bold()
+                                .minimumScaleFactor(0.1) // It will scale down to 10% of the original font size if needed
+                                .lineLimit(1)
+                                .foregroundStyle(
+                                    Color("low").gradient
+                                        .shadow(.inner(color: Color("lowLight").opacity(1), radius: 2, x: 0, y: 0))
+                                )
+                                .shadow(color: Color(.systemBackground), radius: 5)
                                 .padding(.bottom, -10)
                             Text("GWEI")
                                 .font(.caption.bold())
@@ -122,7 +134,14 @@ struct PlainGasView: View {
                                 .foregroundColor(Color("high"))
                                 .font(.caption.bold())
                                 .padding(.leading, 4)
-                            Text(high).font(.system(size: 40))
+                            Text(high)
+                                .font(.system(size: 40, design: .rounded)).bold()
+                                .minimumScaleFactor(0.1) // It will scale down to 10% of the original font size if needed
+                                .lineLimit(1)
+                                .foregroundStyle(
+                                    Color("high").gradient
+                                        .shadow(.inner(color: Color("highLight").opacity(1), radius: 3, x: 0, y: 0))
+                                )
                                 .padding(.bottom, -10)
                             Text("GWEI")
                                 .font(.caption.bold())

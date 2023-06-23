@@ -72,7 +72,6 @@ struct HeatMapView: View {
         if let (minGasPrice, maxGasPrice) = minAndMaxGasPrices(averageGasPrices: avgListByHour) {
             minAvg = minGasPrice.1
             maxAvg = maxGasPrice.1
-//            print("\(minAvg) min, \(maxAvg) max ")
         } else {
             minAvg = 0
             maxAvg = 100
@@ -93,7 +92,6 @@ struct HeatMapView: View {
                 VStack {
                     ForEach(0..<24) { hour in
                         Text(String(format: "%02d:00", hour))
-//                        Text("\(avgList[String(format: "%02d:00", hour)] ?? 0)")
                             .font(.caption)
                             .foregroundColor(
                                 colorForValue(value: avgList[String(format: "%02d:00", hour)] ?? 0.0, min: minAvg, max: maxAvg)
@@ -131,29 +129,6 @@ struct HeatMapView: View {
             scrollProxy.scrollTo(id, anchor: .trailing)
         }
     }
-    
-    func colorForValue(value: Double, min minValue: Double, max maxValue: Double) -> Color {
-        guard minValue <= value, value <= maxValue else {
-            print("Value must be between min and max.")
-            return Color("avg")
-        }
-        
-        let colors = [
-            Color(hex: "F94144"),
-            Color(hex: "F3722C"),
-            Color(hex: "F8961E"),
-            Color(hex: "F9C74F"),
-            Color(hex: "90BE6D"),
-            Color(hex: "43AA8B")
-        ]
-        
-        let range = maxValue - minValue
-        let step = Int(Int(range) / (colors.count - 1))
-        let index = Int(Int((value - minValue)) / step)
-        
-        return colors.reversed()[index]
-    }
-
 }
 
 struct HeatMapView_Previews: PreviewProvider {

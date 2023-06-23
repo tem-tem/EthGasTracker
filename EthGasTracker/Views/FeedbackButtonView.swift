@@ -12,7 +12,7 @@ struct FeedbackButton: View {
     @State private var isShowingMailView = false
 
     var body: some View {
-        Button("Send Feedback") {
+        Button("Send Feedback & Suggestions") {
             self.isShowingMailView.toggle()
         }
         .foregroundColor(.primary)

@@ -73,7 +73,7 @@ struct ContentView: View {
                         ScrollViewReader { scrollProxy in
                             ScrollView(.horizontal) {
                                 BarsChart()
-                                    .frame(height: 150)
+                                    .frame(height: 200)
                                     .padding(.bottom, 20)
                                     .id("barChart")
                             }
@@ -92,7 +92,7 @@ struct ContentView: View {
                     
                     NotificationView()
                         .padding(10)
-                        .padding(.bottom, 50)
+                        .padding(.bottom, 100)
                 }
             }
             .onReceive(Timer.publish(every: 10, on: .main, in: .default).autoconnect()) { _ in
@@ -115,26 +115,30 @@ struct ContentView: View {
             
             VStack {
                 Spacer()
-                
                 HStack {
                     Button(action: {
                         showingSettings.toggle()
                     }) {
-                        Image(systemName: "ellipsis")
+                        Image(systemName: "gear")
                             .frame(width: 20, height: 20)
                             .padding(10)
+                            .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 8))
                     }
 //                    .border(.red)
                     .sheet(isPresented: $showingSettings) {
-                        SettingsView()
-                            .presentationDetents([.medium])
+                        SettingsView(isPresented: $showingSettings)
+                            .presentationDetents([.large])
                     }
                     Spacer()
-                    if (thresholds.count == 0) {
+                    if (thresholds.count < 3) {
                         Button(action: {
                             showingSheet.toggle()
                         }) {
                             Text("Add Notification").bold()
+                                .frame(height: 20)
+                                .padding(10)
+                                .padding(.horizontal, 20)
+                                .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 8))
                         }
                         .sheet(isPresented: $showingSheet) {
                             ThresholdInputView(onSubmit: {result in
@@ -151,14 +155,14 @@ struct ContentView: View {
                             .padding(10)
                     }.opacity(0)
                 }
-                .padding(.horizontal, 40)
-                .padding(.top, 10)
-                .padding(.bottom, 10)
-                .background(LinearGradient(
-                    gradient: Gradient(colors: [Color(.systemBackground), Color(.systemBackground), Color(.systemBackground).opacity(0)]),
-                    startPoint: .bottom,
-                    endPoint: .top))
+                .padding(10)
+                .padding(.bottom, 20)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 0))
+//                .offset(y: 50)
+//                .padding(10)
+//                .padding(.bottom, -10)
             }
+            .ignoresSafeArea()
             
         }
     }

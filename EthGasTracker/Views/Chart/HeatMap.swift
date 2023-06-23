@@ -38,12 +38,12 @@ struct HeatMap: View {
         return formatter
     }()
     let stackColors: [Color] = [
-        Color(hex: "F94144").opacity(0.2),
-        Color(hex: "F3722C").opacity(0.1),
-        Color(hex: "F8961E").opacity(0.1),
-        Color(hex: "F9C74F").opacity(0.1),
-        Color(hex: "90BE6D").opacity(0.1),
-        Color(hex: "3DAC58").opacity(0.2)
+        Color("0").opacity(0.2),
+        Color("1").opacity(0.1),
+        Color("2").opacity(0.1),
+        Color("3").opacity(0.1),
+        Color("4").opacity(0.1),
+        Color("5").opacity(0.2)
     ]
     
     @State private var start: Int?
@@ -69,7 +69,7 @@ struct HeatMap: View {
             .foregroundStyle(by: .value("Number", item.average_gas_price))
         }
         .frame(width: CGFloat((stats.count / 24) * width))
-        .chartForegroundStyleScale(range: stackColors.reversed())
+        .chartForegroundStyleScale(range: stackColors)
         .chartXAxis {
             AxisMarks() { value in
 //                AxisValueLabel(getToday())

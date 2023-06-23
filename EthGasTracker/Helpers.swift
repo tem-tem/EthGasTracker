@@ -14,18 +14,19 @@ func colorForValue(value: Double, min minValue: Double, max maxValue: Double) ->
         return Color("avg")
     }
     
-    let colors = [
-        Color(hex: "F94144"),
-        Color(hex: "F3722C"),
-        Color(hex: "F8961E"),
-        Color(hex: "F9C74F"),
-        Color(hex: "90BE6D"),
-        Color(hex: "43AA8B")
-    ]
+//    let colors = [
+//        Color(hex: "F94144"),
+//        Color(hex: "F3722C"),
+//        Color(hex: "F8961E"),
+//        Color(hex: "F9C74F"),
+//        Color(hex: "90BE6D"),
+//        Color(hex: "43AA8B")
+//    ]
     
     let range = maxValue - minValue
-    let step = range / Double(colors.count)
+    let step = range / 5
     let index = (value - minValue) / step
     
-    return colors.reversed()[min(Int(index), 5)]
+    return Color(String(min(Int(index), 5)))
+//    return colors.reversed()[min(Int(index), 5)]
 }
