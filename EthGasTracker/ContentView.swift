@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var showingSheet = false
     @State private var showingSettings = false
     @State private var showingHeatmap = false
+    @State private var showingChangelog = false
     @ThresholdsStorage(key: "thresholds") var thresholds: [Threshold] = []
     
     @AppStorage("settings.hapticFeedback") private var hapticFeedback = true
@@ -117,28 +118,35 @@ struct ContentView: View {
                 Spacer()
                 HStack {
                     Button(action: {
-                        showingSettings.toggle()
+                        showingChangelog.toggle()
                     }) {
-                        Image(systemName: "gear")
-                            .frame(width: 20, height: 20)
+                        VStack {
+                            Image(systemName: "sparkles")
+//                            Text("Changelog").font(.caption)
+                        }
+//                        Image(systemName: "lineweight")
+//                            .frame(width: 20, height: 20)
                             .padding(10)
-                            .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 8))
+                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
                     }
-//                    .border(.red)
-                    .sheet(isPresented: $showingSettings) {
-                        SettingsView(isPresented: $showingSettings)
-                            .presentationDetents([.large])
+                    .sheet(isPresented: $showingChangelog) {
+                        ChangelogView()
                     }
                     Spacer()
                     if (thresholds.count < 3) {
                         Button(action: {
                             showingSheet.toggle()
                         }) {
-                            Text("Add Notification").bold()
-                                .frame(height: 20)
+                            VStack {
+                                Image(systemName: "bell.badge")
+                                Text("Set Notification").font(.caption)
+                            }
+//                            Text("Add Notification").bold()
+//                                .frame(height: 20)
                                 .padding(10)
                                 .padding(.horizontal, 20)
-                                .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 8))
+                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 15))
+                                .shadow(color: .black.opacity(0.1), radius: 15, y: 2)
                         }
                         .sheet(isPresented: $showingSheet) {
                             ThresholdInputView(onSubmit: {result in
@@ -148,19 +156,26 @@ struct ContentView: View {
                     }
                     Spacer()
                     Button(action: {
-                        print("")
+                        showingSettings.toggle()
                     }) {
-                        Image(systemName: "ellipsis")
-                            .frame(width: 20, height: 20)
+                        VStack {
+                            Image(systemName: "gear")
+//                            Text("Settings").font(.caption)
+                        }
+//                        Image(systemName: "gear")
+//                            .frame(width: 20, height: 20)
                             .padding(10)
-                    }.opacity(0)
+                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+                    }
+//                    .border(.red)
+                    .sheet(isPresented: $showingSettings) {
+                        SettingsView(isPresented: $showingSettings)
+                            .presentationDetents([.large])
+                    }
                 }
                 .padding(10)
                 .padding(.bottom, 20)
-                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 0))
-//                .offset(y: 50)
-//                .padding(10)
-//                .padding(.bottom, -10)
+                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 0))
             }
             .ignoresSafeArea()
             

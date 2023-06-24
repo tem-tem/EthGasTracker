@@ -21,7 +21,7 @@ struct SettingsView: View {
                         HStack {
                             Image(systemName: "water.waves")
                                 .frame(width: 32, height: 32)
-                                .background(Color("avg"), in: RoundedRectangle(cornerRadius: 8))
+                                .background(.teal, in: RoundedRectangle(cornerRadius: 8))
                                 .foregroundColor(.white)
                             Toggle("Haptic Feedback", isOn: $haptic)
                                 .toggleStyle(SwitchToggleStyle(tint: .green))
