@@ -12,13 +12,10 @@ struct ChangelogView: View {
         NavigationView {
             ZStack {
                 List {
-//                    Text("Thank you for using the app 😤")
-////                        .padding()
-//                        .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 15))
-//                        .shadow(color: .primary.opacity(0.1), radius: 20, y: 5)
+                    Text("Thank you for using the app 😤")
                     Section("What's new in this version") {
                         HStack (alignment: .top) {
-                            Image(systemName: "rectangle.3.group")
+                            Image(systemName: "rectangle.3.group.fill")
                                 .frame(width: 32, height: 32)
                                 .background(Color("avg"), in: RoundedRectangle(cornerRadius: 8))
                                 .foregroundColor(.white)
@@ -29,7 +26,7 @@ struct ChangelogView: View {
                             }
                         }
                         HStack (alignment: .top) {
-                            Image(systemName: "bell")
+                            Image(systemName: "bell.fill")
                                 .frame(width: 32, height: 32)
                                 .background(Color("high"), in: RoundedRectangle(cornerRadius: 8))
                                 .foregroundColor(.white)
@@ -40,7 +37,7 @@ struct ChangelogView: View {
                             }
                         }
                         HStack (alignment: .top) {
-                            Image(systemName: "bubble.left")
+                            Image(systemName: "bubble.left.fill")
                                 .frame(width: 32, height: 32)
                                 .background(Color("low"), in: RoundedRectangle(cornerRadius: 8))
                                 .foregroundColor(.white)
