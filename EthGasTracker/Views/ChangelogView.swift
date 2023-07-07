@@ -15,6 +15,19 @@ struct ChangelogView: View {
                     Text("Thank you for using the app 😤")
                     Section("What's new in this version") {
                         HStack (alignment: .top) {
+                            Image(systemName: "square.grid.4x3.fill")
+                                .frame(width: 32, height: 32)
+                                .background(.orange, in: RoundedRectangle(cornerRadius: 8))
+                                .foregroundColor(.white)
+                            VStack(alignment: .leading) {
+                                Text("Heatmap Improvements").font(.headline)
+                                    .padding(.bottom, 1)
+                                Text("Enhanced statistics overview.\nUser Interface improvements.")
+                            }
+                        }
+                    }
+                    Section("version 2.5") {
+                        HStack (alignment: .top) {
                             Image(systemName: "rectangle.3.group.fill")
                                 .frame(width: 32, height: 32)
                                 .background(Color("avg"), in: RoundedRectangle(cornerRadius: 8))
@@ -71,7 +84,6 @@ struct ChangelogView: View {
                                 Text("We've made improvements to the user interface for a more enjoyable experience.")
                             }
                         }
-
                     }
                 }.listStyle(.sidebar)
             }
