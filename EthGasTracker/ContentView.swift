@@ -67,7 +67,7 @@ struct ContentView: View {
                             }
                             .sheet(isPresented: $showingHeatmap) {
                                 HeatMapView(isPresented: $showingHeatmap)
-                                .padding(10)
+//                                .padding(10)
                             }
                         }
                         Divider()

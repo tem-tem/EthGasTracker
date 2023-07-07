@@ -61,72 +61,45 @@ struct HeatMapView: View {
     @Binding var isPresented: Bool
     private var statsLoader = StatsLoader()
     private var stats: [Stat]
-    @State private var avgList: [String: Double]
-    @State private var minAvg: Double
-    @State private var maxAvg: Double
     
     init(isPresented canShow: Binding<Bool>) {
         stats = statsLoader.loadStatsFromUserDefaults()
-        let avgListByHour = averageGasPricesByHour(stats: stats)
-        
-        if let (minGasPrice, maxGasPrice) = minAndMaxGasPrices(averageGasPrices: avgListByHour) {
-            minAvg = minGasPrice.1
-            maxAvg = maxGasPrice.1
-        } else {
-            minAvg = 0
-            maxAvg = 100
-            print("No data available.")
-        }
-        
-        avgList = avgListByHour
-        
+//        let avgListByHour = averageGasPricesByHour(stats: stats)
+//
+//        if let (minGasPrice, maxGasPrice) = minAndMaxGasPrices(averageGasPrices: avgListByHour) {
+//            minAvg = minGasPrice.1
+//            maxAvg = maxGasPrice.1
+//        } else {
+//            minAvg = 0
+//            maxAvg = 100
+//            print("No data available.")
+//        }
+//
+//        avgList = avgListByHour
+
         self._isPresented = canShow
     }
-    
+//
+    let rows = Array(repeating: GridItem(), count: 24)
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Last \(stats.count / 24) days").font(.title2).bold()
+        VStack(alignment: .leading, spacing: 0) {
+//            Text("Last \(stats.count / 24) days").font(.title2).bold()
+//                .padding(10)
+////            Divider().padding(0)
+//            Divider()
+            HeatMap()
+//                .padding(0)
+                .frame(maxHeight: .infinity)
+//                .frame(height: 600)
             Divider()
-            HStack (alignment: .top) {
-                VStack {
-                    ForEach(0..<24) { hour in
-                        Text(String(format: "%02d:00", hour))
-                            .font(.caption)
-                            .foregroundColor(
-                                colorForValue(value: avgList[String(format: "%02d:00", hour)] ?? 0.0, min: minAvg, max: maxAvg)
-                            )
-                            .frame(height: 12.24)
-                            .padding(.bottom, 2)
-                            .padding(.top, 2)
-                    }
-                }.padding(.top, 5)
-                ScrollViewReader { scrollProxy in
-                    ScrollView(.horizontal) {
-                        HeatMap()
-                            .frame(height: 600)
-                            .padding(.bottom, 20)
-                            .id("HeatmapChart")
-                    }
-                    .onAppear {
-                        scrollToTheEnd(using: scrollProxy, id: "HeatmapChart")
-                    }
-                }
-                
-            }
             HStack {
                 Spacer()
                 Button("Dismiss") {
                     isPresented = false
                 }
                 Spacer()
-            }
-        }
-    }
-    
-    private func scrollToTheEnd(using scrollProxy: ScrollViewProxy, id: String) {
-        withAnimation {
-            scrollProxy.scrollTo(id, anchor: .trailing)
+            }.padding(10)
         }
     }
 }
