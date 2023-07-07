@@ -28,12 +28,14 @@ struct SettingsView: View {
                         }
                     }
                     Section("About") {
-                        HStack {
-                            Image(systemName: "bubble.left.fill")
-                                .frame(width: 32, height: 32)
-                                .background(Color("low"), in: RoundedRectangle(cornerRadius: 8))
-                                .foregroundColor(.white)
-                            FeedbackButton()
+                        Link(destination: URL(string: "mailto:gas.app.developers@gmail.com?subject=Feedback")!) {
+                            HStack {
+                                Image(systemName: "bubble.left.fill")
+                                    .frame(width: 32, height: 32)
+                                    .background(Color("low"), in: RoundedRectangle(cornerRadius: 8))
+                                    .foregroundColor(.white)
+                                Text("gas.app.developers@gmail.com")
+                            }
                         }
                         HStack {
                             Image(systemName: "hand.thumbsup.fill")

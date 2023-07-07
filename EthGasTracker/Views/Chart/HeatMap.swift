@@ -55,7 +55,7 @@ struct HeatMap: View {
         
         ScrollViewReader { scrollProxy in
             ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHGrid(rows: rows, spacing: 10, pinnedViews: [.sectionHeaders]) {
+                    LazyHGrid(rows: rows, spacing: 5, pinnedViews: [.sectionHeaders]) {
                         Section(header: HStack {
                             LazyHGrid(rows: rows, spacing: 0) {
                                 Text("30 day AVG")

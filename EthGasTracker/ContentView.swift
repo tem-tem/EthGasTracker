@@ -139,7 +139,7 @@ struct ContentView: View {
                         }) {
                             VStack {
                                 Image(systemName: "bell.badge")
-                                Text("Set Notification").font(.caption)
+                                Text("Add Alert").font(.caption)
                             }
 //                            Text("Add Notification").bold()
 //                                .frame(height: 20)
