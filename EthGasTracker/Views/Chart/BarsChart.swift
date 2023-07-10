@@ -94,17 +94,18 @@ struct BarsChart: View {
             
             RuleMark(y: .value("Max", maxIn48Stats))
                 .opacity(0.2)
-                .foregroundStyle(Color("5").opacity(0.2))
-                .lineStyle(StrokeStyle(lineWidth: 1, dash: [1]))
+                .foregroundStyle(Color.secondary.opacity(0.2))
+                .lineStyle(StrokeStyle(lineWidth: 0.5, dash: [3]))
                 .annotation(position: .top, alignment: .trailing) {
                     Text("Max: \(Int(round(maxIn48Stats)))")
                       .font(.caption)
                       .foregroundStyle(Color("5"))
                 }
+                .offset(y: -2)
             
             RuleMark(y: .value("Min", minIn48Stats))
-              .foregroundStyle(Color("0").opacity(0.4))
-              .lineStyle(StrokeStyle(lineWidth: 1, dash: [1]))
+                .foregroundStyle(Color.secondary.opacity(0.1))
+                .lineStyle(StrokeStyle(lineWidth: 0.5, dash: [3]))
               .annotation(position: .bottom, alignment: .trailing) {
                 Text("Min: \(Int(round(minIn48Stats)))")
                   .font(.caption)
