@@ -31,6 +31,30 @@ func requestNotificationPermission() {
     }
 }
 
+func checkNotificationPermission(onGranted: @escaping () -> Void, onDenied: @escaping () -> Void) {
+    UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+        switch settings.authorizationStatus {
+        case .authorized, .provisional:
+            print("Notification permission granted")
+            onGranted()
+        case .denied:
+            print("Notification permission denied")
+            onDenied()
+        case .notDetermined:
+            print("Notification permission not determined")
+            onDenied()
+        case .ephemeral:
+            print("Notification permission granted temporarily")
+            onGranted()
+        @unknown default:
+            print("Unknown notification permission status")
+            onDenied()
+        }
+    }
+}
+
+
+
 @main
 struct EthGasTracker: App {
     @AppStorage("settings.displayMode") var displayMode: DisplayMode = .none

@@ -11,7 +11,6 @@ import Charts
 struct BarsChart: View {
     private var statsLoader = StatsLoader()
     private var stats: [Stat]
-    private var median: Double
     @AppStorage("minIn48Stats") var minIn48Stats: Double = 0
     @AppStorage("maxIn48Stats") var maxIn48Stats: Double = 1
     @AppStorage("minInAllStats") var minInAllStats: Double = 0
@@ -19,10 +18,7 @@ struct BarsChart: View {
     
     init() {
         stats = statsLoader.loadStatsFromUserDefaults()
-        stats = Array(stats.prefix(48))
-        stats = normalizeStats(stats: stats)
         stats = Array(stats.suffix(48))
-        median = medianGasPrice(from: stats)
     }
     
     private let dateFormatter: DateFormatter = {
@@ -97,26 +93,17 @@ struct BarsChart: View {
             }
             
             RuleMark(y: .value("Max", maxIn48Stats))
-                .foregroundStyle(Color("5").opacity(0.5))
-              .lineStyle(StrokeStyle(lineWidth: 1, dash: [1]))
-              .annotation(position: .top, alignment: .trailing) {
-                Text("Max: \(Int(round(maxIn48Stats)))")
-                  .font(.caption)
-                  .foregroundStyle(Color("5"))
-              }
-            
-//            RuleMark(y: .value("Median", median))
-//              .foregroundStyle(Color("avg").opacity(0.5))
-//              .lineStyle(StrokeStyle(lineWidth: 1, dash: [1]))
-//              .annotation(position: .bottom, alignment: .trailing) {
-//                Text("Median: \(median, format: .number.precision(.fractionLength(1)))")
-//                  .font(.caption)
-//                  .foregroundStyle(Color("avg"))
-//                  .padding(.trailing, 100)
-//              }
+                .opacity(0.2)
+                .foregroundStyle(Color("5").opacity(0.2))
+                .lineStyle(StrokeStyle(lineWidth: 1, dash: [1]))
+                .annotation(position: .top, alignment: .trailing) {
+                    Text("Max: \(Int(round(maxIn48Stats)))")
+                      .font(.caption)
+                      .foregroundStyle(Color("5"))
+                }
             
             RuleMark(y: .value("Min", minIn48Stats))
-              .foregroundStyle(Color("0").opacity(0.5))
+              .foregroundStyle(Color("0").opacity(0.4))
               .lineStyle(StrokeStyle(lineWidth: 1, dash: [1]))
               .annotation(position: .bottom, alignment: .trailing) {
                 Text("Min: \(Int(round(minIn48Stats)))")
@@ -149,18 +136,4 @@ func dateStringToDate(_ dateString: String) -> Date {
     dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 
     return dateFormatter.date(from: dateString) ?? Date()
-}
-
-func medianGasPrice(from stats: [Stat]) -> Double {
-    let sortedStats = stats.sorted { $0.average_gas_price < $1.average_gas_price }
-    let count = sortedStats.count
-    
-    if count % 2 == 0 {
-        let midIndex = count / 2
-        let midValue1 = sortedStats[midIndex - 1].average_gas_price
-        let midValue2 = sortedStats[midIndex].average_gas_price
-        return (midValue1 + midValue2) / 2
-    } else {
-        return sortedStats[count / 2].average_gas_price
-    }
 }

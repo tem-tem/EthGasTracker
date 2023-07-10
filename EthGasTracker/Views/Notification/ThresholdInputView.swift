@@ -134,6 +134,7 @@ struct ThresholdInputView: View {
                 comparison: comparison,
                 mute_duration: muteDuration
             ) { result in
+                print("result \(result)")
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let newThresholds):

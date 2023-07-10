@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var showingSettings = false
     @State private var showingHeatmap = false
     @State private var showingChangelog = false
+    @State private var showingNotificationsAlert = false
     @ThresholdsStorage(key: "thresholds") var thresholds: [Threshold] = []
     
     @AppStorage("settings.hapticFeedback") private var hapticFeedback = true
@@ -86,11 +87,6 @@ struct ContentView: View {
                     .padding(.top, 10)
                     .padding(.horizontal, 10)
                     
-//                    MessagesView()
-//                        .cornerRadius(15)
-//                        .frame(height: 100)
-//                        .padding(10)
-                    
                     NotificationView()
                         .padding(10)
                         .padding(.bottom, 100)
@@ -135,14 +131,18 @@ struct ContentView: View {
                     Spacer()
                     if (thresholds.count < 3) {
                         Button(action: {
-                            showingSheet.toggle()
+                            checkNotificationPermission(
+                                onGranted: {
+                                    showingSheet.toggle()
+                                },
+                                onDenied: {
+                                    showingNotificationsAlert = true
+                                })
                         }) {
                             VStack {
                                 Image(systemName: "bell.badge")
                                 Text("Add Alert").font(.caption)
                             }
-//                            Text("Add Notification").bold()
-//                                .frame(height: 20)
                                 .padding(10)
                                 .padding(.horizontal, 20)
                                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 15))
@@ -152,6 +152,14 @@ struct ContentView: View {
                             ThresholdInputView(onSubmit: {result in
                                 showingSheet = !result
                             }).padding(20)
+                        }
+                        .alert(isPresented: $showingNotificationsAlert) {
+                            Alert(
+                                title: Text("Notifications Permission Denied"),
+                                message: Text("Please enable notifications for this app in Settings"),
+                                primaryButton: .default(Text("Go to Settings"), action: openSettings),
+                                secondaryButton: .cancel()
+                            )
                         }
                     }
                     Spacer()
@@ -194,6 +202,12 @@ struct ContentView: View {
     private func scrollToTheEnd(using scrollProxy: ScrollViewProxy, id: String) {
         withAnimation {
             scrollProxy.scrollTo(id, anchor: .trailing)
+        }
+    }
+    
+    private func openSettings() {
+        if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, completionHandler: nil)
         }
     }
 }

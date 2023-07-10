@@ -129,9 +129,8 @@ class FetcherViewModel: ObservableObject {
     }
     
     func fetchStatsOnAppear() {
-//        let latestTimestamp = stats.first?.timestamp_utc
         if (stats.count > 0) {
-            guard let latestTimestamp = stats.first?.timestamp_utc else {
+            guard let latestTimestamp = stats.last?.timestamp_utc else {
                 return
             }
             guard let latestStatDate = dateStringToDate(latestTimestamp) else {
@@ -161,12 +160,15 @@ class FetcherViewModel: ObservableObject {
             }
             
             DispatchQueue.main.async {
-                self?.stats = statsData
-                
+//                calc stats using raw data
                 self?.maxIn48Stats = statsData.prefix(48).max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
                 self?.minIn48Stats = statsData.prefix(48).min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
                 self?.maxInAllStats = statsData.max { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
                 self?.minInAllStats = statsData.min { $0.average_gas_price < $1.average_gas_price }?.average_gas_price
+                
+//                normalize data for presentations
+                let startHour = lastIndexWithZeroHours(stats: statsData)
+                self?.stats = normalizeStats(stats: Array(statsData.prefix(startHour ?? statsData.count)))
             }
         }
     }
@@ -220,5 +222,60 @@ func getMinMax(from gasPrices: [GasData], keyPath: KeyPath<GasData, String>) -> 
     }
 
     return minMax
+}
+
+
+func lastIndexWithZeroHours(stats: [Stat]) -> Int? {
+    for (index, stat) in stats.enumerated().reversed() {
+        let dateFormatter = ISO8601DateFormatter()
+        if let date = dateFormatter.date(from: stat.timestamp_utc) {
+            let calendar = Calendar.current
+            let hour = calendar.component(.hour, from: date)
+            if hour == 0 {
+                return index + 1
+            }
+        }
+    }
+    return nil
+}
+
+func normalizeStats(stats: [Stat]) -> [Stat] {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    let calendar = Calendar.current
+//    calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+
+    var statsDict = [Date: Double]()
+    
+    for stat in stats {
+        if let date = formatter.date(from: stat.timestamp_utc) {
+            let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+            if let normalizedDate = calendar.date(from: components) {
+                statsDict[normalizedDate] = stat.average_gas_price
+            }
+        }
+    }
+
+    guard let minDate = statsDict.keys.min(), let maxDate = statsDict.keys.max() else {
+        return stats
+    }
+    
+    var currentDate = minDate
+    let endDate = maxDate
+    var normalizedStats = [Stat]()
+
+    while currentDate <= endDate {
+        if let value = statsDict[currentDate] {
+            let newStat = Stat(average_gas_price: value, timestamp_utc: formatter.string(from: currentDate))
+            normalizedStats.append(newStat)
+        } else {
+            let newStat = Stat(average_gas_price: 0.0, timestamp_utc: formatter.string(from: currentDate))
+            normalizedStats.append(newStat)
+        }
+        
+        currentDate = calendar.date(byAdding: .hour, value: 1, to: currentDate)!
+    }
+    
+    return normalizedStats
 }
 

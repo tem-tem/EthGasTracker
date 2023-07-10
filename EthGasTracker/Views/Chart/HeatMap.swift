@@ -22,8 +22,6 @@ struct HeatMap: View {
     
     init() {
         stats = statsLoader.loadStatsFromUserDefaults()
-        startHour = lastIndexWithZeroHours(stats: stats)
-        stats = normalizeStats(stats: stats.prefix(startHour ?? stats.count).reversed())
         
         let numberOfDigits = floor(log10(maxInAllStats) + 1)
         width = numberOfDigits * 15
@@ -170,116 +168,6 @@ struct HeatMap: View {
         formatter.dateFormat = "dd MMM"
         return formatter
     }()
-}
-
-func lastIndexWithZeroHours(stats: [Stat]) -> Int? {
-    for (index, stat) in stats.enumerated().reversed() {
-        let dateFormatter = ISO8601DateFormatter()
-        if let date = dateFormatter.date(from: stat.timestamp_utc) {
-            let calendar = Calendar.current
-            let hour = calendar.component(.hour, from: date)
-            if hour == 0 {
-                return index + 1
-            }
-        }
-    }
-    return nil
-}
-
-func normalizeStats(stats: [Stat]) -> [Stat] {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-    var calendar = Calendar.current
-    calendar.timeZone = TimeZone(secondsFromGMT: 0)!
-
-    var statsDict = [Date: Double]()
-    
-    for stat in stats {
-        if let date = formatter.date(from: stat.timestamp_utc) {
-            let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-            if let normalizedDate = calendar.date(from: components) {
-                statsDict[normalizedDate] = stat.average_gas_price
-            }
-        }
-    }
-
-    guard let minDate = statsDict.keys.min(), let maxDate = statsDict.keys.max() else {
-        return stats
-    }
-    
-    var currentDate = minDate
-    let endDate = maxDate
-    var normalizedStats = [Stat]()
-
-    while currentDate <= endDate {
-        if let value = statsDict[currentDate] {
-            let newStat = Stat(average_gas_price: value, timestamp_utc: formatter.string(from: currentDate))
-            normalizedStats.append(newStat)
-        } else {
-            let newStat = Stat(average_gas_price: 0.0, timestamp_utc: formatter.string(from: currentDate))
-            normalizedStats.append(newStat)
-        }
-        
-        currentDate = calendar.date(byAdding: .hour, value: 1, to: currentDate)!
-    }
-    
-    return normalizedStats
-}
-
-
-
-func fillInMissedHours(stats: [Stat]) -> [Stat] {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'" // Adjust this to match your date string format
-
-    var filledStats = stats // Copy the original stats
-    var placeholders = [Stat]() // Temp array to hold the placeholders
-    print("first \(stats[0].timestamp_utc)")
-
-    for i in 0..<stats.count - 1 {
-        let date1 = dateFormatter.date(from: stats[i].timestamp_utc)
-        let date2 = dateFormatter.date(from: stats[i+1].timestamp_utc)
-        if let date1 = date1, let date2 = date2 {
-            let hour1 = Calendar.current.component(.hour, from: date1)
-            let hour2 = Calendar.current.component(.hour, from: date2)
-            let day1 = Calendar.current.component(.day, from: date1)
-            let day2 = Calendar.current.component(.day, from: date2)
-            var diffInHours = hour2 - hour1
-
-            // Consider the case when date2 is on the next day
-            if day2 != day1 {
-                diffInHours += 24
-            }
-
-            // If the difference in hours is more than 1.5, add placeholders
-            if diffInHours > 1 {
-                for j in 1..<diffInHours {
-                    let placeholderDate = Calendar.current.date(byAdding: .hour, value: j, to: date1)!
-                    let placeholderTimestamp = dateFormatter.string(from: placeholderDate)
-                    placeholders.append(Stat(average_gas_price: 0.0, timestamp_utc: placeholderTimestamp))
-                }
-            }
-        }
-    }
-
-    // Concatenate the placeholders and sort the array
-    filledStats.append(contentsOf: placeholders)
-    filledStats.sort { $0.timestamp_utc < $1.timestamp_utc }
-    
-    // Find the first index that is at the start of a day
-    if let firstZeroHourIndex = filledStats.firstIndex(where: { stat in
-        if let date = dateFormatter.date(from: stat.timestamp_utc) {
-            let hour = Calendar.current.component(.hour, from: date)
-            return hour == 0
-        }
-        return false
-    }) {
-        
-        print("first after \(filledStats[0].timestamp_utc)")
-        return Array(filledStats[firstZeroHourIndex...])
-    }
-    print("first after \(filledStats[0].timestamp_utc)")
-    return filledStats
 }
 
 

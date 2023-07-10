@@ -49,7 +49,7 @@ struct ThresholdListView: View {
                     
                     if (deleting) {
                         Button(action: {
-                            deleteThreshold(threshold: threshold, thresholds: &thresholds)
+                            deleteThreshold(threshold: threshold, thresholds: &thresholds, last: thresholds.count == 1)
                         }) {
                             Image(systemName: "minus.circle")
                                 .tint(.red)
@@ -75,8 +75,8 @@ struct ThresholdListView: View {
         }
     }
     
-    func deleteThreshold(threshold: Threshold, thresholds: inout [Threshold]) {
-        sendThresholdHandler(action: "remove", appDelegate: appDelegate, thresholdPrice: "\(threshold.thresholdPrice)", comparison: threshold.comparison, mute_duration: threshold.mute_duration)
+    func deleteThreshold(threshold: Threshold, thresholds: inout [Threshold], last: Bool) {
+        sendThresholdHandler(action: last ? "remove_all" : "remove", appDelegate: appDelegate, thresholdPrice: "\(threshold.thresholdPrice)", comparison: threshold.comparison, mute_duration: threshold.mute_duration)
         let thresholdId = threshold.id
         if let index = thresholds.firstIndex(where: { $0.id == thresholdId }) {
             thresholds.remove(at: index)
