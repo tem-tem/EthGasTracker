@@ -23,10 +23,10 @@ struct HeatMap: View {
     init() {
         stats = statsLoader.loadStatsFromUserDefaults()
         startHour = lastIndexWithZeroHours(stats: stats)
-        stats = stats.prefix(startHour ?? stats.count).reversed()
+        stats = normalizeStats(stats: stats.prefix(startHour ?? stats.count).reversed())
         
         let numberOfDigits = floor(log10(maxInAllStats) + 1)
-        width = numberOfDigits * 20
+        width = numberOfDigits * 15
         
         let avgListByHour = averageGasPricesByHour(stats: stats)
         if let (minGasPrice, maxGasPrice) = minAndMaxGasPrices(averageGasPrices: avgListByHour) {
@@ -97,48 +97,38 @@ struct HeatMap: View {
                                             .padding(.bottom, 10)
                                     }
 
-                                    Text("\(Int(currentHourStat.average_gas_price))")
-                                        .frame(width: width)
-                                        .padding(.horizontal, 10)
-                                        .foregroundColor(
-                                            colorForValue(value: currentHourStat.average_gas_price, min: minInAllStats, max: maxInAllStats))
-                                        .background(
-                                            colorForValue(value: currentHourStat.average_gas_price, min: minInAllStats, max: maxInAllStats).opacity(0.2)
-                                        )
-                                        .cornerRadius(5)
-
-                                    // Checking if there is a nextHourStat and if its timestamp is more than the current one by 2 or more hours.
-                                    if index < stats.count - 1 {
-                                        let nextHourStat = stats[index + 1]
-                                        if let nextDate = dateStringToDate(nextHourStat.timestamp_utc),
-                                           let currentDate = dateStringToDate(currentHourStat.timestamp_utc),
-                                           let hourDifference = Calendar.current.dateComponents([.hour], from: currentDate, to: nextDate).hour,
-                                           hourDifference >= 2 {
-                                            
-                                            // Add placeholder Text for each hour of difference.
-                                            ForEach(0..<hourDifference-1, id: \.self) { _ in
-                                                Image(systemName: "bolt.slash.fill")
-                                                    .frame(width: width)
-                                                    .padding(.horizontal, 10)
-                                                    .foregroundColor(
-                                                        Color.secondary.opacity(0.8)
-                                                    )
-                                                    .background(
-                                                        Color.secondary.opacity(0.2)
-                                                    )
-                                                    .cornerRadius(5)
-                                            }
-                                        }
+                                    if (currentHourStat.average_gas_price > 0) {
+                                        Text("\(Int(round(currentHourStat.average_gas_price)))")
+                                            .frame(width: width)
+                                            .padding(.horizontal, 10)
+                                            .foregroundColor(
+                                                colorForValue(value: currentHourStat.average_gas_price, min: minInAllStats, max: maxInAllStats))
+                                            .background(
+                                                colorForValue(value: currentHourStat.average_gas_price, min: minInAllStats, max: maxInAllStats).opacity(0.2)
+                                            )
+                                            .cornerRadius(5)
+//                                            .font(.caption)
+                                    } else {
+                                        Image(systemName: "bolt.slash.fill")
+                                            .frame(width: width)
+                                            .padding(.horizontal, 10)
+                                            .foregroundColor(
+                                                Color.secondary.opacity(0.2)
+                                            )
+                                            .background(
+                                                Color.secondary.opacity(0.1)
+                                            )
+                                            .cornerRadius(5)
+//                                            .font(.caption)
+                                        
                                     }
                                 }
                             }
                             
                         }
-
-
                     }
+                    .padding(.trailing, 20)
                     .id("HeatmapChart")
-                    .padding(.trailing, 80)
             }
             .onAppear {
                 scrollToTheEnd(using: scrollProxy, id: "HeatmapChart")
@@ -195,6 +185,48 @@ func lastIndexWithZeroHours(stats: [Stat]) -> Int? {
     }
     return nil
 }
+
+func normalizeStats(stats: [Stat]) -> [Stat] {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    var calendar = Calendar.current
+    calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+
+    var statsDict = [Date: Double]()
+    
+    for stat in stats {
+        if let date = formatter.date(from: stat.timestamp_utc) {
+            let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+            if let normalizedDate = calendar.date(from: components) {
+                statsDict[normalizedDate] = stat.average_gas_price
+            }
+        }
+    }
+
+    guard let minDate = statsDict.keys.min(), let maxDate = statsDict.keys.max() else {
+        return stats
+    }
+    
+    var currentDate = minDate
+    let endDate = maxDate
+    var normalizedStats = [Stat]()
+
+    while currentDate <= endDate {
+        if let value = statsDict[currentDate] {
+            let newStat = Stat(average_gas_price: value, timestamp_utc: formatter.string(from: currentDate))
+            normalizedStats.append(newStat)
+        } else {
+            let newStat = Stat(average_gas_price: 0.0, timestamp_utc: formatter.string(from: currentDate))
+            normalizedStats.append(newStat)
+        }
+        
+        currentDate = calendar.date(byAdding: .hour, value: 1, to: currentDate)!
+    }
+    
+    return normalizedStats
+}
+
+
 
 func fillInMissedHours(stats: [Stat]) -> [Stat] {
     let dateFormatter = DateFormatter()
