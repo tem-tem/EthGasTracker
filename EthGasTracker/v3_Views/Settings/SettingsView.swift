@@ -11,7 +11,8 @@ struct SettingsView: View {
     @Binding var isPresented: Bool
     @AppStorage("settings.hapticFeedback") private var haptic = true
     @State private var showToast: Bool = false
-//    @AppStorage("settings.displayMode") var displayMode: DisplayMode = .none
+    @AppStorage("userSettings.colorScheme") var settingsColorScheme: ColorScheme = .none
+    @Environment(\.colorScheme) private var defaultColorScheme
     
     var body: some View {
         NavigationView {
@@ -26,6 +27,7 @@ struct SettingsView: View {
                             Toggle("Haptic Feedback", isOn: $haptic)
                                 .toggleStyle(SwitchToggleStyle(tint: .green))
                         }
+                        ColorSchemePickerView()
                     }
                     Section("About") {
                         Link(destination: URL(string: "mailto:gas.app.developers@gmail.com?subject=Feedback")!) {
@@ -111,6 +113,12 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .preferredColorScheme(
+            settingsColorScheme == .dark ?
+                .dark :
+                settingsColorScheme == .light ? .light :
+                defaultColorScheme
+        )
         
     }
 }

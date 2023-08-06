@@ -12,7 +12,7 @@ func sendThresholdPrice(action: String, deviceToken: String, threshold: String, 
         return
     }
     
-    let url = URL(string: "http://65.109.175.89:8000/set_threshold")!
+    let url = URL(string: "http://localhost:8000/set_threshold")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")

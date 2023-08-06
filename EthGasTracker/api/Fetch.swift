@@ -9,7 +9,7 @@ import Foundation
 
 class MyAPI {
     func fetchStats(completion: @escaping (StatsResponse?, Error?) -> Void) {
-        guard let url = URL(string: "http://65.109.175.89:8000/stats") else {
+        guard let url = URL(string: "http://localhost:8000/stats") else {
             completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
             return
         }
@@ -38,7 +38,7 @@ class MyAPI {
     }
     
     func fetchGasList(completion: @escaping (GasListServerResponse?, Error?) -> Void) {
-        guard let url = URL(string: "http://65.109.175.89:8000/gas_list") else {
+        guard let url = URL(string: "http://localhost:8000/gas_list") else {
             completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
             return
         }

@@ -17,10 +17,64 @@ class OP: Operation {
     }
 }
 
+struct LegacyGasData {
+    var low: Float;
+    var avg: Float;
+    var high: Float;
+}
+
+struct NormalFast {
+    var normal: Float;
+    var fast: Float;
+}
+
+struct Action {
+    var action: String;
+    var price: NormalFast;
+}
+
 class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
-    
-    @AppStorage("test") var test = 1
     @Published var deviceToken: String?
+    @Published var ethPrice: Float = 0.0
+    @Published var legacyGas: LegacyGasData = LegacyGasData(low: 0, avg: 0, high: 0)
+    @Published var gas = NormalFast(normal: 0.0, fast: 0.0)
+    @Published var actions: [Action] = []
+    
+    var dataManager = DataManager()
+    
+    
+    var repeatedFetch: RepeatingTask {
+        RepeatingTask(interval: 10.0) {
+            self.dataManager.fetchAndStoreData(amount: 1) { result in
+                switch result {
+                case .success(let entities):
+                    print("Successfully fetched and stored data")
+                    DispatchQueue.main.async {
+                        self.ethPrice = entities.priceEntities.first?.price ?? 0.0
+                        self.legacyGas = LegacyGasData(
+                            low: entities.legacyGasEntities.first?.low ?? 0.0,
+                            avg: entities.legacyGasEntities.first?.avg ?? 0.0,
+                            high: entities.legacyGasEntities.first?.high ?? 0.0
+                        )
+                        self.gas = NormalFast(
+                            normal: entities.gasEntities.first?.normal ?? 0.0,
+                            fast: entities.gasEntities.first?.fast ?? 0.0
+                        )
+                        var newActions: [Action] = []
+                        for (transferPriceEntity) in entities.transferPriceEntities {
+                            if let action = transferPriceEntity.action {
+                                newActions.append(Action(action: action, price: NormalFast(normal: transferPriceEntity.normal, fast: transferPriceEntity.fast)))
+                            }
+                        }
+                        self.actions = newActions
+                        
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error)")
+                }
+            }
+        }
+    }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         self.deviceToken = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
@@ -39,49 +93,11 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
                 }
             }
         }
-        
-        print("LAUNCHED")
-        let a = BGTaskScheduler.shared.register(forTaskWithIdentifier: "IDENTIFIER", using: nil) { task in
-            print("REGISTERED")
-            self.test = self.test + 1
-            self.handleSchedule(task: task as! BGAppRefreshTask)
-        }
-        print("this -> \(a)")
+        repeatedFetch.start()
         return true
     }
     
-     func schedule() {
-        let request = BGAppRefreshTaskRequest(identifier: "IDENTIFIER")
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 1)
-        
-       do {
-          try BGTaskScheduler.shared.submit(request)
-           print("submitted")
-       } catch {
-          print("Could not schedule app refresh: \(error)")
-       }
-    }
-    
-     func handleSchedule(task: BGAppRefreshTask) {
-        print("HANDLING SCHEDULE")
-        schedule()
-        
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        
-        let operation = OP()
-
-        
-        task.expirationHandler = {
-            print("BG Task Expired")
-            queue.cancelAllOperations()
-        }
-        
-        operation.completionBlock = {
-            print("OPERATION COMPLETED")
-            task.setTaskCompleted(success: !operation.isCancelled)
-        }
-        
-        queue.addOperation(operation)
+    func applicationWillTerminate(_ application: UIApplication) {
+        repeatedFetch.stop()
     }
 }

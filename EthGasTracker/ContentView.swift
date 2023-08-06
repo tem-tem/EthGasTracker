@@ -40,7 +40,7 @@ struct ContentView: View {
                         }
                         Spacer()
                         VStack(alignment: .trailing) {
-                            StatusBar()
+//                            StatusBar()
                             Text("\(formattedTimestamp)")
                                 .font(.caption)
                         }

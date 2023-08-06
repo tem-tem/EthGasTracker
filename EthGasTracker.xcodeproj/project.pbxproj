@@ -31,11 +31,16 @@
 		A3501C962A36A75400057C1C /* HighChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */; };
 		A3501C982A36AAE600057C1C /* EthGasWidgetAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */; };
 		A3501C9A2A36B47700057C1C /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3501C992A36B47700057C1C /* LockScreenWidget.swift */; };
+		A36781F62A7E847D006B3149 /* API_v1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781F52A7E847D006B3149 /* API_v1.swift */; };
+		A36781F72A7E847D006B3149 /* API_v1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781F52A7E847D006B3149 /* API_v1.swift */; };
+		A36781FA2A7E8AD8006B3149 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781F92A7E8AD8006B3149 /* DataManager.swift */; };
+		A36781FB2A7E8AD8006B3149 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781F92A7E8AD8006B3149 /* DataManager.swift */; };
+		A36781FD2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */; };
+		A36781FE2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */; };
 		A37D69152A1E35F500ECF1CA /* NotificationLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
 		A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2A29BAFBC6005CC9E1 /* Preview Assets.xcassets */; };
-		A384EB3329BAFD3B005CC9E1 /* Gas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */; };
 		A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3429BAFDA1005CC9E1 /* DataController.swift */; };
 		A38C56562A12C7C5004ABF21 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56552A12C7C5004ABF21 /* WidgetKit.framework */; };
 		A38C56582A12C7C5004ABF21 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56572A12C7C5004ABF21 /* SwiftUI.framework */; };
@@ -54,6 +59,17 @@
 		A3A4D4E12A082E47008E4CE7 /* LowChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E02A082E47008E4CE7 /* LowChart.swift */; };
 		A3A4D4E32A0835C2008E4CE7 /* HighChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */; };
 		A3A4D4E52A084FA6008E4CE7 /* BarsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4D4E42A084FA6008E4CE7 /* BarsChart.swift */; };
+		A3B253B62A7E9BBD007C668A /* Gas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */; };
+		A3B253B72A7E9BBD007C668A /* Gas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */; };
+		A3B253BC2A7EB5FB007C668A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253BB2A7EB5FB007C668A /* MainView.swift */; };
+		A3B253BF2A7EC2B0007C668A /* ColorSchemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253BE2A7EC2B0007C668A /* ColorSchemePickerView.swift */; };
+		A3B253C22A7EC40E007C668A /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253C12A7EC40E007C668A /* MenuBar.swift */; };
+		A3B253C52A7ED04F007C668A /* RepeatingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253C42A7ED04F007C668A /* RepeatingTask.swift */; };
+		A3B253C72A7ED813007C668A /* EthPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253C62A7ED813007C668A /* EthPriceView.swift */; };
+		A3B253C92A7F0C67007C668A /* NormalFastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253C82A7F0C67007C668A /* NormalFastView.swift */; };
+		A3B253CB2A7F0D5E007C668A /* LegacyGasPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253CA2A7F0D5E007C668A /* LegacyGasPriceView.swift */; };
+		A3B253CF2A7F122E007C668A /* GasPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253CE2A7F122E007C668A /* GasPriceView.swift */; };
+		A3B253D12A7F1276007C668A /* ActionsPriceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253D02A7F1276007C668A /* ActionsPriceListView.swift */; };
 		A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */; };
 		A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */; };
 		A3DB1D672A0E4DA500372A58 /* HeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DB1D662A0E4DA500372A58 /* HeatMap.swift */; };
@@ -110,6 +126,9 @@
 		A3501C942A36A70C00057C1C /* EthGasWidgetHigh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetHigh.swift; sourceTree = "<group>"; };
 		A3501C972A36AAE600057C1C /* EthGasWidgetAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetAll.swift; sourceTree = "<group>"; };
 		A3501C992A36B47700057C1C /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
+		A36781F52A7E847D006B3149 /* API_v1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_v1.swift; sourceTree = "<group>"; };
+		A36781F92A7E8AD8006B3149 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationLimitPicker.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
@@ -136,6 +155,15 @@
 		A3A4D4E02A082E47008E4CE7 /* LowChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowChart.swift; sourceTree = "<group>"; };
 		A3A4D4E22A0835C2008E4CE7 /* HighChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighChart.swift; sourceTree = "<group>"; };
 		A3A4D4E42A084FA6008E4CE7 /* BarsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsChart.swift; sourceTree = "<group>"; };
+		A3B253BB2A7EB5FB007C668A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A3B253BE2A7EC2B0007C668A /* ColorSchemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemePickerView.swift; sourceTree = "<group>"; };
+		A3B253C12A7EC40E007C668A /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		A3B253C42A7ED04F007C668A /* RepeatingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTask.swift; sourceTree = "<group>"; };
+		A3B253C62A7ED813007C668A /* EthPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthPriceView.swift; sourceTree = "<group>"; };
+		A3B253C82A7F0C67007C668A /* NormalFastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalFastView.swift; sourceTree = "<group>"; };
+		A3B253CA2A7F0D5E007C668A /* LegacyGasPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyGasPriceView.swift; sourceTree = "<group>"; };
+		A3B253CE2A7F122E007C668A /* GasPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasPriceView.swift; sourceTree = "<group>"; };
+		A3B253D02A7F1276007C668A /* ActionsPriceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsPriceListView.swift; sourceTree = "<group>"; };
 		A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdInputView.swift; sourceTree = "<group>"; };
 		A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdListView.swift; sourceTree = "<group>"; };
 		A3DB1D662A0E4DA500372A58 /* HeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMap.swift; sourceTree = "<group>"; };
@@ -174,7 +202,6 @@
 				A32A16432A06A8F700F04CC7 /* Gas */,
 				A32A16422A06A8C600F04CC7 /* StatusBarFetcher */,
 				A32A16412A06A8B000F04CC7 /* Notification */,
-				A32081152A42922D00857E02 /* SettingsView.swift */,
 				A32081172A42A36200857E02 /* FeedbackButtonView.swift */,
 				A32081192A43C85E00857E02 /* MessagesView.swift */,
 				A33ABB2B2A46531E00D27DC8 /* ChangelogView.swift */,
@@ -234,6 +261,16 @@
 			path = Chart;
 			sourceTree = "<group>";
 		};
+		A36781F82A7E8AC4006B3149 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				A36781F92A7E8AD8006B3149 /* DataManager.swift */,
+				A36781F52A7E847D006B3149 /* API_v1.swift */,
+				A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
 		A384EB1729BAFBC5005CC9E1 = {
 			isa = PBXGroup;
 			children = (
@@ -257,9 +294,16 @@
 		A384EB2229BAFBC5005CC9E1 /* EthGasTracker */ = {
 			isa = PBXGroup;
 			children = (
-				A394E00629EA4E3000E45DEF /* EthGasTracker.entitlements */,
-				A384EB3829BBE913005CC9E1 /* Info.plist */,
+				A3E3655829BC39BC00DC3016 /* AppDelegate.swift */,
 				A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */,
+				A3B253BB2A7EB5FB007C668A /* MainView.swift */,
+				A3B253B82A7EB5B0007C668A /* v3_Views */,
+				A36781F82A7E8AC4006B3149 /* DataManager */,
+				A3B253C32A7ED042007C668A /* helpers */,
+				A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */,
+				A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */,
+				A384EB3829BBE913005CC9E1 /* Info.plist */,
+				A394E00629EA4E3000E45DEF /* EthGasTracker.entitlements */,
 				A3E3656229BD476B00DC3016 /* ContentView.swift */,
 				A32A16402A06A87000F04CC7 /* api */,
 				A32A163F2A06A78800F04CC7 /* Views */,
@@ -267,10 +311,7 @@
 				A394E00F29EA55F400E45DEF /* NotificationManager.swift */,
 				A394E01529EB1AE000E45DEF /* ThresholdStorage.swift */,
 				A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */,
-				A3E3655829BC39BC00DC3016 /* AppDelegate.swift */,
 				A384EB3429BAFDA1005CC9E1 /* DataController.swift */,
-				A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */,
-				A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */,
 				A317CCEF29CBF497001B8492 /* lightweight.gif */,
 				A384EB2929BAFBC6005CC9E1 /* Preview Content */,
 				A3F731EE2A11CD4200AB10D2 /* Helpers.swift */,
@@ -314,6 +355,37 @@
 				A3501C992A36B47700057C1C /* LockScreenWidget.swift */,
 			);
 			path = EthGasWidget;
+			sourceTree = "<group>";
+		};
+		A3B253B82A7EB5B0007C668A /* v3_Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3B253BD2A7EC29E007C668A /* Settings */,
+				A3B253C12A7EC40E007C668A /* MenuBar.swift */,
+				A3B253C62A7ED813007C668A /* EthPriceView.swift */,
+				A3B253C82A7F0C67007C668A /* NormalFastView.swift */,
+				A3B253CA2A7F0D5E007C668A /* LegacyGasPriceView.swift */,
+				A3B253CE2A7F122E007C668A /* GasPriceView.swift */,
+				A3B253D02A7F1276007C668A /* ActionsPriceListView.swift */,
+			);
+			path = v3_Views;
+			sourceTree = "<group>";
+		};
+		A3B253BD2A7EC29E007C668A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A32081152A42922D00857E02 /* SettingsView.swift */,
+				A3B253BE2A7EC2B0007C668A /* ColorSchemePickerView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A3B253C32A7ED042007C668A /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A3B253C42A7ED04F007C668A /* RepeatingTask.swift */,
+			);
+			path = helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,14 +498,24 @@
 				A34D907429C2B52E002F2310 /* TimerView.swift in Sources */,
 				A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */,
 				A3DB1D692A0E75EE00372A58 /* HeatMapView.swift in Sources */,
+				A3B253BF2A7EC2B0007C668A /* ColorSchemePickerView.swift in Sources */,
 				A3A4D4E12A082E47008E4CE7 /* LowChart.swift in Sources */,
+				A3B253C72A7ED813007C668A /* EthPriceView.swift in Sources */,
 				A3A4D4E52A084FA6008E4CE7 /* BarsChart.swift in Sources */,
+				A3B253C52A7ED04F007C668A /* RepeatingTask.swift in Sources */,
+				A3B253CF2A7F122E007C668A /* GasPriceView.swift in Sources */,
 				A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */,
+				A3B253C22A7EC40E007C668A /* MenuBar.swift in Sources */,
+				A3B253CB2A7F0D5E007C668A /* LegacyGasPriceView.swift in Sources */,
 				A394E01029EA55F400E45DEF /* NotificationManager.swift in Sources */,
+				A36781F62A7E847D006B3149 /* API_v1.swift in Sources */,
+				A3B253BC2A7EB5FB007C668A /* MainView.swift in Sources */,
 				A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */,
+				A36781FD2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */,
 				A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */,
 				A3DB1D672A0E4DA500372A58 /* HeatMap.swift in Sources */,
 				A320811A2A43C85E00857E02 /* MessagesView.swift in Sources */,
+				A3B253D12A7F1276007C668A /* ActionsPriceListView.swift in Sources */,
 				A394E00E29EA54B300E45DEF /* NotificationDelegate.swift in Sources */,
 				A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */,
 				A37D69152A1E35F500ECF1CA /* NotificationLimitPicker.swift in Sources */,
@@ -441,8 +523,8 @@
 				A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */,
 				A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */,
 				A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */,
+				A36781FA2A7E8AD8006B3149 /* DataManager.swift in Sources */,
 				A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */,
-				A384EB3329BAFD3B005CC9E1 /* Gas.xcdatamodeld in Sources */,
 				A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */,
 				A394E01629EB1AE000E45DEF /* ThresholdStorage.swift in Sources */,
 				A32081162A42922D00857E02 /* SettingsView.swift in Sources */,
@@ -450,10 +532,12 @@
 				A3A4D4E32A0835C2008E4CE7 /* HighChart.swift in Sources */,
 				A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */,
 				A3F731EF2A11CD4200AB10D2 /* Helpers.swift in Sources */,
+				A3B253C92A7F0C67007C668A /* NormalFastView.swift in Sources */,
 				A34D907029C2918D002F2310 /* FetchView.swift in Sources */,
 				A32081182A42A36200857E02 /* FeedbackButtonView.swift in Sources */,
 				A33ABB2C2A46531E00D27DC8 /* ChangelogView.swift in Sources */,
 				A394E00529EA4C8D00E45DEF /* NotificationView.swift in Sources */,
+				A3B253B62A7E9BBD007C668A /* Gas.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,18 +546,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A38C566C2A12D39F004ABF21 /* Fetch.swift in Sources */,
+				A36781FE2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */,
 				A3501C982A36AAE600057C1C /* EthGasWidgetAll.swift in Sources */,
 				A3501C8D2A35F8BA00057C1C /* AvgChart.swift in Sources */,
+				A36781F72A7E847D006B3149 /* API_v1.swift in Sources */,
 				A38C565D2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift in Sources */,
 				A320810E2A426D4900857E02 /* EthGasWidgetHigh2.swift in Sources */,
 				A3501C922A36A15200057C1C /* EthGasWidgetLow.swift in Sources */,
 				A38C565B2A12C7C5004ABF21 /* EthGasWidgetBundle.swift in Sources */,
 				A3501C932A36A32600057C1C /* LowChart.swift in Sources */,
 				A320810C2A42680D00857E02 /* EthGasWidgetSmall.swift in Sources */,
+				A3B253B72A7E9BBD007C668A /* Gas.xcdatamodeld in Sources */,
 				A38C565F2A12C7C5004ABF21 /* EthGasWidget.swift in Sources */,
 				A3501C8C2A35F79600057C1C /* FetcherViewModel.swift in Sources */,
 				A3501C962A36A75400057C1C /* HighChart.swift in Sources */,
 				A3501C9A2A36B47700057C1C /* LockScreenWidget.swift in Sources */,
+				A36781FB2A7E8AD8006B3149 /* DataManager.swift in Sources */,
 				A32081122A427AE800857E02 /* EthGasWidgetLarge.swift in Sources */,
 				A32081102A42718D00857E02 /* GridView.swift in Sources */,
 				A32081142A427E2100857E02 /* EthGasWidgetMedium.swift in Sources */,
