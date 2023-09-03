@@ -27,7 +27,7 @@ struct ServerMessages: View {
                                 text: messages[msgItem].body
                             )
                             .snapID(msgItem)
-                            .frame(width: messages.count > 1 ? geometry.size.width * 0.8 : geometry.size.width)
+                            .frame(width: messages.count > 1 ? geometry.size.width * 0.92 : geometry.size.width)
                         }
                     }
                 }
