@@ -89,8 +89,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
             switch result {
             case .success(let msgs):
                 DispatchQueue.main.async {
-                    print("msgs")
-                    print(msgs)
                     self.serverMessages = msgs
                 }
             case .failure(let error):

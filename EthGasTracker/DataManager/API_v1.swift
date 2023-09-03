@@ -338,12 +338,7 @@ class API_v1 {
                 completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
                 return
             }
-            if let jsonString = String(data: data, encoding: .utf8) {
-                print("*********")
-                print(jsonString)
-            } else {
-                print("Failed to convert data to string")
-            }
+            
             do {
                 let alerts = try JSONDecoder().decode([GasAlert].self, from: data)
                 completion(.success(alerts))

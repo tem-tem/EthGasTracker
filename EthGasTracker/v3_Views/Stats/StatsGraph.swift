@@ -21,8 +21,6 @@ struct StatsGraph: View {
     @State private var hour = min(max(Calendar.current.component(.hour, from: Date()), 0), 23)
 
     var hourStatEntry: StatsEntries.Entry {
-        print("hour \(hour)")
-        print(stats.statsGroupedByHourNormal.count)
         guard stats.statsGroupedByHourNormal.count >= (hour-1), stats.statsGroupedByHourNormal.count > 0 else {
             return StatsEntries.Entry(minuteOfDay: 0, max: 0.0, avg: 0, min: 0, measureName: "")
         }

@@ -54,10 +54,10 @@ struct GasPriceMiniView: View {
         .font(.system(.caption, design: .monospaced))
         .frame(height: 40)
         .font(.caption)
-        .onAppear {
-            print(settingsColorScheme)
-            print(defaultColorScheme)
-        }
+//        .onAppear {
+//            print(settingsColorScheme)
+//            print(defaultColorScheme)
+//        }
     }
 }
 
