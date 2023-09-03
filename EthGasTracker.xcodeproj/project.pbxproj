@@ -17,7 +17,21 @@
 		A32081182A42A36200857E02 /* FeedbackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081172A42A36200857E02 /* FeedbackButtonView.swift */; };
 		A320811A2A43C85E00857E02 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32081192A43C85E00857E02 /* MessagesView.swift */; };
 		A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A16452A06A9F700F04CC7 /* AvgChart.swift */; };
+		A32E564D2A80938300786382 /* TimestampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E564C2A80938300786382 /* TimestampView.swift */; };
+		A33250382AA294D000A5B6B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A33250372AA294D000A5B6B3 /* GoogleService-Info.plist */; };
+		A33250392AA294D000A5B6B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A33250372AA294D000A5B6B3 /* GoogleService-Info.plist */; };
+		A332503C2AA2958E00A5B6B3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A332503B2AA2958E00A5B6B3 /* FirebaseAnalytics */; };
+		A332503E2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		A33250402AA392AE00A5B6B3 /* GasIndexProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A332503F2AA392AE00A5B6B3 /* GasIndexProvider.swift */; };
+		A33250412AA392AE00A5B6B3 /* GasIndexProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A332503F2AA392AE00A5B6B3 /* GasIndexProvider.swift */; };
+		A33250432AA3972B00A5B6B3 /* ServerMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33250422AA3972B00A5B6B3 /* ServerMessageView.swift */; };
+		A33250442AA3972B00A5B6B3 /* ServerMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33250422AA3972B00A5B6B3 /* ServerMessageView.swift */; };
 		A33ABB2C2A46531E00D27DC8 /* ChangelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33ABB2B2A46531E00D27DC8 /* ChangelogView.swift */; };
+		A33AFD892A92F6D9008AE58D /* MainFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD882A92F6D9008AE58D /* MainFocusView.swift */; };
+		A33AFD8B2A92F78B008AE58D /* StyledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD8A2A92F78B008AE58D /* StyledTextView.swift */; };
+		A33AFD8D2A930068008AE58D /* GasIndexFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD8C2A930068008AE58D /* GasIndexFocus.swift */; };
+		A33AFD902A930133008AE58D /* ActionsListFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD8F2A930133008AE58D /* ActionsListFocusView.swift */; };
+		A33AFD922A930BC3008AE58D /* GasIndexChartFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD912A930BC3008AE58D /* GasIndexChartFocus.swift */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
 		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
@@ -37,11 +51,18 @@
 		A36781FB2A7E8AD8006B3149 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781F92A7E8AD8006B3149 /* DataManager.swift */; };
 		A36781FD2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */; };
 		A36781FE2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */; };
-		A37D69152A1E35F500ECF1CA /* NotificationLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */; };
+		A36F08622A8C17C7009A4A36 /* AlertConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36F08612A8C17C7009A4A36 /* AlertConditionView.swift */; };
+		A37D69152A1E35F500ECF1CA /* AlertsLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
 		A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2A29BAFBC6005CC9E1 /* Preview Assets.xcassets */; };
 		A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB3429BAFDA1005CC9E1 /* DataController.swift */; };
+		A384F2832A83180000357771 /* GasIndexChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384F2822A83180000357771 /* GasIndexChart.swift */; };
+		A384F2852A832AD900357771 /* IsFastMainTogglerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384F2842A832AD900357771 /* IsFastMainTogglerView.swift */; };
+		A384F2872A83C07A00357771 /* EnableLegacyGasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384F2862A83C07A00357771 /* EnableLegacyGasView.swift */; };
+		A384F2892A83CE0F00357771 /* ActionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384F2882A83CE0F00357771 /* ActionEntity.swift */; };
+		A384F28A2A83D27A00357771 /* ActionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384F2882A83CE0F00357771 /* ActionEntity.swift */; };
+		A384F28E2A83D39300357771 /* EthPriceChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384F28D2A83D39300357771 /* EthPriceChart.swift */; };
 		A38C56562A12C7C5004ABF21 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56552A12C7C5004ABF21 /* WidgetKit.framework */; };
 		A38C56582A12C7C5004ABF21 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56572A12C7C5004ABF21 /* SwiftUI.framework */; };
 		A38C565B2A12C7C5004ABF21 /* EthGasWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38C565A2A12C7C5004ABF21 /* EthGasWidgetBundle.swift */; };
@@ -70,14 +91,25 @@
 		A3B253CB2A7F0D5E007C668A /* LegacyGasPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253CA2A7F0D5E007C668A /* LegacyGasPriceView.swift */; };
 		A3B253CF2A7F122E007C668A /* GasPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253CE2A7F122E007C668A /* GasPriceView.swift */; };
 		A3B253D12A7F1276007C668A /* ActionsPriceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253D02A7F1276007C668A /* ActionsPriceListView.swift */; };
+		A3B95EDA2AA3ED420010657A /* Snappable in Frameworks */ = {isa = PBXBuildFile; productRef = A3B95ED92AA3ED420010657A /* Snappable */; };
+		A3B95EDC2AA3F0030010657A /* Snappable in Frameworks */ = {isa = PBXBuildFile; productRef = A3B95EDB2AA3F0030010657A /* Snappable */; };
 		A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */; };
 		A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */; };
+		A3CB6BD32A9E931A00DE3DD4 /* StatsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB6BD22A9E931A00DE3DD4 /* StatsGraph.swift */; };
+		A3D357F52A8B051B000CD883 /* AlertFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D357F42A8B051B000CD883 /* AlertFormView.swift */; };
 		A3DB1D672A0E4DA500372A58 /* HeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DB1D662A0E4DA500372A58 /* HeatMap.swift */; };
 		A3DB1D692A0E75EE00372A58 /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DB1D682A0E75EE00372A58 /* HeatMapView.swift */; };
 		A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655829BC39BC00DC3016 /* AppDelegate.swift */; };
 		A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655A29BD2EF800DC3016 /* Fetch.swift */; };
 		A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */; };
 		A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656229BD476B00DC3016 /* ContentView.swift */; };
+		A3EB2A2B2A8582B2004583B3 /* GasTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A2A2A8582B2004583B3 /* GasTabView.swift */; };
+		A3EB2A2D2A858422004583B3 /* ActionsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A2C2A858422004583B3 /* ActionsTabView.swift */; };
+		A3EB2A2F2A8585F5004583B3 /* GasIndexChartMini.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A2E2A8585F5004583B3 /* GasIndexChartMini.swift */; };
+		A3EB2A322A85872E004583B3 /* GasPriceMiniView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A312A85872E004583B3 /* GasPriceMiniView.swift */; };
+		A3EB2A342A87332F004583B3 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A332A87332F004583B3 /* SettingsTabView.swift */; };
+		A3EB2A362A886FF9004583B3 /* GasTrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A352A886FF9004583B3 /* GasTrendsView.swift */; };
+		A3EB2A392A887970004583B3 /* AlertsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A382A887970004583B3 /* AlertsTabView.swift */; };
 		A3F731EF2A11CD4200AB10D2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F731EE2A11CD4200AB10D2 /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,7 +148,16 @@
 		A32081172A42A36200857E02 /* FeedbackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackButtonView.swift; sourceTree = "<group>"; };
 		A32081192A43C85E00857E02 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		A32A16452A06A9F700F04CC7 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
+		A32E564C2A80938300786382 /* TimestampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampView.swift; sourceTree = "<group>"; };
+		A33250372AA294D000A5B6B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A332503F2AA392AE00A5B6B3 /* GasIndexProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexProvider.swift; sourceTree = "<group>"; };
+		A33250422AA3972B00A5B6B3 /* ServerMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerMessageView.swift; sourceTree = "<group>"; };
 		A33ABB2B2A46531E00D27DC8 /* ChangelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogView.swift; sourceTree = "<group>"; };
+		A33AFD882A92F6D9008AE58D /* MainFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFocusView.swift; sourceTree = "<group>"; };
+		A33AFD8A2A92F78B008AE58D /* StyledTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledTextView.swift; sourceTree = "<group>"; };
+		A33AFD8C2A930068008AE58D /* GasIndexFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexFocus.swift; sourceTree = "<group>"; };
+		A33AFD8F2A930133008AE58D /* ActionsListFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsListFocusView.swift; sourceTree = "<group>"; };
+		A33AFD912A930BC3008AE58D /* GasIndexChartFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexChartFocus.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
 		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
@@ -129,7 +170,8 @@
 		A36781F52A7E847D006B3149 /* API_v1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_v1.swift; sourceTree = "<group>"; };
 		A36781F92A7E8AD8006B3149 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
-		A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationLimitPicker.swift; sourceTree = "<group>"; };
+		A36F08612A8C17C7009A4A36 /* AlertConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConditionView.swift; sourceTree = "<group>"; };
+		A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsLimitPicker.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
 		A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,6 +179,11 @@
 		A384EB3229BAFD3B005CC9E1 /* Gas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gas.xcdatamodel; sourceTree = "<group>"; };
 		A384EB3429BAFDA1005CC9E1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A384EB3829BBE913005CC9E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A384F2822A83180000357771 /* GasIndexChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexChart.swift; sourceTree = "<group>"; };
+		A384F2842A832AD900357771 /* IsFastMainTogglerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsFastMainTogglerView.swift; sourceTree = "<group>"; };
+		A384F2862A83C07A00357771 /* EnableLegacyGasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableLegacyGasView.swift; sourceTree = "<group>"; };
+		A384F2882A83CE0F00357771 /* ActionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionEntity.swift; sourceTree = "<group>"; };
+		A384F28D2A83D39300357771 /* EthPriceChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthPriceChart.swift; sourceTree = "<group>"; };
 		A38C56532A12C7C5004ABF21 /* EthGasWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EthGasWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38C56552A12C7C5004ABF21 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A38C56572A12C7C5004ABF21 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -166,12 +213,21 @@
 		A3B253D02A7F1276007C668A /* ActionsPriceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsPriceListView.swift; sourceTree = "<group>"; };
 		A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdInputView.swift; sourceTree = "<group>"; };
 		A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdListView.swift; sourceTree = "<group>"; };
+		A3CB6BD22A9E931A00DE3DD4 /* StatsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsGraph.swift; sourceTree = "<group>"; };
+		A3D357F42A8B051B000CD883 /* AlertFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFormView.swift; sourceTree = "<group>"; };
 		A3DB1D662A0E4DA500372A58 /* HeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMap.swift; sourceTree = "<group>"; };
 		A3DB1D682A0E75EE00372A58 /* HeatMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
 		A3E3655829BC39BC00DC3016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3E3655A29BD2EF800DC3016 /* Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		A3E3656229BD476B00DC3016 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A3EB2A2A2A8582B2004583B3 /* GasTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasTabView.swift; sourceTree = "<group>"; };
+		A3EB2A2C2A858422004583B3 /* ActionsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsTabView.swift; sourceTree = "<group>"; };
+		A3EB2A2E2A8585F5004583B3 /* GasIndexChartMini.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexChartMini.swift; sourceTree = "<group>"; };
+		A3EB2A312A85872E004583B3 /* GasPriceMiniView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasPriceMiniView.swift; sourceTree = "<group>"; };
+		A3EB2A332A87332F004583B3 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
+		A3EB2A352A886FF9004583B3 /* GasTrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasTrendsView.swift; sourceTree = "<group>"; };
+		A3EB2A382A887970004583B3 /* AlertsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsTabView.swift; sourceTree = "<group>"; };
 		A3F731EE2A11CD4200AB10D2 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +236,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A332503C2AA2958E00A5B6B3 /* FirebaseAnalytics in Frameworks */,
+				A332503E2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				A3B95EDA2AA3ED420010657A /* Snappable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +248,7 @@
 			files = (
 				A38C56582A12C7C5004ABF21 /* SwiftUI.framework in Frameworks */,
 				A38C56562A12C7C5004ABF21 /* WidgetKit.framework in Frameworks */,
+				A3B95EDC2AA3F0030010657A /* Snappable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +283,6 @@
 			children = (
 				A394E00429EA4C8D00E45DEF /* NotificationView.swift */,
 				A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */,
-				A37D69142A1E35F500ECF1CA /* NotificationLimitPicker.swift */,
 				A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */,
 			);
 			path = Notification;
@@ -261,12 +320,23 @@
 			path = Chart;
 			sourceTree = "<group>";
 		};
+		A33AFD8E2A9300A9008AE58D /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				A3EB2A2E2A8585F5004583B3 /* GasIndexChartMini.swift */,
+				A384F2822A83180000357771 /* GasIndexChart.swift */,
+				A33AFD912A930BC3008AE58D /* GasIndexChartFocus.swift */,
+			);
+			name = Charts;
+			sourceTree = "<group>";
+		};
 		A36781F82A7E8AC4006B3149 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
 				A36781F92A7E8AD8006B3149 /* DataManager.swift */,
 				A36781F52A7E847D006B3149 /* API_v1.swift */,
 				A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */,
+				A384F2882A83CE0F00357771 /* ActionEntity.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -275,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				A3501C8E2A3601FF00057C1C /* EthGasWidgetExtension.entitlements */,
+				A33250372AA294D000A5B6B3 /* GoogleService-Info.plist */,
 				A384EB2229BAFBC5005CC9E1 /* EthGasTracker */,
 				A38C56592A12C7C5004ABF21 /* EthGasWidget */,
 				A38C56542A12C7C5004ABF21 /* Frameworks */,
@@ -297,8 +368,9 @@
 				A3E3655829BC39BC00DC3016 /* AppDelegate.swift */,
 				A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */,
 				A3B253BB2A7EB5FB007C668A /* MainView.swift */,
-				A3B253B82A7EB5B0007C668A /* v3_Views */,
+				A33AFD882A92F6D9008AE58D /* MainFocusView.swift */,
 				A36781F82A7E8AC4006B3149 /* DataManager */,
+				A3B253B82A7EB5B0007C668A /* v3_Views */,
 				A3B253C32A7ED042007C668A /* helpers */,
 				A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */,
 				A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */,
@@ -327,6 +399,39 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		A384F2802A83174C00357771 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				A3B253C82A7F0C67007C668A /* NormalFastView.swift */,
+				A3B253D02A7F1276007C668A /* ActionsPriceListView.swift */,
+				A3EB2A2C2A858422004583B3 /* ActionsTabView.swift */,
+				A33AFD8F2A930133008AE58D /* ActionsListFocusView.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		A384F28B2A83D33600357771 /* GasIndex */ = {
+			isa = PBXGroup;
+			children = (
+				A33AFD8E2A9300A9008AE58D /* Charts */,
+				A3B253CE2A7F122E007C668A /* GasPriceView.swift */,
+				A3EB2A312A85872E004583B3 /* GasPriceMiniView.swift */,
+				A3EB2A352A886FF9004583B3 /* GasTrendsView.swift */,
+				A33AFD8C2A930068008AE58D /* GasIndexFocus.swift */,
+				A3EB2A2A2A8582B2004583B3 /* GasTabView.swift */,
+			);
+			path = GasIndex;
+			sourceTree = "<group>";
+		};
+		A384F28C2A83D34C00357771 /* EthPrice */ = {
+			isa = PBXGroup;
+			children = (
+				A3B253C62A7ED813007C668A /* EthPriceView.swift */,
+				A384F28D2A83D39300357771 /* EthPriceChart.swift */,
+			);
+			path = EthPrice;
+			sourceTree = "<group>";
+		};
 		A38C56542A12C7C5004ABF21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +458,7 @@
 				A38C56602A12C7C6004ABF21 /* Assets.xcassets */,
 				A38C56622A12C7C6004ABF21 /* Info.plist */,
 				A3501C992A36B47700057C1C /* LockScreenWidget.swift */,
+				A332503F2AA392AE00A5B6B3 /* GasIndexProvider.swift */,
 			);
 			path = EthGasWidget;
 			sourceTree = "<group>";
@@ -360,13 +466,17 @@
 		A3B253B82A7EB5B0007C668A /* v3_Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3CB6BD12A9E930400DE3DD4 /* Stats */,
+				A33AFD8A2A92F78B008AE58D /* StyledTextView.swift */,
+				A3EB2A372A88795A004583B3 /* Notifications */,
+				A32E564C2A80938300786382 /* TimestampView.swift */,
+				A384F28C2A83D34C00357771 /* EthPrice */,
+				A384F28B2A83D33600357771 /* GasIndex */,
+				A384F2802A83174C00357771 /* Actions */,
 				A3B253BD2A7EC29E007C668A /* Settings */,
 				A3B253C12A7EC40E007C668A /* MenuBar.swift */,
-				A3B253C62A7ED813007C668A /* EthPriceView.swift */,
-				A3B253C82A7F0C67007C668A /* NormalFastView.swift */,
 				A3B253CA2A7F0D5E007C668A /* LegacyGasPriceView.swift */,
-				A3B253CE2A7F122E007C668A /* GasPriceView.swift */,
-				A3B253D02A7F1276007C668A /* ActionsPriceListView.swift */,
+				A33250422AA3972B00A5B6B3 /* ServerMessageView.swift */,
 			);
 			path = v3_Views;
 			sourceTree = "<group>";
@@ -376,6 +486,9 @@
 			children = (
 				A32081152A42922D00857E02 /* SettingsView.swift */,
 				A3B253BE2A7EC2B0007C668A /* ColorSchemePickerView.swift */,
+				A384F2842A832AD900357771 /* IsFastMainTogglerView.swift */,
+				A384F2862A83C07A00357771 /* EnableLegacyGasView.swift */,
+				A3EB2A332A87332F004583B3 /* SettingsTabView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -386,6 +499,25 @@
 				A3B253C42A7ED04F007C668A /* RepeatingTask.swift */,
 			);
 			path = helpers;
+			sourceTree = "<group>";
+		};
+		A3CB6BD12A9E930400DE3DD4 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				A3CB6BD22A9E931A00DE3DD4 /* StatsGraph.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		A3EB2A372A88795A004583B3 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				A3EB2A382A887970004583B3 /* AlertsTabView.swift */,
+				A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */,
+				A3D357F42A8B051B000CD883 /* AlertFormView.swift */,
+				A36F08612A8C17C7009A4A36 /* AlertConditionView.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +539,9 @@
 			);
 			name = EthGasTracker;
 			packageProductDependencies = (
+				A332503B2AA2958E00A5B6B3 /* FirebaseAnalytics */,
+				A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				A3B95ED92AA3ED420010657A /* Snappable */,
 			);
 			productName = EthGasTracker;
 			productReference = A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */;
@@ -425,6 +560,9 @@
 			dependencies = (
 			);
 			name = EthGasWidgetExtension;
+			packageProductDependencies = (
+				A3B95EDB2AA3F0030010657A /* Snappable */,
+			);
 			productName = EthGasWidgetExtension;
 			productReference = A38C56532A12C7C5004ABF21 /* EthGasWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -457,6 +595,8 @@
 			);
 			mainGroup = A384EB1729BAFBC5005CC9E1;
 			packageReferences = (
+				A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A3B95ED82AA3ED420010657A /* XCRemoteSwiftPackageReference "Snappable" */,
 			);
 			productRefGroup = A384EB2129BAFBC5005CC9E1 /* Products */;
 			projectDirPath = "";
@@ -474,6 +614,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */,
+				A33250382AA294D000A5B6B3 /* GoogleService-Info.plist in Resources */,
 				A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */,
 				A317CCF029CBF497001B8492 /* lightweight.gif in Resources */,
 			);
@@ -485,6 +626,7 @@
 			files = (
 				A3501C8F2A361C1600057C1C /* Assets.xcassets in Resources */,
 				A38C56612A12C7C6004ABF21 /* Assets.xcassets in Resources */,
+				A33250392AA294D000A5B6B3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,8 +637,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A384F2832A83180000357771 /* GasIndexChart.swift in Sources */,
+				A33AFD892A92F6D9008AE58D /* MainFocusView.swift in Sources */,
+				A3EB2A2D2A858422004583B3 /* ActionsTabView.swift in Sources */,
 				A34D907429C2B52E002F2310 /* TimerView.swift in Sources */,
 				A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */,
+				A3EB2A362A886FF9004583B3 /* GasTrendsView.swift in Sources */,
 				A3DB1D692A0E75EE00372A58 /* HeatMapView.swift in Sources */,
 				A3B253BF2A7EC2B0007C668A /* ColorSchemePickerView.swift in Sources */,
 				A3A4D4E12A082E47008E4CE7 /* LowChart.swift in Sources */,
@@ -504,33 +650,52 @@
 				A3A4D4E52A084FA6008E4CE7 /* BarsChart.swift in Sources */,
 				A3B253C52A7ED04F007C668A /* RepeatingTask.swift in Sources */,
 				A3B253CF2A7F122E007C668A /* GasPriceView.swift in Sources */,
+				A384F2852A832AD900357771 /* IsFastMainTogglerView.swift in Sources */,
+				A33AFD922A930BC3008AE58D /* GasIndexChartFocus.swift in Sources */,
 				A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */,
 				A3B253C22A7EC40E007C668A /* MenuBar.swift in Sources */,
+				A36F08622A8C17C7009A4A36 /* AlertConditionView.swift in Sources */,
 				A3B253CB2A7F0D5E007C668A /* LegacyGasPriceView.swift in Sources */,
 				A394E01029EA55F400E45DEF /* NotificationManager.swift in Sources */,
+				A32E564D2A80938300786382 /* TimestampView.swift in Sources */,
+				A3EB2A342A87332F004583B3 /* SettingsTabView.swift in Sources */,
+				A3EB2A2B2A8582B2004583B3 /* GasTabView.swift in Sources */,
 				A36781F62A7E847D006B3149 /* API_v1.swift in Sources */,
 				A3B253BC2A7EB5FB007C668A /* MainView.swift in Sources */,
 				A32A16462A06A9F700F04CC7 /* AvgChart.swift in Sources */,
+				A3D357F52A8B051B000CD883 /* AlertFormView.swift in Sources */,
 				A36781FD2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */,
 				A384EB3529BAFDA1005CC9E1 /* DataController.swift in Sources */,
 				A3DB1D672A0E4DA500372A58 /* HeatMap.swift in Sources */,
+				A384F2872A83C07A00357771 /* EnableLegacyGasView.swift in Sources */,
+				A33250432AA3972B00A5B6B3 /* ServerMessageView.swift in Sources */,
+				A3EB2A322A85872E004583B3 /* GasPriceMiniView.swift in Sources */,
 				A320811A2A43C85E00857E02 /* MessagesView.swift in Sources */,
 				A3B253D12A7F1276007C668A /* ActionsPriceListView.swift in Sources */,
 				A394E00E29EA54B300E45DEF /* NotificationDelegate.swift in Sources */,
+				A33250402AA392AE00A5B6B3 /* GasIndexProvider.swift in Sources */,
 				A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */,
-				A37D69152A1E35F500ECF1CA /* NotificationLimitPicker.swift in Sources */,
+				A37D69152A1E35F500ECF1CA /* AlertsLimitPicker.swift in Sources */,
+				A3EB2A392A887970004583B3 /* AlertsTabView.swift in Sources */,
 				A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */,
 				A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */,
 				A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */,
+				A33AFD8D2A930068008AE58D /* GasIndexFocus.swift in Sources */,
+				A33AFD902A930133008AE58D /* ActionsListFocusView.swift in Sources */,
 				A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */,
+				A3CB6BD32A9E931A00DE3DD4 /* StatsGraph.swift in Sources */,
 				A36781FA2A7E8AD8006B3149 /* DataManager.swift in Sources */,
 				A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */,
+				A33AFD8B2A92F78B008AE58D /* StyledTextView.swift in Sources */,
+				A384F28E2A83D39300357771 /* EthPriceChart.swift in Sources */,
 				A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */,
 				A394E01629EB1AE000E45DEF /* ThresholdStorage.swift in Sources */,
 				A32081162A42922D00857E02 /* SettingsView.swift in Sources */,
 				A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */,
 				A3A4D4E32A0835C2008E4CE7 /* HighChart.swift in Sources */,
 				A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */,
+				A384F2892A83CE0F00357771 /* ActionEntity.swift in Sources */,
+				A3EB2A2F2A8585F5004583B3 /* GasIndexChartMini.swift in Sources */,
 				A3F731EF2A11CD4200AB10D2 /* Helpers.swift in Sources */,
 				A3B253C92A7F0C67007C668A /* NormalFastView.swift in Sources */,
 				A34D907029C2918D002F2310 /* FetchView.swift in Sources */,
@@ -546,8 +711,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A38C566C2A12D39F004ABF21 /* Fetch.swift in Sources */,
+				A33250442AA3972B00A5B6B3 /* ServerMessageView.swift in Sources */,
 				A36781FE2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */,
 				A3501C982A36AAE600057C1C /* EthGasWidgetAll.swift in Sources */,
+				A33250412AA392AE00A5B6B3 /* GasIndexProvider.swift in Sources */,
 				A3501C8D2A35F8BA00057C1C /* AvgChart.swift in Sources */,
 				A36781F72A7E847D006B3149 /* API_v1.swift in Sources */,
 				A38C565D2A12C7C5004ABF21 /* EthGasWidgetLiveActivity.swift in Sources */,
@@ -565,6 +732,7 @@
 				A32081122A427AE800857E02 /* EthGasWidgetLarge.swift in Sources */,
 				A32081102A42718D00857E02 /* GridView.swift in Sources */,
 				A32081142A427E2100857E02 /* EthGasWidgetMedium.swift in Sources */,
+				A384F28A2A83D27A00357771 /* ActionEntity.swift in Sources */,
 				A3501C952A36A70C00057C1C /* EthGasWidgetHigh.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -714,12 +882,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 3.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -751,12 +920,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 3.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -857,6 +1027,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		A3B95ED82AA3ED420010657A /* XCRemoteSwiftPackageReference "Snappable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hugehoge/Snappable.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A332503B2AA2958E00A5B6B3 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		A3B95ED92AA3ED420010657A /* Snappable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B95ED82AA3ED420010657A /* XCRemoteSwiftPackageReference "Snappable" */;
+			productName = Snappable;
+		};
+		A3B95EDB2AA3F0030010657A /* Snappable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3B95ED82AA3ED420010657A /* XCRemoteSwiftPackageReference "Snappable" */;
+			productName = Snappable;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */ = {

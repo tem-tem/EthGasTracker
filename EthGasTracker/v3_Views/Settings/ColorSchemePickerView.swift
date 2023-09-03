@@ -16,7 +16,7 @@ enum ColorScheme: Int, CaseIterable, Identifiable {
 }
 
 struct ColorSchemePickerView: View {
-    @AppStorage("userSettings.colorScheme") var settingsColorScheme: ColorScheme = .none
+    @AppStorage(SettingsKeys().colorScheme) var settingsColorScheme: ColorScheme = .none
     
     var body: some View {
         HStack {

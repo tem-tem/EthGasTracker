@@ -21,10 +21,10 @@ struct MenuBarView: View {
 //                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
                     Text("Settings").font(.caption)
                 }
-                .sheet(isPresented: $showingSettings) {
-                    SettingsView(isPresented: $showingSettings)
-                        .presentationDetents([.large])
-                }
+//                .sheet(isPresented: $showingSettings) {
+//                    SettingsView(isPresented: $showingSettings)
+//                        .presentationDetents([.large])
+//                }
             }
         }
     }

@@ -11,13 +11,13 @@ import SwiftUI
 @main
 struct EthGasWidgetBundle: WidgetBundle {
     var body: some Widget {
-        EthGasWidgetSmall()
-        EthGasWidgetMedium()
-        EthGasWidgetLarge()
-        EthGasWidgetAll()
-        EthGasWidget()
-        EthGasWidgetLow()
-        EthGasWidgetHigh()
+//        EthGasWidgetSmall()
+//        EthGasWidgetMedium()
+//        EthGasWidgetLarge()
+//        EthGasWidgetAll()
+//        EthGasWidget()
+//        EthGasWidgetLow()
+//        EthGasWidgetHigh()
         LockScreenWidget()
 //        EthGasWidgetLiveActivity()
     }

@@ -51,14 +51,17 @@ func checkNotificationPermission(onGranted: @escaping () -> Void, onDenied: @esc
 
 @main
 struct EthGasTracker: App {
-    @AppStorage("userSettings.colorScheme") var settingsColorScheme: ColorScheme = .none
-    @Environment(\.colorScheme) private var defaultColorScheme
+    @AppStorage(SettingsKeys().colorScheme) var settingsColorScheme: ColorScheme = .none
     let notificationDelegate = NotificationDelegate()
     @StateObject var networkMonitor = NetworkMonitor()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scene
     @StateObject private var notificationManager = NotificationManager()
-
+    @Environment(\.colorScheme) private var defaultColorScheme
+    
+    var isCurrentAppearanceDark: Bool {
+        return (settingsColorScheme == .dark) || (settingsColorScheme == .none && defaultColorScheme == .dark)
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -72,35 +75,33 @@ struct EthGasTracker: App {
                     // Reload all timelines of your widget when the app becomes active.
 //                    WidgetCenter.shared.reloadAllTimelines()
                 }
-//                .preferredColorScheme(displayMode == .none ? .none : displayMode == .light ? .light : .dark)
-//                .environment(\.colorScheme, displayMode == .system ? UITraitCollection.current.userInterfaceStyle : displayMode == .light ? .light : .dark)
-//                .onReceive([self.displayMode].publisher.first()) { _ in
-//                    overrideDisplayMode(from: displayMode)
-//                }
-//                .onChange(of: defaultColorScheme, perform: {_ in
-//                    if displayMode == .none {
-//                        UIApplication.shared.windows.first?.overrideUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle
-//                    }
-//                })
                 .preferredColorScheme(
                     settingsColorScheme == .dark ?
                         .dark :
                         settingsColorScheme == .light ? .light :
-                        defaultColorScheme
+                        nil
                 )
         }
     }
 }
 
+struct PreviewWrapper<Content: View>: View {
+    let content: Content
+    @ObservedObject var networkMonitor: NetworkMonitor
+    @ObservedObject var notificationManager: NotificationManager
+    var appDelegate: AppDelegate
 
-//func overrideDisplayMode(from setting: DisplayMode) {
-//    var userInterfaceStyle: UIUserInterfaceStyle
-//
-//    switch setting {
-//        case .dark: userInterfaceStyle = .dark
-//        case .light: userInterfaceStyle = .light
-//        case .none: userInterfaceStyle = UITraitCollection.current.userInterfaceStyle
-//    }
-//
-//    UIApplication.shared.windows.first?.overrideUserInterfaceStyle = userInterfaceStyle
-//}
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+        self.networkMonitor = NetworkMonitor()
+        self.notificationManager = NotificationManager()
+        self.appDelegate = AppDelegate()
+    }
+
+    var body: some View {
+        content
+            .environmentObject(networkMonitor)
+            .environmentObject(notificationManager)
+            .environmentObject(appDelegate)
+    }
+}

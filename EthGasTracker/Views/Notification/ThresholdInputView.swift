@@ -26,7 +26,7 @@ struct ThresholdInputView: View {
     @State private var displayComparison = "LOWER/HIGHER"
     @State private var displayComparisonColor = Color.blue
     
-    @State private var selectedLimit = NotificationLimit.thirty
+    @State private var selectedLimit = AlertLimit.thirty
     
     private enum Field: Int, Hashable {
         case threshold
@@ -62,7 +62,7 @@ struct ThresholdInputView: View {
                     }
                 }
             Divider()
-            NotificationLimitPicker(selectedLimit: $selectedLimit)
+            AlertLimitPicker(selectedLimit: $selectedLimit)
 
             Spacer()
             

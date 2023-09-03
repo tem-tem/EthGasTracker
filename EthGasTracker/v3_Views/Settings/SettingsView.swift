@@ -7,17 +7,34 @@
 import SwiftUI
 import StoreKit
 
+struct SettingsKeys {
+    let isFastMain = "settings.isFastMain"
+    let hapticFeedbackEnabled = "settings.hapticFeedback"
+    let useEIP1559 = "settings.useEIP1559"
+    let colorScheme = "settings.colorScheme"
+}
+
 struct SettingsView: View {
-    @Binding var isPresented: Bool
-    @AppStorage("settings.hapticFeedback") private var haptic = true
+//    @Binding var isPresented: Bool
+    @AppStorage(SettingsKeys().hapticFeedbackEnabled) private var haptic = true
     @State private var showToast: Bool = false
     @AppStorage("userSettings.colorScheme") var settingsColorScheme: ColorScheme = .none
     @Environment(\.colorScheme) private var defaultColorScheme
+    @AppStorage(SettingsKeys().useEIP1559) private var useEIP1559 = true
     
     var body: some View {
         NavigationView {
             ZStack {
                 List {
+//                    VStack(alignment: .center) {
+//                        HStack {
+//                            Spacer()
+//                            Text("Settings")
+//                                .font(.title)
+//                            Spacer()
+//                        }
+//                    }
+//                        .listRowBackground(Color.clear)
                     Section("App") {
                         HStack {
                             Image(systemName: "water.waves")
@@ -25,10 +42,25 @@ struct SettingsView: View {
                                 .background(.teal, in: RoundedRectangle(cornerRadius: 8))
                                 .foregroundColor(.white)
                             Toggle("Haptic Feedback", isOn: $haptic)
-                                .toggleStyle(SwitchToggleStyle(tint: .green))
+                                .toggleStyle(SwitchToggleStyle(tint: .green)).tint(.accentColor)
                         }
                         ColorSchemePickerView()
                     }
+                    
+//                    Section() {
+//                        EnableLegacyGasView()
+//                    }
+//
+//                    if (useEIP1559) {
+//                        Section(
+//                            header: Text("EIP-1559 Settings"),
+//                            footer: Text("Enabling this will emphasize the fast value, and build the graph on fast values, instead of normal.").multilineTextAlignment(.leading)
+//                        ) {
+//                            GasPriceView(isExample: true)
+//                            IsFastMainTogglerView()
+//                        }
+//                    }
+                    
                     Section("About") {
                         Link(destination: URL(string: "mailto:gas.app.developers@gmail.com?subject=Feedback")!) {
                             HStack {
@@ -102,23 +134,23 @@ struct SettingsView: View {
                             .animation(.default, value: showToast)
                     }.padding()
                 }
-                VStack {
-                    Spacer()
-                    Button("Dismiss") {
-                        isPresented = false
-                    }
-                }
+//                VStack {
+//                    Spacer()
+//                    Button("Dismiss") {
+//                        isPresented = false
+//                    }
+//                }
             }
+            .preferredColorScheme(
+                settingsColorScheme == .dark ?
+                    .dark :
+                    settingsColorScheme == .light ? .light :
+                    defaultColorScheme
+            )
             
             .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.large)
         }
-        .preferredColorScheme(
-            settingsColorScheme == .dark ?
-                .dark :
-                settingsColorScheme == .light ? .light :
-                defaultColorScheme
-        )
         
     }
 }
@@ -126,6 +158,8 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
 //    @State private var canShow = true
     static var previews: some View {
-        SettingsView(isPresented: .constant(true) )
+        PreviewWrapper {
+            SettingsView()
+        }
     }
 }

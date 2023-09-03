@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
-enum NotificationLimit: Int, CaseIterable, Identifiable {
-    case noLimit = 10
-    case one = 60
+
+enum AlertLimit: Int, CaseIterable, Identifiable {
+//    case noLimit = 10
+//    case one = 60
     case five = 300
     case ten = 600
     case fifteen = 900
@@ -22,10 +23,10 @@ enum NotificationLimit: Int, CaseIterable, Identifiable {
 
     var description: String {
         switch self {
-            case .noLimit:
-                return "No Limit"
-            case .one:
-                return "1 minute"
+//            case .noLimit:
+//                return "No Limit"
+//            case .one:
+//                return "1 minute"
             case .five:
                 return "5 Minutes"
             case .ten:
@@ -46,22 +47,22 @@ enum NotificationLimit: Int, CaseIterable, Identifiable {
     }
 }
 
-struct NotificationLimitPicker: View {
-    @Binding var selectedLimit: NotificationLimit
+struct AlertLimitPicker: View {
+    @Binding var selectedLimit: AlertLimit
 
     var body: some View {
         VStack(alignment: .center) {
-            if (selectedLimit.rawValue < 300) {
-                Text("Warning: ").foregroundColor(.orange) +
-                Text("may lead to frequent notifications.")
-            } else {
-                Text("Limit to one per \(selectedLimit.description)")
-            }
+//            if (selectedLimit.rawValue < 300) {
+//                Text("Warning: ").foregroundColor(.orange) +
+//                Text("may lead to frequent notifications.")
+//            } else {
+//                Text("Limit to one per \(selectedLimit.description)")
+//            }
             Picker("Limit", selection: $selectedLimit) {
-                ForEach(NotificationLimit.allCases) { limit in
+                ForEach(AlertLimit.allCases) { limit in
                     Text(limit.description).tag(limit)
                 }
-            }.pickerStyle(.wheel)
+            }.pickerStyle(.navigationLink)
 //            if (selectedLimit.rawValue == 10) {
 //                Text("Not recommended: You will get notified every time gas hits your target, which might get frustrating (especially overnight).")
 //            }
@@ -73,6 +74,6 @@ struct NotificationLimitPicker: View {
 struct LimitView_Previews: PreviewProvider {
 //    @State private var selectedLimit =
     static var previews: some View {
-        NotificationLimitPicker(selectedLimit: .constant(NotificationLimit.oneHour))
+        AlertLimitPicker(selectedLimit: .constant(AlertLimit.oneHour))
     }
 }

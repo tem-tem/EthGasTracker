@@ -38,7 +38,7 @@ struct ThresholdListView: View {
                                 .fontWeight(.thin)
                                 .foregroundColor(threshold.enabled ?? false ? .orange : .secondary)
                         } else {
-                            Text("One per \(NotificationLimit(rawValue: threshold.mute_duration)?.description ?? "")")
+                            Text("One per \(AlertLimit(rawValue: threshold.mute_duration)?.description ?? "")")
                                 .font(.caption)
                                 .fontWeight(.thin)
                                 .foregroundColor(threshold.enabled ?? false ? .primary : .secondary)

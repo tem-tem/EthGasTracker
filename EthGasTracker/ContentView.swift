@@ -153,14 +153,14 @@ struct ContentView: View {
                                 showingSheet = !result
                             }).padding(20)
                         }
-                        .alert(isPresented: $showingNotificationsAlert) {
-                            Alert(
-                                title: Text("Notifications Permission Denied"),
-                                message: Text("Please enable notifications for this app in Settings"),
-                                primaryButton: .default(Text("Go to Settings"), action: openSettings),
-                                secondaryButton: .cancel()
-                            )
-                        }
+//                        .alert(isPresented: $showingNotificationsAlert) {
+//                            Alert(
+//                                title: Text("Notifications Permission Denied"),
+//                                message: Text("Please enable notifications for this app in Settings"),
+//                                primaryButton: .default(Text("Go to Settings"), action: openSettings),
+//                                secondaryButton: .cancel()
+//                            )
+//                        }
                     }
                     Spacer()
                     Button(action: {
@@ -177,7 +177,7 @@ struct ContentView: View {
                     }
 //                    .border(.red)
                     .sheet(isPresented: $showingSettings) {
-                        SettingsView(isPresented: $showingSettings)
+                        SettingsView()
                             .presentationDetents([.large])
                     }
                 }

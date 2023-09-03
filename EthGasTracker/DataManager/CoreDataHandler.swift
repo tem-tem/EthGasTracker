@@ -15,6 +15,7 @@ struct Entities {
     var transferPriceEntities: [TransferPriceEntity]
 }
 
+// TODO: this is deprecated for now
 class CoreDataHandler {
     private let persistentContainer: NSPersistentContainer
 
@@ -44,16 +45,22 @@ class CoreDataHandler {
         let existingRecords = try? context.fetch(fetchRequest)
         return existingRecords?.isEmpty == false
     }
+    
+//    TODO: handle data existance check properly
+//    TODO: handle long list fetch properly
+//    TODO: handle saving properly
+//    TODO: handle big data fetch more properly
+//    TODO: maybe void going through coredata handler
 
     func generateEntities(data: [String: Any], shouldSave: Bool) -> Entities {
         let context = persistentContainer.viewContext
         var entities = Entities(priceEntities: [], gasEntities: [], legacyGasEntities: [], transferPriceEntities: [])
 
         // Ethereum Price
-        if let ethData = data["eth"] as? [String: [String: String]] {
+        if let ethData = data["eth_price"] as? [String: [String: String]] {
             for (timestampString, priceInfo) in ethData {
                 if let timestamp = Int64(timestampString),
-                   !entityExists(forTimestamp: timestamp, ofType: PriceEntity.self, inContext: context),
+//                   !entityExists(forTimestamp: timestamp, ofType: PriceEntity.self, inContext: context),
                    let price = priceInfo["price"] {
                     
                     let priceEntity = PriceEntity(context: context)
@@ -70,7 +77,7 @@ class CoreDataHandler {
             for (timestampString, gasData) in gasDataList {
                 
                 if let timestamp = Int64(timestampString),
-                   !entityExists(forTimestamp: timestamp, ofType: GasEntity.self, inContext: context),
+//                   !entityExists(forTimestamp: timestamp, ofType: GasEntity.self, inContext: context),
                     let normal = gasData["normal"],
                     let fast = gasData["fast"] {
                     
@@ -88,7 +95,7 @@ class CoreDataHandler {
         if let legacyGasDataList = data["etherscan_gas_oracle"] as? [String: [String: String]] {
             for (timestampString, legacyGasData) in legacyGasDataList {
                 if let timestamp = Int64(timestampString),
-                   !entityExists(forTimestamp: timestamp, ofType: LegacyGasEntity.self, inContext: context),
+//                   !entityExists(forTimestamp: timestamp, ofType: LegacyGasEntity.self, inContext: context),
                     let avg = legacyGasData["avg"],
                     let high = legacyGasData["high"],
                     let low = legacyGasData["low"] {
@@ -104,27 +111,27 @@ class CoreDataHandler {
             }
         }
 
-        // Handling TransferPriceEntity for various fields
-        for (name, transferData) in data {
-            if name.starts(with: "transferPrice_") {
-                if let priceData = transferData as? [String: [String: String]] {
-                    for (timestampString, priceInfo) in priceData {
-                        if let timestamp = Int64(timestampString),
-//                           !entityExists(forTimestamp: timestamp, ofType: TransferPriceEntity.self, inContext: context),
-                            let fast = priceInfo["fast"],
-                            let normal = priceInfo["normal"] {
-                            
-                            let transferPriceEntity = TransferPriceEntity(context: context)
-                            transferPriceEntity.timestamp = timestamp
-                            transferPriceEntity.action = name.replacingOccurrences(of: "transferPrice_", with: "")
-                            transferPriceEntity.fast = Float(fast) ?? 0.0
-                            transferPriceEntity.normal = Float(normal) ?? 0.0
-                            entities.transferPriceEntities.append(transferPriceEntity)
-                        }
-                    }
-                }
-            }
-        }
+//        // Handling TransferPriceEntity for various fields
+//        for (name, transferData) in data {
+//            if name.starts(with: "transferPrice_") {
+//                if let priceData = transferData as? [String: [String: String]] {
+//                    for (timestampString, priceInfo) in priceData {
+//                        if let timestamp = Int64(timestampString),
+////                           !entityExists(forTimestamp: timestamp, ofType: TransferPriceEntity.self, inContext: context),
+//                            let fast = priceInfo["fast"],
+//                            let normal = priceInfo["normal"] {
+//                            
+//                            let transferPriceEntity = TransferPriceEntity(context: context)
+//                            transferPriceEntity.timestamp = timestamp
+//                            transferPriceEntity.action = name.replacingOccurrences(of: "transferPrice_", with: "")
+//                            transferPriceEntity.fast = Float(fast) ?? 0.0
+//                            transferPriceEntity.normal = Float(normal) ?? 0.0
+//                            entities.transferPriceEntities.append(transferPriceEntity)
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
         if (shouldSave) {
             saveContext()
