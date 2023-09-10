@@ -131,10 +131,11 @@ struct AlertFormView: View {
                                 deviceId: deviceToken,
                                 mutePeriod: mutePeriod.rawValue,
                                 conditions: [condition],
-                                confirmationPeriod: 0,
-                                legacyGas: false,
                                 disabled: false,
-                                disableAfterAlerts: 0
+                                legacyGas: false,
+                                confirmationPeriod: 0,
+                                disableAfterAlerts: 0,
+                                disabledHours: []
 //                                offHours: []
                             )
                             appDelegate.addAlert(alert: alert)

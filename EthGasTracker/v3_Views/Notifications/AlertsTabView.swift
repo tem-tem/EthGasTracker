@@ -51,43 +51,33 @@ struct AlertsTabView: View {
                 .listStyle(.plain)
                 VStack(spacing: 0) {
                     Spacer()
-                    HStack {
-                        EditButton()
-                            .frame(minWidth: 100)
-                            .padding(.horizontal, 10)
-                        if (alertList.count < 3) {
-                            Button {
-                                showingForm = true
-                            } label: {
-                                HStack {
-                                    Spacer()
-                                    Text("Add")
-                                        .padding(5)
-                                    Spacer()
-                                }
+                    
+                    
+                    if (alertList.count < 3) {
+                        Button {
+                            showingForm = true
+                        } label: {
+                            HStack {
+                                Spacer()
+                                Text("Add")
+                                    .padding(5)
+                                Spacer()
                             }
-                            .buttonStyle(.borderedProminent)
-                            .foregroundStyle(Color("BG"))
-                            .sheet(isPresented: $showingForm) {
-                                AlertFormView(isPresented: $showingForm)
-                            }
-                            .id(addId)
-                        } else {
-                            Spacer()
-                            Button {
-                                print("placeholder")
-                            } label: {
-                                HStack {
-                                    Spacer()
-                                    Text("Add")
-                                        .padding(5)
-                                    Spacer()
-                                }
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .opacity(0)
                         }
-                    }.padding().background(.regularMaterial)
+                        .buttonStyle(.borderedProminent)
+                        .foregroundStyle(Color("BG"))
+                        .sheet(isPresented: $showingForm) {
+                            AlertFormView(isPresented: $showingForm)
+                        }
+                        .id(addId)
+                        .padding()
+                        .padding(.bottom)
+                    }
+//                    HStack {
+//                        EditButton()
+//                            .frame(minWidth: 100)
+//                            .padding(.horizontal, 10)
+//                    }.padding().background(.regularMaterial)
                 }
                 
 //                .toolbar {

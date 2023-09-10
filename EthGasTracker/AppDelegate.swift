@@ -174,8 +174,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
                             deviceId: alert.deviceId,
                             mutePeriod: alert.mutePeriod,
                             conditions: alert.conditions,
+                            legacyGas: alert.legacyGas,
                             confirmationPeriod: alert.confirmationPeriod,
-                            legacyGas: alert.legacyGas
+                            disableAfterAlerts: alert.disableAfterAlerts,
+                            disabledHours: alert.disabledHours
                         ))
                 }
                 return

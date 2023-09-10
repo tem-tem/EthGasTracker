@@ -44,43 +44,19 @@ struct PriceView: View {
     }
 
     var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             ActionNameView(name: action.metadata.name)
             Spacer()
-            if let selectedVal = selectedValue,
-               let diff = lastValue - selectedVal,
-               diff != 0
-            {
-                HStack {
-                    if (diff > 0) {
-                        Image(systemName: "arrow.down")
-                    } else {
-                        Image(systemName: "arrow.up")
-                    }
-                    Text(abs(diff), format: .currency(code: "usd"))
-                }
-                .font(.system(size: 18, weight: .regular, design: .monospaced))
-                .opacity(0.5)
-//                Spacer()
+            DiffValueView(baseValue: lastValue, targetValue: selectedValue)
+                .font(.system(.body, design: .monospaced))
                 .padding(.trailing)
-//                .foregroundStyle(diff > 0 ? Color(.systemGreen) : Color(.systemRed))
-            }
             
             if (selectedValue != nil) {
-                
-                Text(
-                    selectedValue!,
-                    format: .currency(code: "usd")
-                )
-    //                .padding(.vertical)
-                .font(.system(size: 18, weight: .regular, design: .monospaced))
+                Text(String(format: "$%.2f", selectedValue!))
+                    .font(.system(.body, design: .monospaced))
             } else {
-                Text(
-                    lastValue,
-                    format: .currency(code: "usd")
-                )
-    //                .padding(.vertical)
-                .font(.system(size: 18, weight: .regular, design: .monospaced))
+                Text(String(format: "$%.2f", lastValue))
+                    .font(.system(.body, design: .monospaced))
             }
         }
         

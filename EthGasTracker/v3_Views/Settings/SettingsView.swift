@@ -62,6 +62,24 @@ struct SettingsView: View {
 //                    }
                     
                     Section("About") {
+                        Link(destination: URL(string: "https://t.me/gas_app")!) {
+                            HStack {
+                                Image(systemName: "paperplane.fill")
+                                    .frame(width: 32, height: 32)
+                                    .background(Color.blue, in: RoundedRectangle(cornerRadius: 8))
+                                    .foregroundColor(.white)
+                                Text("Telegram")
+                            }
+                        }
+                        Link(destination: URL(string: "https://twitter.com/gas_devs")!) {
+                            HStack {
+                                Image(systemName: "bird")
+                                    .frame(width: 32, height: 32)
+                                    .background(Color.blue, in: RoundedRectangle(cornerRadius: 8))
+                                    .foregroundColor(.white)
+                                Text("Twitter (𝕏)")
+                            }
+                        }
                         Link(destination: URL(string: "mailto:gas.app.developers@gmail.com?subject=Feedback")!) {
                             HStack {
                                 Image(systemName: "bubble.left.fill")

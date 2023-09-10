@@ -13,41 +13,30 @@ struct EthPriceView: View {
     @AppStorage("isStale") var isStale = false
     @EnvironmentObject var appDelegate: AppDelegate
     
+    var lastValue: Float {
+        return (appDelegate.ethPrice.lastEntry()?.value ?? PriceData(price: 0)).price
+    }
+    
     var body: some View {
         ZStack {
             HStack {
                 TimestampView(selectedDate: $selectedDate)
                 Spacer()
                 
-                if (selectedKey == nil) {
-                    Text("ETH").font(.caption)
-                    Text(
-                        ((appDelegate.ethPrice.lastEntry()?.value ?? PriceData(price: 0)).price),
-                        format: .currency(code: "usd")
-                    ).bold()
+                if let key = selectedKey,
+                   let selectedEntry = appDelegate.ethPrice.entries[key],
+                   let selectedValue = selectedEntry.price
+                {
+                    DiffValueView(
+                        baseValue: (appDelegate.ethPrice.lastEntry()?.value ?? PriceData(price: 0)).price,
+                        targetValue: selectedValue
+                    )
+                    Text("ETH")
+                    Text(String(format: "$%.2f", selectedValue)).bold()
                 } else {
-                    if let lastEntryValue = (appDelegate.ethPrice.lastEntry()?.value ?? PriceData(price: 0)).price,
-                       let selectedEntryValue = appDelegate.ethPrice.entries[selectedKey!]?.price,
-                       let diff = lastEntryValue - selectedEntryValue
-                    {
-                        HStack {
-                            if (diff > 0) {
-                                Image(systemName: "arrow.down")
-                            } else {
-                                Image(systemName: "arrow.up")
-                            }
-                            Text(abs(diff), format: .currency(code: "usd"))
-                        }
-                        .font(.system(.caption, design: .monospaced))
-                        .opacity(0.5)
-//                        .foregroundStyle(diff > 0 ? Color(.systemGreen) : Color(.systemRed))
-                        
-                        Text("ETH").font(.caption)
-                        Text(
-                            (selectedEntryValue),
-                            format: .currency(code: "usd")
-                        ).bold()
-                    }
+                    Text("ETH")
+                    Text(String(format: "$%.2f", lastValue)).bold()
+                    
                 }
             }
             .font(.system(.caption, design: .monospaced))

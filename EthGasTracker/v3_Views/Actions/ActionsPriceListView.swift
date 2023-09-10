@@ -78,7 +78,7 @@ let exampleEntries: [String: NormalFast] = [
     "1609632000": NormalFast(normal: 12.0, fast: 22.0)
 ]
 
-let m1 = Metadata(name: "Sample Action 1", groupName: "group1", key: "a1", limit: 1000)
+let m1 = Metadata(name: "Sample Action 1 Sample Action 1", groupName: "group1", key: "a1", limit: 1000)
 let m2 = Metadata(name: "Sample Action 2", groupName: "group1", key: "a2", limit: 1000)
 let m3 = Metadata(name: "Sample Action 3", groupName: "group3", key: "a3", limit: 1000)
 

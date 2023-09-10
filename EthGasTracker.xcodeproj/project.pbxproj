@@ -52,6 +52,8 @@
 		A36781FD2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */; };
 		A36781FE2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */; };
 		A36F08622A8C17C7009A4A36 /* AlertConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36F08612A8C17C7009A4A36 /* AlertConditionView.swift */; };
+		A376B17E2AA808BE005BB320 /* DiffValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A376B17D2AA808BE005BB320 /* DiffValueView.swift */; };
+		A376B1802AA81274005BB320 /* GasScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = A376B17F2AA81274005BB320 /* GasScale.swift */; };
 		A37D69152A1E35F500ECF1CA /* AlertsLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
@@ -93,6 +95,7 @@
 		A3B253D12A7F1276007C668A /* ActionsPriceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B253D02A7F1276007C668A /* ActionsPriceListView.swift */; };
 		A3B95EDA2AA3ED420010657A /* Snappable in Frameworks */ = {isa = PBXBuildFile; productRef = A3B95ED92AA3ED420010657A /* Snappable */; };
 		A3B95EDC2AA3F0030010657A /* Snappable in Frameworks */ = {isa = PBXBuildFile; productRef = A3B95EDB2AA3F0030010657A /* Snappable */; };
+		A3B95EE02AA462590010657A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3B95EDF2AA462590010657A /* Launch Screen.storyboard */; };
 		A3CB1FDF29EC6C6D006A52A5 /* ThresholdInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */; };
 		A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */; };
 		A3CB6BD32A9E931A00DE3DD4 /* StatsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB6BD22A9E931A00DE3DD4 /* StatsGraph.swift */; };
@@ -171,6 +174,8 @@
 		A36781F92A7E8AD8006B3149 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		A36F08612A8C17C7009A4A36 /* AlertConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConditionView.swift; sourceTree = "<group>"; };
+		A376B17D2AA808BE005BB320 /* DiffValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffValueView.swift; sourceTree = "<group>"; };
+		A376B17F2AA81274005BB320 /* GasScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasScale.swift; sourceTree = "<group>"; };
 		A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsLimitPicker.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
@@ -211,6 +216,7 @@
 		A3B253CA2A7F0D5E007C668A /* LegacyGasPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyGasPriceView.swift; sourceTree = "<group>"; };
 		A3B253CE2A7F122E007C668A /* GasPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasPriceView.swift; sourceTree = "<group>"; };
 		A3B253D02A7F1276007C668A /* ActionsPriceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsPriceListView.swift; sourceTree = "<group>"; };
+		A3B95EDF2AA462590010657A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A3CB1FDE29EC6C6D006A52A5 /* ThresholdInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdInputView.swift; sourceTree = "<group>"; };
 		A3CB1FE029EC7195006A52A5 /* ThresholdListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdListView.swift; sourceTree = "<group>"; };
 		A3CB6BD22A9E931A00DE3DD4 /* StatsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsGraph.swift; sourceTree = "<group>"; };
@@ -344,6 +350,7 @@
 		A384EB1729BAFBC5005CC9E1 = {
 			isa = PBXGroup;
 			children = (
+				A3B95EDF2AA462590010657A /* Launch Screen.storyboard */,
 				A3501C8E2A3601FF00057C1C /* EthGasWidgetExtension.entitlements */,
 				A33250372AA294D000A5B6B3 /* GoogleService-Info.plist */,
 				A384EB2229BAFBC5005CC9E1 /* EthGasTracker */,
@@ -419,6 +426,7 @@
 				A3EB2A352A886FF9004583B3 /* GasTrendsView.swift */,
 				A33AFD8C2A930068008AE58D /* GasIndexFocus.swift */,
 				A3EB2A2A2A8582B2004583B3 /* GasTabView.swift */,
+				A376B17F2AA81274005BB320 /* GasScale.swift */,
 			);
 			path = GasIndex;
 			sourceTree = "<group>";
@@ -467,14 +475,15 @@
 			isa = PBXGroup;
 			children = (
 				A3CB6BD12A9E930400DE3DD4 /* Stats */,
-				A33AFD8A2A92F78B008AE58D /* StyledTextView.swift */,
 				A3EB2A372A88795A004583B3 /* Notifications */,
-				A32E564C2A80938300786382 /* TimestampView.swift */,
 				A384F28C2A83D34C00357771 /* EthPrice */,
 				A384F28B2A83D33600357771 /* GasIndex */,
 				A384F2802A83174C00357771 /* Actions */,
 				A3B253BD2A7EC29E007C668A /* Settings */,
 				A3B253C12A7EC40E007C668A /* MenuBar.swift */,
+				A33AFD8A2A92F78B008AE58D /* StyledTextView.swift */,
+				A32E564C2A80938300786382 /* TimestampView.swift */,
+				A376B17D2AA808BE005BB320 /* DiffValueView.swift */,
 				A3B253CA2A7F0D5E007C668A /* LegacyGasPriceView.swift */,
 				A33250422AA3972B00A5B6B3 /* ServerMessageView.swift */,
 			);
@@ -616,6 +625,7 @@
 				A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */,
 				A33250382AA294D000A5B6B3 /* GoogleService-Info.plist in Resources */,
 				A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */,
+				A3B95EE02AA462590010657A /* Launch Screen.storyboard in Resources */,
 				A317CCF029CBF497001B8492 /* lightweight.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,6 +663,7 @@
 				A384F2852A832AD900357771 /* IsFastMainTogglerView.swift in Sources */,
 				A33AFD922A930BC3008AE58D /* GasIndexChartFocus.swift in Sources */,
 				A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */,
+				A376B1802AA81274005BB320 /* GasScale.swift in Sources */,
 				A3B253C22A7EC40E007C668A /* MenuBar.swift in Sources */,
 				A36F08622A8C17C7009A4A36 /* AlertConditionView.swift in Sources */,
 				A3B253CB2A7F0D5E007C668A /* LegacyGasPriceView.swift in Sources */,
@@ -679,6 +690,7 @@
 				A3EB2A392A887970004583B3 /* AlertsTabView.swift in Sources */,
 				A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */,
 				A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */,
+				A376B17E2AA808BE005BB320 /* DiffValueView.swift in Sources */,
 				A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */,
 				A33AFD8D2A930068008AE58D /* GasIndexFocus.swift in Sources */,
 				A33AFD902A930133008AE58D /* ActionsListFocusView.swift in Sources */,
@@ -879,7 +891,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = GAS;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -888,7 +900,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -917,7 +929,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = GAS;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -926,7 +938,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 3.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

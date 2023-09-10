@@ -17,40 +17,47 @@ struct MainFocusView: View {
     let hapticFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
     var body: some View {
-        VStack {
-            EthPriceView(
-                selectedKey: $selectedKey,
-                selectedDate: $selectedDate
-            )
+        ZStack {
+//            RadialGradient(colors: [.accentColor.opacity(1), .accentColor.opacity(0)],
+//                                  center: .top,
+//                                  startRadius: 0,
+//                                  endRadius: 500)
+//                .ignoresSafeArea()
+            VStack {
+                EthPriceView(
+                    selectedKey: $selectedKey,
+                    selectedDate: $selectedDate
+                )
+                    .padding(.horizontal)
+                    .padding(.vertical, 3)
+                    .font(.caption)
+                    .opacity(0.8)
+                Divider()
+                GasIndexFocus(selectedDate: $selectedDate, selectedPrice: $selectedPrice)
+                ScrollView {
+                    ActionsListFocusView(actions: appDelegate.actions,
+                                         selectedKey: $selectedKey)
+                }
+                .frame(minHeight: 250)
                 .padding(.horizontal)
-                .padding(.vertical, 3)
-                .font(.caption)
-                .opacity(0.8)
-            Divider()
-            GasIndexFocus(selectedDate: $selectedDate, selectedPrice: $selectedPrice)
-            ScrollView {
-                ActionsListFocusView(actions: appDelegate.actions,
-                                     selectedKey: $selectedKey)
+    //            Spacer()
+                ServerMessages(messages: appDelegate.serverMessages)
+    //                .padding()
+                GasIndexChartFocus(
+                    entries: appDelegate.gasIndexEntries,
+                    min: appDelegate.gasIndexEntriesMinMax.min,
+                    max: appDelegate.gasIndexEntriesMinMax.max,
+                    selectedDate: $selectedDate,
+                    selectedPrice: $selectedPrice,
+                    selectedKey: $selectedKey
+                )
+                .frame(minHeight: 100)
+                Spacer()
             }
-            .frame(minHeight: 250)
-            .padding(.horizontal)
-//            Spacer()
-            ServerMessages(messages: appDelegate.serverMessages)
-//                .padding()
-            GasIndexChartFocus(
-                entries: appDelegate.gasIndexEntries,
-                min: appDelegate.gasIndexEntriesMinMax.min,
-                max: appDelegate.gasIndexEntriesMinMax.max,
-                selectedDate: $selectedDate,
-                selectedPrice: $selectedPrice,
-                selectedKey: $selectedKey
-            )
-            .frame(minHeight: 100)
-            Spacer()
-        }
-        .onChange(of: selectedKey) { _ in
-            if (haptic) {
-                hapticFeedbackGenerator.impactOccurred()
+            .onChange(of: selectedKey) { _ in
+                if (haptic) {
+                    hapticFeedbackGenerator.impactOccurred()
+                }
             }
         }
     }

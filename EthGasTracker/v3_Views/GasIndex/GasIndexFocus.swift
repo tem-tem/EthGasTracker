@@ -22,13 +22,21 @@ struct GasIndexFocus: View {
     var body: some View {
         VStack {
             Text(String(format: "%.f", selectedPrice ?? lastGasPrice ?? 0))
-                .font(.system(size: 100, weight: .thin))
+                .font(.system(size: 80, weight: selectedPrice != nil ? .thin : .heavy, design: .rounded))
                 .padding(.top, -5)
+                .padding(.bottom, -10)
+                .foregroundStyle(
+                    selectedPrice != nil ?
+                        Color.primary.gradient
+                        .shadow(.inner(color: Color("lowLight"), radius: 0, x: 0, y: 0)) :
+                        Color.accentColor.gradient
+                        .shadow(.inner(color: Color("lowLight"), radius: 4, x: 0, y: 0))
+                )
+            
             
             if let last = lastGasPrice,
                let selected = selectedPrice,
-               let diff = last - selected,
-               diff != 0
+               let diff = last - selected
             {
                 HStack {
                     if (diff > 0) {
@@ -38,16 +46,21 @@ struct GasIndexFocus: View {
                     }
                     Text(String(format: "%.1f", abs(diff)))
                 }
+                .opacity(diff == 0 ? 0 : 1)
                 .font(.system(size: 24, weight: .bold, design: .monospaced))
                 .foregroundStyle(diff > 0 ? Color.accentColor : Color(.systemRed))
                 
             } else {
-                HStack {
-                    Image(systemName: "arrow.up")
-                    Text(String(format: "%.1f", 0))
+                ZStack(alignment: .center) {
+                    HStack {
+                        Image(systemName: "arrow.up")
+                        Text(String(format: "%.1f", 0))
+                    }
+                    .font(.system(size: 24, weight: .bold, design: .monospaced))
+                    .opacity(0)
+                    GasScale()
+                        .frame(width: 100)
                 }
-                .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .opacity(0)
                 
             }
         }

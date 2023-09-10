@@ -32,15 +32,6 @@ struct StatsGraph: View {
     var body: some View {
         NavigationView {
             VStack {
-                //            HStack {
-                //                Text("Average Gas Prices by Hour")
-                //                    .bold()
-                ////                    .font(.largeTitle)
-                ////                    .fontWeight(.bold)
-                //                Spacer()
-                //            }
-                //            .padding(.horizontal)
-                //            Divider()
                 Spacer()
                 
                 Text(String(format: "%.2f", hourStatEntry.avg))
@@ -51,16 +42,6 @@ struct StatsGraph: View {
                 
                 
                 VStack {
-                    //                HStack(alignment: .bottom) {
-                    //                    Image(systemName: "clock")
-                    //                    Text(String(format: "%02d:00", hour))
-                    //                    Text("-")
-                    //                    Text(String(format: "%02d:00", hour + 1))
-                    //                    Spacer()
-                    //                }
-                    //                .font(.system(size: 24, weight: .bold, design: .monospaced))
-                    
-                    //                Divider()
                     
                     HStack {
                         Image(systemName: "arrow.up")

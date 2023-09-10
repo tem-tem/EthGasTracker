@@ -71,10 +71,11 @@ struct GasAlert: Codable, Identifiable { // Conform to both Encodable and Decoda
     let deviceId: String
     let mutePeriod: Int
     let conditions: [Condition]
-    let confirmationPeriod: Int
-    let legacyGas: Bool?
     var disabled: Bool?
-    var disableAfterAlerts: Int?
+    let legacyGas: Bool?
+    let confirmationPeriod: Int
+    let disableAfterAlerts: Int?
+    let disabledHours: [Int]
     
     
     struct Condition: Codable { // Conform to both Encodable and Decodable
