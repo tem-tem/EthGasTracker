@@ -16,14 +16,14 @@ struct ActionsTabView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ScrollView {
-                    ActionPriceListView(actions: appDelegate.actions)
-                    .opacity(isStale ? 0.6 : 1)
-                    .saturation(isStale ? 0 : 1)
-                    .animation(.easeInOut(duration: isStale ? 0.5 : 0.1), value: isStale)
-                    .padding(.bottom, 25)
-                    .padding()
-                }
+//                ScrollView {
+//                    ActionsPriceListView(actions: appDelegate.actions)
+//                    .opacity(isStale ? 0.6 : 1)
+//                    .saturation(isStale ? 0 : 1)
+//                    .animation(.easeInOut(duration: isStale ? 0.5 : 0.1), value: isStale)
+//                    .padding(.bottom, 25)
+//                    .padding()
+//                }
                 VStack {
                     Spacer()
                     

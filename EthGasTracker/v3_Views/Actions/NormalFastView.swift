@@ -26,14 +26,14 @@ struct NormalFastView: View {
 //            Text(isFastMain ? "Fast" : "Normal").font(.caption)
             if (currency != nil) {
                 Text(mainValue, format: .currency(code: currency ?? "usd"))
-                    .font(.system(size: 40, design: .rounded))
+                    .font(.system(.title, design: .monospaced))
                     .bold()
                     .minimumScaleFactor(0.1) // It will scale down to 10% of the original font size if needed
                     .lineLimit(1)
-                    .foregroundStyle(
-                        Color("avg").gradient
-                            .shadow(.inner(color: Color("avgLight").opacity(1), radius: 4, x: 0, y: 0))
-                    )
+//                    .foregroundStyle(
+//                        Color.primary.gradient
+//                            .shadow(.inner(color: Color(.white).opacity(1), radius: 2, x: 0, y: 0))
+//                    )
 //                    .shadow(color: Color(.systemBackground), radius: 5)
                     .padding(.bottom, -10)
                     .padding(.top, -10)
@@ -56,14 +56,14 @@ struct NormalFastView: View {
                 }
             }
             
-            HStack() {
-                Text(isFastMain ? "Normal" : "Fast")
-                if (currency != nil) {
-                    Text(subValue, format: .currency(code: currency ?? "usd"))
-                } else {
-                    Text(String(format: "%.2f", subValue))
-                }
-            }.font(.caption)
+//            HStack() {
+//                Text(isFastMain ? "Normal" : "Fast")
+//                if (currency != nil) {
+//                    Text(subValue, format: .currency(code: currency ?? "usd"))
+//                } else {
+//                    Text(String(format: "%.2f", subValue))
+//                }
+//            }.font(.caption)
         }
     }
 }

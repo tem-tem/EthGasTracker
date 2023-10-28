@@ -7,56 +7,89 @@
 
 import SwiftUI
 
-struct ActionPriceListView: View {
+
+struct PriceView2: View {
+    var selectedKey: String?
+    var action: ActionEntity
+    @AppStorage(SettingsKeys().isFastMain) private var isFastMain = false
+    
+    var lastValue: Float {
+        let normalFast = action.lastEntry()?.value ?? NormalFast(normal: 0, fast: 0)
+        return isFastMain ? normalFast.fast : normalFast.normal
+    }
+    
+    var selectedValue: Float? {
+        guard let key = selectedKey,
+              let normalFast = action.entries[key] else {
+            return nil
+        }
+        
+        return isFastMain ? normalFast.fast : normalFast.normal
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            Text(String(format: "$%.2f", selectedValue ?? lastValue))
+                .font(.system(selectedValue != nil ? .title3 : .title2, design: .monospaced))
+                .bold(selectedValue == nil)
+                .padding(.bottom, selectedValue == nil ? 0 : 6)
+            if (selectedValue != nil) {
+                Divider()
+                DiffValueView(baseValue: lastValue, targetValue: selectedValue)
+                    .font(.system(.caption, design: .monospaced))
+                    .padding(.vertical, 4)
+            }
+        }.frame(height: 50)
+    }
+}
+
+struct ActionsPriceListView: View {
+    @Binding var selectedKey: String?
     var actions: [Dictionary<String, [ActionEntity]>.Element]
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     private let gradient: [Color] = [Color("avg"), Color("avgLight"), Color("avg")]
     
-//    @AppStorage(SettingsKeys().colorScheme) private var settingsColorScheme: ColorScheme = .none
-//    @Environment(\.colorScheme) private var defaultColorScheme
-//    private var gradient: [Color] {
-//        if defaultColorScheme == .light ||
-//            (
-//                defaultColorScheme == .none && defaultColorScheme == .light
-//            ) {
-//            return [Color("avg"), Color("avgLight"), Color("avg")]
-//        }
-//        return [Color("avgLight"), Color("avg"), Color("avgLight")]
-//    }
+    //    @AppStorage(SettingsKeys().colorScheme) private var settingsColorScheme: ColorScheme = .none
+    //    @Environment(\.colorScheme) private var defaultColorScheme
+    //    private var gradient: [Color] {
+    //        if defaultColorScheme == .light ||
+    //            (
+    //                defaultColorScheme == .none && defaultColorScheme == .light
+    //            ) {
+    //            return [Color("avg"), Color("avgLight"), Color("avg")]
+    //        }
+    //        return [Color("avgLight"), Color("avg"), Color("avgLight")]
+    //    }
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 10) {
             ForEach(actions, id: \.key) { groupName, groupAction in
                 ForEach(groupAction.sorted(by: {$0.metadata.name < $1.metadata.name}), id: \.metadata.key) {action in
-                    VStack(alignment: .center) {
-                        HStack {
-                            Spacer()
+                    VStack (alignment: .leading) {
+                        VStack(alignment: .center) {
+                            HStack {
+                                Spacer()
+                            }
+                            PriceView2(selectedKey: selectedKey, action: action)
                         }
-                        NormalFastView(
-                            normal: action.lastEntry()?.value.normal ?? 0,
-                            fast: action.lastEntry()?.value.fast ?? 0,
-                            currency: "usd"
-                        ).padding(.vertical)
+                        .background(.ultraThinMaterial)
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.secondary.opacity(0.3), lineWidth: 1)
+                        )
                         Text(action.metadata.name)
+                            .foregroundColor(Color.secondary)
+                            .padding(.bottom, -5)
                             .bold()
-                            
-                        Divider()
+                        
                         Text(addSpacesToCamelCase(groupName))
                             .font(.caption)
                             .textCase(.uppercase)
                             .foregroundColor(Color.secondary)
-                        
-//                        Divider()
                     }
-                    .padding()
-                    .background(.ultraThinMaterial)
-                    .background(LinearGradient(colors: gradient, startPoint: .bottomLeading, endPoint: .topTrailing).opacity(0.4))
-                    .cornerRadius(15)
-                    .overlay( /// apply a rounded border
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.secondary.opacity(0.3), lineWidth: 1)
-                    )
+                    .padding(.bottom, 10)
                 }
             }
         }
@@ -94,7 +127,7 @@ let previewActions: [Dictionary<String, [ActionEntity]>.Element] = [
 struct ActionPriceListView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ActionPriceListView(actions: previewActions)
+        ActionsPriceListView(selectedKey: .constant("1"), actions: previewActions)
             .padding()
     }
 }

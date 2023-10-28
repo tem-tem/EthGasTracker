@@ -36,6 +36,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     @Published var ethPrice = PriceDataEntity(entries: [:])
     @Published var legacyGas: LegacyGasData = LegacyGasData(low: 0, avg: 0, high: 0)
     @Published var actions: [Dictionary<String, [ActionEntity]>.Element] = []
+    @Published var allActions: [Dictionary<String, [ActionEntity]>.Element] = []
     
     @Published var gas = GasIndexEntity(entries: [:])
     @Published var gasIndexEntries: [GasIndexEntity.ListEntry] = []
@@ -48,40 +49,71 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     
     @Published var serverMessages: [ServerMessage] = []
     
+//    @Published var allActions
+    
     var repeatedFetch: RepeatingTask {
         RepeatingTask(interval: FETCH_INTERVAL) {
-            self.dataManager.getEntities(amount: AMOUNT_TO_FETCH) { result in
+            self.dataManager.getEntities(amount: AMOUNT_TO_FETCH, actions: "") { result in
                 switch result {
                 case .success(let entities):
                     DispatchQueue.main.async {
-                        self.ethPrice = entities.ethPriceEntity
-                        self.timestamp = Int64(entities.ethPriceEntity.lastEntry()?.key ?? "0") ?? 0
-                        self.isStale = false
-                        
-                        self.legacyGas = LegacyGasData(
-                            low: entities.legacyGasIndexEntity.entries.first?.value.low ?? 5.0,
-                            avg: entities.legacyGasIndexEntity.entries.first?.value.avg ?? 0.0,
-                            high: entities.legacyGasIndexEntity.entries.first?.value.high ?? 0.0
-                        )
-                        
-                        self.actions = entities.actionEntities.sorted(by: {$0.key < $1.key})
-                        
-                        self.gas = entities.gasIndexEntity
-                        self.gasIndexEntries = entities.gasIndexEntity.getEntriesList()
-                        let minEntry = entities.gasIndexEntity.findMin(in: self.gasIndexEntries, by: self.isFastMain ? \.fast : \.normal)
-                        let maxEntry = entities.gasIndexEntity.findMax(in: self.gasIndexEntries, by: self.isFastMain ? \.fast : \.normal)
-                        let min = self.isFastMain ? minEntry?.fast : minEntry?.normal
-                        let max = self.isFastMain ? maxEntry?.fast : maxEntry?.normal
-                        self.gasIndexEntriesMinMax = (
-                            min: (min ?? 0) * 0.97,
-                            max: (max ?? 10) * 1.03
-                        )
+                        self.saveEntities(entities)
                     }
                 case .failure(let error):
                     print("Error normalizing response: \(error)")
                 }
             }
         }
+    }
+    
+    func fetchAllActions() -> Void {
+        self.dataManager.getEntities(amount: AMOUNT_TO_FETCH, actions: "*") { result in
+            switch result {
+            case .success(let entities):
+                DispatchQueue.main.async {
+                    self.saveEntities(entities, allActions: true)
+                }
+            case .failure(let error):
+                print("Error normalizing response: \(error)")
+            }
+        }
+    }
+    
+    private func saveEntities(_ entities: NormalizedEntities, allActions: Bool = false) {
+        self.ethPrice = entities.ethPriceEntity
+        self.timestamp = Int64(entities.ethPriceEntity.lastEntry()?.key ?? "0") ?? 0
+        self.isStale = false
+        
+        self.legacyGas = LegacyGasData(
+            low: entities.legacyGasIndexEntity.entries.first?.value.low ?? 5.0,
+            avg: entities.legacyGasIndexEntity.entries.first?.value.avg ?? 0.0,
+            high: entities.legacyGasIndexEntity.entries.first?.value.high ?? 0.0
+        )
+        if (allActions) {
+            self.allActions = entities.actionEntities.sorted(by: {$0.key < $1.key})
+            // get entities.actionEntities that are already in the self.actions
+            // and update them
+            self.actions = self.actions.map { (key, value) in
+                let newValues = value.map { actionEntity in
+                    let newActionEntity = self.allActions.first(where: { $0.value.first?.metadata.key == actionEntity.metadata.key })
+                    return newActionEntity?.value.first ?? actionEntity
+                }
+                return (key, newValues)
+            }
+        } else {
+            self.actions = entities.actionEntities.sorted(by: {$0.key < $1.key})
+        }
+        
+        self.gas = entities.gasIndexEntity
+        self.gasIndexEntries = entities.gasIndexEntity.getEntriesList()
+        let minEntry = entities.gasIndexEntity.findMin(in: self.gasIndexEntries, by: self.isFastMain ? \.fast : \.normal)
+        let maxEntry = entities.gasIndexEntity.findMax(in: self.gasIndexEntries, by: self.isFastMain ? \.fast : \.normal)
+        let min = self.isFastMain ? minEntry?.fast : minEntry?.normal
+        let max = self.isFastMain ? maxEntry?.fast : maxEntry?.normal
+        self.gasIndexEntriesMinMax = (
+            min: (min ?? 0) * 0.97,
+            max: (max ?? 10) * 1.03
+        )
     }
     
     func fetchMessages() {

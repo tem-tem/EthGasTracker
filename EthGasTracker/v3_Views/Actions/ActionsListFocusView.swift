@@ -69,7 +69,7 @@ struct ActionsListFocusView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        VStack() {
+        ScrollView(.vertical) {
             ForEach(actions, id: \.key) { groupName, groupAction in
                 VStack(alignment: .leading) {
                     HeaderView(groupName: groupName)

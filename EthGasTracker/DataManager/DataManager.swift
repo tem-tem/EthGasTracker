@@ -58,9 +58,9 @@ class DataManager: ObservableObject {
             switch result {
             case .success(let entries):
                 var statsNormal: [StatsEntries.Entry] = []
-//                var statsGroupedByHourNormal: [StatsModel] = []
+                //                var statsGroupedByHourNormal: [StatsModel] = []
                 var statsFast: [StatsEntries.Entry] = []
-//                var statsGroupedByHourFast: [StatsModel] = []
+                //                var statsGroupedByHourFast: [StatsModel] = []
                 
                 for (_, statModel) in entries {
                     let entry = StatsEntries.Entry(
@@ -79,7 +79,7 @@ class DataManager: ObservableObject {
                 var avgMin: Float {
                     return statsGroupedByHourNormal.map { $0.avg }.min() ?? 0.0 - 1
                 }
-
+                
                 var avgMax: Float {
                     return statsGroupedByHourNormal.map { $0.avg }.max() ?? 0.0 + 1
                 }
@@ -87,7 +87,7 @@ class DataManager: ObservableObject {
                 statsGroupedByHourNormal.sort(by: { $0.minuteOfDay < $1.minuteOfDay })
                 let statsGroupedByHourFast = groupByHour(stats: statsFast)
                 let statsEntries = StatsEntries(statsNormal: statsNormal, statsGroupedByHourNormal: statsGroupedByHourNormal, statsFast: statsFast, statsGroupedByHourFast: statsGroupedByHourFast, timestamp: Date(), avgMin: avgMin, avgMax: avgMax)
-
+                
                 completion(.success(statsEntries))
                 
             case .failure(let error):
@@ -97,8 +97,8 @@ class DataManager: ObservableObject {
         }
     }
     
-    func getEntities(amount: Int, completion: @escaping (Result<NormalizedEntities, Error>) -> Void) {
-        api_v1.fetchLatestData(amount: amount) { result in
+    func getEntities(amount: Int, actions: String, completion: @escaping (Result<NormalizedEntities, Error>) -> Void) {
+        api_v1.fetchLatestData(amount: amount, actions: actions) { result in
             switch result {
             case .success(let response):
                 let normalizedEntities = self.normalize(response: response)
@@ -110,8 +110,7 @@ class DataManager: ObservableObject {
         }
     }
     
-    func normalize(response: ApiV1Response) -> NormalizedEntities {
-        var actionEntities: [String: [ActionEntity]] = [:]
+    private func normalize(response: ApiV1Response) -> NormalizedEntities {
         var gasIndexEntity = GasIndexEntity(entries: [:])
         var ethPriceEntity = PriceDataEntity(entries: [:])
         var legacyGasIndexEntity: LegacyGasIndexEntity = LegacyGasIndexEntity(entries: [:])
@@ -131,7 +130,7 @@ class DataManager: ObservableObject {
                 }
                 ethPriceEntity = PriceDataEntity(entries: entries)
             }
-
+            
             if (index == "etherscan_gas_oracle") {
                 var entries: [String: LegacyGasData] = [:]
                 for (timestamp, entry) in rawEntity.entries {
@@ -144,76 +143,94 @@ class DataManager: ObservableObject {
             }
         }
         
-        for (_, rawEntity) in response.actions {
-            let metadata = Metadata(name: rawEntity.metadata.name, groupName: rawEntity.metadata.groupName, key: rawEntity.metadata.key, limit: rawEntity.metadata.limit)
-            
-            var entries: [String: NormalFast] = [:]
-            for (timestamp, gasEntry) in gasIndexEntity.entries {
-                
-                let normal = (Float(String(format: "%.6f", (gasEntry.normal * Float(metadata.limit)) / 1e9)) ?? 0) * (ethPriceEntity.entries[timestamp]?.price ?? 0)
-                let fast = (Float(String(format: "%.6f", (gasEntry.fast * Float(metadata.limit)) / 1e9)) ?? 0) * (ethPriceEntity.entries[timestamp]?.price ?? 0)
-                
-                entries[timestamp] = NormalFast(normal: normal, fast: fast)
-            }
+        var actionEntities: [String: [ActionEntity]] = groupActions(
+            actions: response.actions,
+            gasIndexEntity: gasIndexEntity,
+            ethPriceEntity: ethPriceEntity
+        )
         
-            let actionEntity = ActionEntity(entries: entries, metadata: metadata)
-
-            // If the array for the given group name doesn't exist, create it
-            if actionEntities[rawEntity.metadata.groupName] == nil {
-                actionEntities[rawEntity.metadata.groupName] = []
-            }
-            
-            // Append the ActionEntity to the appropriate array
-            actionEntities[rawEntity.metadata.groupName]?.append(actionEntity)
-        }
-
         return NormalizedEntities(actionEntities: actionEntities, gasIndexEntity: gasIndexEntity, ethPriceEntity: ethPriceEntity, legacyGasIndexEntity: legacyGasIndexEntity)
     }
     
-//    // this wrapper is unnecessary, maybe will need later for normalizing?
-//    func getAlerts(by deviceId: String, completion: @escaping (Result<[GasAlert], Error>) -> Void) {
-//        return self.api_v1.getAlerts(by: deviceId) { result in
-//            switch result {
-//            case .success(let response):
-//                completion(.success(response))
-//            case .failure(let error):
-//                print("Error Fetching \(error)")
-//                completion(.failure(error))
-//            }
-//        }
-//    }
+    private func groupActions(
+        actions: [String: ApiV1Response.Action],
+        gasIndexEntity: GasIndexEntity,
+        ethPriceEntity: PriceDataEntity
+    ) -> [String: [ActionEntity]] {
+        var actionEntities: [String: [ActionEntity]] = [:]
+        for (_, rawAction) in actions {
+            let actionEntity = normalizeAction(
+                rawAction: rawAction,
+                gasIndexEntity: gasIndexEntity,
+                ethPriceEntity: ethPriceEntity
+            )
+            
+            if actionEntities[rawAction.metadata.groupName] == nil {
+                actionEntities[rawAction.metadata.groupName] = []
+            }
+            
+            actionEntities[rawAction.metadata.groupName]?.append(actionEntity)
+        }
+        
+        return actionEntities
+    }
+    
+    private func normalizeAction(
+        rawAction: ApiV1Response.Action,
+        gasIndexEntity: GasIndexEntity,
+        ethPriceEntity: PriceDataEntity
+    ) -> ActionEntity {
+        let metadata = Metadata(
+            name: rawAction.metadata.name,
+            groupName: rawAction.metadata.groupName,
+            key: rawAction.metadata.key,
+            limit: rawAction.metadata.limit
+        )
+        
+        var entries: [String: NormalFast] = [:]
+        for (timestamp, gasEntry) in gasIndexEntity.entries {
+            
+            let normal = (Float(String(format: "%.6f", (gasEntry.normal * Float(metadata.limit)) / 1e9)) ?? 0) * (ethPriceEntity.entries[timestamp]?.price ?? 0)
+            let fast = (Float(String(format: "%.6f", (gasEntry.fast * Float(metadata.limit)) / 1e9)) ?? 0) * (ethPriceEntity.entries[timestamp]?.price ?? 0)
+            
+            entries[timestamp] = NormalFast(normal: normal, fast: fast)
+        }
+        
+        let actionEntity = ActionEntity(entries: entries, metadata: metadata)
+        return actionEntity
+    }
 }
 
 
-                       
+
 func groupByHour(stats: [StatsEntries.Entry]) -> [StatsEntries.Entry] {
     var groupedStats: [Int: [StatsEntries.Entry]] = [:]
     var averagedStats: [StatsEntries.Entry] = []
-
+    
     for stat in stats {
         let hour = stat.minuteOfDay / 60
         groupedStats[hour, default: []].append(stat)
     }
-
+    
     for (hour, stats) in groupedStats {
         let totalStats = stats.count
         var avgMax: Float = 0
         var avgAvg: Float = 0
         var avgMin: Float = 0
-
+        
         for stat in stats {
             avgMax += stat.max
             avgAvg += stat.avg
             avgMin += stat.min
         }
-
+        
         avgMax /= Float(totalStats)
         avgAvg /= Float(totalStats)
         avgMin /= Float(totalStats)
-
+        
         let averagedStat = StatsEntries.Entry(minuteOfDay: hour, max: avgMax, avg: avgAvg, min: avgMin, measureName: "average_by_hour")
         averagedStats.append(averagedStat)
     }
-  
+    
     return averagedStats
 }

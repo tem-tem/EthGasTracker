@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "flame-icon.png",
+      "filename" : "flame-icon-simple.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

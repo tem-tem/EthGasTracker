@@ -149,6 +149,9 @@ struct ServerMessage: Decodable {
     let image: String
 }
 
+struct ActionsResponse: Codable {
+    let actions: [String: ApiV1Response.Action]
+}
 
 let PROD = "http://135.181.194.46:8080"
 let DEV = "http://127.0.0.1:8080"
@@ -156,6 +159,7 @@ let DEV = "http://127.0.0.1:8080"
 let baseLink: String = PROD
 let latestEndpoint: String = "/api/v1/latest"
 let statsEndpoint: String = "/api/v1/stats"
+let actionsEndpoint: String = "/api/v1/actions"
 let messagesEndpoint: String = "/api/v1/messages"
 let addAlertEndpoint: String = "/api/v1/alerts/add"
 let getAlertsEndpoint: String = "/api/v1/alerts/list"
@@ -203,8 +207,8 @@ class API_v1 {
         }.resume()
     }
 
-    func fetchLatestData(amount: Int, completion: @escaping (Result<ApiV1Response, Error>) -> Void) {
-        let urlString = "\(baseLink)\(latestEndpoint)?amount=\(amount)"
+    func fetchLatestData(amount: Int, actions: String, completion: @escaping (Result<ApiV1Response, Error>) -> Void) {
+        let urlString = "\(baseLink)\(latestEndpoint)?amount=\(amount)&actions=\(actions)"
 
         guard let url = URL(string: urlString) else {
             DispatchQueue.main.async {
@@ -241,6 +245,36 @@ class API_v1 {
         }.resume()
     }
 
+    func fetchActions(completion: @escaping (Result<[String: ApiV1Response.Action], Error>) -> Void) {
+        let urlString = "\(baseLink)\(actionsEndpoint)"
+
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 1, userInfo: nil)))
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            // Error handling
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            // Ensure data is there
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No data received", code: 2, userInfo: nil)))
+                return
+            }
+
+            do {
+                // Decode JSON response
+                let actionsResponse = try JSONDecoder().decode(ActionsResponse.self, from: data)
+                completion(.success(actionsResponse.actions))  // You may want to further process it before passing back
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
     
     func fetchStatsData(completion: @escaping (Result<[String: StatsModel], Error>) -> Void) {
         let urlString = "\(baseLink)\(statsEndpoint)"

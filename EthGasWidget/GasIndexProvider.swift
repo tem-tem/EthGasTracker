@@ -21,7 +21,7 @@ struct GasIndexProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<GasIndexEntry>) -> Void) {
-        dataManager.getEntities(amount: 1) { result in
+        dataManager.getEntities(amount: 1, actions: "") { result in
             var gasIndexEntries: [GasIndexEntity.ListEntry] = []
             
             if case .success(let entities) = result {

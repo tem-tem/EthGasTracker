@@ -19,6 +19,16 @@ struct NormalFast {
     var fast: Float
 }
 
+struct FluctuationRange {
+    var minNormal: Float
+    var maxNormal: Float
+    var rangeNormal: Float
+
+    var minFast: Float
+    var maxFast: Float
+    var rangeFast: Float
+}
+
 struct ActionEntity {
     let entries: [String: NormalFast]
     let metadata: Metadata
@@ -135,6 +145,36 @@ struct GasIndexEntity {
         return entriesList.max(by: { lhs, rhs in
             lhs[keyPath: keyPath] < rhs[keyPath: keyPath]
         })
+    }
+
+    func calculateFluctuationRange() -> FluctuationRange? {
+        let entriesList = getEntriesList()
+
+        // Ensure there are entries to calculate the range.
+        guard !entriesList.isEmpty else {
+            return nil
+        }
+
+        // Identify the minimum and maximum values for both normal and fast gas prices.
+        guard let minNormalEntry = findMin(in: entriesList, by: \.normal),
+              let maxNormalEntry = findMax(in: entriesList, by: \.normal),
+              let minFastEntry = findMin(in: entriesList, by: \.fast),
+              let maxFastEntry = findMax(in: entriesList, by: \.fast) else {
+            return nil
+        }
+
+        // Extract the values from the entries
+        let minNormal = minNormalEntry.normal
+        let maxNormal = maxNormalEntry.normal
+        let minFast = minFastEntry.fast
+        let maxFast = maxFastEntry.fast
+
+        // Calculate the ranges
+        let rangeNormal = maxNormal - minNormal
+        let rangeFast = maxFast - minFast
+
+        return FluctuationRange(minNormal: minNormal, maxNormal: maxNormal, rangeNormal: rangeNormal,
+                                minFast: minFast, maxFast: maxFast, rangeFast: rangeFast)
     }
 }
 

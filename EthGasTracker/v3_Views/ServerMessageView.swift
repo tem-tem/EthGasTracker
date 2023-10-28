@@ -15,40 +15,35 @@ struct ServerMessages: View {
     @State private var offset: CGFloat = 0
     
     var body: some View {
-        GeometryReader { geometry in
-            ScrollViewReader { scrollView in
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 0) {
-                        ForEach(messages.indices, id: \.self) { msgItem in
-                            ServerMessageView(
-                                url: messages[msgItem].url,
-                                image: messages[msgItem].image,
-                                title: messages[msgItem].title,
-                                text: messages[msgItem].body
-                            )
-                            .padding(.leading, msgItem == 0 ? geometry.size.width * 0.04 : 0)
-                            .padding(.trailing, msgItem == messages.count - 1 ? geometry.size.width * 0.04 : 0)
-                            .snapID(msgItem)
-                            .frame(width: messages.count > 1 ? geometry.size.width * 0.92 : geometry.size.width)
-                        }
-                    }
+        TabView(selection: $index) {
+            ForEach(messages.indices, id: \.self) { msgItem in
+                ServerMessageView(
+                    url: messages[msgItem].url,
+                    image: messages[msgItem].image,
+                    title: messages[msgItem].title,
+                    text: messages[msgItem].body
+                )
+                .tag(msgItem)
+            }
+        }
+        .frame(height: 60)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        .overlay(
+            HStack {
+                ForEach(messages.indices, id: \.self) { msgItem in
+                    Circle()
+                        .fill(Color.primary.opacity(index == msgItem ? 0.7 : 0.4))
+                        .frame(width: index == msgItem ? 6 : 4, height: index == msgItem ? 6 : 4)
                 }
-                .snappable(alignment: .center)
-//                .onAppear {
-//                    timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { _ in
-//                        if index < messages.count - 1 {
-//                            index += 1
-//                        } else {
-//                            index = 0
-//                        }
-//                        withAnimation {
-//                            scrollView.scrollTo(index, anchor: .center)
-//                        }
-//                    }
-//                }
-//                .onDisappear {
-//                    timer?.invalidate()
-//                }
+            }
+                .offset(y: 50)
+        )
+        .onChange(of: messages.count) { theCount in
+            timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+                withAnimation {
+                    index = (index + 1) % theCount
+                }
             }
         }
     }
@@ -75,16 +70,14 @@ struct MessageContentView: View {
                     .lineSpacing(-9)
             }
                 .font(.caption)
-            if (isLink == true) {
-                Spacer()
-                Image(systemName: "arrow.up.right")
-                    .padding(.trailing)
-            }
+            Spacer()
+            Image(systemName: "arrow.up.right")
+                .padding(.trailing)
+                .opacity(isLink! ? 1 : 0)
         }
+        .frame(height: 60)
         .foregroundColor(.primary)
-        .background(Color.primary.opacity(0.1))
-        .cornerRadius(5)
-        .padding(.horizontal, 5)
+        .background(.ultraThinMaterial)
     }
 }
 
