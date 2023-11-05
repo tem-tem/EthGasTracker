@@ -98,6 +98,19 @@ struct SettingsView: View {
                                 SKStoreReviewController.requestReview()
                             }.foregroundColor(.primary)
                         }
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                                .frame(width: 32, height: 32)
+                                .background(.red, in: RoundedRectangle(cornerRadius: 8))
+                                .foregroundColor(.white)
+                            Button("Share the App") {
+                                UIPasteboard.general.string = "https://apps.apple.com/us/app/gas-alert-ethereum-gas-tracker/id6446234870"
+                                showToast = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    showToast = false
+                                }
+                            }.foregroundColor(.primary)
+                        }
                     }
                     Section("Support Developers With Crypto") {
                         HStack {
@@ -141,7 +154,7 @@ struct SettingsView: View {
                 if showToast {
                     VStack {
                         Spacer()
-                        Text("Address copied 🫡")
+                        Text("Copied 🫡")
                             .padding()
                             .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 8))
     //                        .background(Color.secondary)

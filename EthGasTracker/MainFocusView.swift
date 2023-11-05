@@ -33,19 +33,13 @@ struct MainFocusView: View {
                 .padding(.vertical, 3)
                 .font(.caption)
                 .opacity(0.8)
-                Divider()
+//                Divider()
                 ServerMessages(messages: appDelegate.serverMessages)
+                    .padding(.horizontal)
                     .frame(height: 50)
-                    .opacity(selectedPrice != nil ? 0.3 : 1)
+                    .opacity(selectedPrice != nil ? 0 : 1)
                     .overlay(
-                        HStack {
-                            if let date = selectedDate {
-                                Text(date, style: .time)
-                                    .font(.title)
-                                    .bold()
-//                                    .foregroundColor(.secondary)
-                            }
-                        }
+                        TimeAgoView(selectedDate: $selectedDate)
                      )
                 GasIndexFocus(selectedDate: $selectedDate, selectedPrice: $selectedPrice)
                     .padding(.top, 10)
@@ -68,7 +62,7 @@ struct MainFocusView: View {
                             .padding(10)
                         Spacer()
                     }
-                    .background(.ultraThinMaterial)
+//                    .background(.ultraThinMaterial)
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 30))
                 .overlay( /// apply a rounded border

@@ -28,11 +28,12 @@ struct PriceView2: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .center, spacing: 0) {
             Text(String(format: "$%.2f", selectedValue ?? lastValue))
                 .font(.system(selectedValue != nil ? .title3 : .title2, design: .monospaced))
                 .bold(selectedValue == nil)
-                .padding(.bottom, selectedValue == nil ? 0 : 6)
+                .padding(.bottom, 6)
+//                .padding(.bottom, selectedValue == nil ? 0 : 6)
             if (selectedValue != nil) {
                 Divider()
                 DiffValueView(baseValue: lastValue, targetValue: selectedValue)
@@ -73,16 +74,17 @@ struct ActionsPriceListView: View {
                             }
                             PriceView2(selectedKey: selectedKey, action: action)
                         }
-                        .background(.ultraThinMaterial)
+//                        .background(.ultraThinMaterial)
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.secondary.opacity(0.3), lineWidth: 1)
                         )
                         Text(action.metadata.name)
-                            .foregroundColor(Color.secondary)
-                            .padding(.bottom, -5)
+                            .font(.caption)
                             .bold()
+                            .textCase(.uppercase)
+                            .padding(.bottom, -5)
                         
                         Text(addSpacesToCamelCase(groupName))
                             .font(.caption)
@@ -97,12 +99,15 @@ struct ActionsPriceListView: View {
 }
 
 func addSpacesToCamelCase(_ str: String) -> String {
-    return str.reduce("") { result, character in
-        if character.isUppercase {
-            return result + " " + character.lowercased()
+    var result = ""
+    for char in str {
+        if char.isUppercase {
+            result.append(" ")
         }
-        return result + String(character)
+        result.append(char)
     }
+    result.removeFirst()
+    return result
 }
 
 let exampleEntries: [String: NormalFast] = [

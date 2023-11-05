@@ -31,16 +31,18 @@ struct ServerMessages: View {
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .overlay(
             HStack {
-                ForEach(messages.indices, id: \.self) { msgItem in
-                    Circle()
-                        .fill(Color.primary.opacity(index == msgItem ? 0.7 : 0.4))
-                        .frame(width: index == msgItem ? 6 : 4, height: index == msgItem ? 6 : 4)
+                if (messages.count > 1) {
+                    ForEach(messages.indices, id: \.self) { msgItem in
+                        Circle()
+                            .fill(Color.primary.opacity(index == msgItem ? 0.7 : 0.4))
+                            .frame(width: index == msgItem ? 6 : 4, height: index == msgItem ? 6 : 4)
+                    }
                 }
             }
                 .offset(y: 50)
         )
         .onChange(of: messages.count) { theCount in
-            timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+            timer = Timer.scheduledTimer(withTimeInterval: 8, repeats: true) { _ in
                 withAnimation {
                     index = (index + 1) % theCount
                 }
@@ -77,7 +79,12 @@ struct MessageContentView: View {
         }
         .frame(height: 60)
         .foregroundColor(.primary)
-        .background(.ultraThinMaterial)
+        .background(Color(.systemBackground))
+//        .background(.ultraThinMaterial)
+        .overlay {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+        }
     }
 }
 

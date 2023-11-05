@@ -7,6 +7,46 @@
 
 import SwiftUI
 
+struct TimeAgoView: View {
+    @EnvironmentObject var appDelegate: AppDelegate
+    @Binding var selectedDate: Date?
+    
+    var dateFromTimestamp: Date {
+        Date(timeIntervalSince1970: TimeInterval(appDelegate.timestamp))
+    }
+
+    var customDateFormat: String {
+        let currentDate = Date()
+
+        if dateFromTimestamp.isSameDay(as: currentDate) {
+            return "HH:mm:ss"
+        } else if dateFromTimestamp.isSameMonth(as: currentDate) {
+            return "dd HH:mm:ss"
+        } else if dateFromTimestamp.isSameYear(as: currentDate) {
+            return "MMM dd HH:mm:ss"
+        } else {
+            return "yyyy MMM dd HH:mm:ss"
+        }
+    }
+    
+    var body: some View {
+        HStack {
+            if let date = selectedDate {
+                Image(systemName: "arrow.left")
+                Text(date, formatter: DateFormatter.customDateFormatter(withFormat: customDateFormat))
+                let timeDiff = date.timeIntervalSince(dateFromTimestamp)
+                let hours = Int(timeDiff) / 3600
+                let minutes = (Int(timeDiff) % 3600) / 60
+                let seconds = Int(timeDiff) % 60
+
+                Text(String(format: "-%02dm%02ds", abs(minutes), abs(seconds)))
+                    .opacity(0.5)
+            }
+        }
+        .font(.system(.title3, design: .monospaced))
+    }
+}
+
 struct TimestampView: View {
     @EnvironmentObject var appDelegate: AppDelegate
     @Binding var selectedDate: Date?
@@ -42,43 +82,30 @@ struct TimestampView: View {
 
     var body: some View {
         HStack(alignment: .center) {
-            if let date = selectedDate {
-                Image(systemName: "arrow.left")
-                Text(date, formatter: DateFormatter.customDateFormatter(withFormat: customDateFormat))
-                let timeDiff = date.timeIntervalSince(dateFromTimestamp)
-                let hours = Int(timeDiff) / 3600
-                let minutes = (Int(timeDiff) % 3600) / 60
-                let seconds = Int(timeDiff) % 60
-
-                Text(String(format: "-%02dm%02ds", abs(minutes), abs(seconds)))
-                    .opacity(0.5)
-//                Text("@") +
-            } else {
-                if (isStale) {
-                    if (appDelegate.timestamp > 0) {
-                        Image(systemName: "clock.badge.exclamationmark")
-                            .foregroundColor(Color(.systemOrange))
-                    } else {
-                        Image(systemName: "exclamationmark.triangle.fill")
-                            .foregroundColor(Color(.systemOrange))
-                    }
+            if (isStale) {
+                if (appDelegate.timestamp > 0) {
+                    Image(systemName: "clock.badge.exclamationmark")
+                        .foregroundColor(Color(.systemOrange))
                 } else {
-                    Image(systemName: "clock.badge.checkmark")
-//                        .foregroundColor(Color(.systemGreen))
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundColor(Color(.systemOrange))
                 }
-                VStack(alignment: .leading) {
-                    if isStale {
-                        if (appDelegate.timestamp > 0) {
-    //                        Text("Data is stale")
-                            Text(dateFromTimestamp, formatter: DateFormatter.customDateFormatter(withFormat: customDateFormat))
-                        }
-                        else {
-                            Text("Data not received")
-                        }
-                    } else {
-    //                    Text("Fresh")
+            } else {
+                Image(systemName: "clock.badge.checkmark")
+//                        .foregroundColor(Color(.systemGreen))
+            }
+            VStack(alignment: .leading) {
+                if isStale {
+                    if (appDelegate.timestamp > 0) {
+//                        Text("Data is stale")
                         Text(dateFromTimestamp, formatter: DateFormatter.customDateFormatter(withFormat: customDateFormat))
                     }
+                    else {
+                        Text("Data not received")
+                    }
+                } else {
+//                    Text("Fresh")
+                    Text(dateFromTimestamp, formatter: DateFormatter.customDateFormatter(withFormat: customDateFormat))
                 }
             }
         }

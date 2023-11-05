@@ -40,6 +40,7 @@ struct EthPriceView: View {
                 }
             }
             .font(.system(.caption, design: .monospaced))
+            .textCase(.uppercase)
 //            HStack {
 //                EthPriceChart(priceEntity: appDelegate.ethPrice)
 //                    .padding(.leading, 150)
