@@ -64,7 +64,7 @@ struct PriceView: View {
 }
 
 struct ActionsListFocusView: View {
-    var actions: [Dictionary<String, [ActionEntity]>.Element]
+    var actions: GroupedActions
     @Binding var selectedKey: String?
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -84,9 +84,9 @@ struct ActionsListFocusView: View {
 }
 
 
-struct ActionsListFocusView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActionsListFocusView(actions: previewActions, selectedKey: .constant("1609545600"))
-            .padding()
-    }
-}
+//struct ActionsListFocusView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ActionsListFocusView(actions: previewActions, selectedKey: .constant("1609545600"))
+//            .padding()
+//    }
+//}

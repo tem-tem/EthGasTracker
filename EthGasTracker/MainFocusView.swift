@@ -14,6 +14,7 @@ struct MainFocusView: View {
     @State private var selectedKey: String? = nil
     @State private var showAlertsSheet = false
     @State private var showFullActionList = false
+    @State private var showingGuide = false
     @AppStorage(SettingsKeys().hapticFeedbackEnabled) private var haptic = true
     let hapticFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
@@ -42,15 +43,23 @@ struct MainFocusView: View {
                         TimeAgoView(selectedDate: $selectedDate)
                      )
                 GasIndexFocus(selectedDate: $selectedDate, selectedPrice: $selectedPrice)
-                    .padding(.top, 10)
-                    .padding(.vertical, 30)
+//                    .padding(.top, 10)
+                    .padding(.top, 20)
+                    .padding(.bottom, 10)
+                    .padding(.horizontal)
+                    .onTapGesture {
+                        showingGuide = true
+                    }
+                    .sheet(isPresented: $showingGuide) {
+                        GasLevelExplainerView()
+                    }
                 //                ScrollView {
                 //                    ActionsListFocusView(actions: appDelegate.actions,
                 //                                         selectedKey: $selectedKey)
                 //                }
                 //                .frame(minHeight: 250)
                 //                .padding(.horizontal)
-                ActionsPriceListView(selectedKey: $selectedKey, actions: appDelegate.actions)
+                ActionsPriceListView(selectedKey: $selectedKey, actions: appDelegate.defaultActions)
                     .padding(.horizontal)
                 
                 Button {
@@ -67,17 +76,14 @@ struct MainFocusView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 30))
                 .overlay( /// apply a rounded border
                     RoundedRectangle(cornerRadius: 30)
-                        .stroke(Color.secondary.opacity(0.3), lineWidth: 1)
+                        .stroke(appDelegate.gasLevel.color.opacity(0.3), lineWidth: 1)
                 )
                 //                .foregroundStyle(Color("BG"))
                 .sheet(isPresented: $showFullActionList) {
                     ActionsListFocusView(
-                        actions: appDelegate.allActions,
+                        actions: appDelegate.actions,
                         selectedKey: $selectedKey
                     )
-                    .onAppear {
-                        appDelegate.fetchAllActions()
-                    }
                     .padding()
                 }
                 //                .id(addId)

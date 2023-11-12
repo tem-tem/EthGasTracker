@@ -13,72 +13,118 @@ struct GasIndexFocus: View {
     
     @Binding var selectedDate: Date?
     @Binding var selectedPrice: Float?
-    
-    var lastGasPrice: Float? {
-//        return 9874
-        let lastEntry = appDelegate.gasIndexEntries.last
-        return isFastMain ? lastEntry?.fast : lastEntry?.normal
-    }
-    
-    var fluctuationRange: FluctuationRange? {
-        return appDelegate.gas.calculateFluctuationRange()
-    }
 
     var body: some View {
-        HStack {
-            Spacer()
-//            VStack {
-//                Text(String(format: "%.f", fluctuationRange?.minNormal ?? 0))
-//                    .font(.system(size: 30, weight: .thin, design: .monospaced))
-//                Text("MIN").font(.caption)
-//            }.opacity(selectedPrice != nil ? 0.4 : 1)
-//            Spacer()
-            VStack(spacing: 15) {
-                Text(String(format: "%.f", selectedPrice ?? lastGasPrice ?? 0))
-                    .font(.system(size: 60, weight: selectedPrice != nil ? .thin : .bold, design: .monospaced))
-                    .padding(.top, -5)
-                    .padding(.bottom, -5)
-    //            Divider()
+        VStack(spacing: 0) {
+            HStack (spacing: 10) {
                 GasScale(selectedPrice: $selectedPrice)
-                
-    //            if let last = lastGasPrice,
-    //               let selected = selectedPrice,
-    //               let diff = last - selected
-    //            {
+                    .opacity(.init(selectedPrice != nil ? 0 : 1))
+                Spacer()
+    //                .opacity(.init(selectedPrice != nil ? 0 : 1))
+                VStack(spacing: 0) {
+                    Text(String(format: "%.f", selectedPrice ?? appDelegate.gasLevel.currentGas ?? 0))
+                        .font(.system(size: 60, weight: selectedPrice != nil ? .thin : .bold, design: .rounded))
+                        // inner shadow
+//                        .foregroundColor(.white)
+                        .foregroundStyle(
+                            appDelegate.gasLevel.color.gradient
+                                .shadow(.inner(color: .white.opacity(0.5), radius: 2, x: 0, y: 0))
+                        )
+                    HStack {
+                        Image(systemName: "info.circle").opacity(0)
+                        Text("\(appDelegate.gasLevel.label)")
+                        Image(systemName: "info.circle").opacity(0.5)
+                    }
+                        .font(.caption)
+                        .bold()
+                        .padding(.bottom)
+                        .opacity(.init(selectedPrice != nil ? 0 : 1))
     //                HStack {
-    //                    if (diff > 0) {
-    //                        Image(systemName: "arrow.down")
-    //                    } else {
-    //                        Image(systemName: "arrow.up")
-    //                    }
-    //                    Text(String(format: "%.1f", abs(diff)))
+    ////                    Divider()
     //                }
-    //                .opacity(diff == 0 ? 0 : 1)
-    //                .font(.system(size: 24, weight: .bold, design: .monospaced))
-    //                .foregroundStyle(diff > 0 ? Color.accentColor : Color(.systemRed))
-    //
-    //            } else {
-    //                ZStack(alignment: .center) {
-    //                    HStack {
-    //                        Image(systemName: "arrow.up")
-    //                        Text(String(format: "%.1f", 0))
-    //                    }
-    //                    .font(.system(size: 24, weight: .bold, design: .monospaced))
-    //                    .opacity(0)
-    //                    GasScale()
-    //                        .frame(width: 100)
-    //                }
-    //
-    //            }
-            
+                }
+                Spacer()
+                GasScale(selectedPrice: $selectedPrice)
+                    .opacity(.init(selectedPrice != nil ? 0 : 1))
             }
-            Spacer()
-//            VStack {
-//                Text(String(format: "%.f", fluctuationRange?.maxNormal ?? 0))
-//                    .font(.system(size: 30, weight: .thin, design: .monospaced))
-//                Text("MAX").font(.caption)
-//            }.opacity(selectedPrice != nil ? 0.4 : 1)
-//            Spacer()
+            .foregroundColor(.init(selectedPrice != nil ? .primary : appDelegate.gasLevel.color))
+    //
+            .padding(.horizontal,20)
+    //        .frame(height: )
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+//                    .stroke(appDelegate.gasLevel.color, lineWidth: 1)
+                    .stroke(LinearGradient(colors: [appDelegate.gasLevel.color, appDelegate.gasLevel.color.opacity(0.5)], startPoint: .top, endPoint: .bottom), lineWidth: 1)
+    //                        .background(Color.accentColor.gradient.opacity(0.1))
+                    .background(appDelegate.gasLevel.color.opacity(0.01))
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [appDelegate.gasLevel.color.opacity(0), appDelegate.gasLevel.color.opacity(0.05)]), startPoint: .center, endPoint: .top)
+                    )
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [appDelegate.gasLevel.color.opacity(0), appDelegate.gasLevel.color.opacity(0.05)]), startPoint: .center, endPoint: .bottom)
+                    )
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [appDelegate.gasLevel.color.opacity(0), appDelegate.gasLevel.color.opacity(0.05)]), startPoint: .center, endPoint: .topTrailing)
+                    )
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [appDelegate.gasLevel.color.opacity(0), appDelegate.gasLevel.color.opacity(0.05)]), startPoint: .center, endPoint: .topLeading)
+                    )
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [appDelegate.gasLevel.color.opacity(0.1), appDelegate.gasLevel.color.opacity(0), appDelegate.gasLevel.color.opacity(0)]), startPoint: .leading, endPoint: .trailing)
+                    )
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [appDelegate.gasLevel.color.opacity(0),appDelegate.gasLevel.color.opacity(0), appDelegate.gasLevel.color.opacity(0.1)]), startPoint: .leading, endPoint: .trailing)
+                    )
+                    .opacity(.init(selectedPrice != nil ? 0 : 1))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            )
+//            VStack(alignment: .leading) {
+//                Text("USUAL GAS PRICE PERCENTILES")
+//                    .font(.caption)
+////                    .bold()
+//                    .foregroundColor(Color.secondary)
+//                HStack {
+//                    VStack(alignment: .leading) {
+//                        Text("5th")
+//                        Text(String(format: "%.f", appDelegate.currentStats.p5))
+//                            .bold()
+//                            .font(.body)
+//                    }
+//                    Spacer()
+//                    VStack(alignment: .leading) {
+//                        Text("25th")
+//                        Text(String(format: "%.f", appDelegate.currentStats.p25))
+//                            .bold()
+//                            .font(.body)
+//                    }
+//                    Spacer()
+//                    VStack(alignment: .leading) {
+//                        Text("50th")
+//                        Text(String(format: "%.f", appDelegate.currentStats.p50))
+//                            .bold()
+//                            .font(.body)
+//                    }
+//                    Spacer()
+//                    VStack(alignment: .leading) {
+//                        Text("75th")
+//                        Text(String(format: "%.f", appDelegate.currentStats.p75))
+//                            .bold()
+//                            .font(.body)
+//                    }
+//                    Spacer()
+//                    VStack(alignment: .leading) {
+//                        Text("95th")
+//                        Text(String(format: "%.f", appDelegate.currentStats.p95))
+//                            .bold()
+//                            .font(.body)
+//                    }
+//                }
+//            }
+//            .padding(.top)
+////            .padding(.horizontal)
+//            .font(.caption)
+//            .foregroundColor(Color.secondary)
         }
     }
 }

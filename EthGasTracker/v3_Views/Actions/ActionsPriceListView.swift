@@ -30,42 +30,37 @@ struct PriceView2: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             Text(String(format: "$%.2f", selectedValue ?? lastValue))
-                .font(.system(selectedValue != nil ? .title3 : .title2, design: .monospaced))
-                .bold(selectedValue == nil)
+                .font(.system(selectedKey != nil ? .title3 : .title2, design: .monospaced))
+                .bold(selectedKey == nil)
                 .padding(.bottom, 6)
 //                .padding(.bottom, selectedValue == nil ? 0 : 6)
-            if (selectedValue != nil) {
+            if (selectedKey != nil) {
                 Divider()
-                DiffValueView(baseValue: lastValue, targetValue: selectedValue)
-                    .font(.system(.caption, design: .monospaced))
-                    .padding(.vertical, 4)
+                if (selectedValue != nil) {
+                    DiffValueView(baseValue: lastValue, targetValue: selectedValue)
+                        .font(.system(.caption, design: .monospaced))
+                        .padding(.vertical, 4)
+                } else {
+                    Text("=")
+                        .opacity(0.5)
+                        .font(.system(.caption, design: .monospaced))
+                        .padding(.vertical, 4)
+                }
             }
         }.frame(height: 50)
     }
 }
 
 struct ActionsPriceListView: View {
+    @EnvironmentObject var appDelegate: AppDelegate
     @Binding var selectedKey: String?
-    var actions: [Dictionary<String, [ActionEntity]>.Element]
+    var actions: GroupedActions
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
-    private let gradient: [Color] = [Color("avg"), Color("avgLight"), Color("avg")]
-    
-    //    @AppStorage(SettingsKeys().colorScheme) private var settingsColorScheme: ColorScheme = .none
-    //    @Environment(\.colorScheme) private var defaultColorScheme
-    //    private var gradient: [Color] {
-    //        if defaultColorScheme == .light ||
-    //            (
-    //                defaultColorScheme == .none && defaultColorScheme == .light
-    //            ) {
-    //            return [Color("avg"), Color("avgLight"), Color("avg")]
-    //        }
-    //        return [Color("avgLight"), Color("avg"), Color("avgLight")]
-    //    }
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 10) {
-            ForEach(actions, id: \.key) { groupName, groupAction in
+            ForEach(actions.sorted(by: {$0.key < $1.key}), id: \.key) { groupName, groupAction in
                 ForEach(groupAction.sorted(by: {$0.metadata.name < $1.metadata.name}), id: \.metadata.key) {action in
                     VStack (alignment: .leading) {
                         VStack(alignment: .center) {
@@ -73,11 +68,13 @@ struct ActionsPriceListView: View {
                                 Spacer()
                             }
                             PriceView2(selectedKey: selectedKey, action: action)
+                                .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color : .primary)
                         }
 //                        .background(.ultraThinMaterial)
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
+//                                .stroke( selectedKey == nil ? appDelegate.gasLevel.color.opacity(0.3) : Color.secondary.opacity(0.3), lineWidth: 1)
                                 .stroke(Color.secondary.opacity(0.3), lineWidth: 1)
                         )
                         Text(action.metadata.name)
@@ -90,8 +87,10 @@ struct ActionsPriceListView: View {
                             .font(.caption)
                             .textCase(.uppercase)
                             .foregroundColor(Color.secondary)
+//                            .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color.opacity(0.75) : Color.secondary)
                     }
                     .padding(.bottom, 10)
+//                    .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color : .primary)
                 }
             }
         }
@@ -129,10 +128,10 @@ let previewActions: [Dictionary<String, [ActionEntity]>.Element] = [
     (key: "group2", value: [a3])
 ]
 
-struct ActionPriceListView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        ActionsPriceListView(selectedKey: .constant("1"), actions: previewActions)
-            .padding()
-    }
-}
+//struct ActionPriceListView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        ActionsPriceListView(selectedKey: .constant("1"), actions: previewActions)
+//            .padding()
+//    }
+//}

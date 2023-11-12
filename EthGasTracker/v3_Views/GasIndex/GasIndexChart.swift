@@ -24,13 +24,11 @@ struct GasIndexChart: View {
     var body: some View {
         VStack {
             Chart(entries, id: \.index) { entry in
-                if let firstEntry = entries[0] {
-                    RuleMark(
-                        y: .value("Price", firstEntry.normal)
-                    )
-                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
-                    .foregroundStyle(Color(.systemGray).opacity(0.2))
-                }
+                RuleMark(
+                    y: .value("Price", entries[0].normal)
+                )
+                .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
+                .foregroundStyle(Color(.systemGray).opacity(0.2))
 
                 LineMark(
                     x: .value("Time", entry.timestamp),

@@ -51,7 +51,7 @@ struct GasTabView: View {
     
     var body: some View {
         VStack {
-            GasPriceView().padding()
+//            GasPriceView().padding()
             GasTrendsView()
                 .padding(.horizontal)
                 .padding(.bottom)

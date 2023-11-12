@@ -9,6 +9,7 @@ import SwiftUI
 import Charts
 
 struct GasIndexChartFocus: View {
+    @EnvironmentObject var appDelegate: AppDelegate
     let entries: [GasIndexEntity.ListEntry]
     let min: Float?
     let max: Float?
@@ -26,8 +27,8 @@ struct GasIndexChartFocus: View {
         VStack {
             ChartItself(
                 entries: entries,
-                min: min,
-                max: max,
+                min: (min ?? 1),
+                max: (max ?? 1),
                 selectedDate: $selectedDate,
                 selectedPrice: $selectedPrice,
                 selectedIndex: $selectedIndex
@@ -48,10 +49,12 @@ struct GasIndexChartFocus: View {
                 AxisMarks(values: [0, 10, 20, 30, 40, 50, 60, 70, 80]) { value in
                     AxisValueLabel {
                         if let index = value.as(Int.self),
-                           let entry = entries[index]  {
+                           entries.count > index {
+                            let entry = entries[index]
                             Text(entry.timestamp, format: .dateTime.hour(.defaultDigits(amPM: .omitted))) +
                             Text(":") +
                             Text(entry.timestamp, format: .dateTime.minute(.twoDigits))
+//                                .foregroundColor(selectedKey != nil ? .secondary : appDelegate.gasLevel.color)
                         }
                     }.font(.caption2)
                 }
@@ -63,6 +66,7 @@ struct GasIndexChartFocus: View {
 }
 
 struct ChartItself: View {
+    @EnvironmentObject var appDelegate: AppDelegate
     let entries: [GasIndexEntity.ListEntry]
     let min: Float?
     let max: Float?
@@ -77,20 +81,22 @@ struct ChartItself: View {
     
     var body: some View {
         Chart(entries, id: \.index) { entry in
-            if let count = entries.count, let lastEntry = entries[count - 1], entry.index == lastEntry.index, selectedDate == nil, selectedPrice == nil {
+            let count = entries.count
+            let lastEntry = entries[count - 1]
+            if entry.index == lastEntry.index, selectedDate == nil, selectedPrice == nil {
                 PointMark(
                     x: .value("Index", lastEntry.index),
                     y: .value("Price", lastEntry.normal)
                 )
                 .symbolSize(150)
-                .foregroundStyle(Color("BG"))
+                .foregroundStyle(Color(.systemBackground))
 
                 PointMark(
                     x: .value("Index", lastEntry.index),
                     y: .value("Price", lastEntry.normal)
                 )
                 .symbolSize(100)
-                .foregroundStyle(Color.accentColor)
+                .foregroundStyle(appDelegate.gasLevel.color)
                 
                 RuleMark(
                     x: .value("Index", entry.index),
@@ -99,7 +105,7 @@ struct ChartItself: View {
                 )
                 .lineStyle(StrokeStyle(lineWidth: 2))
 //                .foregroundStyle(Color(.systemRed))
-                .foregroundStyle(Color.accentColor)
+                .foregroundStyle(appDelegate.gasLevel.color)
             } else {
                 RuleMark(
                     x: .value("Index", entry.index),
@@ -107,7 +113,8 @@ struct ChartItself: View {
                     yEnd: .value("Price End", min ?? 0)
                 )
                 .lineStyle(StrokeStyle(lineWidth: 0.5))
-                .foregroundStyle(primaryColor.opacity(0.7))
+                .foregroundStyle(primaryColor.opacity(0.75))
+//                .foregroundStyle(selectedIndex != nil ? primaryColor.opacity(0.75) : appDelegate.gasLevel.color.opacity(0.75))
             }
             
 
@@ -118,20 +125,20 @@ struct ChartItself: View {
                     y: .value("Price", selectedPrice!)
                 )
                 .symbolSize(150)
-                .foregroundStyle(Color("BG"))
+                .foregroundStyle(Color(.systemBackground))
 
                 PointMark(
                     x: .value("Index", selectedIndex!),
                     y: .value("Price", selectedPrice!)
                 )
                 .symbolSize(100)
-                .foregroundStyle(Color.accentColor)
+                .foregroundStyle(primaryColor)
                 
                 RuleMark(x: .value("Index", selectedIndex!),
                          yStart: .value("Price", selectedPrice!),
                          yEnd: .value("Price", min ?? 0))
                     .lineStyle(StrokeStyle(lineWidth: 2))
-                    .foregroundStyle(Color.accentColor)
+                    .foregroundStyle(primaryColor)
             }
         }
     }

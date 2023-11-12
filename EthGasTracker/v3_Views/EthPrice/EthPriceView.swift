@@ -24,9 +24,9 @@ struct EthPriceView: View {
                 Spacer()
                 
                 if let key = selectedKey,
-                   let selectedEntry = appDelegate.ethPrice.entries[key],
-                   let selectedValue = selectedEntry.price
+                   let selectedEntry = appDelegate.ethPrice.entries[key]
                 {
+                    let selectedValue = selectedEntry.price
                     DiffValueView(
                         baseValue: (appDelegate.ethPrice.lastEntry()?.value ?? PriceData(price: 0)).price,
                         targetValue: selectedValue
@@ -41,6 +41,7 @@ struct EthPriceView: View {
             }
             .font(.system(.caption, design: .monospaced))
             .textCase(.uppercase)
+//            .foregroundColor(appDelegate.gasLevel.color)
 //            HStack {
 //                EthPriceChart(priceEntity: appDelegate.ethPrice)
 //                    .padding(.leading, 150)

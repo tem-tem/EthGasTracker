@@ -40,9 +40,9 @@ struct GasTrendsView: View {
                 Text("Past \(timeframe.fullLengthName)").bold()
 //                Spacer()
                 if let first = isFastMain ? entries.first?.fast : entries.first?.normal,
-                   let last = isFastMain ? entries.last?.fast : entries.last?.normal,
-                   let diff = abs(last - first)
+                   let last = isFastMain ? entries.last?.fast : entries.last?.normal
                 {
+                    let diff = abs(last - first)
                     HStack {
                         Image(systemName: last > first ? "arrow.up.right" : "arrow.down.right")
                         Text(String(format: "%.2f", diff)).bold()

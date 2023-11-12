@@ -19,8 +19,7 @@ struct DiffValueView: View {
     }
     
     var body: some View {
-        if diff != 0
-        {
+        if diff != 0 {
             HStack {
                 if (diff > 0) {
                     Image(systemName: "arrow.down")

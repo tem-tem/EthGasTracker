@@ -10,6 +10,7 @@ import FirebaseAnalytics
 
 struct MainView: View {
     @State var selectedTab = 1
+    @EnvironmentObject var appDelegate: AppDelegate
     
     var body: some View {
         VStack(spacing: 0) {
@@ -50,6 +51,7 @@ struct MainView: View {
                     }
                     .tag(4)
             }
+            .tint(appDelegate.gasLevel.color)
                 .animation(.easeInOut, value: selectedTab)
                 .onChange(of: selectedTab) { newTab in
                     var tab: String?

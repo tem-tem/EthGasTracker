@@ -87,39 +87,38 @@ struct HeatMap: View {
                         ) {
                             ForEach(Array(stats.indices), id: \.self) { index in
                                 let currentHourStat = stats[index]
-                                if let currentDate = dateStringToDate(currentHourStat.timestamp_utc) {
-                                    if Calendar.current.component(.hour, from: currentDate) == 0 {
-                                        Text(shortDateFormatter.string(from: currentDate))
-                                            .font(.caption)
-                                            .padding(.top, 20)
-                                            .padding(.bottom, 10)
-                                    }
+                                let currentDate = dateStringToDate(currentHourStat.timestamp_utc)
+                                if Calendar.current.component(.hour, from: currentDate) == 0 {
+                                    Text(shortDateFormatter.string(from: currentDate))
+                                        .font(.caption)
+                                        .padding(.top, 20)
+                                        .padding(.bottom, 10)
+                                }
 
-                                    if (currentHourStat.average_gas_price > 0) {
-                                        Text("\(Int(round(currentHourStat.average_gas_price)))")
-                                            .frame(width: width)
-                                            .padding(.horizontal, 10)
-                                            .foregroundColor(
-                                                colorForValue(value: currentHourStat.average_gas_price, min: minInAllStats, max: maxInAllStats))
-                                            .background(
-                                                colorForValue(value: currentHourStat.average_gas_price, min: minInAllStats, max: maxInAllStats).opacity(0.2)
-                                            )
-                                            .cornerRadius(5)
+                                if (currentHourStat.average_gas_price > 0) {
+                                    Text("\(Int(round(currentHourStat.average_gas_price)))")
+                                        .frame(width: width)
+                                        .padding(.horizontal, 10)
+                                        .foregroundColor(
+                                            colorForValue(value: currentHourStat.average_gas_price, min: minInAllStats, max: maxInAllStats))
+                                        .background(
+                                            colorForValue(value: currentHourStat.average_gas_price, min: minInAllStats, max: maxInAllStats).opacity(0.2)
+                                        )
+                                        .cornerRadius(5)
 //                                            .font(.caption)
-                                    } else {
-                                        Image(systemName: "bolt.slash.fill")
-                                            .frame(width: width)
-                                            .padding(.horizontal, 10)
-                                            .foregroundColor(
-                                                Color.secondary.opacity(0.2)
-                                            )
-                                            .background(
-                                                Color.secondary.opacity(0.1)
-                                            )
-                                            .cornerRadius(5)
+                                } else {
+                                    Image(systemName: "bolt.slash.fill")
+                                        .frame(width: width)
+                                        .padding(.horizontal, 10)
+                                        .foregroundColor(
+                                            Color.secondary.opacity(0.2)
+                                        )
+                                        .background(
+                                            Color.secondary.opacity(0.1)
+                                        )
+                                        .cornerRadius(5)
 //                                            .font(.caption)
-                                        
-                                    }
+                                    
                                 }
                             }
                             

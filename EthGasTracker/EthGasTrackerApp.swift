@@ -48,7 +48,6 @@ func checkNotificationPermission(onGranted: @escaping () -> Void, onDenied: @esc
 }
 
 
-
 @main
 struct EthGasTracker: App {
     @AppStorage(SettingsKeys().colorScheme) var settingsColorScheme: ColorScheme = .none
