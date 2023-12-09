@@ -52,11 +52,13 @@ func checkNotificationPermission(onGranted: @escaping () -> Void, onDenied: @esc
 struct EthGasTracker: App {
     @AppStorage(SettingsKeys().colorScheme) var settingsColorScheme: ColorScheme = .none
     let notificationDelegate = NotificationDelegate()
+    @StateObject private var storeVM = StoreVM()
     @StateObject var networkMonitor = NetworkMonitor()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) var scene
     @StateObject private var notificationManager = NotificationManager()
     @Environment(\.colorScheme) private var defaultColorScheme
+    @AppStorage("subbed") var subbed: Bool = false
     
     var isCurrentAppearanceDark: Bool {
         return (settingsColorScheme == .dark) || (settingsColorScheme == .none && defaultColorScheme == .dark)
@@ -66,6 +68,7 @@ struct EthGasTracker: App {
         WindowGroup {
             MainView()
                 .environmentObject(networkMonitor)
+                .environmentObject(storeVM)
 //                .environmentObject(dataController)
                 .environmentObject(notificationManager)
                 .environmentObject(appDelegate)
@@ -80,6 +83,12 @@ struct EthGasTracker: App {
                         settingsColorScheme == .light ? .light :
                         nil
                 )
+                .onChange(of: storeVM.checked) { didCheck in
+                    if (didCheck) {
+                        subbed = !storeVM.purchasedSubscriptions.isEmpty
+                        print(storeVM.purchasedSubscriptions)
+                    }
+                }
         }
     }
 }

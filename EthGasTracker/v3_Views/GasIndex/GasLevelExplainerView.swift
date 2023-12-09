@@ -32,7 +32,7 @@ struct GasLevelExplainerView: View {
                     }
                 }
                 Divider().padding(.vertical)
-                Text("Our gas price level statistics are tailored to reflect the current market conditions. They are calculated by aggregating gas data from the past 7 days, updated every 10 minutes to align with the latest 10-minute timeframe. This approach ensures that the level indicated is always relative to the typical values for the current time, providing a real-time assessment of whether the gas prices are high or low at any given moment.")
+                Text("Gas levels on the Ethereum network are not static throughout the day; they are dynamic and can shift significantly over short periods. For instance, a gas price of 19 gwei may be categorized as 'high' during a less busy time such as 10 am, but the very same price can be deemed 'normal' or even 'low' during peak transaction hours like 2 pm. It's important to understand that gas prices are relative and assessed within specific 10-minute intervals to provide a more accurate reflection of the network's current demand.")
                     .padding(.vertical)
             }
             .padding()

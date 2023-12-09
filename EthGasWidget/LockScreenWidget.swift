@@ -25,25 +25,35 @@ struct LockScreenEntryView : View {
     }
     
     var homeScreenSmall: some View {
-        VStack {
-            HStack {
-                GasScaleDots(gasLevel: entry.gasLevel)
-                Spacer()
+        HStack {
+            GasScaleDots(gasLevel: entry.gasLevel)
+            Spacer()
+            VStack {
                 Text(String(format: "%.f", entry.gasLevel.currentGas ?? 0))
 //                    Text("999")
-                    .font(.system(size: 100, weight: .bold, design: .rounded))
-                    .minimumScaleFactor(0.75)
+                    .font(.system(size: 60, weight: .bold, design: .rounded))
+                    .minimumScaleFactor(0.7)
                     .foregroundStyle(
                         entry.gasLevel.color.gradient
                             .shadow(.inner(color: .white.opacity(0.5), radius: 2, x: 0, y: 0))
                     )
-                Spacer()
-                GasScaleDots(gasLevel: entry.gasLevel).opacity(0)
+//                GasScaleDots(gasLevel: entry.gasLevel).opacity(0)
+                Text(entry.gasLevel.label)
+//                Text("EXCEPTIONALLY LOW")
+                    .font(.caption)
             }
-                .padding(.bottom)
-            Text(entry.gasLevel.label)
-                .font(.caption)
+//                .padding(.bottom)
         }
+        .widgetBackground(Color.black)
+        .widgetBackground(
+            LinearGradient(
+                gradient: Gradient(
+                    colors: [entry.gasLevel.color.opacity(0.3), entry.gasLevel.color.opacity(0)]
+                ),
+                startPoint: .bottom,
+                endPoint: .top
+            )
+        )
 //        .overlay(
 //            Rectangle()
 //                .background(
@@ -56,7 +66,6 @@ struct LockScreenEntryView : View {
 //                    )
 //            )
 //        )
-        .widgetBackground(Color.black)
     }
     
     var lockscreenWidget: some View {

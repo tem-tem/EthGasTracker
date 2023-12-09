@@ -50,6 +50,9 @@
             ReferencedContainer = "container:EthGasTracker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../../GAS ALERT Ethereum Gas Tracker.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

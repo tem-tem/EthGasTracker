@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		A317CCF029CBF497001B8492 /* lightweight.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCEF29CBF497001B8492 /* lightweight.gif */; };
+		A31D22762B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A31D22752B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit */; };
+		A31D22772B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A31D22752B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit */; };
+		A31D22792B098BFE008464DB /* StoreVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D22782B098BFE008464DB /* StoreVM.swift */; };
+		A31D227B2B098C52008464DB /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D227A2B098C52008464DB /* SubscriptionView.swift */; };
+		A31D227D2B099EB9008464DB /* TimeRangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D227C2B099EB9008464DB /* TimeRangePicker.swift */; };
+		A31D227F2B0A9A72008464DB /* HelperViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D227E2B0A9A72008464DB /* HelperViews.swift */; };
 		A320810C2A42680D00857E02 /* EthGasWidgetSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810B2A42680D00857E02 /* EthGasWidgetSmall.swift */; };
 		A320810E2A426D4900857E02 /* EthGasWidgetHigh2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810D2A426D4900857E02 /* EthGasWidgetHigh2.swift */; };
 		A32081102A42718D00857E02 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A320810F2A42718D00857E02 /* GridView.swift */; };
@@ -150,6 +156,11 @@
 
 /* Begin PBXFileReference section */
 		A317CCEF29CBF497001B8492 /* lightweight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = lightweight.gif; path = ../../../../../Downloads/lightweight.gif; sourceTree = "<group>"; };
+		A31D22752B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "GAS ALERT Ethereum Gas Tracker.storekit"; sourceTree = "<group>"; };
+		A31D22782B098BFE008464DB /* StoreVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVM.swift; sourceTree = "<group>"; };
+		A31D227A2B098C52008464DB /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		A31D227C2B099EB9008464DB /* TimeRangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangePicker.swift; sourceTree = "<group>"; };
+		A31D227E2B0A9A72008464DB /* HelperViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViews.swift; sourceTree = "<group>"; };
 		A320810B2A42680D00857E02 /* EthGasWidgetSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetSmall.swift; sourceTree = "<group>"; };
 		A320810D2A426D4900857E02 /* EthGasWidgetHigh2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasWidgetHigh2.swift; sourceTree = "<group>"; };
 		A320810F2A42718D00857E02 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
@@ -364,6 +375,7 @@
 		A384EB1729BAFBC5005CC9E1 = {
 			isa = PBXGroup;
 			children = (
+				A31D22752B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit */,
 				A3B95EDF2AA462590010657A /* Launch Screen.storyboard */,
 				A3501C8E2A3601FF00057C1C /* EthGasWidgetExtension.entitlements */,
 				A33250372AA294D000A5B6B3 /* GoogleService-Info.plist */,
@@ -388,6 +400,7 @@
 			children = (
 				A3E3655829BC39BC00DC3016 /* AppDelegate.swift */,
 				A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */,
+				A31D227E2B0A9A72008464DB /* HelperViews.swift */,
 				A3B253BB2A7EB5FB007C668A /* MainView.swift */,
 				A33AFD882A92F6D9008AE58D /* MainFocusView.swift */,
 				A36781F82A7E8AC4006B3149 /* DataManager */,
@@ -408,6 +421,8 @@
 				A317CCEF29CBF497001B8492 /* lightweight.gif */,
 				A384EB2929BAFBC6005CC9E1 /* Preview Content */,
 				A3F731EE2A11CD4200AB10D2 /* Helpers.swift */,
+				A31D22782B098BFE008464DB /* StoreVM.swift */,
+				A31D227A2B098C52008464DB /* SubscriptionView.swift */,
 			);
 			path = EthGasTracker;
 			sourceTree = "<group>";
@@ -533,6 +548,7 @@
 				A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */,
 				A3D357F42A8B051B000CD883 /* AlertFormView.swift */,
 				A36F08612A8C17C7009A4A36 /* AlertConditionView.swift */,
+				A31D227C2B099EB9008464DB /* TimeRangePicker.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -661,6 +677,7 @@
 				A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */,
 				A3B95EE02AA462590010657A /* Launch Screen.storyboard in Resources */,
 				A317CCF029CBF497001B8492 /* lightweight.gif in Resources */,
+				A31D22762B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +688,7 @@
 				A3501C8F2A361C1600057C1C /* Assets.xcassets in Resources */,
 				A38C56612A12C7C6004ABF21 /* Assets.xcassets in Resources */,
 				A33250392AA294D000A5B6B3 /* GoogleService-Info.plist in Resources */,
+				A31D22772B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,8 +707,10 @@
 				A3EB2A362A886FF9004583B3 /* GasTrendsView.swift in Sources */,
 				A3DB1D692A0E75EE00372A58 /* HeatMapView.swift in Sources */,
 				A3B253BF2A7EC2B0007C668A /* ColorSchemePickerView.swift in Sources */,
+				A31D22792B098BFE008464DB /* StoreVM.swift in Sources */,
 				A3A4D4E12A082E47008E4CE7 /* LowChart.swift in Sources */,
 				A3B253C72A7ED813007C668A /* EthPriceView.swift in Sources */,
+				A31D227D2B099EB9008464DB /* TimeRangePicker.swift in Sources */,
 				A3A4D4E52A084FA6008E4CE7 /* BarsChart.swift in Sources */,
 				A3B253C52A7ED04F007C668A /* RepeatingTask.swift in Sources */,
 				A3B253CF2A7F122E007C668A /* GasPriceView.swift in Sources */,
@@ -725,8 +745,10 @@
 				A37D69152A1E35F500ECF1CA /* AlertsLimitPicker.swift in Sources */,
 				A3EB2A392A887970004583B3 /* AlertsTabView.swift in Sources */,
 				A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */,
+				A31D227F2B0A9A72008464DB /* HelperViews.swift in Sources */,
 				A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */,
 				A376B17E2AA808BE005BB320 /* DiffValueView.swift in Sources */,
+				A31D227B2B098C52008464DB /* SubscriptionView.swift in Sources */,
 				A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */,
 				A3F2C8402AF8071800A351C3 /* APIv2.swift in Sources */,
 				A33AFD8D2A930068008AE58D /* GasIndexFocus.swift in Sources */,
@@ -942,7 +964,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.7;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -980,7 +1002,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.7;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

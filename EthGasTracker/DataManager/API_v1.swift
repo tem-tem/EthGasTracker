@@ -89,6 +89,10 @@ struct GasAlert: Codable, Identifiable { // Conform to both Encodable and Decoda
             case less_than_or_equal
         }
     }
+    
+    func isPremium() -> Bool {
+        return confirmationPeriod > 0 || (disableAfterAlerts ?? 0) > 0 || disabledHours.count > 1
+    }
 }
 
 struct ApiV1StatsResponse: Decodable {

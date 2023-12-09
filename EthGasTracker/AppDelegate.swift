@@ -23,8 +23,11 @@ let one_minute = 6
 var AMOUNT_TO_FETCH = one_minute * 15
 var FETCH_INTERVAL = 10.0
 
+let FREE_ALERTS_LIMIT = 1
+
 class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
 //    @AppStorage(UIKeys.dataState) private var dataState: DataState = .loading
+    @AppStorage("subbed") var subbed: Bool = false
     @AppStorage("isStale") var isStale = false
     @AppStorage(SettingsKeys().isFastMain) private var isFastMain = false
     @Published var deviceToken: String?
@@ -75,7 +78,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
                 switch result {
                 case .success(let latestValues):
                     DispatchQueue.main.async {
-                        
+//                        print("xxx Fetching latest, subbed status: \(self.subbed)")
+                        if (!self.subbed && self.alerts.count > 0) {
+                            self.cleanUpAlerts()
+                        }
                         self.currentStats = latestValues.currentStats
                         self.gas = latestValues.indexes.normalizedGas
                         self.gasIndexEntries = latestValues.indexes.getEntriesList()
@@ -167,6 +173,28 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
                 print("error while fetching server messages")
                 print(error)
             }
+        }
+    }
+    
+    func cleanUpAlerts() {
+        // Filter out premium alerts
+        let nonPremiumAlerts = self.alerts.filter { !$0.isPremium() }
+
+        // Keep only the first three non-premium alerts
+        let alertsToKeep = Array(nonPremiumAlerts.prefix(FREE_ALERTS_LIMIT))
+        
+        let idsToDelete = Set(self.alerts.map { $0.id }).subtracting(alertsToKeep.map { $0.id })
+        
+        if (idsToDelete.count > 0) {
+            // Find the IDs of alerts to delete
+
+            // Delete the alerts not in alertsToKeep
+            idsToDelete.forEach {
+                if let id = $0 {
+                    self.deleteAlert(by: id)
+                }
+            }
+            self.fetchAlerts()
         }
     }
     

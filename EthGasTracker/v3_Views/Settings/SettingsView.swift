@@ -15,6 +15,7 @@ struct SettingsKeys {
 }
 
 struct SettingsView: View {
+    @AppStorage("subbed") var subbed: Bool = false
 //    @Binding var isPresented: Bool
     @AppStorage(SettingsKeys().hapticFeedbackEnabled) private var haptic = true
     @State private var showToast: Bool = false
@@ -45,21 +46,10 @@ struct SettingsView: View {
                                 .toggleStyle(SwitchToggleStyle(tint: .green)).tint(.accentColor)
                         }
                         ColorSchemePickerView()
+                        if (!subbed) {
+                            SubscriptionView()
+                        }
                     }
-                    
-//                    Section() {
-//                        EnableLegacyGasView()
-//                    }
-//
-//                    if (useEIP1559) {
-//                        Section(
-//                            header: Text("EIP-1559 Settings"),
-//                            footer: Text("Enabling this will emphasize the fast value, and build the graph on fast values, instead of normal.").multilineTextAlignment(.leading)
-//                        ) {
-//                            GasPriceView(isExample: true)
-//                            IsFastMainTogglerView()
-//                        }
-//                    }
                     
                     Section("About") {
                         Link(destination: URL(string: "https://t.me/gas_app")!) {
@@ -116,7 +106,7 @@ struct SettingsView: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 Button("Copy ERC20 Address") {
-                                    UIPasteboard.general.string = "0x28964B281E20afb8D9aF6184854dF605e342DFBB"
+                                    UIPasteboard.general.string = "0xeE197c3487883dF3A7d5Ab3d544166A90863379A"
                                     showToast = true
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                         showToast = false
@@ -124,29 +114,29 @@ struct SettingsView: View {
                                 }
                                 .foregroundColor(.primary)
                                 .padding(.bottom, 1)
-                                Text("0x28964B281E20afb8D9aF6184854dF605e342DFBB")
+                                Text("0xeE197c3487883dF3A7d5Ab3d544166A90863379A")
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                                 
                             }
                         }
-                        HStack {
-//                            Image(systemName: "doc.on.doc")
-                            VStack(alignment: .leading) {
-                                Button("Copy TRC20 Address") {
-                                    UIPasteboard.general.string = "TKwVwWxVU6QCjSGqqGwpsmTqHsyUdCqNYW"
-                                    showToast = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                        showToast = false
-                                    }
-                                }.foregroundColor(.primary)
-                                .padding(.bottom, 1)
-                                Text("TKwVwWxVU6QCjSGqqGwpsmTqHsyUdCqNYW")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                
-                            }
-                        }
+//                        HStack {
+////                            Image(systemName: "doc.on.doc")
+//                            VStack(alignment: .leading) {
+//                                Button("Copy TRC20 Address") {
+//                                    UIPasteboard.general.string = "TKwVwWxVU6QCjSGqqGwpsmTqHsyUdCqNYW"
+//                                    showToast = true
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                                        showToast = false
+//                                    }
+//                                }.foregroundColor(.primary)
+//                                .padding(.bottom, 1)
+//                                Text("TKwVwWxVU6QCjSGqqGwpsmTqHsyUdCqNYW")
+//                                    .font(.caption)
+//                                    .foregroundColor(.secondary)
+//                                
+//                            }
+//                        }
                     }
                 }
                 .listStyle(.insetGrouped)

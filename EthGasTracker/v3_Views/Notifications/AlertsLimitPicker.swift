@@ -47,6 +47,71 @@ enum AlertLimit: Int, CaseIterable, Identifiable {
     }
 }
 
+enum AlertConfirmation: Int, CaseIterable, Identifiable {
+//    case noLimit = 10
+//    case one = 60
+    case one = 5
+    case two = 10
+    case three = 15
+    case four = 20
+    case five = 25
+
+    var id: Int { self.rawValue }
+
+    var description: String {
+        switch self {
+//            case .noLimit:
+//                return "No Limit"
+//            case .one:
+//                return "1 minute"
+            case .one:
+                return "1 Minute"
+            case .two:
+                return "2 Minutes"
+            case .three:
+                return "3 Minutes"
+            case .four:
+                return "4 Mintues"
+            case .five:
+                return "5 Minutes"
+        }
+    }
+}
+
+enum AlertLifespan: Int, CaseIterable, Identifiable {
+//    case noLimit = 10
+//    case one = 60
+    case one = 1
+    case two = 2
+    case three = 3
+    case four = 4
+    case five = 5
+    case ten = 10
+
+    var id: Int { self.rawValue }
+
+    var description: String {
+        switch self {
+//            case .noLimit:
+//                return "No Limit"
+//            case .one:
+//                return "1 minute"
+        case .one:
+            return "1"
+        case .two:
+            return "2"
+        case .three:
+            return "3"
+        case .four:
+            return "4"
+        case .five:
+            return "5"
+        case .ten:
+            return "10"
+        }
+    }
+}
+
 struct AlertLimitPicker: View {
     @Binding var selectedLimit: AlertLimit
 

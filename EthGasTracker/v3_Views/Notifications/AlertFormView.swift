@@ -9,6 +9,9 @@ import SwiftUI
 import FirebaseAnalytics
 
 struct AlertFormView: View {
+    @AppStorage("subbed") var subbed: Bool = false
+    @AppStorage("requestReviewTimestamp") private var requestReviewTimestamp = 0.0
+    @Environment(\.requestReview) var requestReview
     @AppStorage(SettingsKeys().isFastMain) private var isFastMain = false
     @Binding var isPresented: Bool
     @EnvironmentObject var appDelegate: AppDelegate
@@ -24,6 +27,18 @@ struct AlertFormView: View {
     @State var gasThreshold = ""
     @State private var comparison: GasAlert.Condition.Comparison = .less_than
     @State private var mutePeriod = AlertLimit.thirty
+    
+    @State private var showConfirmationPeriod = false
+    @State private var confirmationPeriod = AlertConfirmation.one
+    
+    @State private var showDisableAfter = false
+    @State private var disableAfterAlerts = AlertLifespan.one
+    
+    @State private var showOffHours = false
+    @State private var disabledHoursTo = Date()
+    @State private var disabledHoursFrom = Date()
+    
+    @State private var showSubscriptionView = false
     
     var body: some View {
         NavigationView {
@@ -85,7 +100,7 @@ struct AlertFormView: View {
                 }.listRowSeparator(.hidden)
                 
                 
-                Section {
+                Section(footer: Text("Minimum time between notifications")) {
 //                    Picker("Condition", selection: $condition) {
 //                        ForEach([GasAlert.Condition.Comparison.less_than, GasAlert.Condition.Comparison.greater_than], id: \.self) { comparison in
 //    //                        HStack {
@@ -102,11 +117,85 @@ struct AlertFormView: View {
 //                    }
 //                        .pickerStyle(.segmented)
                     
-                    Picker("Limit", selection: $mutePeriod) {
+                    Picker("Break", selection: $mutePeriod) {
                         ForEach(AlertLimit.allCases) { limit in
                             Text(limit.description).tag(limit)
                         }
                     }.pickerStyle(.navigationLink)
+                }
+                
+                Section(footer: Text("Get alerts only if gas satisfies the condition for a certain time.")) {
+                    if (subbed) {
+                        Toggle("Confirmation", isOn: $showConfirmationPeriod)
+                        
+                        if (showConfirmationPeriod) {
+                            Picker("Duration", selection: $confirmationPeriod) {
+                                ForEach(AlertConfirmation.allCases) { hold in
+                                    Text(hold.description).tag(hold)
+                                }
+                            }
+                        }
+                    } else {
+                        HStack {
+                            Text("Confirmation")
+                            Spacer()
+                            Button("Unlock") {
+                                showSubscriptionView = true
+                            }
+                                .sheet(isPresented: $showSubscriptionView) {
+                                    PurchaseView()
+                                }
+                        }
+                    }
+                }
+                
+                Section(footer: Text("No alerts during chosen hours.")) {
+                    if (subbed) {
+                        Toggle("Off Hours", isOn: $showOffHours)
+                            .toggleStyle(.switch)
+                        
+                        if (showOffHours) {
+                            DatePicker("Disable From", selection: $disabledHoursFrom, displayedComponents: .hourAndMinute)
+                            DatePicker("Disable To", selection: $disabledHoursTo, displayedComponents: .hourAndMinute)
+                        }
+                    } else {
+                        HStack {
+                            Text("Off Hours")
+                            Spacer()
+                            Button("Unlock") {
+                                showSubscriptionView = true
+                            }
+                                .sheet(isPresented: $showSubscriptionView) {
+                                    PurchaseView()
+                                }
+                        }
+                    }
+                }
+                
+                Section(footer: Text("Stops sending alerts after a certain number.")) {
+                    if (subbed) {
+                        Toggle("Limited Lifespan", isOn: $showDisableAfter)
+                            .toggleStyle(.switch)
+                        
+                        if (showDisableAfter) {
+                            Picker("Alerts", selection: $disableAfterAlerts) {
+                                ForEach(AlertLifespan.allCases) { lifespan in
+                                    Text(lifespan.description).tag(lifespan)
+                                }
+                            }
+                        }
+                    } else {
+                        HStack {
+                            Text("Limited Lifespan")
+                            Spacer()
+                            Button("Unlock") {
+                                showSubscriptionView = true
+                            }
+                                .sheet(isPresented: $showSubscriptionView) {
+                                    PurchaseView()
+                                }
+                        }
+                    }
                 }
                 
                 Section {
@@ -126,6 +215,10 @@ struct AlertFormView: View {
                             }
 
                             let condition = GasAlert.Condition(comparison: comparison, value: gasThresholdInt)
+                            
+                            let disabledHoursFromSeconds = secondsSinceMidnightUTC(from: disabledHoursFrom)
+                            let disabledHoursToSeconds = secondsSinceMidnightUTC(from: disabledHoursTo)
+                            
                             let alert = GasAlert(
                                 id: nil,
                                 deviceId: deviceToken,
@@ -133,10 +226,9 @@ struct AlertFormView: View {
                                 conditions: [condition],
                                 disabled: false,
                                 legacyGas: false,
-                                confirmationPeriod: 0,
-                                disableAfterAlerts: 0,
-                                disabledHours: []
-//                                offHours: []
+                                confirmationPeriod: showConfirmationPeriod ? confirmationPeriod.rawValue : 0,
+                                disableAfterAlerts: showDisableAfter ? disableAfterAlerts.rawValue : 0,
+                                disabledHours: showOffHours ? [disabledHoursFromSeconds, disabledHoursToSeconds] : []
                             )
                             appDelegate.addAlert(alert: alert)
                             let params = [
@@ -145,6 +237,7 @@ struct AlertFormView: View {
                             ] as [String : Any]
                             Analytics.logEvent("add_alert", parameters: params)
                             isPresented = false
+                            askForReview()
                         } label: {
                             HStack {
                                 Spacer()
@@ -176,6 +269,32 @@ struct AlertFormView: View {
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
         }
+    }
+    
+    func askForReview() {
+        let twoWeeks = 14 * 24 * 60 * 60.0
+        let currentTime = Date.now.timeIntervalSince1970
+        
+        if (requestReviewTimestamp + twoWeeks < currentTime) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+                requestReview()
+                requestReviewTimestamp = Date.now.timeIntervalSince1970
+            }
+        }
+    }
+    
+    func secondsSinceMidnightUTC(from date: Date) -> Int {
+        // Convert to UTC
+        let utcCalendar = Calendar.current
+        let utcComponents = utcCalendar.dateComponents(in: TimeZone(secondsFromGMT: 0)!, from: date)
+        
+        // Extract hour and minute
+        guard let hour = utcComponents.hour, let minute = utcComponents.minute else {
+            return 0
+        }
+
+        // Calculate seconds since midnight
+        return hour * 3600 + minute * 60
     }
 }
 
