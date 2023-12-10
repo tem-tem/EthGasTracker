@@ -8,10 +8,14 @@
 import SwiftUI
 
 
-struct PriceView2: View {
+struct ActionPriceBoxView: View {
     var selectedKey: String?
     var action: ActionEntity
     @AppStorage(SettingsKeys().isFastMain) private var isFastMain = false
+    @AppStorage("currency") var currency: String = "USD"
+    var currencyCode: String {
+        return getSymbol(forCurrencyCode: currency) ?? currency
+    }
     
     var lastValue: Float {
         let normalFast = action.lastEntry()?.value ?? NormalFast(normal: 0, fast: 0)
@@ -29,7 +33,7 @@ struct PriceView2: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            Text(String(format: "$%.2f", selectedValue ?? lastValue))
+            Text(String(format: "\(currencyCode.count == 1 ? currencyCode : "")%.2f", selectedValue ?? lastValue))
                 .font(.system(selectedKey != nil ? .title3 : .title2, design: .monospaced))
                 .bold(selectedKey == nil)
                 .padding(.bottom, 6)
@@ -51,46 +55,52 @@ struct PriceView2: View {
     }
 }
 
-struct ActionsPriceListView: View {
+struct ActionsGridView: View {
     @EnvironmentObject var appDelegate: AppDelegate
     @Binding var selectedKey: String?
     var actions: GroupedActions
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    @AppStorage("currency") var currency: String = "USD"
+    var currencyCode: String {
+        return getSymbol(forCurrencyCode: currency) ?? currency
+    }
     
     
     var body: some View {
-        LazyVGrid(columns: columns, spacing: 10) {
-            ForEach(actions.sorted(by: {$0.key < $1.key}), id: \.key) { groupName, groupAction in
-                ForEach(groupAction.sorted(by: {$0.metadata.name < $1.metadata.name}), id: \.metadata.key) {action in
-                    VStack (alignment: .leading) {
-                        VStack(alignment: .center) {
-                            HStack {
-                                Spacer()
+        VStack {
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(actions.sorted(by: {$0.key < $1.key}), id: \.key) { groupName, groupAction in
+                    ForEach(groupAction.sorted(by: {$0.metadata.name < $1.metadata.name}), id: \.metadata.key) {action in
+                        VStack (alignment: .leading) {
+                            VStack(alignment: .center) {
+                                HStack {
+                                    Spacer()
+                                }
+                                ActionPriceBoxView(selectedKey: selectedKey, action: action)
+                                    .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color : .primary)
                             }
-                            PriceView2(selectedKey: selectedKey, action: action)
-                                .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color : .primary)
+    //                        .background(.ultraThinMaterial)
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+    //                                .stroke( selectedKey == nil ? appDelegate.gasLevel.color.opacity(0.3) : Color.secondary.opacity(0.3), lineWidth: 1)
+                                    .stroke(Color.secondary.opacity(0.3), lineWidth: 1)
+                            )
+                            Text(action.metadata.name)
+                                .font(.caption)
+                                .bold()
+                                .textCase(.uppercase)
+                                .padding(.bottom, -5)
+                            
+                            Text(addSpacesToCamelCase(groupName))
+                                .font(.caption)
+                                .textCase(.uppercase)
+                                .foregroundColor(Color.secondary)
+    //                            .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color.opacity(0.75) : Color.secondary)
                         }
-//                        .background(.ultraThinMaterial)
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-//                                .stroke( selectedKey == nil ? appDelegate.gasLevel.color.opacity(0.3) : Color.secondary.opacity(0.3), lineWidth: 1)
-                                .stroke(Color.secondary.opacity(0.3), lineWidth: 1)
-                        )
-                        Text(action.metadata.name)
-                            .font(.caption)
-                            .bold()
-                            .textCase(.uppercase)
-                            .padding(.bottom, -5)
-                        
-                        Text(addSpacesToCamelCase(groupName))
-                            .font(.caption)
-                            .textCase(.uppercase)
-                            .foregroundColor(Color.secondary)
-//                            .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color.opacity(0.75) : Color.secondary)
+                        .padding(.bottom, 10)
+    //                    .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color : .primary)
                     }
-                    .padding(.bottom, 10)
-//                    .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color : .primary)
                 }
             }
         }

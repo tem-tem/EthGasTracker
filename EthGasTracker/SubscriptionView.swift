@@ -72,7 +72,7 @@ struct GoodStuff: View {
                     Text("Unlimited Alerts")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
-                    Text("Create as many as you want").font(.caption)
+                    Text("Create as many as you want.").font(.caption)
                 }
             }
             HStack(alignment: .top) {
@@ -117,6 +117,19 @@ struct GoodStuff: View {
                     Text("Auto-Disables alert after a certain number of notifications.").font(.caption)
                 }
             }
+            HStack(alignment: .top) {
+                Image(systemName: "arrow.left.arrow.right.circle")
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(Color(.purple))
+                    .background(Color(.purple).opacity(0.1))
+                    .cornerRadius(7)
+                VStack(alignment: .leading) {
+                    Text("160+ Currencies")
+                        .padding(.top, 5)
+                        .padding(.bottom, 2)
+                    Text("See Ethereum price and actions in 160+ different currencies.").font(.caption)
+                }
+            }
         }
     }
 }
@@ -131,7 +144,7 @@ struct NextGoodStuff: View {
                     .background(Color(.systemGreen).opacity(0.1))
                     .cornerRadius(7)
                 VStack(alignment: .leading) {
-                    Text("Text Alerts (SMS).")
+                    Text("Text Alerts (SMS)")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Why not.").font(.caption)
@@ -144,7 +157,7 @@ struct NextGoodStuff: View {
                     .background(Color(.systemBlue).opacity(0.1))
                     .cornerRadius(7)
                 VStack(alignment: .leading) {
-                    Text("Action Features.")
+                    Text("Action Features")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Create custom actions, and change what's displayed on the homescreen.").font(.caption)
@@ -157,7 +170,7 @@ struct NextGoodStuff: View {
                     .background(Color(.systemPink).opacity(0.1))
                     .cornerRadius(7)
                 VStack(alignment: .leading) {
-                    Text("Customizations. Icons, Colors, Levels.")
+                    Text("Customizations. Icons, Colors, Levels")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Still waiting for our artist to draw an icon... at least one. Come on dude, it's been a year already.").font(.caption)
@@ -170,7 +183,7 @@ struct NextGoodStuff: View {
                     .background(Color(.systemIndigo).opacity(0.1))
                     .cornerRadius(7)
                 VStack(alignment: .leading) {
-                    Text("iPad, Mac, Watch Support.")
+                    Text("iPad, Mac, Watch Support")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("God help us go through testing for all of the screen sizes.").font(.caption)
@@ -183,7 +196,7 @@ struct NextGoodStuff: View {
                     .background(Color(.systemMint).opacity(0.1))
                     .cornerRadius(7)
                 VStack(alignment: .leading) {
-                    Text("More Precise Averages.")
+                    Text("More Precise Averages")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Down to the minutes, not just hours.").font(.caption)
@@ -196,7 +209,7 @@ struct NextGoodStuff: View {
                     .background(Color(.systemTeal).opacity(0.1))
                     .cornerRadius(7)
                 VStack(alignment: .leading) {
-                    Text("Graphs.")
+                    Text("Graphs")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Weekly, monthly, or a custom range.").font(.caption)
@@ -209,7 +222,7 @@ struct NextGoodStuff: View {
                     .background(Color(.systemGreen).opacity(0.1))
                     .cornerRadius(7)
                 VStack(alignment: .leading) {
-                    Text("Reports.")
+                    Text("Reports")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Brings most important stuff to the surface.").font(.caption)
@@ -222,7 +235,7 @@ struct NextGoodStuff: View {
                     .background(Color(.systemOrange).opacity(0.1))
                     .cornerRadius(7)
                 VStack(alignment: .leading) {
-                    Text("Widgets.")
+                    Text("Widgets")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("More widgets, but with extra stuff.").font(.caption)
@@ -236,7 +249,7 @@ struct NextGoodStuff: View {
                     .cornerRadius(7)
                 
                 VStack(alignment: .leading) {
-                    Text("Heatmaps.")
+                    Text("Heatmaps")
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("It's coming back. Yep.").font(.caption)
@@ -267,7 +280,7 @@ struct BuyButtons: View {
                         Text(product.description).font(.caption)
                     }
                     Spacer()
-                    Text(product.displayPrice).bold()
+                    Text(product.displayPrice).bold().padding(0)
                 }
                 .foregroundColor(product.id == "monthly_001" ? .white : .primary)
                 .background(Color.accentColor.gradient.opacity(product.id == "monthly_001" ? 1 : 0.1))
@@ -309,7 +322,7 @@ struct PurchaseView: View {
                             .frame(maxWidth: 60)
                         Spacer()
                     }
-                        .padding(.top, 50)
+                        .padding(.top, 20)
                         .padding(.bottom, 10)
                     Text("Gas Alert Plus")
                         .font(.system(.title, design: .rounded))

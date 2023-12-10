@@ -52,10 +52,10 @@ struct PriceView: View {
                 .padding(.trailing)
             
             if (selectedValue != nil) {
-                Text(String(format: "$%.2f", selectedValue!))
+                Text(String(format: "%.2f", selectedValue!))
                     .font(.system(.body, design: .monospaced))
             } else {
-                Text(String(format: "$%.2f", lastValue))
+                Text(String(format: "%.2f", lastValue))
                     .font(.system(.body, design: .monospaced))
             }
         }
@@ -67,17 +67,31 @@ struct ActionsListFocusView: View {
     var actions: GroupedActions
     @Binding var selectedKey: String?
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    @AppStorage("currency") var currency: String = "USD"
+    @ObservedObject var currencyModel = CurrencyViewModel()
+    
+    var sortedActions: [(key: String, value: [ActionEntity])] {
+        actions.sorted { $0.key < $1.key }
+    }
     
     var body: some View {
-        ScrollView(.vertical) {
-            ForEach(actions, id: \.key) { groupName, groupAction in
-                VStack(alignment: .leading) {
-                    HeaderView(groupName: groupName)
-                    ForEach(groupAction.sorted(by: {$0.metadata.name < $1.metadata.name}), id: \.metadata.key) { action in
-                        PriceView(selectedKey: selectedKey, action: action)
-                        Divider()
-                    }
-                }.padding(.bottom)
+        VStack {
+            HStack {
+                Text("Actions are in \(currencyModel.getByCode(code: currency)?.name ?? currency)")
+                    .font(.caption)
+                    .textCase(.uppercase)
+                    .foregroundColor(Color.secondary)
+            }
+            ScrollView(.vertical) {
+                ForEach(sortedActions, id: \.key) { groupName, groupAction in
+                    VStack(alignment: .leading) {
+                        HeaderView(groupName: groupName)
+                        ForEach(groupAction.sorted(by: {$0.metadata.name < $1.metadata.name}), id: \.metadata.key) { action in
+                            PriceView(selectedKey: selectedKey, action: action)
+                            Divider()
+                        }
+                    }.padding(.bottom)
+                }
             }
         }
     }

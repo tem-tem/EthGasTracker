@@ -32,7 +32,7 @@ struct GasIndexProvider: TimelineProvider {
 //            let timeline = Timeline(entries: [entry], policy: .atEnd)
 //            completion(timeline)
 //        }
-        api.getLatest() { result in
+        api.getLatest(currency: "USD") { result in
             var gasIndexEntries: [GasIndexEntity.ListEntry] = []
             var gasLevel: GasLevel = GasLevel(currentStats: CurrentStats.placeholder(), currentGas: 0.0)
             

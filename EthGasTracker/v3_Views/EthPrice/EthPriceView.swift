@@ -12,6 +12,10 @@ struct EthPriceView: View {
     @Binding var selectedDate: Date?
     @AppStorage("isStale") var isStale = false
     @EnvironmentObject var appDelegate: AppDelegate
+    @AppStorage("currency") var currency: String = "USD"
+    var currencyCode: String {
+        return getSymbol(forCurrencyCode: currency) ?? currency
+    }
     
     var lastValue: Float {
         return (appDelegate.ethPrice.lastEntry()?.value ?? PriceData(price: 0)).price
@@ -32,10 +36,10 @@ struct EthPriceView: View {
                         targetValue: selectedValue
                     )
                     Text("ETH")
-                    Text(String(format: "$%.2f", selectedValue)).bold()
+                    Text(String(format: "\(currencyCode)\(currencyCode.count == 1 ? "" : " ")%.2f", selectedValue)).bold()
                 } else {
                     Text("ETH")
-                    Text(String(format: "$%.2f", lastValue)).bold()
+                    Text(String(format: "\(currencyCode)\(currencyCode.count == 1 ? "" : " ")%.2f", lastValue)).bold()
                     
                 }
             }

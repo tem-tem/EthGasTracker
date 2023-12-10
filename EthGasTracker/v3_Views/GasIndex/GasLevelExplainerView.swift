@@ -51,6 +51,24 @@ struct GasLevelExplainerView: View {
         var color: Color {
             return GasLevel.getColor(for: level)
         }
+        var value: Float {
+            switch level {
+            case 10:
+                return appDelegate.currentStats.max
+            case 9:
+                return appDelegate.currentStats.p95
+            case 8:
+                return appDelegate.currentStats.p75
+            case 3:
+                return appDelegate.currentStats.p25
+            case 2:
+                return appDelegate.currentStats.p5
+            case 1:
+                return appDelegate.currentStats.min
+            default:
+                return 0
+            }
+        }
 
         return HStack(alignment: .center) {
             VStack(spacing: 0) {
@@ -63,17 +81,35 @@ struct GasLevelExplainerView: View {
                     .frame(width: 1, height: 40)
                 switch level {
                 case 10:
-                    Text("MAX")
+                    Text("\(Int(appDelegate.currentStats.max))")
+                        .padding(.horizontal, 4)
+                        .border(color)
+                        .cornerRadius(2)
                 case 9:
-                    Text("95th")
+                    Text("\(Int(appDelegate.currentStats.p95))")
+                        .padding(.horizontal, 4)
+                        .border(color)
+                        .cornerRadius(2)
                 case 8:
-                    Text("75th")
+                    Text("\(Int(appDelegate.currentStats.p75))")
+                        .padding(.horizontal, 4)
+                        .border(color)
+                        .cornerRadius(2)
                 case 3:
-                    Text("25th")
+                    Text("\(Int(appDelegate.currentStats.p25))")
+                        .padding(.horizontal, 4)
+                        .border(color)
+                        .cornerRadius(2)
                 case 2:
-                    Text("5th")
+                    Text("\(Int(appDelegate.currentStats.p5))")
+                        .padding(.horizontal, 4)
+                        .border(color)
+                        .cornerRadius(2)
                 case 1:
-                    Text("MIN")
+                    Text("\(Int(appDelegate.currentStats.min))")
+                        .padding(.horizontal, 4)
+                        .border(color)
+                        .cornerRadius(2)
                 case 0:
                     Image(systemName: "arrow.down")
                         .bold()

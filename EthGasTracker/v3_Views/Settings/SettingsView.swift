@@ -46,6 +46,7 @@ struct SettingsView: View {
                                 .toggleStyle(SwitchToggleStyle(tint: .green)).tint(.accentColor)
                         }
                         ColorSchemePickerView()
+                        CurrencyListButtonView()
                         if (!subbed) {
                             SubscriptionView()
                         }

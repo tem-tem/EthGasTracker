@@ -29,6 +29,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
 //    @AppStorage(UIKeys.dataState) private var dataState: DataState = .loading
     @AppStorage("subbed") var subbed: Bool = false
     @AppStorage("isStale") var isStale = false
+    @AppStorage("currency") var currency: String = "USD"
     @AppStorage(SettingsKeys().isFastMain) private var isFastMain = false
     @Published var deviceToken: String?
     let dataManager = DataManager()
@@ -64,6 +65,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     
     var repeatedFetch: RepeatingTask {
         RepeatingTask(interval: FETCH_INTERVAL) {
+            let carryingCurrency = self.currency
 //            self.dataManager.getEntities(amount: AMOUNT_TO_FETCH, actions: "") { result in
 //                switch result {
 //                case .success(let entities):
@@ -74,7 +76,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
 //                    print("Error normalizing response: \(error)")
 //                }
 //            }
-            self.api_v2.getLatest() { result in
+            self.api_v2.getLatest(currency: carryingCurrency) { result in
                 switch result {
                 case .success(let latestValues):
                     DispatchQueue.main.async {
@@ -90,7 +92,11 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
                         
 //                        self.gasLevel = GasLevel(currentStats: latestValues.currentStats, currentGas: 124.0)
                         
-                        self.ethPrice = latestValues.indexes.normalizedEthPrice
+                        if self.currency != "USD", let rateString = latestValues.currencyRate, let rate = Float(rateString) {
+                            self.ethPrice = latestValues.indexes.getNormalizedEthPrice(in: rate)
+                        } else {
+                            self.ethPrice = latestValues.indexes.normalizedEthPrice
+                        }
                         
                         let minMaxValues = latestValues.indexes.findMinMax()
                         let min = self.isFastMain ? minMaxValues.fastMin : minMaxValues.normalMin

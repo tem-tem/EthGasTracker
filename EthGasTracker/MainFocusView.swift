@@ -59,7 +59,7 @@ struct MainFocusView: View {
                 //                }
                 //                .frame(minHeight: 250)
                 //                .padding(.horizontal)
-                ActionsPriceListView(selectedKey: $selectedKey, actions: appDelegate.defaultActions)
+                ActionsGridView(selectedKey: $selectedKey, actions: appDelegate.defaultActions)
                     .padding(.horizontal)
                 
                 Button {

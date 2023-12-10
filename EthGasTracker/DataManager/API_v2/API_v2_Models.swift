@@ -13,6 +13,7 @@ struct APIv2_GetLatestResponse: Codable {
     let currentStats: CurrentStats
     let defaultActions: [String: Action]
     let indexes: Indexes
+    let currencyRate: String?
 }
 
 struct GasLevel {
@@ -116,7 +117,6 @@ struct GasLevel {
     }
 }
 
-
 struct CurrentStats: Codable {
     let minuteOfDay: Int
     let max: Float
@@ -176,7 +176,6 @@ struct CurrentStats: Codable {
     }
 }
 
-
 struct Action: Codable {
     let name: String
     let groupName: String
@@ -211,6 +210,16 @@ extension Indexes {
             } else {
                 print("Failed to convert priceValue to Float \(priceIndex.Values["price"] ?? "")")
             }
+        }
+        
+        return PriceDataEntity(entries: entries)
+    }
+    
+    func getNormalizedEthPrice(in rate: Float) -> PriceDataEntity {
+        var entries: [String: PriceData] = normalizedEthPrice.entries
+        
+        for (key, value) in entries {
+            entries[key] = PriceData(price: value.price * rate)
         }
         
         return PriceDataEntity(entries: entries)
@@ -297,7 +306,12 @@ func normalizeAndGroupActions(from response: APIv2_GetLatestResponse, defaultOnl
     for priceIndex in response.indexes.eth_price {
         if let price = Float(priceIndex.Values["price"] ?? "") {
             let timestamp = priceIndex.ID.split(separator: "-").first ?? ""
-            ethPrices[String(timestamp)] = price
+            
+            if let rateString = response.currencyRate, let rate = Float(rateString) {
+                ethPrices[String(timestamp)] = price * rate
+            } else {
+                ethPrices[String(timestamp)] = price
+            }
         }
     }
 

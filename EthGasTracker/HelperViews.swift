@@ -43,7 +43,8 @@ struct HStackWithRoundedBorder<Content: View>: View {
         HStack {
             content
         }
-        .padding()
+        .padding(.vertical, 2)
+        .padding(.horizontal)
         .overlay(
             RoundedRectangle(cornerRadius: cornerRadius)
                 .stroke(Color.secondary.opacity(overlayOpacity), lineWidth: 1)

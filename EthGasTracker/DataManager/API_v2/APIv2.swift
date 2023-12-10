@@ -18,13 +18,14 @@ class Endpoints {
     
     init () {
         let env = self.PROD
-        self.latest = env + "/api/v2/latest" + "?amount=" + String(AMOUNT_TO_FETCH)
+        self.latest = env + "/api/v3/latest" + "?amount=" + String(AMOUNT_TO_FETCH)
     }
 }
 
 class APIv2 {
-    func getLatest(completion: @escaping (Result<APIv2_GetLatestResponse, Error>) -> Void) {
-        guard let url = URL(string: Endpoints().latest) else {
+    func getLatest(currency: String,  completion: @escaping (Result<APIv2_GetLatestResponse, Error>) -> Void) {
+        let currencyParam = currency == "USD" ? "" : "&currency=" + currency
+        guard let url = URL(string: Endpoints().latest + currencyParam) else {
             completion(.failure(APIError.invalidURL))
             return
         }

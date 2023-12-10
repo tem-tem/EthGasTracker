@@ -26,7 +26,7 @@ struct DiffValueView: View {
                 } else {
                     Image(systemName: "arrow.up")
                 }
-                Text(String(format: "$%.2f", abs(diff)))
+                Text(String(format: "%.2f", abs(diff)))
             }
             .opacity(0.5)
         }
