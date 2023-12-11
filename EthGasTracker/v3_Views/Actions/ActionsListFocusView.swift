@@ -76,6 +76,7 @@ struct ActionsListFocusView: View {
     
     var body: some View {
         VStack {
+            Text("Actions").font(.title).bold().padding()
             HStack {
                 Text("Actions are in \(currencyModel.getByCode(code: currency)?.name ?? currency)")
                     .font(.caption)
