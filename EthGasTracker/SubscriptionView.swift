@@ -130,6 +130,19 @@ struct GoodStuff: View {
                     Text("See Ethereum price and actions in 160+ different currencies.").font(.caption)
                 }
             }
+            HStack(alignment: .top) {
+                Image(systemName: "chart.xyaxis.line")
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(Color(.systemTeal))
+                    .background(Color(.systemTeal).opacity(0.1))
+                    .cornerRadius(7)
+                VStack(alignment: .leading) {
+                    Text("Historical Data")
+                        .padding(.top, 5)
+                        .padding(.bottom, 2)
+                    Text("Past hour, day, week, month.").font(.caption)
+                }
+            }
         }
     }
 }
@@ -200,19 +213,6 @@ struct NextGoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Down to the minutes, not just hours.").font(.caption)
-                }
-            }
-            HStack(alignment: .top) {
-                Image(systemName: "chart.xyaxis.line")
-                    .frame(width: 32, height: 32)
-                    .foregroundColor(Color(.systemTeal))
-                    .background(Color(.systemTeal).opacity(0.1))
-                    .cornerRadius(7)
-                VStack(alignment: .leading) {
-                    Text("Graphs")
-                        .padding(.top, 5)
-                        .padding(.bottom, 2)
-                    Text("Weekly, monthly, or a custom range.").font(.caption)
                 }
             }
             HStack(alignment: .top) {
