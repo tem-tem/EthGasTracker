@@ -24,44 +24,42 @@ struct GasIndexChartFocus: View {
     let primaryColor = Color.primary
     
     var body: some View {
-        VStack {
-            ChartItself(
+        ChartItself(
+            entries: entries,
+            min: (min ?? 1),
+            max: (max ?? 1),
+            selectedDate: $selectedDate,
+            selectedPrice: $selectedPrice,
+            selectedIndex: $selectedIndex
+        )
+        
+        .chartOverlay { proxy in
+            SwipeResolver(
+                proxy: proxy,
                 entries: entries,
-                min: (min ?? 1),
-                max: (max ?? 1),
                 selectedDate: $selectedDate,
                 selectedPrice: $selectedPrice,
+                selectedKey: $selectedKey,
                 selectedIndex: $selectedIndex
             )
-            .chartOverlay { proxy in
-                SwipeResolver(
-                    proxy: proxy,
-                    entries: entries,
-                    selectedDate: $selectedDate,
-                    selectedPrice: $selectedPrice,
-                    selectedKey: $selectedKey,
-                    selectedIndex: $selectedIndex
-                )
-            }
-            .chartYScale(domain: (min ?? 0)...(max ?? 10))
-            .chartYAxis(.hidden)
-            .chartXAxis{
-                AxisMarks(values: [0, 10, 20, 30, 40, 50, 60, 70, 80]) { value in
-                    AxisValueLabel {
-                        if let index = value.as(Int.self),
-                           entries.count > index {
-                            let entry = entries[index]
-                            Text(entry.timestamp, format: .dateTime.hour(.defaultDigits(amPM: .omitted))) +
-                            Text(":") +
-                            Text(entry.timestamp, format: .dateTime.minute(.twoDigits))
-//                                .foregroundColor(selectedKey != nil ? .secondary : appDelegate.gasLevel.color)
-                        }
-                    }.font(.caption2)
-                }
-            }
-            .padding(.vertical, 0)
-            .padding(.trailing)
         }
+        .chartYScale(domain: (min ?? 0)...(max ?? 10))
+        .chartYAxis(.hidden)
+        .chartXAxis{
+            AxisMarks(values: [0, 10, 20, 30, 40, 50, 60, 70, 80]) { value in
+                AxisValueLabel {
+                    if let index = value.as(Int.self),
+                       entries.count > index {
+                        let entry = entries[index]
+                        Text(entry.timestamp, format: .dateTime.hour(.defaultDigits(amPM: .omitted))) +
+                        Text(":") +
+                        Text(entry.timestamp, format: .dateTime.minute(.twoDigits))
+//                                .foregroundColor(selectedKey != nil ? .secondary : appDelegate.gasLevel.color)
+                    }
+                }.font(.caption2)
+            }
+        }
+        .padding(.horizontal)
     }
 }
 

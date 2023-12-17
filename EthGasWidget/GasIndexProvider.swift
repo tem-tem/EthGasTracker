@@ -9,7 +9,7 @@ import Foundation
 import WidgetKit
 
 struct GasIndexProvider: TimelineProvider {
-    let api = APIv2()
+    let api = APIv3()
     let dataManager = DataManager()
     func placeholder(in context: Context) -> GasIndexEntry {
         GasIndexEntry(date: Date(), gasIndexEntries: [], gasLevel: GasLevel(currentStats: CurrentStats.placeholder(), currentGas: 0.0))

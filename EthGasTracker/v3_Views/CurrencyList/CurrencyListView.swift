@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CurrencyListButtonView: View {
+    @EnvironmentObject var appDelegate: AppDelegate
     @State private var showingSheet = false
     @ObservedObject var viewModel = CurrencyViewModel()
     @AppStorage("subbed") var subbed: Bool = false
@@ -44,6 +45,12 @@ struct CurrencyListButtonView: View {
                 CurrencyListView(currencies: viewModel.currencies, onSelect: {
                     currency = $0.code
                     showingSheet = false
+                    appDelegate.historicalData_1h = HistoricalDataCahced.placeholder()
+                    appDelegate.historicalData_1d = HistoricalDataCahced.placeholder()
+                    appDelegate.historicalData_1w = HistoricalDataCahced.placeholder()
+                    appDelegate.historicalData_1m = HistoricalDataCahced.placeholder()
+                    appDelegate.currency = $0.code
+                    appDelegate.refresh()
                 })
             } else {
                 PurchaseView()
@@ -53,6 +60,7 @@ struct CurrencyListButtonView: View {
 }
 
 struct CurrencyListView: View {
+    @EnvironmentObject var appDelegate: AppDelegate
     var currencies: [Currency]
     var onSelect: (Currency) -> Void
     @AppStorage("currency") var active_currency: String = "USD"
@@ -89,7 +97,7 @@ struct CurrencyListView: View {
                                 Spacer()
                                 Text(getSymbol(forCurrencyCode: currency.code) ?? currency.code)
                                     .font(.system(.headline, design: .monospaced))
-                            }.foregroundStyle(currency.code == active_currency ? Color.accentColor : .primary)
+                            }.foregroundStyle(currency.code == active_currency ? appDelegate.gasLevel.color : .primary)
 
                             if currency.code == active_currency {
                                 Text("Selected")

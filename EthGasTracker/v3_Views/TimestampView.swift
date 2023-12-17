@@ -10,7 +10,17 @@ import SwiftUI
 struct TimeAgoView: View {
     @EnvironmentObject var appDelegate: AppDelegate
     @Binding var selectedDate: Date?
+    @Binding var selectedHistoricalData: HistoricalData?
     
+    var activeDate: Date? {
+        if let date = selectedDate {
+            return date
+        }
+        if let date = selectedHistoricalData?.date {
+            return date
+        }
+        return nil
+    }
     var dateFromTimestamp: Date {
         Date(timeIntervalSince1970: TimeInterval(appDelegate.timestamp))
     }
@@ -18,29 +28,33 @@ struct TimeAgoView: View {
     var customDateFormat: String {
         let currentDate = Date()
 
-        if dateFromTimestamp.isSameDay(as: currentDate) {
-            return "HH:mm:ss"
-        } else if dateFromTimestamp.isSameMonth(as: currentDate) {
-            return "dd HH:mm:ss"
-        } else if dateFromTimestamp.isSameYear(as: currentDate) {
-            return "MMM dd HH:mm:ss"
+        if let date = activeDate {
+            if date.isSameDay(as: currentDate) {
+                return "HH:mm:ss"
+            } else if date.isSameMonth(as: currentDate) {
+                return "dd HH:mm:ss"
+            } else if date.isSameYear(as: currentDate) {
+                return "MMM dd HH:mm:ss"
+            } else {
+                return "yyyy MMM dd HH:mm:ss"
+            }
         } else {
-            return "yyyy MMM dd HH:mm:ss"
+            return "HH:mm:ss"
         }
     }
     
     var body: some View {
         HStack {
-            if let date = selectedDate {
-                Image(systemName: "arrow.left")
+            if let date = activeDate {
+//                Image(systemName: "arrow.left")
                 Text(date, formatter: DateFormatter.customDateFormatter(withFormat: customDateFormat))
                 let timeDiff = date.timeIntervalSince(dateFromTimestamp)
                 let hours = Int(timeDiff) / 3600
                 let minutes = (Int(timeDiff) % 3600) / 60
                 let seconds = Int(timeDiff) % 60
 
-                Text(String(format: "-%02dm%02ds", abs(minutes), abs(seconds)))
-                    .opacity(0.5)
+//                Text(String(format: "-%02dm%02ds", abs(minutes), abs(seconds)))
+//                    .opacity(0.5)
             }
         }
         .font(.system(.title3, design: .monospaced))

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct APIv2_GetLatestResponse: Codable {
+struct APIv3_GetLatestResponse: Codable {
     let actions: [String: Action]
     let currentStats: CurrentStats
     let defaultActions: [String: Action]
@@ -299,7 +299,7 @@ struct GasIndex: Codable {
 
 typealias GroupedActions = [Dictionary<String, [ActionEntity]>.Element]
 
-func normalizeAndGroupActions(from response: APIv2_GetLatestResponse, defaultOnly: Bool = false) -> GroupedActions {
+func normalizeAndGroupActions(from response: APIv3_GetLatestResponse, defaultOnly: Bool = false) -> GroupedActions {
     let normalizedGas = response.indexes.normalizedGas
 
     var ethPrices: [String: Float] = [:]
@@ -350,5 +350,3 @@ private func normalizeAction(rawAction: Action, normalizedGas: [String: NormalFa
 
     return ActionEntity(entries: entries, metadata: metadata)
 }
-
-

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct MainFocusView: View {
     @EnvironmentObject var appDelegate: AppDelegate
     @State private var selectedDate: Date? = nil
@@ -17,18 +18,22 @@ struct MainFocusView: View {
     @State private var showingGuide = false
     @AppStorage(SettingsKeys().hapticFeedbackEnabled) private var haptic = true
     let hapticFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    let hapticFeedbackGeneratorHeavy = UIImpactFeedbackGenerator(style: .heavy)
+    @State private var activeChartType = ChartTypes.live
+    @State private var selectedHistoricalData: HistoricalData? = nil
+    
+    var isActiveSelection: Bool {
+        return selectedPrice != nil || selectedHistoricalData != nil
+    }
     
     var body: some View {
         ZStack {
-            //            RadialGradient(colors: [.accentColor.opacity(1), .accentColor.opacity(0)],
-            //                                  center: .top,
-            //                                  startRadius: 0,
-            //                                  endRadius: 500)
-            //                .ignoresSafeArea()
             VStack {
                 EthPriceView(
                     selectedKey: $selectedKey,
-                    selectedDate: $selectedDate
+                    selectedDate: $selectedDate,
+                    selectedHistoricalData: $selectedHistoricalData,
+                    isActiveSelection: isActiveSelection
                 )
                 .padding(.horizontal)
                 .padding(.vertical, 3)
@@ -38,11 +43,11 @@ struct MainFocusView: View {
                 ServerMessages(messages: appDelegate.serverMessages)
                     .padding(.horizontal)
                     .frame(height: 50)
-                    .opacity(selectedPrice != nil ? 0 : 1)
+                    .opacity(isActiveSelection ? 0 : 1)
                     .overlay(
-                        TimeAgoView(selectedDate: $selectedDate)
+                        TimeAgoView(selectedDate: $selectedDate, selectedHistoricalData: $selectedHistoricalData)
                      )
-                GasIndexFocus(selectedDate: $selectedDate, selectedPrice: $selectedPrice)
+                GasIndexFocus(selectedDate: $selectedDate, selectedPrice: $selectedPrice, selectedHistoricalData: $selectedHistoricalData, isActiveSelection: isActiveSelection)
 //                    .padding(.top, 10)
                     .padding(.top, 20)
                     .padding(.bottom, 10)
@@ -53,59 +58,57 @@ struct MainFocusView: View {
                     .sheet(isPresented: $showingGuide) {
                         GasLevelExplainerView()
                     }
-                //                ScrollView {
-                //                    ActionsListFocusView(actions: appDelegate.actions,
-                //                                         selectedKey: $selectedKey)
-                //                }
-                //                .frame(minHeight: 250)
-                //                .padding(.horizontal)
-                ActionsGridView(selectedKey: $selectedKey, actions: appDelegate.defaultActions)
+                
+                ActionsGridView(selectedKey: $selectedKey, actions: appDelegate.defaultActions, selectedHistoricalData: $selectedHistoricalData, isActiveSelection: isActiveSelection)
                     .padding(.horizontal)
                 
-                Button {
-                    showFullActionList = true
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("More Actions")
-                            .padding(10)
-                        Spacer()
+                HStack {
+                    Button {
+                        showFullActionList = true
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "chevron.up")
+                            Text("Show more actions")
+//                            Text("All")
+//                                .padding(10)
+//                            Spacer()
+                        }.font(.caption)
+                        .padding(.top, 5)
+                        .padding(.trailing, 5)
+    //                    .background(.ultraThinMaterial)
                     }
-//                    .background(.ultraThinMaterial)
+//                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                    .sheet(isPresented: $showFullActionList) {
+                        ActionsListFocusView(
+                            actions: appDelegate.actions,
+                            selectedKey: $selectedKey
+                        )
+                        .padding()
+                    }
                 }
-                .clipShape(RoundedRectangle(cornerRadius: 30))
-                .overlay( /// apply a rounded border
-                    RoundedRectangle(cornerRadius: 30)
-                        .stroke(appDelegate.gasLevel.color.opacity(0.3), lineWidth: 1)
-                )
-                //                .foregroundStyle(Color("BG"))
-                .sheet(isPresented: $showFullActionList) {
-                    ActionsListFocusView(
-                        actions: appDelegate.actions,
-                        selectedKey: $selectedKey
-                    )
-                    .padding()
-                }
-                //                .id(addId)
-                .padding()
+                .padding(.horizontal)
                 .padding(.bottom)
-                Spacer()
-                //                .padding()
-                GasIndexChartFocus(
-                    entries: appDelegate.gasIndexEntries,
-                    min: appDelegate.gasIndexEntriesMinMax.min,
-                    max: appDelegate.gasIndexEntriesMinMax.max,
-                    selectedDate: $selectedDate,
-                    selectedPrice: $selectedPrice,
-                    selectedKey: $selectedKey
-                )
-                //                .frame(height: 100)
-                //                Spacer()
+                
+//                Divider()
+               
+                GasIndexWithPicker(selectedDate: $selectedDate, selectedPrice: $selectedPrice, selectedKey: $selectedKey, selectedHistoricalData: $selectedHistoricalData, activeChartType: $activeChartType)
+                
                 
             }
             .onChange(of: selectedKey) { _ in
                 if (haptic) {
                     hapticFeedbackGenerator.impactOccurred()
+                }
+            }
+            .onChange(of: selectedHistoricalData) { _ in
+                if (haptic) {
+                    hapticFeedbackGenerator.impactOccurred()
+                }
+            }
+            .onChange(of: activeChartType) { _ in
+                if (haptic) {
+                    hapticFeedbackGeneratorHeavy.impactOccurred()
                 }
             }
         }

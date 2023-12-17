@@ -10,6 +10,8 @@ import SwiftUI
 struct EthPriceView: View {
     @Binding var selectedKey: String?
     @Binding var selectedDate: Date?
+    @Binding var selectedHistoricalData: HistoricalData?
+    var isActiveSelection: Bool
     @AppStorage("isStale") var isStale = false
     @EnvironmentObject var appDelegate: AppDelegate
     @AppStorage("currency") var currency: String = "USD"
@@ -26,17 +28,26 @@ struct EthPriceView: View {
             HStack {
                 TimestampView(selectedDate: $selectedDate)
                 Spacer()
-                
-                if let key = selectedKey,
-                   let selectedEntry = appDelegate.ethPrice.entries[key]
-                {
-                    let selectedValue = selectedEntry.price
-                    DiffValueView(
-                        baseValue: (appDelegate.ethPrice.lastEntry()?.value ?? PriceData(price: 0)).price,
-                        targetValue: selectedValue
-                    )
-                    Text("ETH")
-                    Text(String(format: "\(currencyCode)\(currencyCode.count == 1 ? "" : " ")%.2f", selectedValue)).bold()
+                if isActiveSelection {
+                    if let key = selectedKey,
+                       let selectedEntry = appDelegate.ethPrice.entries[key]
+                    {
+                        let selectedValue = selectedEntry.price
+                        DiffValueView(
+                            baseValue: (appDelegate.ethPrice.lastEntry()?.value ?? PriceData(price: 0)).price,
+                            targetValue: selectedValue
+                        )
+                        Text("ETH")
+                        Text(String(format: "\(currencyCode)\(currencyCode.count == 1 ? "" : " ")%.2f", selectedValue)).bold()
+                    }
+                    if let price = selectedHistoricalData?.price {
+                        DiffValueView(
+                            baseValue: (appDelegate.ethPrice.lastEntry()?.value ?? PriceData(price: 0)).price,
+                            targetValue: price
+                        )
+                        Text("ETH")
+                        Text(String(format: "\(currencyCode)\(currencyCode.count == 1 ? "" : " ")%.2f", price)).bold()
+                    }
                 } else {
                     Text("ETH")
                     Text(String(format: "\(currencyCode)\(currencyCode.count == 1 ? "" : " ")%.2f", lastValue)).bold()

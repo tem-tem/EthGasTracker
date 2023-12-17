@@ -39,7 +39,7 @@ struct ServerMessages: View {
                     }
                 }
             }
-                .offset(y: 50)
+                .offset(y: 40)
         )
         .onChange(of: messages.count) { theCount in
             timer = Timer.scheduledTimer(withTimeInterval: 8, repeats: true) { _ in

@@ -15,15 +15,23 @@ class Endpoints {
 
 //    let baseURL: String
     let latest: String
+    let historyHour: String
+    let historyDay: String
+    let historyWeek: String
+    let historyMonth: String
     
     init () {
         let env = self.PROD
         self.latest = env + "/api/v3/latest" + "?amount=" + String(AMOUNT_TO_FETCH)
+        self.historyHour =  env + "/api/v3/history/hour"
+        self.historyDay =  env + "/api/v3/history/day"
+        self.historyWeek =  env + "/api/v3/history/week"
+        self.historyMonth =  env + "/api/v3/history/month"
     }
 }
 
-class APIv2 {
-    func getLatest(currency: String,  completion: @escaping (Result<APIv2_GetLatestResponse, Error>) -> Void) {
+class APIv3 {
+    func getLatest(currency: String,  completion: @escaping (Result<APIv3_GetLatestResponse, Error>) -> Void) {
         let currencyParam = currency == "USD" ? "" : "&currency=" + currency
         guard let url = URL(string: Endpoints().latest + currencyParam) else {
             completion(.failure(APIError.invalidURL))
@@ -43,7 +51,7 @@ class APIv2 {
             
             do {
                 let decoder = JSONDecoder()
-                let response = try decoder.decode(APIv2_GetLatestResponse.self, from: data)
+                let response = try decoder.decode(APIv3_GetLatestResponse.self, from: data)
                 completion(.success(response))
             } catch let decodeError {
                 completion(.failure(decodeError))

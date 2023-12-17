@@ -11,6 +11,8 @@ import SwiftUI
 struct ActionPriceBoxView: View {
     var selectedKey: String?
     var action: ActionEntity
+    @Binding var selectedHistoricalData: HistoricalData?
+    
     @AppStorage(SettingsKeys().isFastMain) private var isFastMain = false
     @AppStorage("currency") var currency: String = "USD"
     var currencyCode: String {
@@ -23,6 +25,14 @@ struct ActionPriceBoxView: View {
     }
     
     var selectedValue: Float? {
+        if let historical = selectedHistoricalData {
+            
+//            let normal = (Float(String(format: "%.6f", (gasEntry.normal * Float(metadata.limit)) / 1e9)) ?? 0) * (ethPrices[timestamp] ?? 0)
+            let gas = historical.avg
+            let ethPrice = historical.price
+            let limit = Float(action.metadata.limit)
+            return (gas * limit / 1e9) * ethPrice
+        }
         guard let key = selectedKey,
               let normalFast = action.entries[key] else {
             return nil
@@ -34,11 +44,11 @@ struct ActionPriceBoxView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             Text(String(format: "\(currencyCode.count == 1 ? currencyCode : "")%.2f", selectedValue ?? lastValue))
-                .font(.system(selectedKey != nil ? .title3 : .title2, design: .monospaced))
-                .bold(selectedKey == nil)
+                .font(.system(selectedValue != nil ? .title3 : .title2, design: .monospaced))
+                .bold(selectedValue == nil)
                 .padding(.bottom, 6)
 //                .padding(.bottom, selectedValue == nil ? 0 : 6)
-            if (selectedKey != nil) {
+            if (selectedValue != nil) {
                 Divider()
                 if (selectedValue != nil) {
                     DiffValueView(baseValue: lastValue, targetValue: selectedValue)
@@ -59,12 +69,14 @@ struct ActionsGridView: View {
     @EnvironmentObject var appDelegate: AppDelegate
     @Binding var selectedKey: String?
     var actions: GroupedActions
+    @Binding var selectedHistoricalData: HistoricalData?
+    var isActiveSelection: Bool
+//    var isActiveSelection: Bool
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     @AppStorage("currency") var currency: String = "USD"
     var currencyCode: String {
         return getSymbol(forCurrencyCode: currency) ?? currency
     }
-    
     
     var body: some View {
         VStack {
@@ -76,8 +88,8 @@ struct ActionsGridView: View {
                                 HStack {
                                     Spacer()
                                 }
-                                ActionPriceBoxView(selectedKey: selectedKey, action: action)
-                                    .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color : .primary)
+                                ActionPriceBoxView(selectedKey: selectedKey, action: action, selectedHistoricalData: $selectedHistoricalData)
+                                    .foregroundColor(isActiveSelection ? .primary : appDelegate.gasLevel.color)
                             }
     //                        .background(.ultraThinMaterial)
                             .cornerRadius(10)
@@ -91,14 +103,16 @@ struct ActionsGridView: View {
                                 .bold()
                                 .textCase(.uppercase)
                                 .padding(.bottom, -5)
+                                .foregroundColor(Color.secondary)
                             
                             Text(addSpacesToCamelCase(groupName))
                                 .font(.caption)
                                 .textCase(.uppercase)
                                 .foregroundColor(Color.secondary)
+                                .opacity(0.5)
     //                            .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color.opacity(0.75) : Color.secondary)
                         }
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 5)
     //                    .foregroundColor(selectedKey == nil ? appDelegate.gasLevel.color : .primary)
                     }
                 }
