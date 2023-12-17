@@ -13,6 +13,7 @@ struct GasIndexChartHistorical: View {
     @EnvironmentObject var appDelegate: AppDelegate
     let entries: HistoricalDataCahced
     @Binding var selectedHistoricalData: HistoricalData?
+    @Binding var activeChartType: ChartTypes
     
     @State private var selectedIndex: Int? = nil
 
@@ -23,24 +24,30 @@ struct GasIndexChartHistorical: View {
     var entriesMinMax: MinMax {
         return entries.safeRanges.normal
     }
+    
+    var blocked: Bool {
+        return activeChartType != .hour && activeChartType != .live && !subbed
+    }
 
     var body: some View {
         ZStack {
-            ChartItselfHistorical(
-                entries: entries.gasListNormal, // Using the flattened data
-                min: entriesMinMax.min * 0.95,
-                max: entriesMinMax.max,
-                selectedHistoricalData: $selectedHistoricalData
-            )
-            .blur(radius: subbed ? 0 : 10)
-            Color.clear.allowsHitTesting(!subbed)
-//            .blur(radius: subbed ? 0 : 10)
-            if (!subbed) {
-                SubscriptionView()
+            if (blocked) {
+                VStack {
+                    Spacer()
+                    SubscriptionView()
+                    Spacer()
+                }
+            } else {
+                ChartItselfHistorical(
+                    entries: entries.gasListNormal, // Using the flattened data
+                    min: entriesMinMax.min * 0.95,
+                    max: entriesMinMax.max,
+                    selectedHistoricalData: $selectedHistoricalData
+                )
             }
         }
         .chartOverlay { proxy in
-            if (subbed) {
+            if (!blocked) {
                 SwipeResolverHistorical(
                     proxy: proxy,
                     entries: entries.gasListNormal,
@@ -50,20 +57,6 @@ struct GasIndexChartHistorical: View {
         }
         .chartYScale(domain: (entriesMinMax.min * 0.95)...(entriesMinMax.max))
         .chartXAxis(.hidden)
-//        .chartXAxis{
-//            AxisMarks(values: [0, 10, 20, 30, 40, 50, 60, 70, 80]) { value in
-//                AxisValueLabel {
-//                    if let index = value.as(Int.self),
-//                       entries.count > index {
-//                        let entry = entries[index]
-//                        Text(entry.timestamp, format: .dateTime.hour(.defaultDigits(amPM: .omitted))) +
-//                        Text(":") +
-//                        Text(entry.timestamp, format: .dateTime.minute(.twoDigits))
-////                                .foregroundColor(selectedKey != nil ? .secondary : appDelegate.gasLevel.color)
-//                    }
-//                }.font(.caption2)
-//            }
-//        }
         .padding(.horizontal)
     }
 }
@@ -81,20 +74,32 @@ struct ChartItselfHistorical: View {
     
     var body: some View {
         Chart(entries, id: \.date) { entry in
-            LineMark(x: .value("Time", entry.date), y: .value("value", entry.avg))
-                .foregroundStyle(appDelegate.gasLevel.color.gradient)
+                if #available(iOS 16.4, *) {
+                    LineMark(x: .value("Time", entry.date), y: .value("value", entry.avg), series: .value("avg", "C"))
+                        .foregroundStyle(appDelegate.gasLevel.color.gradient)
+                        .lineStyle(StrokeStyle(lineWidth: 2))
+//                        .interpolationMethod(.catmullRom)
+//                        .shadow(color: appDelegate.gasLevel.color.opacity(0.5), radius: 50, x: 0, y: 0)
+//                        .shadow(color: appDelegate.gasLevel.color.opacity(0.5), radius: 20, x: 0, y: 0)
+//                        .shadow(color: appDelegate.gasLevel.color.opacity(0.8), radius: 5, x: 0, y: 0)
+                } else {
+                    LineMark(x: .value("Time", entry.date), y: .value("value", entry.avg), series: .value("avg", "C"))
+                        .foregroundStyle(appDelegate.gasLevel.color.gradient)
+                        .lineStyle(StrokeStyle(lineWidth: 2))
+//                        .interpolationMethod(.catmullRom)
+                }
             AreaMark(x: .value("Time", entry.date), yStart: .value("value", entry.avg), yEnd: .value("value", min ?? 0))
                 .foregroundStyle(LinearGradient(colors: [appDelegate.gasLevel.color.opacity(0.5), appDelegate.gasLevel.color.opacity(0)], startPoint: .top, endPoint: .bottom))
             if let selection = selectedHistoricalData {
+                RuleMark(x: .value("Time", selection.date), yStart: .value("value", selection.avg), yEnd: .value("value", min ?? 0))
+                    .foregroundStyle(LinearGradient(colors: [appDelegate.gasLevel.color.opacity(1), appDelegate.gasLevel.color.opacity(0.2), appDelegate.gasLevel.color.opacity(0)], startPoint: .top, endPoint: .bottom))
+                    .lineStyle(StrokeStyle(lineWidth: 1))
                 PointMark(x: .value("Time", selection.date), y: .value("value", selection.avg))
                     .symbolSize(150)
                     .foregroundStyle(Color(.systemBackground))
                 PointMark(x: .value("Time", selection.date), y: .value("value", selection.avg))
-                    .foregroundStyle(appDelegate.gasLevel.color)
+                    .foregroundStyle(appDelegate.gasLevel.color.gradient)
                     .symbolSize(100)
-                RuleMark(x: .value("Time", selection.date), yStart: .value("value", selection.avg), yEnd: .value("value", min ?? 0))
-                    .foregroundStyle(appDelegate.gasLevel.color)
-                    .lineStyle(StrokeStyle(lineWidth: 1))
             }
 //            RuleMark(
 //                x: .value("Index", entry.timestamp),

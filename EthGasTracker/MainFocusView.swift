@@ -47,7 +47,7 @@ struct MainFocusView: View {
                     .overlay(
                         TimeAgoView(selectedDate: $selectedDate, selectedHistoricalData: $selectedHistoricalData)
                      )
-                GasIndexFocus(selectedDate: $selectedDate, selectedPrice: $selectedPrice, selectedHistoricalData: $selectedHistoricalData, isActiveSelection: isActiveSelection)
+                GasIndexFocus(selectedDate: $selectedDate, selectedPrice: $selectedPrice, selectedHistoricalData: $selectedHistoricalData, isActiveSelection: isActiveSelection, activeChartType: activeChartType)
 //                    .padding(.top, 10)
                     .padding(.top, 20)
                     .padding(.bottom, 10)

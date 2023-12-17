@@ -63,9 +63,9 @@ struct GasLevel {
         switch level {
         case 0...2:
             return Color.accentColor
-        case 3...7:
-            return Color(.systemBlue) // This now represents a range within the usual values
-        case 8...9:
+        case 3...8:
+            return Color(.systemBlue)
+        case 9:
             return Color(.systemOrange)
         case 10:
             return Color(.systemRed)

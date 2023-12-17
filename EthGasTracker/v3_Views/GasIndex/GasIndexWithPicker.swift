@@ -16,6 +16,7 @@ enum ChartTypes: String, CaseIterable {
 }
 
 struct GasIndexWithPicker: View {
+    @AppStorage("subbed") var subbed: Bool = false
     @EnvironmentObject var appDelegate: AppDelegate
     @Binding var selectedDate: Date?
     @Binding var selectedPrice: Float?
@@ -42,7 +43,8 @@ struct GasIndexWithPicker: View {
         if (historicalData != nil) {
             GasIndexChartHistorical(
                 entries: historicalData!,
-                selectedHistoricalData: $selectedHistoricalData
+                selectedHistoricalData: $selectedHistoricalData,
+                activeChartType: $activeChartType
             )
         } else {
             GasIndexChartFocus(
@@ -69,11 +71,17 @@ struct GasIndexWithPicker: View {
             case .hour:
                 appDelegate.fetchHistoricalData_1hr()
             case .day:
-                appDelegate.fetchHistoricalData_day()
+                if (subbed) {
+                    appDelegate.fetchHistoricalData_day()
+                }
             case .week:
-                appDelegate.fetchHistoricalData_week()
+                if (subbed) {
+                    appDelegate.fetchHistoricalData_week()
+                }
             case .month:
-                appDelegate.fetchHistoricalData_month()
+                if (subbed) {
+                    appDelegate.fetchHistoricalData_month()
+                }
             case .live:
                 return
             }

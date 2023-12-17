@@ -100,7 +100,11 @@ extension AppDelegate {
             timestamp: Date.now,
             safeRanges: SafeRanges(
                 normal: MinMax(min: listNormal.map { $0.avg }.min() ?? 0, max: listNormal.map { $0.avg }.max() ?? 10),
-                fast: MinMax(min: listFast.map { $0.avg }.min() ?? 0, max: listNormal.map { $0.avg }.max() ?? 10)
+                fast: MinMax(min: listFast.map { $0.avg }.min() ?? 0, max: listFast.map { $0.avg }.max() ?? 10)
+                ),
+            fullRanges: SafeRanges(
+                normal: MinMax(min: listNormal.map { $0.p5 }.min() ?? 0, max: listNormal.map { $0.p95 }.max() ?? 10),
+                fast: MinMax(min: listFast.map { $0.p5 }.min() ?? 0, max: listFast.map { $0.p95 }.max() ?? 10)
                 ),
             lifespan: HistoricalDataCahced.oneMinute
         )
@@ -113,6 +117,7 @@ struct HistoricalDataCahced {
     let priceList: [HistoricalData]
     let timestamp: Date
     let safeRanges: SafeRanges
+    let fullRanges: SafeRanges
     let lifespan: TimeInterval
     
     var expirationDate: Date {
@@ -120,8 +125,8 @@ struct HistoricalDataCahced {
     }
     
     static func placeholder() -> HistoricalDataCahced {
-        return HistoricalDataCahced(gasListNormal: [], gasListFast: [], priceList: [], timestamp: Date(timeIntervalSince1970: 0), safeRanges: SafeRanges(normal: MinMax(min: 0.0, max: 0.0), fast: MinMax(min: 0.0, max: 0.0)), lifespan: 0)
-    }    
+        return HistoricalDataCahced(gasListNormal: [], gasListFast: [], priceList: [], timestamp: Date(timeIntervalSince1970: 0), safeRanges: SafeRanges(normal: MinMax(min: 0.0, max: 0.0), fast: MinMax(min: 0.0, max: 0.0)),fullRanges: SafeRanges(normal: MinMax(min: 0.0, max: 0.0), fast: MinMax(min: 0.0, max: 0.0)), lifespan: 0)
+    }
     
     static let oneMinute: TimeInterval = 60 // 60 seconds
     static let fifteenMinutes: TimeInterval = 15 * 60 // 15 minutes

@@ -32,7 +32,7 @@ struct TimeAgoView: View {
             if date.isSameDay(as: currentDate) {
                 return "HH:mm:ss"
             } else if date.isSameMonth(as: currentDate) {
-                return "dd HH:mm:ss"
+                return "MMM dd HH:mm:ss"
             } else if date.isSameYear(as: currentDate) {
                 return "MMM dd HH:mm:ss"
             } else {
@@ -48,10 +48,10 @@ struct TimeAgoView: View {
             if let date = activeDate {
 //                Image(systemName: "arrow.left")
                 Text(date, formatter: DateFormatter.customDateFormatter(withFormat: customDateFormat))
-                let timeDiff = date.timeIntervalSince(dateFromTimestamp)
-                let hours = Int(timeDiff) / 3600
-                let minutes = (Int(timeDiff) % 3600) / 60
-                let seconds = Int(timeDiff) % 60
+//                let timeDiff = date.timeIntervalSince(dateFromTimestamp)
+//                let hours = Int(timeDiff) / 3600
+//                let minutes = (Int(timeDiff) % 3600) / 60
+//                let seconds = Int(timeDiff) % 60
 
 //                Text(String(format: "-%02dm%02ds", abs(minutes), abs(seconds)))
 //                    .opacity(0.5)
