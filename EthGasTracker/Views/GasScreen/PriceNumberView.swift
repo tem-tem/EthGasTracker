@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PriceNumberView: View {
     let value: Double
-    @AppStorage("currency") var currency: String = "USD"
+    @AppStorage("currency", store: UserDefaults(suiteName: "group.TA.EthGas")) var currency: String = "USD"
     var currencyCode: String {
         return getSymbol(forCurrencyCode: currency) ?? currency
     }

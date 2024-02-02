@@ -9,47 +9,53 @@ import Foundation
 import WidgetKit
 
 struct GasIndexProvider: TimelineProvider {
-    let api = APIv3()
-    let dataManager = DataManager()
+    
+    let apiManager = APIManager()
     func placeholder(in context: Context) -> GasIndexEntry {
-        GasIndexEntry(date: Date(), gasIndexEntries: [], gasLevel: GasLevel(currentStats: CurrentStats.placeholder(), currentGas: 0.0))
+        GasIndexEntry.placeholder
     }
 
     func getSnapshot(in context: Context, completion: @escaping (GasIndexEntry) -> Void) {
-        let entry = GasIndexEntry(date: Date(), gasIndexEntries: [], gasLevel: GasLevel(currentStats: CurrentStats.placeholder(), currentGas: 0.0))
+        let entry = GasIndexEntry.placeholder
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<GasIndexEntry>) -> Void) {
-//        dataManager.getEntities(amount: 1, actions: "") { result in
-//            var gasIndexEntries: [GasIndexEntity.ListEntry] = []
-//            
-//            if case .success(let entities) = result {
-//                gasIndexEntries = entities.gasIndexEntity.getEntriesList()
-//            }
-//            
-//            let entry = GasIndexEntry(date: Date(), gasIndexEntries: gasIndexEntries)
-//            let timeline = Timeline(entries: [entry], policy: .atEnd)
-//            completion(timeline)
-//        }
-        api.getLatest(currency: "USD") { result in
-            var gasIndexEntries: [GasIndexEntity.ListEntry] = []
-            var gasLevel: GasLevel = GasLevel(currentStats: CurrentStats.placeholder(), currentGas: 0.0)
-            
-            if case .success(let response) = result {
-                gasIndexEntries = response.indexes.getEntriesList()
-                gasLevel = GasLevel(currentStats: response.currentStats, currentGas: gasIndexEntries.last?.normal ?? 0.0)
+        SharedDataRepository.shared.fetchDataIfNeeded { result in
+            switch result {
+            case .success(let data):
+                let timeline = Timeline(entries: [data], policy: .atEnd)
+                completion(timeline)
+            case .failure(let error):
+                print("Error in the gas index provider: \(error)")
             }
-            
-            let entry = GasIndexEntry(date: Date(), gasIndexEntries: gasIndexEntries, gasLevel: gasLevel)
-            let timeline = Timeline(entries: [entry], policy: .atEnd)
-            completion(timeline)
         }
     }
 }
 
 struct GasIndexEntry: TimelineEntry {
     let date: Date
-    let gasIndexEntries: [GasIndexEntity.ListEntry]
+    let gasDataEntity: GasDataEntity
     let gasLevel: GasLevel
+    let actions: [ActionEntity]
+    
+    static let placeholder = GasIndexEntry(
+        date: Date(),
+        gasDataEntity: GasDataEntity(from: [], with: []),
+        gasLevel: GasLevel(
+            currentStats: CurrentStats.placeholder(),
+            currentGas: 88
+        ),
+        actions: [
+            ActionEntity(rawAction: Action(name: "USDT Transfer", groupName: "Ethereum", key: "Key", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
+            ActionEntity(rawAction: Action(name: "ETH Transfer", groupName: "Ethereum", key: "Key2", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
+            ActionEntity(rawAction: Action(name: "SCROLL", groupName: "NativeBridges", key: "Key3", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
+            ActionEntity(rawAction: Action(name: "Native Bridges", groupName: "NativeBridges", key: "Key3.5", limit: 300000), gasEntries: [], priceEntries: [], isPinned: false),
+            ActionEntity(rawAction: Action(name: "USDT Transfer", groupName: "Ethereum", key: "Key123", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
+            ActionEntity(rawAction: Action(name: "ETH Transfer", groupName: "Ethereum", key: "Key2$32", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
+            ActionEntity(rawAction: Action(name: "SCROLL", groupName: "NativeBridges", key: "Key3432", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
+            ActionEntity(rawAction: Action(name: "Native Bridges", groupName: "NativeBridges", key: "Key3.15", limit: 300000), gasEntries: [], priceEntries: [], isPinned: false),
+            ActionEntity(rawAction: Action(name: "STARKNET", groupName: "Native Bridges", key: "Key432", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true)
+        ]
+    )
 }

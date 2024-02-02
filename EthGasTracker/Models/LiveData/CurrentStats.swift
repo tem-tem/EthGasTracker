@@ -43,14 +43,14 @@ struct CurrentStats: Codable {
         let jsonData = """
         {
             "minute_of_day": "0",
-            "max": "0.0",
-            "avg": "0.0",
-            "min": "0.0",
-            "p5": "0.0",
-            "p25": "0.0",
-            "p50": "0.0",
-            "p75": "0.0",
-            "p95": "0.0",
+            "max": "100.0",
+            "avg": "50.0",
+            "min": "10.0",
+            "p5": "15.0",
+            "p25": "25.0",
+            "p50": "50.0",
+            "p75": "75.0",
+            "p95": "95.0",
             "measure_name": "Unknown"
         }
         """.data(using: .utf8)!

@@ -23,7 +23,7 @@ import AppTrackingTransparency
 //let FREE_ALERTS_LIMIT = 1
 
 class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
-    @Published var deviceToken: String?
+//    @Published var deviceToken: String?
 //    let dataManager = DataManager()
 //    let api_v1 = API_v1()
 //    let api_v3 = APIv3()
@@ -52,7 +52,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        self.deviceToken = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        DeviceTokenManager.shared.deviceToken = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
 //        self.fetchAlerts()
     }
 

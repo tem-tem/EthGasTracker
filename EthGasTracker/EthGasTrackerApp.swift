@@ -47,36 +47,52 @@ func checkNotificationPermission(onGranted: @escaping () -> Void, onDenied: @esc
     }
 }
 
+let apiManager = APIManager()
 
 @main
 struct EthGasTracker: App {
-    @AppStorage(SettingsKeys().colorScheme) var settingsColorScheme: ColorScheme = .none
-    let notificationDelegate = NotificationDelegate()
-    @StateObject private var storeVM = StoreVM()
-    @StateObject var networkMonitor = NetworkMonitor()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @Environment(\.scenePhase) var scene
-    @StateObject private var notificationManager = NotificationManager()
-    @Environment(\.colorScheme) private var defaultColorScheme
     @AppStorage("subbed") var subbed: Bool = false
+//    let notificationDelegate = NotificationDelegate()
+//    @Environment(\.scenePhase) var scene
+//    @StateObject private var notificationManager = NotificationManager()
     
+    @AppStorage(SettingsKeys().colorScheme) var settingsColorScheme: ColorScheme = .none
+    @Environment(\.colorScheme) private var defaultColorScheme
     var isCurrentAppearanceDark: Bool {
         return (settingsColorScheme == .dark) || (settingsColorScheme == .none && defaultColorScheme == .dark)
     }
     
+    @StateObject private var liveDataVM = LiveDataVM(apiManager: apiManager)
+    @StateObject private var activeSelectionVM = ActiveSelectionVM()
+    @StateObject private var historicalDataVM = HistoricalDataVM(apiManager: apiManager)
+    @StateObject private var storeVM = StoreVM()
+    @StateObject private var alertVM = AlertVM(apiManager: apiManager)
+    @StateObject private var statsVM = StatsVM(apiManager: apiManager)
+    @StateObject var networkMonitor = NetworkMonitor()
+    
+    
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(networkMonitor)
-                .environmentObject(storeVM)
-//                .environmentObject(dataController)
-                .environmentObject(notificationManager)
                 .environmentObject(appDelegate)
-                .onAppear(perform: requestNotificationPermission)
-                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                    // Reload all timelines of your widget when the app becomes active.
-//                    WidgetCenter.shared.reloadAllTimelines()
-                }
+                .environmentObject(liveDataVM)
+                .environmentObject(activeSelectionVM)
+                .environmentObject(historicalDataVM)
+                .environmentObject(storeVM)
+                .environmentObject(alertVM)
+                .environmentObject(statsVM)
+//            MainViewLegacy()
+//                .environmentObject(getLatestViewModel)
+//                .environmentObject(networkMonitor)
+////                .environmentObject(dataController)
+//                .environmentObject(notificationManager)
+//                .environmentObject(appDelegate)
+//                .onAppear(perform: requestNotificationPermission)
+//                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+//                    // Reload all timelines of your widget when the app becomes active.
+////                    WidgetCenter.shared.reloadAllTimelines()
+//                }
                 .preferredColorScheme(
                     settingsColorScheme == .dark ?
                         .dark :
@@ -95,21 +111,28 @@ struct EthGasTracker: App {
 
 struct PreviewWrapper<Content: View>: View {
     let content: Content
-    @ObservedObject var networkMonitor: NetworkMonitor
-    @ObservedObject var notificationManager: NotificationManager
-    var appDelegate: AppDelegate
+    @StateObject private var activeSelectionVM = ActiveSelectionVM()
+    @StateObject private var storeVM = StoreVM()
+    @StateObject var networkMonitor = NetworkMonitor()
+    @StateObject private var liveDataVM = LiveDataVM(apiManager: apiManager)
+    @StateObject private var historicalDataVM = HistoricalDataVM(apiManager: apiManager)
+    @StateObject private var alertVM = AlertVM(apiManager: apiManager)
+    @StateObject private var statsVM = StatsVM(apiManager: apiManager)
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
 
     init(@ViewBuilder content: () -> Content) {
         self.content = content()
-        self.networkMonitor = NetworkMonitor()
-        self.notificationManager = NotificationManager()
-        self.appDelegate = AppDelegate()
     }
 
     var body: some View {
         content
-            .environmentObject(networkMonitor)
-            .environmentObject(notificationManager)
             .environmentObject(appDelegate)
+            .environmentObject(liveDataVM)
+            .environmentObject(activeSelectionVM)
+            .environmentObject(historicalDataVM)
+            .environmentObject(storeVM)
+            .environmentObject(alertVM)
+            .environmentObject(statsVM)
     }
 }

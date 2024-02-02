@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct SafeRanges {
+    let normal: MinMax
+    let fast: MinMax
+}

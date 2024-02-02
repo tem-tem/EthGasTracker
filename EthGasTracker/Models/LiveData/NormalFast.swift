@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct NormalFast {
+    var normal:Double
+    var fast:Double
+}

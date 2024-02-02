@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct MinMax {
+    let min: Double
+    let max: Double
+}

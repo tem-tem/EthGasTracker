@@ -197,36 +197,15 @@ struct LiveGasWidget: Widget {
         }
         .configurationDisplayName("Live Gas Price")
         .description("Updates every 15 minutes")
-        .supportedFamilies([.accessoryRectangular, .accessoryInline, .accessoryCircular, .])
+        .supportedFamilies([.accessoryRectangular, .accessoryInline, .accessoryCircular, .systemSmall, .systemMedium, .systemLarge])
     }
 }
 
 struct Widget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WidgetsFamilyView(
-                entry: GasIndexEntry(
-                    date: Date(),
-                    gasDataEntity: GasDataEntity(from: [], with: []),
-                    gasLevel: GasLevel(
-                        currentStats: CurrentStats.placeholder(),
-                        currentGas: 298
-                    ),
-                    actions: [
-                        ActionEntity(rawAction: Action(name: "USDT Transfer", groupName: "Ethereum", key: "Key", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
-                        ActionEntity(rawAction: Action(name: "ETH Transfer", groupName: "Ethereum", key: "Key2", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
-                        ActionEntity(rawAction: Action(name: "SCROLL", groupName: "NativeBridges", key: "Key3", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
-                        ActionEntity(rawAction: Action(name: "Native Bridges", groupName: "NativeBridges", key: "Key3.5", limit: 300000), gasEntries: [], priceEntries: [], isPinned: false),
-                        ActionEntity(rawAction: Action(name: "USDT Transfer", groupName: "Ethereum", key: "Key123", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
-                        ActionEntity(rawAction: Action(name: "ETH Transfer", groupName: "Ethereum", key: "Key2$32", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
-                        ActionEntity(rawAction: Action(name: "SCROLL", groupName: "NativeBridges", key: "Key3432", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true),
-                        ActionEntity(rawAction: Action(name: "Native Bridges", groupName: "NativeBridges", key: "Key3.15", limit: 300000), gasEntries: [], priceEntries: [], isPinned: false),
-                        ActionEntity(rawAction: Action(name: "STARKNET", groupName: "Native Bridges", key: "Key432", limit: 300000), gasEntries: [], priceEntries: [], isPinned: true)
-                    ]
-                )
-            )
+            WidgetsFamilyView(entry: GasIndexEntry.placeholder)
             .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
-//            .previewContext(WidgetPreviewContext(family: .systemSmall))
         }
     }
 }

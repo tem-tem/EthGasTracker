@@ -13,7 +13,8 @@ struct CurrencyListButtonView: View {
     @State private var showingSheet = false
     @ObservedObject var viewModel = CurrencyViewModel()
     @AppStorage("subbed") var subbed: Bool = false
-    @AppStorage("currency") var currency: String = "USD"
+    @AppStorage("currency", store: UserDefaults(suiteName: "group.TA.EthGas")) var currency: String = "USD"
+
     var currencyCode: String {
         return getSymbol(forCurrencyCode: currency) ?? currency
     }
@@ -45,11 +46,15 @@ struct CurrencyListButtonView: View {
                 CurrencyListView(currencies: viewModel.currencies, onSelect: {
                     currency = $0.code
                     showingSheet = false
+                    
+                    let userDefaults = UserDefaults(suiteName: "group.TA.EthGas")
+                    userDefaults?.set(currency, forKey: "currency")  // Setting "EUR" as an example, replace with your desired currency
+                    userDefaults?.synchronize()
 //                    appDelegate.historicalData_1h = HistoricalDataCahced.placeholder()
 //                    appDelegate.historicalData_1d = HistoricalDataCahced.placeholder()
 //                    appDelegate.historicalData_1w = HistoricalDataCahced.placeholder()
 //                    appDelegate.historicalData_1m = HistoricalDataCahced.placeholder()
-                    appDelegate.currency = $0.code
+//                    appDelegate.currency = $0.code
 //                    appDelegate.refresh()
                 })
             } else {
@@ -63,7 +68,8 @@ struct CurrencyListView: View {
     @EnvironmentObject var appDelegate: AppDelegate
     var currencies: [Currency]
     var onSelect: (Currency) -> Void
-    @AppStorage("currency") var active_currency: String = "USD"
+    @AppStorage("currency", store: UserDefaults(suiteName: "group.TA.EthGas")) var active_currency: String = "USD"
+
     @State private var searchText = ""
 
     var filteredCurrencies: [Currency] {
@@ -97,7 +103,8 @@ struct CurrencyListView: View {
                                 Spacer()
                                 Text(getSymbol(forCurrencyCode: currency.code) ?? currency.code)
                                     .font(.system(.headline, design: .monospaced))
-                            }.foregroundStyle(currency.code == active_currency ? appDelegate.gasLevel.color : .primary)
+                            }
+//                            .foregroundStyle(currency.code == active_currency ? appDelegate.gasLevel.color : .primary)
 
                             if currency.code == active_currency {
                                 Text("Selected")

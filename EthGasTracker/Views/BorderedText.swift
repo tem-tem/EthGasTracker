@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct BorderedText: View {
+    var value: String
+    @EnvironmentObject var liveDataVM: LiveDataVM
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(value)
+            .foregroundStyle(liveDataVM.gasLevel.color)
+            .padding(.horizontal, 15)
+            .padding(.vertical, 6)
+            .overlay {
+                RoundedRectangle(cornerRadius: 10, style: .circular)
+                    .strokeBorder(liveDataVM.gasLevel.color, lineWidth: 1)
+            }
     }
 }
 
 #Preview {
-    BorderedText()
+    BorderedText(value: "Slow")
 }

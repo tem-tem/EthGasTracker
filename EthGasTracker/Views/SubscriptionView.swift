@@ -9,6 +9,7 @@ import SwiftUI
 import StoreKit
 
 struct SubscriptionView: View {
+    @EnvironmentObject var liveDataVM: LiveDataVM
     @AppStorage(SettingsKeys().colorScheme) var settingsColorScheme: ColorScheme = .none
     @Environment(\.colorScheme) var colorScheme
     var currentColorScheme: ColorScheme {
@@ -40,15 +41,15 @@ struct SubscriptionView: View {
                 }
                 .padding(.vertical, 15)
                 .padding(.horizontal, 20)
-                .background(Color.accentColor.gradient)
+                .background(liveDataVM.gasLevel.color.gradient)
                 .clipShape(Capsule())
                 .sheet(isPresented: $isPresented) {
                     PurchaseView()
                 }
-                .padding()
-                Text("This is the best way to support the app, and keep it running.")
-                    .font(.caption)
-                    .multilineTextAlignment(.center)
+                .padding(.horizontal)
+//                Text("This is the best way to support the app, and keep it running.")
+//                    .font(.caption)
+//                    .multilineTextAlignment(.center)
 
             } else {
 //                Text("Gas Plus is active")
@@ -76,7 +77,7 @@ struct GoodStuff: View {
                 }
             }
             HStack(alignment: .top) {
-                Image(systemName: "powersleep")
+                Image(systemName: "moon.stars.fill")
                     .frame(width: 32, height: 32)
                     .foregroundColor(Color(.systemIndigo))
                     .background(Color(.systemIndigo).opacity(0.1))

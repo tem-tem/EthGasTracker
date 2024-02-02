@@ -17,24 +17,3 @@ struct APIv3_GetLatestResponse: Codable {
 
 // SHARED
 
-struct Metadata {
-    let name: String
-    let groupName: String
-    let key: String
-    let limit: Int64
-}
-
-struct NormalFast {
-    var normal: Float
-    var fast: Float
-}
-
-struct FluctuationRange {
-    var minNormal: Float
-    var maxNormal: Float
-    var rangeNormal: Float
-
-    var minFast: Float
-    var maxFast: Float
-    var rangeFast: Float
-}

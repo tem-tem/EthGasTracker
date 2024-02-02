@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Metadata {
+    let name: String
+    let groupName: String
+    let key: String
+    let limit: Double
+    var pinned: Bool
+}

@@ -49,3 +49,22 @@ struct StatsModel: Decodable {
         measureName = try container.decode(String.self, forKey: .measureName)
     }
 }
+
+struct StatsEntries {
+    let statsNormal: [Entry]
+    let statsGroupedByHourNormal: [Entry]
+    let statsFast: [Entry]
+    let statsGroupedByHourFast: [Entry]
+    let timestamp: Date
+
+    let avgMin:Double
+    let avgMax:Double
+
+    struct Entry {
+        let minuteOfDay: Int
+        let max:Double
+        let avg:Double
+        let min:Double
+        let measureName: String
+    }
+}
