@@ -94,8 +94,32 @@ struct AlertFormView: View {
     }
     
     var body: some View {
+        let alreadyExists = alertVM.exists(alert: currentAlert)
+        let didEdit = alert?.id != nil && !alreadyExists
         GeometryReader { geometry in
             VStack(spacing: 0) {
+                HStack {
+                    if (alreadyExists && !isEditing) {
+                        HStack {
+                            Image(systemName: "info.circle")
+                            Text("Already exists")
+                        }
+                            .padding(.vertical, 2)
+                            .padding(.horizontal, 10)
+                            .font(.caption)
+                            .background(.thinMaterial)
+                            .cornerRadius(10)
+                            .foregroundStyle(.orange)
+                            .opacity(alreadyExists ? isEditing ? 0 : 1 : 0)
+                    } else {
+                        Text(geometry.size.height > 600 ? "Options" : "Swipe up to see more options")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .padding(.vertical, 2)
+                    }
+                }
+                .padding(.top)
+                .padding(.vertical)
                 
                 if geometry.size.height > 600 {
                     ScrollView {
@@ -273,20 +297,11 @@ struct AlertFormView: View {
                         .padding(.horizontal)
                     }
                     .scrollIndicators(.hidden)
-                } else {
-                    Text("Swipe up to see more options")
-                        .padding(.top)
-                        .padding(.vertical)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Spacer()
                 }
                 
                 Spacer()
                 Divider()
                 
-                let alreadyExists = alertVM.exists(alert: currentAlert)
-                let didEdit = alert?.id != nil && !alreadyExists
                 VStack(spacing: 0) {
                     HStack {
                         Spacer()
@@ -309,22 +324,11 @@ struct AlertFormView: View {
                             .opacity(0)
                         Spacer()
                     }
-                    .frame(minHeight: 70)
+                    .frame(height: 70)
                     .font(.largeTitle)
                     .padding(.horizontal)
-                    HStack {
-                        Image(systemName: "info.circle")
-                        Text("Already exists")
-                    }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 10)
-                        .font(.caption)
-                        .background(.thinMaterial)
-                        .cornerRadius(10)
-                        .foregroundStyle(.orange)
-                        .opacity(alreadyExists ? isEditing ? 0 : 1 : 0)
                 }
-                .frame(height: 100)
+//                .frame(height: 100)
                 CustomNumberPadView(value: $gasThreshold, canCreate: alreadyExists && isEditing || !alreadyExists, onCommit: {
                     guard let alert = currentAlert else { return }
                     
@@ -356,17 +360,17 @@ struct AlertFormView: View {
         
     }
     
-    func askForReview() {
-        let twoWeeks = 14 * 24 * 60 * 60.0
-        let currentTime = Date.now.timeIntervalSince1970
-        
-        if (requestReviewTimestamp + twoWeeks < currentTime) {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
-//                requestReview()
-                requestReviewTimestamp = Date.now.timeIntervalSince1970
-            }
-        }
-    }
+//    func askForReview() {
+//        let twoWeeks = 14 * 24 * 60 * 60.0
+//        let currentTime = Date.now.timeIntervalSince1970
+//        
+//        if (requestReviewTimestamp + twoWeeks < currentTime) {
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+////                requestReview()
+//                requestReviewTimestamp = Date.now.timeIntervalSince1970
+//            }
+//        }
+//    }
     
     func secondsSinceMidnightUTC(from date: Date) -> Int {
         // Convert to UTC

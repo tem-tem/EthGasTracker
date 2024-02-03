@@ -33,7 +33,7 @@ struct SettingsView: View {
 //                        .listRowBackground(Color.clear)
                 
                 
-                Section("Contact") {
+                Section("Contact Developers") {
                     Link(destination: URL(string: "https://t.me/gas_app")!) {
                         HStack {
                             Image(systemName: "paperplane.fill")
@@ -99,23 +99,6 @@ struct SettingsView: View {
                     }
                 }.listRowBackground(Color.clear)
                 
-                Section("Configuration") {
-                    HStack {
-                        Image(systemName: "water.waves")
-                            .frame(width: 32, height: 32)
-                            .background(.teal, in: RoundedRectangle(cornerRadius: 8))
-                            .foregroundColor(.white)
-                        Toggle("Haptic Feedback", isOn: $haptic)
-                            .toggleStyle(SwitchToggleStyle(tint: .green))
-                            .tint(liveDataVM.gasLevel.color)
-                    }
-                    ColorSchemePickerView()
-                    CurrencyListButtonView()
-                    if (!subbed) {
-                        SubscriptionView()
-                    }
-                }.listRowBackground(Color.clear)
-                
                 Section("Support Developers With Crypto") {
                     HStack {
                         VStack(alignment: .leading) {
@@ -153,6 +136,23 @@ struct SettingsView: View {
 //                        }
                 }
                 .listRowBackground(Color.clear)
+                
+                Section("Settings") {
+                    HStack {
+                        Image(systemName: "water.waves")
+                            .frame(width: 32, height: 32)
+                            .background(.teal, in: RoundedRectangle(cornerRadius: 8))
+                            .foregroundColor(.white)
+                        Toggle("Haptic Feedback", isOn: $haptic)
+                            .toggleStyle(SwitchToggleStyle(tint: .green))
+                            .tint(liveDataVM.gasLevel.color)
+                    }
+                    ColorSchemePickerView()
+                    CurrencyListButtonView()
+                    if (!subbed) {
+                        SubscriptionView()
+                    }
+                }.listRowBackground(Color.clear)
             }
             .listStyle(.inset)
 //            .background(Color.clear)

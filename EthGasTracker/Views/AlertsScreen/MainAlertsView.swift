@@ -28,6 +28,12 @@ struct MainAlertsView: View {
                 }.refreshable {
                     alertVM.fetch()
                 }
+                Divider()
+                Button {
+                    showingNewAlertForm = true
+                } label: {
+                    BorderedText(value: "Add Alert")
+                }.padding()
             } else {
                 Spacer()
                 Image(systemName: "bell.and.waves.left.and.right")
@@ -43,17 +49,14 @@ struct MainAlertsView: View {
                     .foregroundStyle(.secondary)
                     .font(.caption)
                 Spacer()
-                Image(systemName: "arrow.down")
-                    .font(.largeTitle)
-                    .padding(20)
-                    .foregroundStyle(.secondary)
+                Button {
+                    showingNewAlertForm = true
+                } label: {
+                    BorderedText(value: "Add Alert")
+                        .font(.largeTitle)
+                }.padding()
+                Spacer()
             }
-            Divider()
-            Button {
-                showingNewAlertForm = true
-            } label: {
-                BorderedText(value: "Add Alert")
-            }.padding()
         }
         .toast(isPresenting: $showToast, duration: 1.0, tapToDismiss: true){
             AlertToast(type: .systemImage("checkmark", liveDataVM.gasLevel.color))
