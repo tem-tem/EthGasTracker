@@ -11,6 +11,9 @@ struct AlertView: View {
     @EnvironmentObject var alertVM: AlertVM
     let alert: Alert
     
+    @State private var showingEditAlertForm = false
+    @Binding var showToast: Bool
+    
     var body: some View {
         VStackWithRoundedBorder {
             Toggle(isOn: Binding(
@@ -66,24 +69,40 @@ struct AlertView: View {
                         Text("Not Set").bold().opacity(0.4)
                     }
                 }
-            }.font(.caption)
-            
-            if let id = alert.id {
-                HStack {
-                    Spacer()
-                    Button {
-                        alertVM.delete(id: id)
-                    } label: {
-                        BorderedText(value: "Delete")
+                Divider()
+                if let id = alert.id {
+                    HStack {
+                        Button {
+                            alertVM.delete(id: id)
+                            showToast.toggle()
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                                .foregroundColor(.red)
+                        }
+                        Spacer()
+                        Spacer()
+                        Button {
+                            showingEditAlertForm = true
+                        } label: {
+                            Label("Edit", systemImage: "slider.horizontal.3")
+                        }
                     }
                 }
-            }
+            }.font(.caption)
+                .sheet(isPresented: $showingEditAlertForm) {
+                    AlertFormView(
+                        isPresented: $showingEditAlertForm,
+                        showToast: $showToast,
+                        alert: alert)
+                        .background(Color("BG.L1"))
+                        .presentationDetents([.medium, .large])
+                }
         }
     }
 }
 
 #Preview {
-    AlertView(alert: Alert(id: "123", deviceId: "123", mutePeriod: 30, conditions: [Alert.Condition(comparison: .greater_than, value: 30)], legacyGas: false, confirmationPeriod: 100, disableAfterAlerts: 1, disabledHours: [100, 200]))
+    AlertView(alert: Alert(id: "123", deviceId: "123", mutePeriod: 30, conditions: [Alert.Condition(comparison: .greater_than, value: 30)], legacyGas: false, confirmationPeriod: 100, disableAfterAlerts: 1, disabledHours: [100, 200]), showToast: .constant(true))
         .environmentObject(AlertVM(apiManager: apiManager))
         .environmentObject(AppDelegate())
 }

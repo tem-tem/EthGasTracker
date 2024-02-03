@@ -6,53 +6,78 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct MainAlertsView: View {
     @EnvironmentObject var liveDataVM: LiveDataVM
     @EnvironmentObject var alertVM: AlertVM
-    @Binding var showingAlertForm: Bool
+//    @Binding var showingAlertForm: Bool
+    @State private var showingNewAlertForm = false
+    @State private var showToast = false
     
     var body: some View {
         VStack (spacing: 0) {
             if (alertVM.alerts.count > 0) {
                 ScrollView {
                     ForEach(alertVM.alerts) {alert in
-                        AlertView(alert: alert)
+                        AlertView(alert: alert, showToast: $showToast)
                             .opacity(alert.disabled ?? false ? 0.4 : 1)
                             .padding(.vertical, 5)
                             .padding(.horizontal)
-                    }.onDelete { offsets in
-                        offsets.forEach { index in
-                            if let alertId = alertVM.alerts[index].id {
-                                alertVM.delete(id: alertId)
-                            }
-                        }
-                        alertVM.alerts.remove(atOffsets: offsets)
                     }
+                }.refreshable {
+                    alertVM.fetch()
                 }
             } else {
                 Spacer()
                 Image(systemName: "bell.and.waves.left.and.right")
                     .font(.largeTitle)
-                    .padding(40)
+                    .padding(.bottom, 20)
                     .foregroundStyle(.secondary)
-                Text("Get notified when gas prices change")
+                Text("No Alerts")
+                    .font(.title)
+                    .bold()
                     .foregroundStyle(.secondary)
+                    .padding(.bottom, 10)
+                Text("Alert is a Push Notification for specific gas price conditions.")
+                    .foregroundStyle(.secondary)
+                    .font(.caption)
                 Spacer()
+                Image(systemName: "arrow.down")
+                    .font(.largeTitle)
+                    .padding(20)
+                    .foregroundStyle(.secondary)
             }
             Divider()
             Button {
-                showingAlertForm = true
+                showingNewAlertForm = true
             } label: {
                 BorderedText(value: "Add Alert")
             }.padding()
+        }
+        .toast(isPresenting: $showToast, duration: 1.0, tapToDismiss: true){
+            AlertToast(type: .systemImage("checkmark", liveDataVM.gasLevel.color))
+        }
+        .sheet(isPresented: $showingNewAlertForm) {
+            AlertFormView(isPresented: $showingNewAlertForm, showToast: $showToast)
+                .background(Color("BG.L1"))
+                .presentationDetents([.medium, .large])
+//                .overlay {
+//                    GeometryReader { geometry in
+//                        Color.clear.preference(key: InnerHeightPreferenceKey.self, value: geometry.size.height)
+//                    }
+//                }
+//                .onPreferenceChange(InnerHeightPreferenceKey.self) { newHeight in
+//                    sheetHeight = newHeight
+//                }
+//                .presentationDetents([.height(500)])
         }
     }
 }
 
 #Preview {
     PreviewWrapper {
-        MainAlertsView(showingAlertForm: .constant(false))
+        MainAlertsView()
     }
 }
 

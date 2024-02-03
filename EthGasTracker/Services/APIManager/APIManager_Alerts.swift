@@ -130,4 +130,40 @@ extension APIManager {
             completion(.success(()))
         }.resume()
     }
+    
+    func updateAlert(_ alert: Alert, completion: @escaping (Result<Void, Error>) -> Void) {
+        let urlString = endpoints.updateAlert
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+        do {
+            let jsonData = try JSONEncoder().encode(alert)
+            request.httpBody = jsonData
+        } catch {
+            print("Error encoding \(error)")
+            completion(.failure(error))
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NSError(domain: "Unexpected response", code: 0, userInfo: nil)))
+                return
+            }
+
+            completion(.success(()))
+        }.resume()
+    }
 }

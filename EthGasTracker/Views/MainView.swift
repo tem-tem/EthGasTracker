@@ -17,15 +17,13 @@ struct MainView: View {
     let hapticHeavy = UIImpactFeedbackGenerator(style: .heavy)
     
     @State private var selectedTab = 1
-    @State private var showingAlertForm = false
-    @State private var sheetHeight: CGFloat = .zero
     
     var body: some View {
         ZStack {
             VStack {
                 MainHeaderView(showGas: selectedTab != 1)
                 TabView(selection: $selectedTab) {
-                    MainAlertsView(showingAlertForm: $showingAlertForm)
+                    MainAlertsView()
                         .tag(0)
                     MainGasView()
                         .tag(1)
@@ -59,19 +57,6 @@ struct MainView: View {
             }
             .onChange(of: DeviceTokenManager.shared.deviceToken) { _ in
                 alertVM.fetch()
-            }
-            .sheet(isPresented: $showingAlertForm) {
-                AlertFormView(isPresented: $showingAlertForm)
-                    .background(Color("BG.L1"))
-                    .overlay {
-                        GeometryReader { geometry in
-                            Color.clear.preference(key: InnerHeightPreferenceKey.self, value: geometry.size.height)
-                        }
-                    }
-                    .onPreferenceChange(InnerHeightPreferenceKey.self) { newHeight in
-                        sheetHeight = newHeight
-                    }
-                    .presentationDetents([.height(500)])
             }
         }
         

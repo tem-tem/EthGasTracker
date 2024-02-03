@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "alerttoast",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/elai950/AlertToast.git",
+      "state" : {
+        "revision" : "e0d927bccf2a0ca8c1d34b72223489128d207c63",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "boringssl-swiftpm",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/boringssl-SwiftPM.git",
@@ -88,15 +97,6 @@
       "state" : {
         "revision" : "819d0a2173aff699fb8c364b6fb906f7cdb1a692",
         "version" : "2.30909.0"
-      }
-    },
-    {
-      "identity" : "pow",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/EmergeTools/Pow",
-      "state" : {
-        "revision" : "cc014eba4b65f689cadc281ad925de5607f2adc9",
-        "version" : "1.0.3"
       }
     },
     {

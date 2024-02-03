@@ -4,7 +4,6 @@
 //
 //  Created by Tem on 8/14/23.
 //
-
 import SwiftUI
 import FirebaseAnalytics
 
@@ -16,20 +15,21 @@ struct AlertFormView: View {
     @AppStorage("requestReviewTimestamp") private var requestReviewTimestamp = 0.0
     @AppStorage(SettingsKeys().isFastMain) private var isFastMain = false
     @Binding var isPresented: Bool
-//    @EnvironmentObject var appDelegate: AppDelegate
+    @Binding var showToast: Bool
+    
+    var alert: Alert? = nil
+    var isEditing: Bool {
+        alert != nil
+    }
+    
     private var deviceToken: String? {
         DeviceTokenManager.shared.deviceToken
     }
     private var gasPrice: Int? {
         Int(round(liveDataVM.gasLevel.currentGas))
     }
-//    private var gasPrice:Double? {
-//        let lastEntry = appDelegate..last
-//        return isFastMain ? lastEntry?.fast : lastEntry?.normal
-//    }
     
-    @State var gasThreshold = ""
-    @State private var comparison: Alert.Condition.Comparison = .less_than
+    @State var gasThreshold: String
     @State private var mutePeriod = AlertLimit.thirty
     
     @State private var showConfirmationPeriod = false
@@ -43,287 +43,317 @@ struct AlertFormView: View {
     @State private var disabledHoursFrom = Date()
     
     @State private var showSubscriptionView = false
-    @FocusState private var isTextFieldFocused: Bool
+    @State private var showingOptions = false
+    
+    private var currentAlert: Alert? {
+        guard let gasThresholdInt = Int(gasThreshold), gasThresholdInt > 0, gasThresholdInt < 9999, gasThreshold.count > 0 else {
+            return nil
+        }
+        guard let deviceToken = deviceToken, !deviceToken.isEmpty else {
+            return nil
+        }
+        
+        let comparison: Alert.Condition.Comparison = gasThresholdInt <= gasPrice ?? 0 ? .less_than : .greater_than
+        let condition = Alert.Condition(comparison: comparison, value: gasThresholdInt)
+        
+        let disabledHoursFromSeconds = secondsSinceMidnightUTC(from: disabledHoursFrom)
+        let disabledHoursToSeconds = secondsSinceMidnightUTC(from: disabledHoursTo)
+        
+        return Alert(
+            id: alert?.id,
+            deviceId: deviceToken,
+            mutePeriod: mutePeriod.rawValue,
+            conditions: [condition],
+            disabled: false,
+            legacyGas: false,
+            confirmationPeriod: showConfirmationPeriod ? confirmationPeriod.rawValue : 0,
+            disableAfterAlerts: showDisableAfter ? disableAfterAlerts.rawValue : 0,
+            disabledHours: showOffHours ? [disabledHoursFromSeconds, disabledHoursToSeconds] : []
+        )
+    }
+    
+    init(isPresented: Binding<Bool>, showToast: Binding<Bool>, alert: Alert? = nil) {
+        self._isPresented = isPresented
+        self._showToast = showToast
+        self.alert = alert
+        if let alert = alert, let condition = alert.conditions.first(where: { $0.value > 0 }) {
+            _gasThreshold = State(initialValue: "\(condition.value)")
+            _mutePeriod = State(initialValue: AlertLimit(rawValue: alert.mutePeriod) ?? .thirty)
+            _showConfirmationPeriod = State(initialValue: alert.confirmationPeriod > 0)
+            _confirmationPeriod = State(initialValue: AlertConfirmation(rawValue: alert.confirmationPeriod) ?? .one)
+            _showDisableAfter = State(initialValue: alert.disableAfterAlerts ?? 0 > 0)
+            _disableAfterAlerts = State(initialValue: AlertLifespan(rawValue: alert.disableAfterAlerts ?? 0) ?? .one)
+            if let from = alert.disabledHours.first, let to = alert.disabledHours.last, to - from > 0 {
+                _showOffHours = State(initialValue: true)
+                _disabledHoursTo = State(initialValue: Date(timeIntervalSince1970: TimeInterval(to)))
+                _disabledHoursFrom = State(initialValue: Date(timeIntervalSince1970: TimeInterval(from)))
+            }
+        } else {
+            _gasThreshold = State(initialValue: "")
+        }
+    }
     
     var body: some View {
-        VStack(spacing: 0) {
-            ScrollView {
-                HStack (alignment: .top) {
-                    Image(systemName: "clock.badge.checkmark")
-                        .frame(width: 32, height: 32)
-                        .bold()
-                    VStack (alignment: .leading) {
-                        if (subbed) {
-                            Toggle("Confirmation", isOn: $showConfirmationPeriod)
-                                .toggleStyle(.switch)
-                            if (showConfirmationPeriod) {
-                                Picker("Duration", selection: $confirmationPeriod) {
-        //                            Text("Disabled").tag("0")
-                                    ForEach(AlertConfirmation.allCases) { hold in
-                                        Text(hold.description).tag(hold)
+        GeometryReader { geometry in
+            VStack(spacing: 0) {
+                
+                if geometry.size.height > 600 {
+                    ScrollView {
+                        HStack (alignment: .top) {
+                            Image(systemName: "clock.badge.checkmark")
+                                .frame(width: 32, height: 32)
+                                .bold()
+                            VStack (alignment: .leading) {
+                                if (subbed) {
+                                    Toggle("Confirmation", isOn: $showConfirmationPeriod)
+                                        .toggleStyle(.switch)
+                                    if (showConfirmationPeriod) {
+                                        Picker("Duration", selection: $confirmationPeriod) {
+                                            //                            Text("Disabled").tag("0")
+                                            ForEach(AlertConfirmation.allCases) { hold in
+                                                Text(hold.description).tag(hold)
+                                            }
+                                        }
+                                        .pickerStyle(.menu)
+                                        .accentColor(liveDataVM.gasLevel.color)
+                                        .overlay {
+                                            RoundedRectangle(cornerRadius: 10, style: .circular)
+                                                .strokeBorder(liveDataVM.gasLevel.color, lineWidth: 1)
+                                        }
+                                    }
+                                } else {
+                                    HStack {
+                                        Text("Confirmation")
+                                        Spacer()
+                                        Button {
+                                            showSubscriptionView = true
+                                        } label: {
+                                            BorderedText(value: "Unlock")
+                                        }
+                                        .sheet(isPresented: $showSubscriptionView) {
+                                            PurchaseView()
+                                        }
                                     }
                                 }
+                                HStack {
+                                    Text("Notify only if gas satisfies the condition for a certain time")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                }
+                                Divider()
+                            }
+                        }
+                        .padding(.horizontal)
+                        .padding(.top)
+                        
+                        HStack (alignment: .top) {
+                            Image(systemName: "moon.stars.fill")
+                                .frame(width: 32, height: 32)
+                                .bold()
+                            VStack (alignment: .leading) {
+                                if (subbed) {
+                                    Toggle("Off Hours", isOn: $showOffHours)
+                                        .toggleStyle(.switch)
+                                } else {
+                                    HStack {
+                                        Text("Off Hours")
+                                        Spacer()
+                                        Button {
+                                            showSubscriptionView = true
+                                        } label: {
+                                            BorderedText(value: "Unlock")
+                                        }
+                                        .sheet(isPresented: $showSubscriptionView) {
+                                            PurchaseView()
+                                        }
+                                    }
+                                }
+                                if (showOffHours) {
+                                    HStack {
+                                        DatePicker("Disable From", selection: $disabledHoursFrom, displayedComponents: .hourAndMinute)
+                                            .labelsHidden()
+                                        Text("-")
+                                        DatePicker("Disable To", selection: $disabledHoursTo, displayedComponents: .hourAndMinute)
+                                            .labelsHidden()
+                                        Spacer()
+                                    }
+                                }
+                                HStack {
+                                    Text("No alerts during chosen hours")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                }
+                                Divider()
+                            }
+                        }
+                        .padding(.horizontal)
+                        
+                        HStack (alignment: .top) {
+                            Image(systemName: "bolt.badge.clock")
+                                .frame(width: 32, height: 32)
+                                .bold()
+                            //                    .padding(.top, 6)
+                            VStack (alignment: .leading) {
+                                if (subbed) {
+                                    Toggle("Limited Lifespan", isOn: $showDisableAfter)
+                                        .toggleStyle(.switch)
+                                } else {
+                                    HStack {
+                                        Text("Limited Lifespan")
+                                        Spacer()
+                                        Button {
+                                            showSubscriptionView = true
+                                        } label: {
+                                            BorderedText(value: "Unlock")
+                                        }
+                                        .sheet(isPresented: $showSubscriptionView) {
+                                            PurchaseView()
+                                        }
+                                    }
+                                }
+                                if (showDisableAfter) {
+                                    HStack {
+                                        //                            Text("Limit to")
+                                        //                            Spacer()
+                                        Picker("Alerts", selection: $disableAfterAlerts) {
+                                            ForEach(AlertLifespan.allCases) { lifespan in
+                                                Text(lifespan.description).tag(lifespan)
+                                            }
+                                        }
+                                        .pickerStyle(.menu)
+                                        .accentColor(liveDataVM.gasLevel.color)
+                                        .overlay {
+                                            RoundedRectangle(cornerRadius: 10, style: .circular)
+                                                .strokeBorder(liveDataVM.gasLevel.color, lineWidth: 1)
+                                        }
+                                    }
+                                }
+                                HStack {
+                                    Text("Stops sending alerts after a certain number")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                }
+                                Divider()
+                            }
+                        }
+                        .padding(.horizontal)
+                        
+                        HStack (alignment: .top) {
+                            Image(systemName: "arrow.right.and.line.vertical.and.arrow.left")
+                                .frame(width: 32, height: 32)
+                                .bold()
+                            //                    .padding(.top, 6)
+                            VStack (alignment: .leading) {
+                                HStack {
+                                    Text("Break")
+                                    Spacer()
+                                    Picker("Break", selection: $mutePeriod) {
+                                        ForEach(AlertLimit.allCases) { limit in
+                                            Text(limit.description).tag(limit)
+                                        }
+                                    }
                                     .pickerStyle(.menu)
                                     .accentColor(liveDataVM.gasLevel.color)
                                     .overlay {
                                         RoundedRectangle(cornerRadius: 10, style: .circular)
                                             .strokeBorder(liveDataVM.gasLevel.color, lineWidth: 1)
                                     }
-                            }
-                        } else {
-                            HStack {
-                                Text("Confirmation")
-                                Spacer()
-                                Button {
-                                    showSubscriptionView = true
-                                } label: {
-                                    BorderedText(value: "Unlock")
                                 }
-                                .sheet(isPresented: $showSubscriptionView) {
-                                    PurchaseView()
+                                HStack {
+                                    Text("Minimum time between notifications")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
                                 }
                             }
                         }
-                        HStack {
-                            Text("Notify only if gas satisfies the condition for a certain time")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Spacer()
-                        }
-                        Divider()
+                        .padding(.horizontal)
                     }
-                }
-                .padding(.horizontal)
-                .padding(.top)
-            
-                HStack (alignment: .top) {
-                    Image(systemName: "moon.stars.fill")
-                        .frame(width: 32, height: 32)
-                        .bold()
-                    VStack (alignment: .leading) {
-                        if (subbed) {
-                            Toggle("Off Hours", isOn: $showOffHours)
-                                .toggleStyle(.switch)
-                        } else {
-                            HStack {
-                                Text("Off Hours")
-                                Spacer()
-                                Button {
-                                    showSubscriptionView = true
-                                } label: {
-                                    BorderedText(value: "Unlock")
-                                }
-                                    .sheet(isPresented: $showSubscriptionView) {
-                                        PurchaseView()
-                                    }
-                            }
-                        }
-                        if (showOffHours) {
-                            HStack {
-                                DatePicker("Disable From", selection: $disabledHoursFrom, displayedComponents: .hourAndMinute)
-                                    .labelsHidden()
-                                Text("-")
-                                DatePicker("Disable To", selection: $disabledHoursTo, displayedComponents: .hourAndMinute)
-                                    .labelsHidden()
-                                Spacer()
-                            }
-                        }
-                        HStack {
-                            Text("No alerts during chosen hours")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Spacer()
-                        }
-                        Divider()
-                    }
-                }
-                .padding(.horizontal)
-                
-                HStack (alignment: .top) {
-                    Image(systemName: "bolt.badge.clock")
-                        .frame(width: 32, height: 32)
-                        .bold()
-    //                    .padding(.top, 6)
-                    VStack (alignment: .leading) {
-                        if (subbed) {
-                            Toggle("Limited Lifespan", isOn: $showDisableAfter)
-                                .toggleStyle(.switch)
-                        } else {
-                            HStack {
-                                Text("Limited Lifespan")
-                                Spacer()
-                                Button {
-                                    showSubscriptionView = true
-                                } label: {
-                                    BorderedText(value: "Unlock")
-                                }
-                                    .sheet(isPresented: $showSubscriptionView) {
-                                        PurchaseView()
-                                    }
-                            }
-                        }
-                        if (showDisableAfter) {
-                            HStack {
-    //                            Text("Limit to")
-    //                            Spacer()
-                                Picker("Alerts", selection: $disableAfterAlerts) {
-                                    ForEach(AlertLifespan.allCases) { lifespan in
-                                        Text(lifespan.description).tag(lifespan)
-                                    }
-                                }
-                                .pickerStyle(.menu)
-                                .accentColor(liveDataVM.gasLevel.color)
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 10, style: .circular)
-                                        .strokeBorder(liveDataVM.gasLevel.color, lineWidth: 1)
-                                }
-                            }
-                        }
-                        HStack {
-                            Text("Stops sending alerts after a certain number")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Spacer()
-                        }
-                        Divider()
-                    }
-                }
-                .padding(.horizontal)
-                
-                HStack (alignment: .top) {
-                    Image(systemName: "arrow.right.and.line.vertical.and.arrow.left")
-                        .frame(width: 32, height: 32)
-                        .bold()
-    //                    .padding(.top, 6)
-                    VStack (alignment: .leading) {
-                        HStack {
-                            Text("Break")
-                            Spacer()
-                            Picker("Break", selection: $mutePeriod) {
-                                ForEach(AlertLimit.allCases) { limit in
-                                    Text(limit.description).tag(limit)
-                                }
-                            }
-                            .pickerStyle(.menu)
-                            .accentColor(liveDataVM.gasLevel.color)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 10, style: .circular)
-                                    .strokeBorder(liveDataVM.gasLevel.color, lineWidth: 1)
-                            }
-                        }
-                        HStack {
-                            Text("Minimum time between notifications")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Spacer()
-                        }
-                    }
-                }
-                .padding(.horizontal)
-            }
-            .scrollIndicators(.hidden)
-            
-            Divider()
-            
-            HStack {
-                
-                if (Int(gasThreshold) ?? 0 <= gasPrice ?? 0) {
-                    Image(systemName: "arrow.down")
-                        .foregroundStyle(Color.accentColor)
-                        .opacity(gasThreshold.count > 0 ? 1 : 0.3)
+                    .scrollIndicators(.hidden)
                 } else {
-                    Image(systemName: "arrow.up")
-                        .foregroundStyle(Color(.systemRed))
-                        .opacity(gasThreshold.count > 0 ? 1 : 0.3)
+                    Text("Swipe up to see more options")
+                        .padding(.top)
+                        .padding(.vertical)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Spacer()
                 }
-                TextField(String(format: "%.0f", gasPrice ?? 0), text: $gasThreshold)
-                    .keyboardType(.decimalPad)
-                    .onChange(of: gasThreshold) { newValue in
-                        if let intValue = Int(newValue), intValue > 0 {
-                            gasThreshold = String(newValue.prefix(4))
-                        } else {
-                            gasThreshold = ""
-                        }
-                    }
-                    .focused($isTextFieldFocused)
-                    .onAppear {
-                        isTextFieldFocused = true
-                    }
-                    .padding(.vertical)
-            }
-                .font(.largeTitle)
-                .padding(.horizontal)
-            
-            VStack {
-                Button {
-                    guard let gasThresholdInt = Int(gasThreshold), gasThresholdInt > 0, gasThresholdInt < 9999, gasThreshold.count > 0 else {
-                        return
-                    }
-                    guard let deviceToken = deviceToken, !deviceToken.isEmpty else {
-                        return
-                    }
-                    
-                    if (gasThresholdInt <= gasPrice ?? 0) {
-                        comparison = .less_than
-                    } else {
-                        comparison = .greater_than
-                    }
-
-                    let condition = Alert.Condition(comparison: comparison, value: gasThresholdInt)
-                    
-                    let disabledHoursFromSeconds = secondsSinceMidnightUTC(from: disabledHoursFrom)
-                    let disabledHoursToSeconds = secondsSinceMidnightUTC(from: disabledHoursTo)
-                    
-                    let alert = Alert(
-                        id: nil,
-                        deviceId: deviceToken,
-                        mutePeriod: mutePeriod.rawValue,
-                        conditions: [condition],
-                        disabled: false,
-                        legacyGas: false,
-                        confirmationPeriod: showConfirmationPeriod ? confirmationPeriod.rawValue : 0,
-                        disableAfterAlerts: showDisableAfter ? disableAfterAlerts.rawValue : 0,
-                        disabledHours: showOffHours ? [disabledHoursFromSeconds, disabledHoursToSeconds] : []
-                    )
-                    alertVM.add(alert: alert)
-                    let params = [
-                        AnalyticsParameterValue: gasThresholdInt,
-                        AnalyticsParameterTerm: comparison.rawValue
-                    ] as [String : Any]
-                    Analytics.logEvent("add_alert", parameters: params)
-                    isPresented = false
-                    askForReview()
-                } label: {
+                
+                Spacer()
+                Divider()
+                
+                let alreadyExists = alertVM.exists(alert: currentAlert)
+                let didEdit = alert?.id != nil && !alreadyExists
+                VStack(spacing: 0) {
                     HStack {
                         Spacer()
-                        Text("Create")
-                            .padding(5)
+                        if (!gasThreshold.isEmpty) {
+                            if (Int(gasThreshold) ?? 0 <= gasPrice ?? 0) {
+                                Image(systemName: "arrow.down")
+                                    .foregroundStyle(Color.accentColor)
+                            } else {
+                                Image(systemName: "arrow.up")
+                                    .foregroundStyle(Color(.systemRed))
+                            }
+                        }
+                        
+                        Text(gasThreshold)
+                            .padding(.vertical)
+                            .bold()
+                        
+                        Image(systemName: "arrow.up")
+                            .foregroundStyle(Color(.systemRed))
+                            .opacity(0)
                         Spacer()
                     }
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 25)
-//                                    .stroke(Color.primary, lineWidth: 2)
-//                                )
-//                            .padding(2)
+                    .frame(minHeight: 70)
+                    .font(.largeTitle)
+                    .padding(.horizontal)
+                    HStack {
+                        Image(systemName: "info.circle")
+                        Text("Already exists")
+                    }
+                        .padding(.vertical, 2)
+                        .padding(.horizontal, 10)
+                        .font(.caption)
+                        .background(.thinMaterial)
+                        .cornerRadius(10)
+                        .foregroundStyle(.orange)
+                        .opacity(alreadyExists ? isEditing ? 0 : 1 : 0)
                 }
-                    .buttonStyle(.borderedProminent)
-                    .backgroundStyle(liveDataVM.gasLevel.color)
-//                            .backgroundStyle(
-//                                Color("avg").gradient
-//                                    .shadow(.inner(color: Color("avgLight").opacity(1), radius: 4, x: 0, y: 0))
-//                            )
-                    .disabled(gasThreshold.count == 0)
-                    .padding(.bottom)
-                Button {
+                .frame(height: 100)
+                CustomNumberPadView(value: $gasThreshold, canCreate: alreadyExists && isEditing || !alreadyExists, onCommit: {
+                    guard let alert = currentAlert else { return }
+                    
+                    if isEditing {
+                        alertVM.update(alert: alert)
+                    } else {
+                        alertVM.add(alert: alert)
+                    }
+                    
                     isPresented = false
-                } label: {
-                    Text("Cancel")
-                        .foregroundStyle(liveDataVM.gasLevel.color)
+                    showToast.toggle()
+                })
+                
+                VStack {
+                    HStack {
+                        Button {
+                            isPresented = false
+                        } label: {
+                            Text("Cancel")
+                                .foregroundStyle(liveDataVM.gasLevel.color)
+                                .padding(.vertical, 5)
+                        }
+                    }
                 }
-            }
-            .padding(.horizontal)
-        }.scrollContentBackground(.hidden)
-            .padding(.bottom)
+                .padding(.horizontal)
+            }.scrollContentBackground(.hidden)
+                .padding(.bottom)
+        }
+        
     }
     
     func askForReview() {
@@ -364,6 +394,6 @@ struct AlertFormView: View {
 
 #Preview {
     PreviewWrapper {
-        AlertFormView(isPresented: .constant(true))
+        AlertFormView(isPresented: .constant(true), showToast: .constant(true))
     }
 }

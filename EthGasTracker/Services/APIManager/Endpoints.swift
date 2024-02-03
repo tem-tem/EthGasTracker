@@ -22,6 +22,7 @@ struct Endpoints {
     let addAlert: String
     let toggleAlert: String
     let deleteAlert: String
+    let updateAlert: String
     
     let stats: String
     
@@ -37,6 +38,7 @@ struct Endpoints {
         self.addAlert = env + "/api/v1/alerts/add"
         self.toggleAlert = env + "/api/v1/alerts/toggle"
         self.deleteAlert = env + "/api/v1/alerts/delete"
+        self.updateAlert = env + "/api/v1/alerts/update"
         
         self.stats = env + "/api/v1/stats"
     }
