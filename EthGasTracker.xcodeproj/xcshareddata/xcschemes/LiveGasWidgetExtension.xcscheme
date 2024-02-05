@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A38C56522A12C7C5004ABF21"
-               BuildableName = "EthGasWidgetExtension.appex"
-               BlueprintName = "EthGasWidgetExtension"
+               BlueprintIdentifier = "A3CEC8BB2B70247C00B082B7"
+               BuildableName = "LiveGasWidgetExtension.appex"
+               BlueprintName = "LiveGasWidgetExtension"
                ReferencedContainer = "container:EthGasTracker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -41,9 +41,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -57,18 +56,8 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A38C56522A12C7C5004ABF21"
-            BuildableName = "EthGasWidgetExtension.appex"
-            BlueprintName = "EthGasWidgetExtension"
-            ReferencedContainer = "container:EthGasTracker.xcodeproj">
-         </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A384EB1F29BAFBC5005CC9E1"
@@ -76,11 +65,11 @@
             BlueprintName = "EthGasTracker"
             ReferencedContainer = "container:EthGasTracker.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"
-            value = "LiveGasWidget"
+            value = ""
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
@@ -90,7 +79,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "_XCWidgetFamily"
-            value = "small"
+            value = "systemMedium"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

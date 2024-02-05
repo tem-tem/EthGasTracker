@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import AlertToast
+//import AlertToast
 
 struct MainAlertsView: View {
     @EnvironmentObject var liveDataVM: LiveDataVM
@@ -14,6 +14,7 @@ struct MainAlertsView: View {
 //    @Binding var showingAlertForm: Bool
     @State private var showingNewAlertForm = false
     @State private var showToast = false
+    @AppStorage("subbed") var subbed: Bool = false
     
     var body: some View {
         VStack (spacing: 0) {
@@ -53,14 +54,18 @@ struct MainAlertsView: View {
                     showingNewAlertForm = true
                 } label: {
                     BorderedText(value: "Add Alert")
-                        .font(.largeTitle)
                 }.padding()
                 Spacer()
             }
         }
-        .toast(isPresenting: $showToast, duration: 1.0, tapToDismiss: true){
-            AlertToast(type: .systemImage("checkmark", liveDataVM.gasLevel.color))
+        .onAppear {
+            if (!subbed && alertVM.alerts.count > 1) {
+                alertVM.cleanUpAlerts()
+            }
         }
+//        .toast(isPresenting: $showToast, duration: 1.0, tapToDismiss: true){
+//            AlertToast(type: .systemImage("checkmark", liveDataVM.gasLevel.color))
+//        }
         .sheet(isPresented: $showingNewAlertForm) {
             AlertFormView(isPresented: $showingNewAlertForm, showToast: $showToast)
                 .background(Color("BG.L1"))

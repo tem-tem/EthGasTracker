@@ -13,23 +13,27 @@ class SharedDataRepository {
     private var lastFetchedData: (data: GasIndexEntry?, timestamp: Date?)
     private let apiManager = APIManager()
     private let dataValidityDuration: TimeInterval = 300 // Data is considered fresh for 5 minutes
+    private let fetchQueue = DispatchQueue(label: "TEMTEM.EthGasTracker.EthGasWidget.SharedDataRepository.fetchQueue")
     
     private init() {}
     
     func fetchDataIfNeeded(completion: @escaping (Result<GasIndexEntry, Error>) -> Void) {
-        print("FETCHING FROM WIDGET")
-        let currentTime = Date()
-        if currentTime.timeIntervalSince(lastFetchedData.timestamp ?? Date.distantPast) < dataValidityDuration {
-            if let data = lastFetchedData.data {
-                print("GOING WITH CACHED DATA")
-                completion(.success(data))
-                return
+        fetchQueue.async { [self] in
+            let currentTime = Date()
+            print("FETCHING FROM WIDGET current time: \(currentTime)")
+            print("last fetched time: \(lastFetchedData.timestamp ?? Date.distantPast)")
+            if currentTime.timeIntervalSince(lastFetchedData.timestamp ?? Date.distantPast) < dataValidityDuration {
+                if let data = lastFetchedData.data {
+                    print("GOING WITH CACHED DATA")
+                    completion(.success(data))
+                    return
+                }
             }
+            
+            print("FETCHING NEW DATA")
+            
+            fetchData(completion: completion)
         }
-        
-        print("FETCHING NEW DATA")
-        
-        fetchData(completion: completion)
     }
     
     private func fetchData(completion: @escaping (Result<GasIndexEntry, Error>) -> Void) {
