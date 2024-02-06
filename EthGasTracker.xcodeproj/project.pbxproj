@@ -86,6 +86,7 @@
 		A36F08622A8C17C7009A4A36 /* AlertConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36F08612A8C17C7009A4A36 /* AlertConditionView.swift */; };
 		A376B17E2AA808BE005BB320 /* DiffValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A376B17D2AA808BE005BB320 /* DiffValueView.swift */; };
 		A376B1802AA81274005BB320 /* GasScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = A376B17F2AA81274005BB320 /* GasScale.swift */; };
+		A3785B4F2B722A340052016E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = A3785B4E2B722A340052016E /* AlertToast */; };
 		A37D69152A1E35F500ECF1CA /* AlertsLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
@@ -95,9 +96,7 @@
 		A384F2872A83C07A00357771 /* EnableLegacyGasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384F2862A83C07A00357771 /* EnableLegacyGasView.swift */; };
 		A384F28E2A83D39300357771 /* EthPriceChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384F28D2A83D39300357771 /* EthPriceChart.swift */; };
 		A391BD992B703FA000E1CB13 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56552A12C7C5004ABF21 /* WidgetKit.framework */; };
-		A391BD9A2B703FA000E1CB13 /* WidgetKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56552A12C7C5004ABF21 /* WidgetKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A391BD9C2B703FA300E1CB13 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56572A12C7C5004ABF21 /* SwiftUI.framework */; };
-		A391BD9D2B703FA300E1CB13 /* SwiftUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A38C56572A12C7C5004ABF21 /* SwiftUI.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00229EA467100E45DEF /* PlainGasView.swift */; };
 		A394E00529EA4C8D00E45DEF /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00429EA4C8D00E45DEF /* NotificationView.swift */; };
 		A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394E00929EA505000E45DEF /* SendThreshold.swift */; };
@@ -224,18 +223,6 @@
 				A3CEC8C92B70247E00B082B7 /* LiveGasWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A391BD9B2B703FA000E1CB13 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				A391BD9D2B703FA300E1CB13 /* SwiftUI.framework in Embed Frameworks */,
-				A391BD9A2B703FA000E1CB13 /* WidgetKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -407,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A332503C2AA2958E00A5B6B3 /* FirebaseAnalytics in Frameworks */,
+				A3785B4F2B722A340052016E /* AlertToast in Frameworks */,
 				A332503E2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				A3B95EDA2AA3ED420010657A /* Snappable in Frameworks */,
 			);
@@ -898,6 +886,7 @@
 				A332503B2AA2958E00A5B6B3 /* FirebaseAnalytics */,
 				A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				A3B95ED92AA3ED420010657A /* Snappable */,
+				A3785B4E2B722A340052016E /* AlertToast */,
 			);
 			productName = EthGasTracker;
 			productReference = A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */;
@@ -910,7 +899,6 @@
 				A3CEC8B82B70247C00B082B7 /* Sources */,
 				A3CEC8B92B70247C00B082B7 /* Frameworks */,
 				A3CEC8BA2B70247C00B082B7 /* Resources */,
-				A391BD9B2B703FA000E1CB13 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -951,6 +939,7 @@
 			packageReferences = (
 				A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A3B95ED82AA3ED420010657A /* XCRemoteSwiftPackageReference "Snappable" */,
+				A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = A384EB2129BAFBC5005CC9E1 /* Products */;
 			projectDirPath = "";
@@ -1501,6 +1490,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
 		A3B95ED82AA3ED420010657A /* XCRemoteSwiftPackageReference "Snappable" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hugehoge/Snappable.git";
@@ -1521,6 +1518,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		A3785B4E2B722A340052016E /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 		A3B95ED92AA3ED420010657A /* Snappable */ = {
 			isa = XCSwiftPackageProductDependency;
