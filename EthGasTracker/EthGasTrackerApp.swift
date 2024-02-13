@@ -47,7 +47,6 @@ func checkNotificationPermission(onGranted: @escaping () -> Void, onDenied: @esc
     }
 }
 
-let apiManager = APIManager()
 
 @main
 struct EthGasTracker: App {
@@ -63,13 +62,25 @@ struct EthGasTracker: App {
         return (settingsColorScheme == .dark) || (settingsColorScheme == .none && defaultColorScheme == .dark)
     }
     
-    @StateObject private var liveDataVM = LiveDataVM(apiManager: apiManager)
     @StateObject private var activeSelectionVM = ActiveSelectionVM()
-    @StateObject private var historicalDataVM = HistoricalDataVM(apiManager: apiManager)
     @StateObject private var storeVM = StoreVM()
-    @StateObject private var alertVM = AlertVM(apiManager: apiManager)
-    @StateObject private var statsVM = StatsVM(apiManager: apiManager)
     @StateObject var networkMonitor = NetworkMonitor()
+    
+    @StateObject private var customActionDM: CustomActionDataManager
+    @StateObject private var liveDataVM: LiveDataVM
+    @StateObject private var historicalDataVM: HistoricalDataVM
+    @StateObject private var alertVM: AlertVM
+    @StateObject private var statsVM: StatsVM
+    
+    init() {
+        let apiManager = APIManager()
+        let actionDM = CustomActionDataManager()
+        _customActionDM = StateObject(wrappedValue: actionDM)
+        _liveDataVM = StateObject(wrappedValue: LiveDataVM(apiManager: apiManager, customActionDM: actionDM))
+        _historicalDataVM = StateObject(wrappedValue: HistoricalDataVM(apiManager: apiManager))
+        _alertVM = StateObject(wrappedValue: AlertVM(apiManager: apiManager))
+        _statsVM = StateObject(wrappedValue: StatsVM(apiManager: apiManager))
+    }
     
     
     var body: some Scene {
@@ -82,6 +93,7 @@ struct EthGasTracker: App {
                 .environmentObject(storeVM)
                 .environmentObject(alertVM)
                 .environmentObject(statsVM)
+                .environmentObject(customActionDM)
 //            MainViewLegacy()
 //                .environmentObject(getLatestViewModel)
 //                .environmentObject(networkMonitor)
@@ -111,18 +123,29 @@ struct EthGasTracker: App {
 
 struct PreviewWrapper<Content: View>: View {
     let content: Content
+    
+    
     @StateObject private var activeSelectionVM = ActiveSelectionVM()
     @StateObject private var storeVM = StoreVM()
     @StateObject var networkMonitor = NetworkMonitor()
-    @StateObject private var liveDataVM = LiveDataVM(apiManager: apiManager)
-    @StateObject private var historicalDataVM = HistoricalDataVM(apiManager: apiManager)
-    @StateObject private var alertVM = AlertVM(apiManager: apiManager)
-    @StateObject private var statsVM = StatsVM(apiManager: apiManager)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-
+    @StateObject private var customActionDM: CustomActionDataManager
+    @StateObject private var liveDataVM: LiveDataVM
+    @StateObject private var historicalDataVM: HistoricalDataVM
+    @StateObject private var alertVM: AlertVM
+    @StateObject private var statsVM: StatsVM
+    
     init(@ViewBuilder content: () -> Content) {
         self.content = content()
+        
+        let apiManager = APIManager()
+        let actionDM = CustomActionDataManager()
+        _customActionDM = StateObject(wrappedValue: actionDM)
+        _liveDataVM = StateObject(wrappedValue: LiveDataVM(apiManager: apiManager, customActionDM: actionDM))
+        _historicalDataVM = StateObject(wrappedValue: HistoricalDataVM(apiManager: apiManager))
+        _alertVM = StateObject(wrappedValue: AlertVM(apiManager: apiManager))
+        _statsVM = StateObject(wrappedValue: StatsVM(apiManager: apiManager))
     }
 
     var body: some View {
@@ -134,5 +157,6 @@ struct PreviewWrapper<Content: View>: View {
             .environmentObject(storeVM)
             .environmentObject(alertVM)
             .environmentObject(statsVM)
+            .environmentObject(customActionDM)
     }
 }

@@ -131,11 +131,9 @@ struct GasCharts: View {
 }
 
 #Preview {
-    GasCharts(
-        primaryColor: .primary, secondaryColor: .secondary
-    )
-        .environmentObject(LiveDataVM(apiManager: APIManager()))
-        .environmentObject(HistoricalDataVM(apiManager: APIManager()))
-        .environmentObject(ActiveSelectionVM())
-        .environmentObject(StoreVM())
+    PreviewWrapper {
+        GasCharts(
+            primaryColor: .primary, secondaryColor: .secondary
+        )
+    }
 }

@@ -160,6 +160,9 @@ struct GasHistorical_SwipeResolver: View {
                                 return
                             }
                             activeSelectionVM.historicalData = entry.element
+                            activeSelectionVM.gas = entry.element.avg
+                            activeSelectionVM.ethPrice = entry.element.price
+                            activeSelectionVM.date = entry.element.date
 //
                         }
                         .onEnded { _ in

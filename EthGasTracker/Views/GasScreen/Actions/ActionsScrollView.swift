@@ -37,6 +37,7 @@ struct ActionsScrollView: View {
 }
 
 #Preview {
-    ActionsScrollView(primaryColor: .primary, secondaryColor: .secondary)
-        .environmentObject(LiveDataVM(apiManager: APIManager()))
+    PreviewWrapper {
+        ActionsScrollView(primaryColor: .primary, secondaryColor: .secondary)
+    }
 }

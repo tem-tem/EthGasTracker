@@ -51,7 +51,14 @@ struct WidgetsFamilyView : View {
             }
             Divider()
             
-            ActionsBlockDenseView(actions: entry.actions, columns: 2, amount: 8)
+            
+            ActionsBlockDenseView(
+                actions: entry.actions,
+                gas: entry.gas,
+                ethPrice: entry.ethPrice,
+                columns: 2,
+                amount: 8
+            )
                 .frame(maxWidth: .infinity)
         }
         .widgetBackground(Color(.systemBackground))
@@ -87,7 +94,13 @@ struct WidgetsFamilyView : View {
             }
             Divider()
             
-            ActionsBlockDenseView(actions: entry.actions, columns: 2, amount: 4)
+            ActionsBlockDenseView(
+                actions: entry.actions,
+                gas: entry.gas,
+                ethPrice: entry.ethPrice,
+                columns: 2,
+                amount: 4
+            )
                 .frame(maxWidth: .infinity)
         }
         .widgetBackground(Color(.systemBackground))
@@ -213,7 +226,7 @@ struct Widget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             WidgetsFamilyView(entry: GasIndexEntry.placeholder)
-            .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
         }
     }
 }

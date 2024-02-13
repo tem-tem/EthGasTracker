@@ -10,6 +10,7 @@ import Foundation
 class ActiveSelectionVM: ObservableObject {
     @Published var date: Date? = nil
     @Published var gas:Double? = nil
+    @Published var ethPrice: Double? = nil
     @Published var key: String? = nil
     @Published var index: Int? = nil
     @Published var historicalData: HistoricalData? = nil
@@ -34,6 +35,7 @@ class ActiveSelectionVM: ObservableObject {
     func drop() -> Void {
         self.date = nil
         self.gas = nil
+        self.ethPrice = nil
         self.key = nil
         self.index = nil
         self.historicalData = nil

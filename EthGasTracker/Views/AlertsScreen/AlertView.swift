@@ -15,7 +15,7 @@ struct AlertView: View {
     @Binding var showToast: Bool
     
     var body: some View {
-        VStackWithRoundedBorder {
+        VStackWithRoundedBorder(padding: 12) {
             Toggle(isOn: Binding(
                 get: { !(alert.disabled ?? false) },
                 set: { newValue in
@@ -102,7 +102,7 @@ struct AlertView: View {
 }
 
 #Preview {
-    AlertView(alert: Alert(id: "123", deviceId: "123", mutePeriod: 30, conditions: [Alert.Condition(comparison: .greater_than, value: 30)], legacyGas: false, confirmationPeriod: 100, disableAfterAlerts: 1, disabledHours: [100, 200]), showToast: .constant(true))
-        .environmentObject(AlertVM(apiManager: apiManager))
-        .environmentObject(AppDelegate())
+    PreviewWrapper {
+        AlertView(alert: Alert(id: "123", deviceId: "123", mutePeriod: 30, conditions: [Alert.Condition(comparison: .greater_than, value: 30)], legacyGas: false, confirmationPeriod: 100, disableAfterAlerts: 1, disabledHours: [100, 200]), showToast: .constant(true))
+    }
 }

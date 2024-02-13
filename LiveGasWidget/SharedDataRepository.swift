@@ -9,7 +9,8 @@ import Foundation
 
 class SharedDataRepository {
     static let shared = SharedDataRepository()
-    
+    private let actionDataManager = CustomActionDataManager()
+
     private var lastFetchedData: (data: GasIndexEntry?, timestamp: Date?)
     private let apiManager = APIManager()
     private let dataValidityDuration: TimeInterval = 300 // Data is considered fresh for 5 minutes
@@ -51,19 +52,15 @@ class SharedDataRepository {
                     with: data.indexes.commonTimestamps
                 )
                 let gasLevel = GasLevel(currentStats: data.currentStats, currentGas: gasDataEntity.lastNormal)
-                let actions: [ActionEntity] = data.actions.values
-                    .sorted { $0.key < $1.key }
-                    .map {
-                    let isPinned = data.defaultActions.keys.contains($0.key)
-                    return ActionEntity(
-                        rawAction: $0,
-                        gasEntries: gasDataEntity.entries,
-                        priceEntries: ethPriceEntity.entries,
-                        isPinned: isPinned
-                    )
-                }
                 
-                let entry = GasIndexEntry(date: Date(), gasDataEntity: gasDataEntity, gasLevel: gasLevel, actions: actions)
+                let entry = GasIndexEntry(
+                    date: Date(),
+                    gas: gasLevel.currentGas,
+                    ethPrice: ethPriceEntity.entries.last?.price ?? 0,
+                    gasDataEntity: gasDataEntity,
+                    gasLevel: gasLevel,
+                    actions: self.actionDataManager.pinnedActions
+                )
                 completion(.success(entry))
 //                let timeline = Timeline(entries: [entry], policy: .atEnd)
             case .failure(let error):

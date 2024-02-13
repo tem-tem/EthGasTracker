@@ -14,15 +14,16 @@ struct VStackWithRoundedBorder<Content: View>: View {
     var overlayOpacity: Double = 0.4
     var padding: CGFloat = 4
 
-    init(@ViewBuilder content: () -> Content) {
+    init(@ViewBuilder content: () -> Content, padding: CGFloat = 4) {
         self.content = content()
+        self.padding = padding
     }
 
     var body: some View {
         VStack {
             content
         }
-        .padding()
+        .padding(padding)
         .overlay(
             RoundedRectangle(cornerRadius: cornerRadius)
                 .stroke(Color.secondary.opacity(overlayOpacity), lineWidth: 1)

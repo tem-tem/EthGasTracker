@@ -48,7 +48,7 @@ struct MainAlertsView: View {
                     .font(.largeTitle)
                     .padding(.bottom, 20)
                     .foregroundStyle(.secondary)
-                Text("No Alerts")
+                Text("Alerts")
                     .font(.title)
                     .bold()
                     .foregroundStyle(.secondary)

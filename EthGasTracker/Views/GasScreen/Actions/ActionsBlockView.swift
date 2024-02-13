@@ -46,9 +46,7 @@ struct ActionsBlockView: View {
 }
 
 #Preview {
-    ActionsBlockView()
-        .environmentObject(LiveDataVM(apiManager: APIManager()))
-        .environmentObject(ActiveSelectionVM())
-        .environmentObject(HistoricalDataVM(apiManager: APIManager()))
-        .environmentObject(StoreVM())
+    PreviewWrapper {
+        ActionsBlockView()
+    }
 }

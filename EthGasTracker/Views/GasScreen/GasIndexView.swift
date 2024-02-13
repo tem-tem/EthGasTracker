@@ -41,9 +41,9 @@ struct GasIndexView: View {
         HStack(alignment: .bottom, spacing: 2) {
             Text(String(format: "%.f", round(gas)))
                 .foregroundStyle(isActiveSelection ? .primary : color)
-                .minimumScaleFactor(0.5)
                 .lineLimit(1)
                 .font(.system(size: isActiveSelection ? 120 : 180, weight: isActiveSelection ? .thin : .semibold, design: .default))
+                .minimumScaleFactor(0.5)
         }
 //        .frame(width: 40 * amountOfDigints)
 //        .padding(.horizontal, 10)

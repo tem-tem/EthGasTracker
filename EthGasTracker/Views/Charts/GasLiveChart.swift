@@ -35,10 +35,10 @@ struct GasLiveChart: View {
 }
 
 #Preview {
-    GasLiveChart(
-        primaryColor: .primary, secondaryColor: .secondary)
-        .environmentObject(LiveDataVM(apiManager: APIManager()))
-        .environmentObject(ActiveSelectionVM())
+    PreviewWrapper {
+        GasLiveChart(
+            primaryColor: .primary, secondaryColor: .secondary)
+    }
 }
 
 struct GasLiveChart_ChartItself: View {
@@ -225,6 +225,8 @@ struct GasLiveChart_SwipeResolver: View {
                             activeSelectionVM.gas = isFastMain ? entry.fast : entry.normal
                             activeSelectionVM.key = entry.key
                             activeSelectionVM.index = clampedIndex
+                            let ethPriceEntry = liveDataVM.ethPriceEntity.entries[clampedIndex]
+                            activeSelectionVM.ethPrice = ethPriceEntry.price
                         }
                         .onEnded { _ in
                             activeSelectionVM.drop()

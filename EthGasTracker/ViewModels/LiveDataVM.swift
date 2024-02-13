@@ -22,6 +22,7 @@ enum Status: Int {
 
 class LiveDataVM: ObservableObject {
     let apiManager: APIManager
+    var customActionDM: CustomActionDataManager
     
     @Published var status: Status = .fetching
     
@@ -37,6 +38,7 @@ class LiveDataVM: ObservableObject {
     @Published var ethPriceEntity = PriceDataEntity(from: [], with: [])
     @Published var gasDataEntity: GasDataEntity = GasDataEntity(from: [], with: [])
     @Published var gasLevel: GasLevel = GasLevel(currentStats: CurrentStats.placeholder(), currentGas: 0.0)
+    @Published var ethPrice: Double = 0.0
 
     @Published var actions: [ActionEntity] = []
     
@@ -46,8 +48,9 @@ class LiveDataVM: ObservableObject {
         }
     }
     
-    init(apiManager: APIManager) {
+    init(apiManager: APIManager, customActionDM: CustomActionDataManager) {
         self.apiManager = apiManager
+        self.customActionDM = customActionDM
         self.repeatedFetch.start()
     }
     
@@ -64,6 +67,7 @@ class LiveDataVM: ObservableObject {
                         with: data.indexes.commonTimestamps,
                         in: data.currencyRate
                     )
+                    self.ethPrice = self.ethPriceEntity.entries.last?.price ?? 0
                     self.gasDataEntity = GasDataEntity(
                         from: data.indexes.gas,
                         with: data.indexes.commonTimestamps
@@ -73,15 +77,19 @@ class LiveDataVM: ObservableObject {
                     
                     self.actions = data.actions.values
                         .sorted { $0.key < $1.key }
-                        .map {
-                        let isPinned = data.defaultActions.keys.contains($0.key)
-                        return ActionEntity(
-                            rawAction: $0,
-                            gasEntries: self.gasDataEntity.entries,
-                            priceEntries: self.ethPriceEntity.entries,
-                            isPinned: isPinned
+                        .map { serverAction in
+//                            guard self.customActionDM.actions.contains(where: { $0.key == serverAction.key })
+                            let isPinned = data.defaultActions.keys.contains(serverAction.key)
+                            return ActionEntity(
+                                rawAction: serverAction,
+                                gasEntries: self.gasDataEntity.entries,
+                                priceEntries: self.ethPriceEntity.entries,
+                                isPinned: isPinned
                         )
                     }
+                    
+                    self.addToCustomActions(actions: data.defaultActions)
+                    self.addToCustomActions(actions: data.actions)
                     
                     self.timestamp = self.gasDataEntity.entries.last?.timestamp ?? 0
                     
@@ -91,6 +99,22 @@ class LiveDataVM: ObservableObject {
                 self.status = .error
                 print("Error in GetLatestViewModel response: \(error)")
             }
+        }
+    }
+    
+    func addToCustomActions(actions: [String: Action]) {
+        for serverAction in actions.values.sorted(by: { $0.key < $1.key }) {
+            let notInCustom = !self.customActionDM.actions.contains(where: { $0.key == serverAction.key })
+            guard notInCustom else {
+                continue
+            }
+            self.customActionDM.addCustomAction(
+                key: serverAction.key,
+                group: serverAction.groupName,
+                name: serverAction.name,
+                limit: Int64(serverAction.limit),
+                isServerAction: true
+            )
         }
     }
 }
