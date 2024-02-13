@@ -124,11 +124,10 @@ struct ActionsManagerView: View {
                     Spacer()
                     Button {
                     } label: {
-                        Image(systemName: "trash")
+                        Image(systemName: "plus.forwardslash.minus")
                             .foregroundColor(.red)
                             .padding(.horizontal)
                     }
-                    .opacity(0)
                 }
                 .padding()
             }
