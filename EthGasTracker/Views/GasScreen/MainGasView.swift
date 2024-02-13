@@ -13,6 +13,7 @@ struct MainGasView: View {
     @EnvironmentObject var customActionDM: CustomActionDataManager
     
     @State private var isCollapsed = false
+    @State private var showingWheel = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -26,9 +27,15 @@ struct MainGasView: View {
                     .padding(.horizontal, 5)
             }
             if isCollapsed {
-                ActionsManagerView()
+                ActionsManagerView(showingWheel: $showingWheel)
             }
-            GasCardView(isCollapsed: $isCollapsed)
+            if showingWheel {
+                HWheelPicker()
+                    .frame(height: 50)
+                    .padding(.horizontal)
+            } else {
+                GasCardView(isCollapsed: $isCollapsed)
+            }
         }
     }
 }

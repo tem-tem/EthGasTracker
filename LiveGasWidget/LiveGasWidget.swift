@@ -147,15 +147,12 @@ struct WidgetsFamilyView : View {
 //    MARK: - Lockscreen Circular
     var lockscreenCircular: some View {
         VStack {
-//            Image(systemName: "flame")
-//                .font(.caption)
-//            Text(String(format: "%.f", entry.gasLevel.currentGas))
-//                .bold()
             Gauge(
                 value: entry.gasLevel.currentGas,
                 in: entry.gasLevel.currentStats.min...entry.gasLevel.currentStats.max
             ) {
                 Image(systemName: "flame")
+//                Text("gwei")
             } currentValueLabel: {
                 Text(String(format: "%.f", entry.gasLevel.currentGas))
                     .bold()
@@ -226,7 +223,7 @@ struct Widget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             WidgetsFamilyView(entry: GasIndexEntry.placeholder)
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
         }
     }
 }

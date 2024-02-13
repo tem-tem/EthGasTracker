@@ -25,8 +25,20 @@ struct GasIndexEntry: TimelineEntry {
             currentStats: CurrentStats.placeholder(),
             currentGas: 88
         ),
-        actions: [
-            CustomActionEntity.placeholder()
-        ]
+        actions: CustomActionEntity.placeholders(amount: 10)
     )
+    
+    static func generatePlaceholder(customActionDM: CustomActionDataManager) -> GasIndexEntry {
+        GasIndexEntry(
+            date: Date(),
+            gas: 88,
+            ethPrice: 8888,
+            gasDataEntity: GasDataEntity(from: [], with: []),
+            gasLevel: GasLevel(
+                currentStats: CurrentStats.placeholder(),
+                currentGas: 88
+            ),
+            actions: customActionDM.actions
+        )
+    }
 }

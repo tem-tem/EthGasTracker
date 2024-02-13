@@ -13,11 +13,11 @@ struct GasIndexProvider: TimelineProvider {
     private let actionDataManager = CustomActionDataManager()
     
     func placeholder(in context: Context) -> GasIndexEntry {
-        GasIndexEntry.placeholder
+        GasIndexEntry.generatePlaceholder(customActionDM: actionDataManager)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (GasIndexEntry) -> Void) {
-        let entry = GasIndexEntry.placeholder
+        let entry = GasIndexEntry.generatePlaceholder(customActionDM: actionDataManager)
         completion(entry)
     }
 

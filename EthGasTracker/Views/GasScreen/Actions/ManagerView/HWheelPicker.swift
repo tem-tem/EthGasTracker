@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct HWheelPicker: View {
+    @EnvironmentObject var activeSelectionVM: ActiveSelectionVM
+    @State var speed: Double = 50
+    @State var isEditing = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Slider(
+            value: $speed,
+            in: 0...100,
+            step: 1,
+            onEditingChanged: { editing in
+                isEditing = editing
+            }
+        )
+        .accentColor(.purple)
+        .onChange(of: speed) { value in
+            activeSelectionVM.gas = value
+        }
+        .onAppear {
+            activeSelectionVM.gas = speed
+        }
     }
 }
 
 #Preview {
-    HWheelPicker()
+    PreviewWrapper {
+        HWheelPicker()
+    }
 }

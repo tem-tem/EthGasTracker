@@ -74,6 +74,9 @@ struct GoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Create as many as you want.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -90,6 +93,9 @@ struct GoodStuff: View {
                         Text("No alerts during chosen hours.").font(.caption)
                         Spacer()
                     }
+                    .padding(.leading, 2)
+                    .padding(.vertical, 2)
+                    .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -103,6 +109,9 @@ struct GoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Get alerts only if gas satisfies the condition for a certain time.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -116,6 +125,9 @@ struct GoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Auto-Disables alert after a certain number of notifications.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -129,6 +141,9 @@ struct GoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("See Ethereum price and actions in 160+ different currencies.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -142,6 +157,25 @@ struct GoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Past hour, day, week, month.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            HStack(alignment: .top) {
+                Image(systemName: "plus.forwardslash.minus")
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(Color(.systemBlue))
+                    .background(Color(.systemBlue).opacity(0.1))
+                    .cornerRadius(7)
+                VStack(alignment: .leading) {
+                    Text("Action Features")
+                        .padding(.top, 5)
+                        .padding(.bottom, 2)
+                    Text("Create custom actions, and change what's displayed on the homescreen.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
         }
@@ -162,19 +196,9 @@ struct NextGoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Why not.").font(.caption)
-                }
-            }
-            HStack(alignment: .top) {
-                Image(systemName: "plus.forwardslash.minus")
-                    .frame(width: 32, height: 32)
-                    .foregroundColor(Color(.systemBlue))
-                    .background(Color(.systemBlue).opacity(0.1))
-                    .cornerRadius(7)
-                VStack(alignment: .leading) {
-                    Text("Action Features")
-                        .padding(.top, 5)
-                        .padding(.bottom, 2)
-                    Text("Create custom actions, and change what's displayed on the homescreen.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -188,6 +212,9 @@ struct NextGoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Still waiting for our artist to draw an icon... at least one. Come on dude, it's been a year already.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -201,6 +228,9 @@ struct NextGoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("God help us go through testing for all of the screen sizes.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -214,6 +244,9 @@ struct NextGoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Down to the minutes, not just hours.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -227,6 +260,9 @@ struct NextGoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("Brings most important stuff to the surface.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -240,6 +276,9 @@ struct NextGoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("More widgets, but with extra stuff.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
             HStack(alignment: .top) {
@@ -254,6 +293,9 @@ struct NextGoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("It's coming back. Yep.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
                 }
             }
         }
@@ -338,16 +380,22 @@ struct PurchaseView: View {
 //                        .bold()
                         .padding(.bottom, 10)
                     VStack(alignment: .leading) {
-                        Text ("Gas Alert Plus gives you unlimited alerts and more features.")
-                        Text ("Your support let's us work on the app and pay for our servers, keeping everything running smoothly.")
+                        Text ("Your support let's us work on the app\nand pay for our servers.")
                     }
+                        .font(.caption)
                         .padding()
-                    Divider()
+                        .background(Color.accentColor.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.accentColor.opacity(0.5), lineWidth: 1)
+                        }
+//                    Divider()
                     
 //                    HStack {
 //                        Spacer()
 //                    }
-                    Text("Here's what you will get now").font(.title2).bold()
+                    Text("Features").font(.title2).bold()
                         .padding()
                     GoodStuff()
                     

@@ -135,14 +135,18 @@ extension CustomActionEntity {
         // Use the provided context or create a temporary in-memory context for the preview
         let context = context ?? temporaryInMemoryManagedObjectContext()
         let entity = CustomActionEntity(context: context)
-        entity.key = "0x000"
-        entity.group = "Placeholder"
-        entity.name = "Placeholder"
+        entity.key = generateRandomStringWithNanoseconds(length: 10)
+        entity.group = "Group \(generateRandomStringWithNanoseconds(length: 4))"
+        entity.name = "Name \(generateRandomStringWithNanoseconds(length: 4))"
         entity.limit = 100000
         entity.order = 0
-        entity.pinned = false
+        entity.pinned = true
         entity.isServerAction = false
         return entity
+    }
+    
+    static func placeholders(amount: Int, in context: NSManagedObjectContext? = nil) -> [CustomActionEntity] {
+        (0..<amount).map { _ in placeholder(in: context) }
     }
 
     private static func temporaryInMemoryManagedObjectContext() -> NSManagedObjectContext {
@@ -161,3 +165,15 @@ extension CustomActionEntity {
         return container.viewContext
     }
 }
+
+func generateRandomStringWithNanoseconds(length: Int) -> String {
+    let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    let nanoseconds = DispatchTime.now().uptimeNanoseconds // Get current time in nanoseconds
+    let randomSeed = Int(nanoseconds) % letters.count // Use nanoseconds to seed random selection
+    let randomChars = (0..<length).map { _ -> Character in // Generate 10 character string
+        let index = letters.index(letters.startIndex, offsetBy: Int(arc4random_uniform(UInt32(letters.count))))
+        return letters[index]
+    }
+    return String(randomChars)
+}
+
