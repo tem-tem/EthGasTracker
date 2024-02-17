@@ -21,6 +21,8 @@ struct WidgetsFamilyView : View {
             lockscreenInline
         case .accessoryCircular:
             lockscreenCircular
+        case .accessoryCorner:
+            corner
         case .systemLarge:
             large
         case .systemMedium:
@@ -31,6 +33,22 @@ struct WidgetsFamilyView : View {
             Text("Unsupported widget family")
                 .conditionalContainerBackground()
         }
+    }
+    
+    var corner: some View {
+        HStack {
+            Text(String(format: "%.f", entry.gasLevel.currentGas))
+        }
+        .font(.headline)
+//           .font(.system(size: 20))
+           .foregroundColor(entry.gasLevel.color)
+        #if os(watchOS)
+           .widgetCurvesContent()
+        #endif
+           .widgetLabel {
+               ProgressView(value: Double(entry.gasLevel.level) / 10.0)
+                   .tint(entry.gasLevel.color)
+           }
     }
     
     var large: some View {
@@ -61,7 +79,7 @@ struct WidgetsFamilyView : View {
             )
                 .frame(maxWidth: .infinity)
         }
-        .widgetBackground(Color(.systemBackground))
+//        .widgetBackground(Color(.systemBackground))
         .widgetBackground(
             LinearGradient(
                 gradient: Gradient(
@@ -103,7 +121,7 @@ struct WidgetsFamilyView : View {
             )
                 .frame(maxWidth: .infinity)
         }
-        .widgetBackground(Color(.systemBackground))
+//        .widgetBackground(Color(.systemBackground))
         .widgetBackground(
             LinearGradient(
                 gradient: Gradient(
@@ -132,7 +150,7 @@ struct WidgetsFamilyView : View {
                 .font(.caption)
             GasScaleDots(gasLevel: entry.gasLevel)
         }
-        .widgetBackground(Color(.systemBackground))
+//        .widgetBackground(Color(.systemBackground))
         .widgetBackground(
             LinearGradient(
                 gradient: Gradient(
@@ -208,6 +226,14 @@ struct LiveGasWidget: Widget {
         }
         .configurationDisplayName("Live Gas Price")
         .description("Updates every 15 minutes")
+        #if os(watchOS)
+        .supportedFamilies([
+            .accessoryRectangular,
+            .accessoryInline,
+            .accessoryCircular,
+            .accessoryCorner
+        ])
+        #else
         .supportedFamilies([
             .accessoryRectangular,
             .accessoryInline,
@@ -216,6 +242,7 @@ struct LiveGasWidget: Widget {
             .systemMedium,
             .systemLarge
         ])
+        #endif
     }
 }
 

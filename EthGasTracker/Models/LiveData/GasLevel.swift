@@ -54,15 +54,15 @@ struct GasLevel {
     static func getColor(for level: Int) -> Color {
         switch level {
         case 0...2:
-            return Color(.systemGreen)
+            return Color(.green)
         case 3...8:
-            return Color(.systemBlue)
+            return Color(.blue)
         case 9:
-            return Color(.systemOrange)
+            return Color(.orange)
         case 10:
-            return Color(.systemRed)
+            return Color(.red)
         default:
-            return Color(.systemGray)
+            return Color(.gray)
         }
     }
 
