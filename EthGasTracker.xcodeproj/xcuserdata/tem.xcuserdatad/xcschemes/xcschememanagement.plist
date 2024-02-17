@@ -17,12 +17,12 @@
 		<key>EthGasTrackerWatch Watch App (Notification).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>5</integer>
 		</dict>
 		<key>EthGasTrackerWatch Watch App.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 		<key>EthGasWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
@@ -35,6 +35,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>12</integer>
+		</dict>
+		<key>LiveGasWidgetExtension watch.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>LiveGasWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
@@ -91,7 +96,7 @@
 		<key>WatchEthGasTracker Watch App.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>7</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

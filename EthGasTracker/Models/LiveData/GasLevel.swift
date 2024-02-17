@@ -52,6 +52,7 @@ struct GasLevel {
     }
 
     static func getColor(for level: Int) -> Color {
+        #if os(watchOS)
         switch level {
         case 0...2:
             return Color(.green)
@@ -64,6 +65,20 @@ struct GasLevel {
         default:
             return Color(.gray)
         }
+        #else
+        switch level {
+        case 0...2:
+            return Color(.systemGreen)
+        case 3...8:
+            return Color(.systemBlue)
+        case 9:
+            return Color(.systemOrange)
+        case 10:
+            return Color(.systemRed)
+        default:
+            return Color(.systemGray)
+        }
+        #endif
     }
 
     static func getLabel(for level: Int) -> String {

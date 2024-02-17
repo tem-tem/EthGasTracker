@@ -37,18 +37,22 @@ struct WidgetsFamilyView : View {
     
     var corner: some View {
         HStack {
-            Text(String(format: "%.f", entry.gasLevel.currentGas))
+//            Text("🔥")
+            Image(systemName: "flame")
+                .frame(width: 5, height: 5)
+            Text("\(String(format: "%.f", entry.gasLevel.currentGas))")
         }
         .font(.headline)
 //           .font(.system(size: 20))
            .foregroundColor(entry.gasLevel.color)
-        #if os(watchOS)
-           .widgetCurvesContent()
-        #endif
            .widgetLabel {
+//               GasScaleDots(gasLevel: entry.gasLevel)
                ProgressView(value: Double(entry.gasLevel.level) / 10.0)
                    .tint(entry.gasLevel.color)
            }
+        #if os(watchOS)
+           .widgetCurvesContent()
+        #endif
     }
     
     var large: some View {

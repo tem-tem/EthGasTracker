@@ -37,32 +37,16 @@ struct ContentView: View {
     }
     var body: some View {
         VStack {
-            Spacer()
-            HStack {
-                FetchingStatusBar()
-                Spacer()
-                Text(date, formatter: DateFormatter.customDateFormatter(withFormat: customDateFormat))
-                    .font(.system(.caption, design: .monospaced))
-                    .foregroundStyle(.secondary)
-            }
-            Spacer()
-            HStack {
-                
-            }
-            HStack {
-                VStack {
-                    Text(String(format: "%.f", round(gas)))
-                        .lineLimit(1)
-                        .font(.system(size: 180, weight: .semibold, design: .default))
-                        .minimumScaleFactor(0.5)
-                    Text("\(liveDataVM.gasLevel.label)")
-                }
-                .foregroundStyle(color)
-            }
+            Text(String(format: "%.f", round(gas)))
+                .lineLimit(1)
+                .font(.system(size: 180, weight: .semibold, design: .default))
+                .minimumScaleFactor(0.5)
             
+            Text("\(liveDataVM.gasLevel.label)")
             GasScaleDots(gasLevel: liveDataVM.gasLevel)
         }
-        .padding()
+        .foregroundStyle(color)
+//        .padding()
     }
 }
 
