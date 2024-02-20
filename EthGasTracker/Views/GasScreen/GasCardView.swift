@@ -117,9 +117,11 @@ struct GasCardView: View {
         .padding(.horizontal, isCollapsed ? 15 : 5) // Adjust horizontal padding when collapsed
         .sheet(isPresented: $showingStats) {
             StatsGraph()
+                .background(Color("BG.L1"))
         }
         .sheet(isPresented: $showingAlerts) {
             MainAlertsView()
+                .background(Color("BG.L1"))
         }
         .onTapGesture {
             if isCollapsed {

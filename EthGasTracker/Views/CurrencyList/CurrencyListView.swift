@@ -50,13 +50,8 @@ struct CurrencyListButtonView: View {
                     let userDefaults = UserDefaults(suiteName: "group.TA.EthGas")
                     userDefaults?.set(currency, forKey: "currency")  // Setting "EUR" as an example, replace with your desired currency
                     userDefaults?.synchronize()
-//                    appDelegate.historicalData_1h = HistoricalDataCahced.placeholder()
-//                    appDelegate.historicalData_1d = HistoricalDataCahced.placeholder()
-//                    appDelegate.historicalData_1w = HistoricalDataCahced.placeholder()
-//                    appDelegate.historicalData_1m = HistoricalDataCahced.placeholder()
-//                    appDelegate.currency = $0.code
-//                    appDelegate.refresh()
                 })
+                .background(Color("BG.L1"))
             } else {
                 PurchaseView()
             }
@@ -82,8 +77,13 @@ struct CurrencyListView: View {
 
     var body: some View {
         VStack {
-            Text("Currency").font(.title).bold().padding()
-            Text("Eth price and actions will be converted to the selected currency. Change takes effect in 5-10 seconds.")
+            Text("Currency")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding()
+            Divider()
+                .padding(.bottom)
+            Text("Fiat values will be displayed in the selected currency. Change takes effect in 5-10 seconds.")
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .padding(.bottom)
@@ -113,6 +113,7 @@ struct CurrencyListView: View {
                             }
                         }
                     }
+                    .listRowBackground(Color.clear)
                 }
             }
             .listStyle(.plain)

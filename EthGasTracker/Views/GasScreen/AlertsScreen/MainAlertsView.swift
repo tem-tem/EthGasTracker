@@ -19,6 +19,12 @@ struct MainAlertsView: View {
     
     var body: some View {
         VStack (spacing: 0) {
+            Text("Ethereum Gas Alerts")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding()
+            Divider()
+                .padding(.bottom)
             if (alertVM.alerts.count > 0) {
                 ScrollView {
                     ForEach(alertVM.alerts) {alert in
