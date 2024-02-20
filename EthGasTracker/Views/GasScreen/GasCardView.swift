@@ -12,6 +12,7 @@ struct GasCardView: View {
     @EnvironmentObject var activeSelectionVM: ActiveSelectionVM
     
     @State private var showingStats = false
+    @State private var showingAlerts = false
     
     var gas: Double {
         liveDataVM.gasLevel.currentGas
@@ -82,6 +83,13 @@ struct GasCardView: View {
             if !isCollapsed {
                 Spacer()
                 HStack {
+                    Button {
+                        showingAlerts.toggle()
+                    } label: {
+                        Image(systemName: "bell.fill")
+                            .foregroundStyle(liveDataVM.gasLevel.color)
+                    }
+                    Spacer()
                     TimestampView(timestamp: liveDataVM.timestamp / 1000)
                     Spacer()
                     Button {
@@ -109,6 +117,9 @@ struct GasCardView: View {
         .padding(.horizontal, isCollapsed ? 15 : 5) // Adjust horizontal padding when collapsed
         .sheet(isPresented: $showingStats) {
             StatsGraph()
+        }
+        .sheet(isPresented: $showingAlerts) {
+            MainAlertsView()
         }
         .onTapGesture {
             if isCollapsed {

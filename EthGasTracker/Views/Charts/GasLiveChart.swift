@@ -59,16 +59,6 @@ struct GasLiveChart_ChartItself: View {
     
     var body: some View {
         Chart(liveDataVM.gasDataEntity.entries, id: \.index) { entry in
-//            if (entry.index % 5 == 0) {
-//                ForEach(gridYCoordinates, id: \.self) { y in
-//                    PointMark(
-//                        x: .value("Index", entry.index),
-//                        y: .value("Gas", y)
-//                    )
-//                    .symbolSize(1)
-//                    .foregroundStyle(primaryColor.opacity(0.5))
-//                }
-//            }
             let count = liveDataVM.gasDataEntity.entries.count
             let entryGas = isFastMain ? Int(round(entry.fast)) : Int(round(entry.normal))
             let lastEntry = liveDataVM.gasDataEntity.entries[count - 1]

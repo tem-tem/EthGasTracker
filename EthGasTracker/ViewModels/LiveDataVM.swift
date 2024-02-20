@@ -39,6 +39,7 @@ class LiveDataVM: ObservableObject {
     @Published var gasDataEntity: GasDataEntity = GasDataEntity(from: [], with: [])
     @Published var gasLevel: GasLevel = GasLevel(currentStats: CurrentStats.placeholder(), currentGas: 0.0)
     @Published var ethPrice: Double = 0.0
+    @Published var btcDataEntity: BtcDataEntity = BtcDataEntity(price: 0, rate: 0, histogram: [:])
 
     @Published var actions: [ActionEntity] = []
     
@@ -75,21 +76,16 @@ class LiveDataVM: ObservableObject {
                     
                     self.gasLevel = GasLevel(currentStats: data.currentStats, currentGas: self.gasDataEntity.lastNormal)
                     
-                    self.actions = data.actions.values
-                        .sorted { $0.key < $1.key }
-                        .map { serverAction in
-//                            guard self.customActionDM.actions.contains(where: { $0.key == serverAction.key })
-                            let isPinned = data.defaultActions.keys.contains(serverAction.key)
-                            return ActionEntity(
-                                rawAction: serverAction,
-                                gasEntries: self.gasDataEntity.entries,
-                                priceEntries: self.ethPriceEntity.entries,
-                                isPinned: isPinned
-                        )
-                    }
-                    
                     self.addToCustomActions(actions: data.defaultActions)
                     self.addToCustomActions(actions: data.actions)
+                    
+                    var btcPrice = Double(data.btcIndexes.price)
+                    if let rateString = data.currencyRate, let rate = Double(rateString) {
+                        btcPrice = btcPrice * rate
+                    }
+                    let rate = data.btcIndexes.btcFees.rateInt
+                    
+                    self.btcDataEntity = BtcDataEntity(price: btcPrice, rate: rate, histogram: data.btcIndexes.btcFees.consolidatedHistogram)
                     
                     self.timestamp = self.gasDataEntity.entries.last?.timestamp ?? 0
                     

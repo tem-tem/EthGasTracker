@@ -31,5 +31,7 @@ struct EthPriceView: View {
 }
 
 #Preview {
-    EthPriceView(value: 2345.5432)
+    PreviewWrapper {
+        EthPriceView(value: 2345.5432)
+    }
 }

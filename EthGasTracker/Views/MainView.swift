@@ -21,9 +21,9 @@ struct MainView: View {
     var body: some View {
         ZStack {
             VStack {
-                MainHeaderView(showGas: selectedTab != 1)
+                MainHeaderView(showGas: selectedTab != 0, showBtc: selectedTab != 1, showEth: selectedTab != 0)
                 TabView(selection: $selectedTab) {
-                    MainAlertsView()
+                    MainBtcView()
                         .tag(0)
                     MainGasView()
                         .tag(1)

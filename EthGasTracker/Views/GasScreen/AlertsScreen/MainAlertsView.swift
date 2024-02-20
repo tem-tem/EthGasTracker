@@ -27,8 +27,6 @@ struct MainAlertsView: View {
                             .padding(.vertical, 5)
                             .padding(.horizontal)
                     }
-                }.refreshable {
-                    alertVM.fetch()
                 }
                 Divider()
                 Button {

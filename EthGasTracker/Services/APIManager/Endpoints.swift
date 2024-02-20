@@ -28,7 +28,7 @@ struct Endpoints {
     
     init () {
         let env = self.PROD
-        self.latest = env + "/api/v3/latest" + "?amount=" + String(AMOUNT_TO_FETCH)
+        self.latest = env + "/api/v4/latest" + "?amount=" + String(AMOUNT_TO_FETCH)
         self.historyHour =  env + "/api/v3/history/hour"
         self.historyDay =  env + "/api/v3/history/day"
         self.historyWeek =  env + "/api/v3/history/week"

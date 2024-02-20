@@ -18,8 +18,8 @@ struct MainMenuView: View {
                     selectedTab = 0
                 }
             } label: {
-                Image(systemName: "bell.fill")
-                    .foregroundStyle(selectedTab == 0 ? color : .secondary)
+                Image(systemName: "bitcoinsign")
+                    .foregroundStyle(selectedTab == 0 ? Color(.systemOrange) : .secondary)
             }
             Spacer()
             Button {
