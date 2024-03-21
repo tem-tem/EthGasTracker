@@ -53,13 +53,21 @@ class SharedDataRepository {
                 )
                 let gasLevel = GasLevel(currentStats: data.currentStats, currentGas: gasDataEntity.lastNormal)
                 
+                var btcPrice = Double(data.btcIndexes.price)
+                if let rateString = data.currencyRate, let rate = Double(rateString) {
+                    btcPrice = btcPrice * rate
+                }
+                let rate = data.btcIndexes.btcFees.rateInt
+                
                 let entry = GasIndexEntry(
                     date: Date(),
                     gas: gasLevel.currentGas,
                     ethPrice: ethPriceEntity.entries.last?.price ?? 0,
                     gasDataEntity: gasDataEntity,
                     gasLevel: gasLevel,
-                    actions: self.actionDataManager.pinnedActions
+                    actions: self.actionDataManager.pinnedActions,
+                    btcDataEntity: BtcDataEntity(price: btcPrice, rate: rate, histogram: data.btcIndexes.btcFees.consolidatedHistogram),
+                    isPlaceholder: false
                 )
                 completion(.success(entry))
 //                let timeline = Timeline(entries: [entry], policy: .atEnd)

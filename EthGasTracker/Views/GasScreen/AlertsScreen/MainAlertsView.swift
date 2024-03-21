@@ -14,7 +14,9 @@ struct MainAlertsView: View {
 //    @Binding var showingAlertForm: Bool
     @State private var showingNewAlertForm = false
     @State private var showToast = false
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     @State private var showingPurchaseView = false
     
     var body: some View {

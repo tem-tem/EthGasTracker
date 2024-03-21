@@ -51,7 +51,9 @@ func checkNotificationPermission(onGranted: @escaping () -> Void, onDenied: @esc
 @main
 struct EthGasTracker: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
 //    let notificationDelegate = NotificationDelegate()
 //    @Environment(\.scenePhase) var scene
 //    @StateObject private var notificationManager = NotificationManager()
@@ -62,15 +64,17 @@ struct EthGasTracker: App {
         return (settingsColorScheme == .dark) || (settingsColorScheme == .none && defaultColorScheme == .dark)
     }
     
-    @StateObject private var activeSelectionVM = ActiveSelectionVM()
-    @StateObject private var storeVM = StoreVM()
-    @StateObject var networkMonitor = NetworkMonitor()
+    @StateObject private var activeSelectionVM: ActiveSelectionVM
+    @StateObject private var storeVM: StoreVM
+    @StateObject var networkMonitor: NetworkMonitor
     
     @StateObject private var customActionDM: CustomActionDataManager
     @StateObject private var liveDataVM: LiveDataVM
     @StateObject private var historicalDataVM: HistoricalDataVM
     @StateObject private var alertVM: AlertVM
     @StateObject private var statsVM: StatsVM
+    
+    @State private var showPurchaseSheet: Bool = false
     
     init() {
         let apiManager = APIManager()
@@ -80,12 +84,16 @@ struct EthGasTracker: App {
         _historicalDataVM = StateObject(wrappedValue: HistoricalDataVM(apiManager: apiManager))
         _alertVM = StateObject(wrappedValue: AlertVM(apiManager: apiManager))
         _statsVM = StateObject(wrappedValue: StatsVM(apiManager: apiManager))
+        _activeSelectionVM = StateObject(wrappedValue: ActiveSelectionVM())
+        _storeVM = StateObject(wrappedValue: StoreVM())
+        _networkMonitor = StateObject(wrappedValue: NetworkMonitor())
+        _showPurchaseSheet = State(wrappedValue: false)
     }
     
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(showPurchaseSheet: $showPurchaseSheet)
                 .environmentObject(appDelegate)
                 .environmentObject(liveDataVM)
                 .environmentObject(activeSelectionVM)
@@ -115,6 +123,13 @@ struct EthGasTracker: App {
                     if (didCheck) {
                         subbed = !storeVM.purchasedSubscriptions.isEmpty
                         print(storeVM.purchasedSubscriptions)
+                    }
+                }
+                .onOpenURL { url in
+                    if url == URL(string: "widget://unlock") {
+                        if (!subbed) {
+                            showPurchaseSheet = true
+                        }
                     }
                 }
         }

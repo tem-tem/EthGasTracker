@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @Binding var showPurchaseSheet: Bool
     @EnvironmentObject var liveDataVM: LiveDataVM
     @EnvironmentObject var activeSelectionVM: ActiveSelectionVM
     @EnvironmentObject var alertVM: AlertVM
@@ -58,6 +59,9 @@ struct MainView: View {
             .onChange(of: DeviceTokenManager.shared.deviceToken) { _ in
                 alertVM.fetch()
             }
+            .sheet(isPresented: $showPurchaseSheet) {
+                PurchaseView()
+            }
         }
         
     }
@@ -72,6 +76,6 @@ struct InnerHeightPreferenceKey: PreferenceKey {
 
 #Preview {
     PreviewWrapper {
-        MainView()
+        MainView(showPurchaseSheet: .constant(false))
     }
 }

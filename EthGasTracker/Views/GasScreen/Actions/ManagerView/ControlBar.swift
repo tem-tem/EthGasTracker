@@ -14,7 +14,9 @@ struct ControlBar: View {
     @Binding var showingForm: Bool
     @Binding var showingPurchaseView: Bool
     @Binding var isDeleting: Bool
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     @Binding var showingWheel: Bool
     
     var body: some View {

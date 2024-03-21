@@ -20,7 +20,9 @@ let CHART_HEIGHT = 120.0
 struct GasCharts: View {
     let primaryColor: Color
     let secondaryColor: Color
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     @EnvironmentObject var liveDataVM: LiveDataVM
     @EnvironmentObject var historicalDataVM: HistoricalDataVM
     @EnvironmentObject var activeSelectionVM: ActiveSelectionVM

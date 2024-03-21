@@ -49,7 +49,7 @@ struct PriceDataEntity {
             entries = self.convert(entries: entries, toRate: rate)
         }
         
-        return entries
+        return entries.sorted(by: { $0.timestamp < $1.timestamp })
     }
     
     static func filter(rawData: [ResponseIndex], byTimestamps timestamps: Set<String>) -> [ResponseIndex] {

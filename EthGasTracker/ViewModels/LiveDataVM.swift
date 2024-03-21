@@ -28,7 +28,9 @@ class LiveDataVM: ObservableObject {
     
     @AppStorage("currency", store: UserDefaults(suiteName: "group.TA.EthGas")) var currency: String = "USD"
     @AppStorage("currencyRate") var currencyRate = 1.0
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     @AppStorage(SettingsKeys().isFastMain) private var isFastMain = false
     
     @Published var fetchInterval: Double = FETCH_INTERVAL
@@ -68,7 +70,9 @@ class LiveDataVM: ObservableObject {
                         with: data.indexes.commonTimestamps,
                         in: data.currencyRate
                     )
-                    self.ethPrice = self.ethPriceEntity.entries.last?.price ?? 0
+                    
+                    let first = self.ethPriceEntity.entries.sorted(by: { $0.timestamp > $1.timestamp }).first
+                    self.ethPrice = first?.price ?? 0.0
                     self.gasDataEntity = GasDataEntity(
                         from: data.indexes.gas,
                         with: data.indexes.commonTimestamps

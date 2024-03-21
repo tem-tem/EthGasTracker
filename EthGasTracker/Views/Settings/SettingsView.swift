@@ -9,7 +9,9 @@ import StoreKit
 
 struct SettingsView: View {
     @EnvironmentObject var liveDataVM: LiveDataVM
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
 //    @Binding var isPresented: Bool
     @AppStorage(SettingsKeys().hapticFeedbackEnabled) private var haptic = true
     @State private var showToast: Bool = false

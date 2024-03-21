@@ -18,7 +18,9 @@ struct ActionsManagerView: View {
     @State private var showingForm = false
     @State private var isDeleting = false
     @State private var showingPurchaseView = false
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     @Binding var showingWheel: Bool
     
     var cols: [GridItem] {

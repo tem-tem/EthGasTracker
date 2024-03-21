@@ -9,7 +9,9 @@ import SwiftUI
 import Charts
 
 struct GasHistoricalChart: View {
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     let entries: HistoricalDataCached
     let primaryColor: Color
     let secondaryColor: Color

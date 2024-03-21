@@ -33,3 +33,8 @@ struct GasIndexProvider: TimelineProvider {
         }
     }
 }
+
+//func updateWidgets() {
+//    // Request WidgetKit to refresh the widget
+//    WidgetCenter.shared.reloadAllTimelines()
+//}

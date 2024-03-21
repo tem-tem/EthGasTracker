@@ -12,5 +12,8 @@ import SwiftUI
 struct LiveGasWidgetBundle: WidgetBundle {
     var body: some Widget {
         LiveGasWidget()
+        LiveBtcRateWidget()
+        LiveBtcRateSegWitWidget()
+        LiveBtcRateP2PKHWidget()
     }
 }

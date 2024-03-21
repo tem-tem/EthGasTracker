@@ -15,6 +15,8 @@ struct GasIndexEntry: TimelineEntry {
     let gasDataEntity: GasDataEntity
     let gasLevel: GasLevel
     let actions: [CustomActionEntity]
+    let btcDataEntity: BtcDataEntity
+    let isPlaceholder: Bool
     
     static let placeholder = GasIndexEntry(
         date: Date(),
@@ -25,7 +27,9 @@ struct GasIndexEntry: TimelineEntry {
             currentStats: CurrentStats.placeholder(),
             currentGas: 88
         ),
-        actions: CustomActionEntity.placeholders(amount: 10)
+        actions: CustomActionEntity.placeholders(amount: 10),
+        btcDataEntity: BtcDataEntity(price: 69420, rate: 69, histogram: [:]),
+        isPlaceholder: true
     )
     
     static func generatePlaceholder(customActionDM: CustomActionDataManager) -> GasIndexEntry {
@@ -38,7 +42,9 @@ struct GasIndexEntry: TimelineEntry {
                 currentStats: CurrentStats.placeholder(),
                 currentGas: 88
             ),
-            actions: customActionDM.actions
+            actions: customActionDM.actions,
+            btcDataEntity: BtcDataEntity(price: 69420, rate: 69, histogram: [:]),
+            isPlaceholder: true
         )
     }
 }

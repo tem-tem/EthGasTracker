@@ -9,7 +9,8 @@ import WidgetKit
 import SwiftUI
 
 struct WidgetsFamilyView : View {
-    var entry: GasIndexEntry  // Change the type here
+    var entry: GasIndexEntry
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     
     @Environment(\.widgetFamily) var widgetFamily
     
@@ -57,31 +58,43 @@ struct WidgetsFamilyView : View {
     
     var large: some View {
         VStack {
-            VStack {
-//                Spacer()
-                Text(String(format: "%.f", entry.gasLevel.currentGas))
-                    .font(.system(size: 80, weight: .bold, design: .rounded))
-                    .minimumScaleFactor(0.5)
-                    .foregroundStyle(
-                        entry.gasLevel.color.gradient
-                            .shadow(.inner(color: .white.opacity(0.5), radius: 2, x: 0, y: 0))
-                    )
+            if entry.isPlaceholder || subbed {
+                VStack {
+    //                Spacer()
+                    Text(String(format: "%.f", entry.gasLevel.currentGas))
+                        .font(.system(size: 80, weight: .bold, design: .rounded))
+                        .minimumScaleFactor(0.5)
+                        .foregroundStyle(
+                            entry.gasLevel.color.gradient
+                                .shadow(.inner(color: .white.opacity(0.5), radius: 2, x: 0, y: 0))
+                        )
+                    
+                    Text(entry.gasLevel.label)
+                        .font(.caption)
+                    GasScaleDots(gasLevel: entry.gasLevel)
+                }
+                Divider()
                 
-                Text(entry.gasLevel.label)
-                    .font(.caption)
-                GasScaleDots(gasLevel: entry.gasLevel)
+                
+                ActionsBlockDenseView(
+                    actions: entry.actions,
+                    gas: entry.gas,
+                    ethPrice: entry.ethPrice,
+                    columns: 2,
+                    amount: 8
+                )
+                    .frame(maxWidth: .infinity)
+            } else {
+                VStack {
+                    Spacer()
+                    Image(systemName: "sparkles")
+                        .font(.headline)
+                    Text("Tap to unlock")
+                        .font(.caption)
+                    Spacer()
+                }
+                .widgetURL(URL(string: "widget://unlock")!)
             }
-            Divider()
-            
-            
-            ActionsBlockDenseView(
-                actions: entry.actions,
-                gas: entry.gas,
-                ethPrice: entry.ethPrice,
-                columns: 2,
-                amount: 8
-            )
-                .frame(maxWidth: .infinity)
         }
 //        .widgetBackground(Color(.systemBackground))
         .widgetBackground(
@@ -98,32 +111,44 @@ struct WidgetsFamilyView : View {
 //    MARK: - Medium
     var medium: some View {
         HStack {
-            VStack {
-                Spacer()
-                Text(String(format: "%.f", entry.gasLevel.currentGas))
-                    .font(.system(size: 80, weight: .bold, design: .rounded))
-                    .minimumScaleFactor(0.5)
-                    .foregroundStyle(
-                        entry.gasLevel.color.gradient
-                            .shadow(.inner(color: .white.opacity(0.5), radius: 2, x: 0, y: 0))
-                    )
-                    .frame(maxWidth: 90)
-                Spacer()
+            if entry.isPlaceholder || subbed {
+                VStack {
+                    Spacer()
+                    Text(String(format: "%.f", entry.gasLevel.currentGas))
+                        .font(.system(size: 80, weight: .bold, design: .rounded))
+                        .minimumScaleFactor(0.5)
+                        .foregroundStyle(
+                            entry.gasLevel.color.gradient
+                                .shadow(.inner(color: .white.opacity(0.5), radius: 2, x: 0, y: 0))
+                        )
+                        .frame(maxWidth: 90)
+                    Spacer()
+                    
+                    Text(entry.gasLevel.label)
+                        .font(.caption)
+                    GasScaleDots(gasLevel: entry.gasLevel)
+                }
+                Divider()
                 
-                Text(entry.gasLevel.label)
-                    .font(.caption)
-                GasScaleDots(gasLevel: entry.gasLevel)
+                ActionsBlockDenseView(
+                    actions: entry.actions,
+                    gas: entry.gas,
+                    ethPrice: entry.ethPrice,
+                    columns: 2,
+                    amount: 4
+                )
+                    .frame(maxWidth: .infinity)
+            } else {
+                VStack {
+                    Spacer()
+                    Image(systemName: "sparkles")
+                        .font(.headline)
+                    Text("Tap to unlock")
+                        .font(.caption)
+                    Spacer()
+                }
+                .widgetURL(URL(string: "widget://unlock")!)
             }
-            Divider()
-            
-            ActionsBlockDenseView(
-                actions: entry.actions,
-                gas: entry.gas,
-                ethPrice: entry.ethPrice,
-                columns: 2,
-                amount: 4
-            )
-                .frame(maxWidth: .infinity)
         }
 //        .widgetBackground(Color(.systemBackground))
         .widgetBackground(
@@ -196,7 +221,7 @@ struct WidgetsFamilyView : View {
     
 //    MARK: -Lockscreen Rectangular
     var lockscreenRectangular: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .top) {
             VStack {
                 HStack(alignment: .center) {
                     Image(systemName: "flame")
@@ -222,13 +247,12 @@ struct WidgetsFamilyView : View {
 
 struct LiveGasWidget: Widget {
     let kind: String = "LiveGasWidgets"
-//    let provider: GasIndexProvider =
-
+    
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: GasIndexProvider()) { entry in
             WidgetsFamilyView(entry: entry)
         }
-        .configurationDisplayName("Live Gas Price")
+        .configurationDisplayName("ETH Gas Price")
         .description("Updates every 15 minutes")
         #if os(watchOS)
         .supportedFamilies([

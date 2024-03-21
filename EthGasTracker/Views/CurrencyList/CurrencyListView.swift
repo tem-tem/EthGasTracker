@@ -12,7 +12,9 @@ struct CurrencyListButtonView: View {
     @EnvironmentObject var appDelegate: AppDelegate
     @State private var showingSheet = false
     @ObservedObject var viewModel = CurrencyViewModel()
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     @AppStorage("currency", store: UserDefaults(suiteName: "group.TA.EthGas")) var currency: String = "USD"
 
     var currencyCode: String {

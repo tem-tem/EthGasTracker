@@ -88,6 +88,13 @@
 		A3556E4D2B2D4DF600604D56 /* AppDelegate_HistoricalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3556E4C2B2D4DF600604D56 /* AppDelegate_HistoricalData.swift */; };
 		A3556E4F2B2D4E3500604D56 /* AppDelegate_Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3556E4E2B2D4E3500604D56 /* AppDelegate_Alerts.swift */; };
 		A3556E512B2D4EB300604D56 /* AppDelegate_Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3556E502B2D4EB300604D56 /* AppDelegate_Messages.swift */; };
+		A35628BF2B90CADF00171C52 /* LiveBtcRateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628BC2B90C18000171C52 /* LiveBtcRateWidget.swift */; };
+		A35628C02B90CB9B00171C52 /* LiveBtcRateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628BC2B90C18000171C52 /* LiveBtcRateWidget.swift */; };
+		A35628C22B90CE6800171C52 /* LiveBtcSegwitWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628C12B90CE6800171C52 /* LiveBtcSegwitWidget.swift */; };
+		A35628C42B90E0F100171C52 /* LiveBtcSegwitWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628C12B90CE6800171C52 /* LiveBtcSegwitWidget.swift */; };
+		A35628C62B90F55F00171C52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A35628C52B90F55F00171C52 /* StoreKit.framework */; };
+		A35628C82B90F85500171C52 /* LiveBtcP2PKHWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628C72B90F85500171C52 /* LiveBtcP2PKHWidget.swift */; };
+		A35628C92B90F85500171C52 /* LiveBtcP2PKHWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628C72B90F85500171C52 /* LiveBtcP2PKHWidget.swift */; };
 		A36781F62A7E847D006B3149 /* API_v1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781F52A7E847D006B3149 /* API_v1.swift */; };
 		A36781FA2A7E8AD8006B3149 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781F92A7E8AD8006B3149 /* DataManager.swift */; };
 		A36781FD2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */; };
@@ -450,6 +457,10 @@
 		A3556E4C2B2D4DF600604D56 /* AppDelegate_HistoricalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate_HistoricalData.swift; sourceTree = "<group>"; };
 		A3556E4E2B2D4E3500604D56 /* AppDelegate_Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate_Alerts.swift; sourceTree = "<group>"; };
 		A3556E502B2D4EB300604D56 /* AppDelegate_Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate_Messages.swift; sourceTree = "<group>"; };
+		A35628BC2B90C18000171C52 /* LiveBtcRateWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveBtcRateWidget.swift; sourceTree = "<group>"; };
+		A35628C12B90CE6800171C52 /* LiveBtcSegwitWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveBtcSegwitWidget.swift; sourceTree = "<group>"; };
+		A35628C52B90F55F00171C52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A35628C72B90F85500171C52 /* LiveBtcP2PKHWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveBtcP2PKHWidget.swift; sourceTree = "<group>"; };
 		A36781F52A7E847D006B3149 /* API_v1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_v1.swift; sourceTree = "<group>"; };
 		A36781F92A7E8AD8006B3149 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
@@ -563,6 +574,7 @@
 			files = (
 				A332503C2AA2958E00A5B6B3 /* FirebaseAnalytics in Frameworks */,
 				A3785B4F2B722A340052016E /* AlertToast in Frameworks */,
+				A35628C62B90F55F00171C52 /* StoreKit.framework in Frameworks */,
 				A332503E2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				A3B95EDA2AA3ED420010657A /* Snappable in Frameworks */,
 			);
@@ -888,6 +900,7 @@
 		A38C56542A12C7C5004ABF21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A35628C52B90F55F00171C52 /* StoreKit.framework */,
 				A38C56552A12C7C5004ABF21 /* WidgetKit.framework */,
 				A38C56572A12C7C5004ABF21 /* SwiftUI.framework */,
 			);
@@ -1042,6 +1055,9 @@
 			children = (
 				A3CEC8C02B70247C00B082B7 /* LiveGasWidgetBundle.swift */,
 				A3CEC8C22B70247C00B082B7 /* LiveGasWidget.swift */,
+				A35628BC2B90C18000171C52 /* LiveBtcRateWidget.swift */,
+				A35628C12B90CE6800171C52 /* LiveBtcSegwitWidget.swift */,
+				A35628C72B90F85500171C52 /* LiveBtcP2PKHWidget.swift */,
 				A3CEC8C42B70247E00B082B7 /* Assets.xcassets */,
 				A3CEC8C62B70247E00B082B7 /* Info.plist */,
 				A3CEC8CD2B7024CD00B082B7 /* GasIndexProvider.swift */,
@@ -1497,6 +1513,7 @@
 				A3CACAFF2B8037E400B9D721 /* InfiniteScrollView.swift in Sources */,
 				A3CACB002B8037E400B9D721 /* HistoricalData.swift in Sources */,
 				A3CACB012B8037E400B9D721 /* MinMax.swift in Sources */,
+				A35628C42B90E0F100171C52 /* LiveBtcSegwitWidget.swift in Sources */,
 				A3CACB022B8037E400B9D721 /* Currency.swift in Sources */,
 				A3CACB032B8037E400B9D721 /* Stats.swift in Sources */,
 				A3CACB042B8037E400B9D721 /* RepeatingTask.swift in Sources */,
@@ -1508,6 +1525,8 @@
 				A3CACB0A2B8037E400B9D721 /* APIManager_StatsData.swift in Sources */,
 				A3CACB0B2B8037E400B9D721 /* ActionSMView.swift in Sources */,
 				A3CACB0C2B8037E400B9D721 /* APIManager.swift in Sources */,
+				A35628BF2B90CADF00171C52 /* LiveBtcRateWidget.swift in Sources */,
+				A35628C92B90F85500171C52 /* LiveBtcP2PKHWidget.swift in Sources */,
 				A3CACB0D2B8037E400B9D721 /* CurrentStats.swift in Sources */,
 				A3CACB0E2B8037E400B9D721 /* ActionXLView.swift in Sources */,
 				A3CACB0F2B8037E400B9D721 /* GasIndexEntry.swift in Sources */,
@@ -1546,6 +1565,7 @@
 				A3CEC8C12B70247C00B082B7 /* LiveGasWidgetBundle.swift in Sources */,
 				A3CEC8CE2B7024CD00B082B7 /* GasIndexProvider.swift in Sources */,
 				A3CEC8EC2B70254C00B082B7 /* PriceNumberView.swift in Sources */,
+				A35628C22B90CE6800171C52 /* LiveBtcSegwitWidget.swift in Sources */,
 				A31A5D5C2B77EEC90068A4C2 /* Gas.xcdatamodeld in Sources */,
 				A3CEC8DA2B70251400B082B7 /* DateFormatterExtension.swift in Sources */,
 				A3CEC8ED2B70255000B082B7 /* InfiniteScrollView.swift in Sources */,
@@ -1562,6 +1582,8 @@
 				A3CEC8D32B7024F100B082B7 /* APIManager_StatsData.swift in Sources */,
 				A3CEC8F02B70256600B082B7 /* ActionSMView.swift in Sources */,
 				A3CEC8D02B7024EB00B082B7 /* APIManager.swift in Sources */,
+				A35628C02B90CB9B00171C52 /* LiveBtcRateWidget.swift in Sources */,
+				A35628C82B90F85500171C52 /* LiveBtcP2PKHWidget.swift in Sources */,
 				A3CEC8E62B70252100B082B7 /* CurrentStats.swift in Sources */,
 				A3CEC8EF2B70256600B082B7 /* ActionXLView.swift in Sources */,
 				A31A5D602B7879D30068A4C2 /* GasIndexEntry.swift in Sources */,
@@ -1748,7 +1770,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.3.2;
+				MARKETING_VERSION = 4.4.5;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1790,7 +1812,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.3.2;
+				MARKETING_VERSION = 4.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

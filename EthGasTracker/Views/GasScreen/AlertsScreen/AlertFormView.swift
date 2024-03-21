@@ -11,7 +11,9 @@ struct AlertFormView: View {
     @EnvironmentObject var liveDataVM: LiveDataVM
     @EnvironmentObject var alertVM: AlertVM
 //    @Environment(\.requestReview) var requestReview
-    @AppStorage("subbed") var subbed: Bool = false
+//    @AppStorage("subbed") var subbed: Bool = false
+    
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     @AppStorage("requestReviewTimestamp") private var requestReviewTimestamp = 0.0
     @AppStorage(SettingsKeys().isFastMain) private var isFastMain = false
     @Binding var isPresented: Bool

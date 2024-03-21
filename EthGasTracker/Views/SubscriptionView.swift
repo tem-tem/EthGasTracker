@@ -7,6 +7,7 @@
 
 import SwiftUI
 import StoreKit
+import WidgetKit
 
 struct SubscriptionView: View {
     @EnvironmentObject var liveDataVM: LiveDataVM
@@ -178,6 +179,22 @@ struct GoodStuff: View {
                         .foregroundStyle(.secondary)
                 }
             }
+            HStack(alignment: .top) {
+                Image(systemName: "rectangle.3.group.fill")
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(Color(.systemOrange))
+                    .background(Color(.systemOrange).opacity(0.1))
+                    .cornerRadius(7)
+                VStack(alignment: .leading) {
+                    Text("Widgets")
+                        .padding(.top, 5)
+                        .padding(.bottom, 2)
+                    Text("More widgets, but with extra stuff.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
+                }
+            }
         }
     }
 }
@@ -266,22 +283,6 @@ struct NextGoodStuff: View {
                 }
             }
             HStack(alignment: .top) {
-                Image(systemName: "rectangle.3.group.fill")
-                    .frame(width: 32, height: 32)
-                    .foregroundColor(Color(.systemOrange))
-                    .background(Color(.systemOrange).opacity(0.1))
-                    .cornerRadius(7)
-                VStack(alignment: .leading) {
-                    Text("Widgets")
-                        .padding(.top, 5)
-                        .padding(.bottom, 2)
-                    Text("More widgets, but with extra stuff.").font(.caption)
-                        .padding(.leading, 2)
-                        .padding(.vertical, 2)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            HStack(alignment: .top) {
                 Image(systemName: "checkerboard.rectangle")
                     .frame(width: 32, height: 32)
                     .foregroundColor(Color(.systemPurple))
@@ -337,6 +338,7 @@ struct BuyButtons: View {
         do {
             if try await storeVM.purchase(product) != nil {
                 isPurchased = true
+                WidgetCenter.shared.reloadAllTimelines()
             }
         } catch {
             print("purchase failed")

@@ -37,7 +37,7 @@ struct MainHeaderView: View {
                             .foregroundStyle(.secondary)
                     }.opacity(showGas ? 1 : 0)
                     Spacer()
-                    EthPriceView(value: liveDataVM.ethPriceEntity.entries.last?.price ?? 0.0)
+                    EthPriceView(value: liveDataVM.ethPrice)
                         .opacity(showEth ? 1 : 0)
                 }
                 .padding(.horizontal)
