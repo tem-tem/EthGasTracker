@@ -80,8 +80,8 @@ struct MainAlertsView: View {
             AlertToast(type: .systemImage("checkmark", liveDataVM.gasLevel.color))
         }
         .sheet(isPresented: $showingPurchaseView) {
-                PurchaseView()
-            }
+            PurchaseView(source: "alerts_screen")
+        }
         .sheet(isPresented: $showingNewAlertForm) {
             AlertFormView(isPresented: $showingNewAlertForm, showToast: $showToast)
                 .background(Color("BG.L1"))

@@ -88,7 +88,7 @@ struct ControlBar: View {
                 }
         }
         .sheet(isPresented: $showingPurchaseView) {
-            PurchaseView()
+            PurchaseView(source: "actions_screen")
         }
         .onChange(of: showingWheel) { _ in
             activeSelectionVM.drop()

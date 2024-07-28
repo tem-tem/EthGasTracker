@@ -10,7 +10,7 @@ import BackgroundTasks
 import FirebaseCore
 import FirebaseAnalytics
 import AppTrackingTransparency
-
+import GoogleMobileAds
 
 class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -47,6 +47,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
             }
         }
         Analytics.logEvent("pickup", parameters: nil)
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true
     }
 }

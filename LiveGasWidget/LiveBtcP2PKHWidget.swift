@@ -70,7 +70,7 @@ struct LiveBtcP2PKHWidgetView: View {
                         .font(.caption)
                     Spacer()
                 }
-                .widgetURL(URL(string: "widget://unlock")!)
+                .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
             }
         }
         .widgetBackground(
@@ -91,7 +91,7 @@ struct LiveBtcP2PKHWidgetView: View {
                 PriceNumberView(value: p2pkh)
             } else {
                 Image(systemName: "sparkles")
-                    .widgetURL(URL(string: "widget://unlock")!)
+                    .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
             }
         }
         .font(.headline)
@@ -117,7 +117,7 @@ struct LiveBtcP2PKHWidgetView: View {
                     .font(.caption)
             } else {
                 Image(systemName: "sparkles")
-                    .widgetURL(URL(string: "widget://unlock")!)
+                    .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
             }
         }
         .conditionalContainerBackground()
@@ -132,7 +132,7 @@ struct LiveBtcP2PKHWidgetView: View {
                     .font(.caption)
             } else {
                 Image(systemName: "sparkles")
-                .widgetURL(URL(string: "widget://unlock")!)
+                .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
             }
         }
         .conditionalContainerBackground()
@@ -156,7 +156,7 @@ struct LiveBtcP2PKHWidgetView: View {
                         Image(systemName: "sparkles")
                         Text("Tap to unlock")
                     }
-                    .widgetURL(URL(string: "widget://unlock")!)
+                    .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
                 }
         }
         .font(.system(.largeTitle, design: .rounded))

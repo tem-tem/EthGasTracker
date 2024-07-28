@@ -50,6 +50,12 @@
             ReferencedContainer = "container:EthGasTracker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-FIRAnalyticsDebugEnabled"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <StoreKitConfigurationFileReference
          identifier = "../EthGasTracker/GAS ALERT Ethereum Gas Tracker.storekit">
       </StoreKitConfigurationFileReference>

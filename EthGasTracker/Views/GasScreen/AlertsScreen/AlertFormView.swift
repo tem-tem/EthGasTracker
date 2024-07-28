@@ -157,7 +157,7 @@ struct AlertFormView: View {
                                             BorderedText(value: "Unlock")
                                         }
                                         .sheet(isPresented: $showSubscriptionView) {
-                                            PurchaseView()
+                                            PurchaseView(source: "alert_form_confirmation")
                                         }
                                     }
                                 }
@@ -191,7 +191,7 @@ struct AlertFormView: View {
                                             BorderedText(value: "Unlock")
                                         }
                                         .sheet(isPresented: $showSubscriptionView) {
-                                            PurchaseView()
+                                            PurchaseView(source: "alert_form_off_hours")
                                         }
                                     }
                                 }
@@ -235,7 +235,7 @@ struct AlertFormView: View {
                                             BorderedText(value: "Unlock")
                                         }
                                         .sheet(isPresented: $showSubscriptionView) {
-                                            PurchaseView()
+                                            PurchaseView(source: "alert_form_lifespan")
                                         }
                                     }
                                 }

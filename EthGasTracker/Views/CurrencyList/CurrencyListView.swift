@@ -55,7 +55,7 @@ struct CurrencyListButtonView: View {
                 })
                 .background(Color("BG.L1"))
             } else {
-                PurchaseView()
+                PurchaseView(source: "currency")
             }
         }
     }

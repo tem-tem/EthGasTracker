@@ -9,6 +9,10 @@ import SwiftUI
 import BackgroundTasks
 import UserNotifications
 import WidgetKit
+import FirebaseAnalytics
+
+let ETH_WIDGET_UNLOCK_URL = "widget://unlock.eth"
+let BTC_WIDGET_UNLOCK_URL = "widget://unlock.btc"
 
 func requestNotificationPermission() {
     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
@@ -126,9 +130,23 @@ struct EthGasTracker: App {
                     }
                 }
                 .onOpenURL { url in
-                    if url == URL(string: "widget://unlock") {
+                    if url == URL(string: ETH_WIDGET_UNLOCK_URL) {
                         if (!subbed) {
                             showPurchaseSheet = true
+                            let params = [
+                                AnalyticsParameterScreenName: "user clicked on widget to unlock subscription",
+                            ]
+                            Analytics.logEvent("unlock_eth", parameters: params)
+                        }
+                    }
+                    
+                    if url == URL(string: BTC_WIDGET_UNLOCK_URL) {
+                        if (!subbed) {
+                            showPurchaseSheet = true
+                            let params = [
+                                AnalyticsParameterScreenName: "user clicked on widget to unlock subscription",
+                            ]
+                            Analytics.logEvent("unlock_btc", parameters: params)
                         }
                     }
                 }

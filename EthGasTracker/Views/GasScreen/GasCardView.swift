@@ -63,7 +63,7 @@ struct GasCardView: View {
                         value: gas,
                         color: liveDataVM.gasLevel.color
                     )
-                    .offset(x: isCollapsed ? -70 : 0)
+                    .offset(x: isCollapsed ? gas < 10 ? -40 : -70 : 0)
                     .scaleEffect(isCollapsed ? 0.4 : 1)
                     
                     if isCollapsed {
@@ -159,7 +159,7 @@ struct GasCardView: View {
     PreviewWrapper {
         VStack {
             Spacer()
-            GasCardView(isCollapsed: .constant(false))
+            GasCardView(isCollapsed: .constant(true))
         }
         .background(Color("BG.L0"))
     }

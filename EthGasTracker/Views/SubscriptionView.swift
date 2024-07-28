@@ -8,8 +8,10 @@
 import SwiftUI
 import StoreKit
 import WidgetKit
+import FirebaseAnalytics
 
 struct SubscriptionView: View {
+    var source: String?
     @EnvironmentObject var liveDataVM: LiveDataVM
     @AppStorage(SettingsKeys().colorScheme) var settingsColorScheme: ColorScheme = .none
     @Environment(\.colorScheme) var colorScheme
@@ -45,7 +47,7 @@ struct SubscriptionView: View {
                 .background(liveDataVM.gasLevel.color.gradient)
                 .clipShape(Capsule())
                 .sheet(isPresented: $isPresented) {
-                    PurchaseView()
+                    PurchaseView(source: source)
                 }
                 .padding(.horizontal)
 //                Text("This is the best way to support the app, and keep it running.")
@@ -63,6 +65,23 @@ struct SubscriptionView: View {
 struct GoodStuff: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            HStack(alignment: .top) {
+                Image(systemName: "circle.slash")
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(Color(.systemRed))
+                    .background(Color(.systemRed).opacity(0.1))
+                    .cornerRadius(7)
+                
+                VStack(alignment: .leading) {
+                    Text("No Ads")
+                        .padding(.top, 5)
+                        .padding(.bottom, 2)
+                    Text("Remove ads.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
+                }
+            }
             HStack(alignment: .top) {
                 Image(systemName: "infinity")
                     .frame(width: 32, height: 32)
@@ -349,6 +368,7 @@ struct BuyButtons: View {
 struct PurchaseView: View {
     var title: String = ""
     var subtitle: String = ""
+    var source: String?
     
     let bg = Color(.systemBackground)
     let accent = Color.accentColor
@@ -434,6 +454,11 @@ struct PurchaseView: View {
                 Text("Cancel anytime. No strings attached.").font(.caption)
     //            Spacer()
             }.background(Color(.systemBackground)).padding()
+                .onAppear {
+                    if source != nil {
+                        Analytics.logEvent("buy_subscription", parameters: ["source": source!])
+                    }
+                }
         }
         
     }

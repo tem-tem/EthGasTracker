@@ -6,17 +6,23 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 struct MainView: View {
+    @State var interstitial: GADInterstitialAd?
     @Binding var showPurchaseSheet: Bool
     @EnvironmentObject var liveDataVM: LiveDataVM
     @EnvironmentObject var activeSelectionVM: ActiveSelectionVM
     @EnvironmentObject var alertVM: AlertVM
     
+    @StateObject private var interstitialAdManager = InterstitialAdsManager()
+    @AppStorage("subbed") var subbed: Bool = false
+    
     @AppStorage(SettingsKeys().hapticFeedbackEnabled) private var haptic = true
     let hapticLight = UIImpactFeedbackGenerator(style: .light)
     let hapticHeavy = UIImpactFeedbackGenerator(style: .heavy)
     
+    @State private var timer: Timer?
     @State private var selectedTab = 1
     
     var body: some View {
@@ -63,7 +69,43 @@ struct MainView: View {
                 PurchaseView()
             }
         }
-        
+        .onAppear {
+            startTimer()
+        }
+        .onDisappear {
+            stopTimer()
+        }
+    }
+    
+    
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
+            guard subbed == false else {
+                return
+            }
+            guard interstitialAdManager.loading == false else {
+                return
+            }
+            
+            guard interstitialAdManager.interstitialAdLoaded else {
+                interstitialAdManager.loadInterstitialAd()
+                return
+            }
+            
+            let secondsSinceLastAdShown = Date().timeIntervalSince(interstitialAdManager.lastShownTimestamp)
+            
+            guard secondsSinceLastAdShown > 180 else {
+                return
+            }
+            
+            interstitialAdManager.displayInterstitialAd()
+        }
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
 }
 

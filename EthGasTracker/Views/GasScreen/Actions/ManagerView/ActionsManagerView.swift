@@ -30,6 +30,9 @@ struct ActionsManagerView: View {
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
+                Text("Drag blocks to reorder. First 8 shown in widgets.")
+                    .font(.caption)
+                    .padding(.bottom)
                 LazyVGrid(columns: cols, spacing: 10) {
                     ForEach(customActions) { action in
                         ZStack {

@@ -58,6 +58,8 @@
 		A33AFD902A930133008AE58D /* ActionsListFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD8F2A930133008AE58D /* ActionsListFocusView.swift */; };
 		A33AFD922A930BC3008AE58D /* GasIndexChartFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD912A930BC3008AE58D /* GasIndexChartFocus.swift */; };
 		A33DFFC42AFF12FC007CE775 /* GasLevelExplainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DFFC32AFF12FC007CE775 /* GasLevelExplainerView.swift */; };
+		A33E68BD2C52B9280045165A /* InterstitialAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E68BC2C52B9280045165A /* InterstitialAdsManager.swift */; };
+		A33E68C02C52C1BF0045165A /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A33E68BF2C52C1BF0045165A /* GoogleMobileAds */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
 		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
@@ -426,6 +428,7 @@
 		A33AFD8F2A930133008AE58D /* ActionsListFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsListFocusView.swift; sourceTree = "<group>"; };
 		A33AFD912A930BC3008AE58D /* GasIndexChartFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexChartFocus.swift; sourceTree = "<group>"; };
 		A33DFFC32AFF12FC007CE775 /* GasLevelExplainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasLevelExplainerView.swift; sourceTree = "<group>"; };
+		A33E68BC2C52B9280045165A /* InterstitialAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdsManager.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
 		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
@@ -545,6 +548,7 @@
 		A3E3656229BD476B00DC3016 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A3E366052B2E15A200A25C63 /* GasCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasCharts.swift; sourceTree = "<group>"; };
 		A3E366072B2E295C00A25C63 /* GasIndexChartHistorical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexChartHistorical.swift; sourceTree = "<group>"; };
+		A3E57F9C2C3731C8002CA199 /* wtfidid.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = wtfidid.md; sourceTree = "<group>"; };
 		A3E64F912B7B061600289DC7 /* ControlBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBar.swift; sourceTree = "<group>"; };
 		A3E64F932B7B071C00289DC7 /* DragRelocateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragRelocateDelegate.swift; sourceTree = "<group>"; };
 		A3EB2A2A2A8582B2004583B3 /* GasTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasTabView.swift; sourceTree = "<group>"; };
@@ -572,6 +576,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A33E68C02C52C1BF0045165A /* GoogleMobileAds in Frameworks */,
 				A332503C2AA2958E00A5B6B3 /* FirebaseAnalytics in Frameworks */,
 				A3785B4F2B722A340052016E /* AlertToast in Frameworks */,
 				A35628C62B90F55F00171C52 /* StoreKit.framework in Frameworks */,
@@ -810,6 +815,7 @@
 		A384EB1729BAFBC5005CC9E1 = {
 			isa = PBXGroup;
 			children = (
+				A3E57F9C2C3731C8002CA199 /* wtfidid.md */,
 				A3CEC8F92B7026F200B082B7 /* LiveGasWidgetExtension.entitlements */,
 				A31D22752B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit */,
 				A3B95EDF2AA462590010657A /* Launch Screen.storyboard */,
@@ -955,6 +961,7 @@
 				A3B670C32B4B4F7900CD6732 /* APIManager */,
 				A3F2C8412AF809D400A351C3 /* API_v3 */,
 				A36781F52A7E847D006B3149 /* API_v1.swift */,
+				A33E68BC2C52B9280045165A /* InterstitialAdsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1144,6 +1151,7 @@
 				A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				A3B95ED92AA3ED420010657A /* Snappable */,
 				A3785B4E2B722A340052016E /* AlertToast */,
+				A33E68BF2C52C1BF0045165A /* GoogleMobileAds */,
 			);
 			productName = EthGasTracker;
 			productReference = A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */;
@@ -1236,6 +1244,7 @@
 				A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A3B95ED82AA3ED420010657A /* XCRemoteSwiftPackageReference "Snappable" */,
 				A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */,
+				A33E68BE2C52C1BF0045165A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = A384EB2129BAFBC5005CC9E1 /* Products */;
 			projectDirPath = "";
@@ -1400,6 +1409,7 @@
 				A376B17E2AA808BE005BB320 /* DiffValueView.swift in Sources */,
 				A3381B1A2B5B419C00EC96BA /* PriceNumberView.swift in Sources */,
 				A31D227B2B098C52008464DB /* SubscriptionView.swift in Sources */,
+				A33E68BD2C52B9280045165A /* InterstitialAdsManager.swift in Sources */,
 				A3B670CF2B4B54D600CD6732 /* CurrentStats.swift in Sources */,
 				A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */,
 				A3F2C8402AF8071800A351C3 /* APIv3.swift in Sources */,
@@ -1770,7 +1780,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.4.6;
+				MARKETING_VERSION = 4.5.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1812,7 +1822,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.4.6;
+				MARKETING_VERSION = 4.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2109,6 +2119,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		A33E68BE2C52C1BF0045165A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = exactVersion;
+				version = 11.5.0;
+			};
+		};
 		A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast.git";
@@ -2137,6 +2155,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		A33E68BF2C52C1BF0045165A /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A33E68BE2C52C1BF0045165A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 		A3785B4E2B722A340052016E /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;

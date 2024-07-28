@@ -8,6 +8,8 @@
 import WidgetKit
 import SwiftUI
 
+let ETH_WIDGET_UNLOCK_URL = "widget://unlock.eth"
+
 struct WidgetsFamilyView : View {
     var entry: GasIndexEntry
     @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
@@ -93,7 +95,7 @@ struct WidgetsFamilyView : View {
                         .font(.caption)
                     Spacer()
                 }
-                .widgetURL(URL(string: "widget://unlock")!)
+                .widgetURL(URL(string: ETH_WIDGET_UNLOCK_URL)!)
             }
         }
 //        .widgetBackground(Color(.systemBackground))
@@ -147,7 +149,7 @@ struct WidgetsFamilyView : View {
                         .font(.caption)
                     Spacer()
                 }
-                .widgetURL(URL(string: "widget://unlock")!)
+                .widgetURL(URL(string: ETH_WIDGET_UNLOCK_URL)!)
             }
         }
 //        .widgetBackground(Color(.systemBackground))

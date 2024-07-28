@@ -8,6 +8,8 @@
 import WidgetKit
 import SwiftUI
 
+let BTC_WIDGET_UNLOCK_URL = "widget://unlock.btc"
+
 func calculateTransactionCost(transactionSizeInVb: Int, feeRateInSatPerVb: Int, bitcoinPriceInFiat: Double) -> Double {
     // Calculate the total transaction fee in satoshis
     let totalFeeInSatoshis = transactionSizeInVb * feeRateInSatPerVb
@@ -83,7 +85,7 @@ struct LiveBtcSegWitWidgetView: View {
                         .font(.caption)
                     Spacer()
                 }
-                .widgetURL(URL(string: "widget://unlock")!)
+                .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
             }
         }
         .widgetBackground(
@@ -104,7 +106,7 @@ struct LiveBtcSegWitWidgetView: View {
                 PriceNumberView(value: segWit)
             } else {
                 Image(systemName: "sparkles")
-                    .widgetURL(URL(string: "widget://unlock")!)
+                    .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
             }
         }
         .font(.headline)
@@ -130,7 +132,7 @@ struct LiveBtcSegWitWidgetView: View {
                     .font(.caption)
             } else {
                 Image(systemName: "sparkles")
-                    .widgetURL(URL(string: "widget://unlock")!)
+                    .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
             }
         }
         .conditionalContainerBackground()
@@ -145,7 +147,7 @@ struct LiveBtcSegWitWidgetView: View {
                     .font(.caption)
             } else {
                 Image(systemName: "sparkles")
-                .widgetURL(URL(string: "widget://unlock")!)
+                .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
             }
         }
         .conditionalContainerBackground()
@@ -169,7 +171,7 @@ struct LiveBtcSegWitWidgetView: View {
                         Image(systemName: "sparkles")
                         Text("Tap to unlock")
                     }
-                    .widgetURL(URL(string: "widget://unlock")!)
+                    .widgetURL(URL(string: BTC_WIDGET_UNLOCK_URL)!)
                 }
         }
         .font(.system(.largeTitle, design: .rounded))

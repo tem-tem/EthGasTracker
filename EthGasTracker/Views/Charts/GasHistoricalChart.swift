@@ -33,7 +33,7 @@ struct GasHistoricalChart: View {
             if (blocked) {
                 VStack {
                     Spacer()
-                    SubscriptionView()
+                    SubscriptionView(source: "eth_historical_charts")
                     Spacer()
                 }
             } else {

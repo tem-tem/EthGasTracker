@@ -152,7 +152,7 @@ struct SettingsView: View {
                     ColorSchemePickerView()
                     CurrencyListButtonView()
                     if (!subbed) {
-                        SubscriptionView()
+                        SubscriptionView(source: "settings")
                     }
                 }.listRowBackground(Color.clear)
             }
