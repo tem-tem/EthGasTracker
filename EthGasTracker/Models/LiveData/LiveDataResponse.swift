@@ -65,7 +65,9 @@ struct BTCFees: Codable {
         // Attempt to parse the histogram string as a JSON array
         guard let data = histogram.data(using: .utf8) else { return nil }
         do {
-            return try JSONDecoder().decode([[Int]].self, from: data)
+            let doubleArray = try JSONDecoder().decode([[Double]].self, from: data)
+            // Convert the doubles to integers by rounding
+            return doubleArray.map { $0.map { Int(round($0)) } }
         } catch {
             print("Error parsing histogram data: \(error)")
             return nil

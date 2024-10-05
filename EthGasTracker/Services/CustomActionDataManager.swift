@@ -169,7 +169,7 @@ extension CustomActionEntity {
 func generateRandomStringWithNanoseconds(length: Int) -> String {
     let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     let nanoseconds = DispatchTime.now().uptimeNanoseconds // Get current time in nanoseconds
-    let randomSeed = Int(nanoseconds) % letters.count // Use nanoseconds to seed random selection
+    _ = Int(nanoseconds) % letters.count // Use nanoseconds to seed random selection
     let randomChars = (0..<length).map { _ -> Character in // Generate 10 character string
         let index = letters.index(letters.startIndex, offsetBy: Int(arc4random_uniform(UInt32(letters.count))))
         return letters[index]

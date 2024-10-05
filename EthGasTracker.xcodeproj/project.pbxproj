@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3074F4E2CAA23BB00EA6A77 /* ReferralsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3074F4D2CAA23B700EA6A77 /* ReferralsSectionView.swift */; };
+		A3074F502CAA516B00EA6A77 /* APIManager+Referral.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3074F4F2CAA516200EA6A77 /* APIManager+Referral.swift */; };
+		A3074F512CAA516B00EA6A77 /* APIManager+Referral.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3074F4F2CAA516200EA6A77 /* APIManager+Referral.swift */; };
+		A3074F522CAA516B00EA6A77 /* APIManager+Referral.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3074F4F2CAA516200EA6A77 /* APIManager+Referral.swift */; };
+		A3074F532CAA516B00EA6A77 /* APIManager+Referral.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3074F4F2CAA516200EA6A77 /* APIManager+Referral.swift */; };
 		A30946B72B6868A5002D2944 /* APIManager_StatsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30946B62B6868A5002D2944 /* APIManager_StatsData.swift */; };
 		A30946B92B686CEC002D2944 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30946B82B686CEC002D2944 /* Stats.swift */; };
 		A30946BB2B686D44002D2944 /* StatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30946BA2B686D44002D2944 /* StatsVM.swift */; };
@@ -14,6 +19,7 @@
 		A30EB1C42B619B87009BEA31 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EB1C32B619B87009BEA31 /* MainMenuView.swift */; };
 		A30EB1C62B63153D009BEA31 /* BorderedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EB1C52B63153D009BEA31 /* BorderedText.swift */; };
 		A317CCF029CBF497001B8492 /* lightweight.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCEF29CBF497001B8492 /* lightweight.gif */; };
+		A31A33382CAF7F6200FF1CC8 /* ReferralRedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A33372CAF7F5D00FF1CC8 /* ReferralRedeemView.swift */; };
 		A31A5D542B76A5950068A4C2 /* CustomActionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A5D532B76A5950068A4C2 /* CustomActionDataManager.swift */; };
 		A31A5D582B76AD6E0068A4C2 /* ActionsManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A5D572B76AD6E0068A4C2 /* ActionsManagerView.swift */; };
 		A31A5D5A2B76B6840068A4C2 /* GasCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A5D592B76B6840068A4C2 /* GasCardView.swift */; };
@@ -45,6 +51,7 @@
 		A332503C2AA2958E00A5B6B3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A332503B2AA2958E00A5B6B3 /* FirebaseAnalytics */; };
 		A332503E2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		A33250432AA3972B00A5B6B3 /* ServerMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33250422AA3972B00A5B6B3 /* ServerMessageView.swift */; };
+		A333D31D2CB0BA6900A8AAFA /* AlertToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333D3192CB0BA6200A8AAFA /* AlertToastManager.swift */; };
 		A3381B0D2B599B8900EC96BA /* GasCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E366052B2E15A200A25C63 /* GasCharts.swift */; };
 		A3381B122B59A1A400EC96BA /* ActionsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3381B112B59A1A400EC96BA /* ActionsScrollView.swift */; };
 		A3381B142B5A04E100EC96BA /* TimestampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3381B132B5A04E100EC96BA /* TimestampView.swift */; };
@@ -58,8 +65,6 @@
 		A33AFD902A930133008AE58D /* ActionsListFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD8F2A930133008AE58D /* ActionsListFocusView.swift */; };
 		A33AFD922A930BC3008AE58D /* GasIndexChartFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD912A930BC3008AE58D /* GasIndexChartFocus.swift */; };
 		A33DFFC42AFF12FC007CE775 /* GasLevelExplainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DFFC32AFF12FC007CE775 /* GasLevelExplainerView.swift */; };
-		A33E68BD2C52B9280045165A /* InterstitialAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E68BC2C52B9280045165A /* InterstitialAdsManager.swift */; };
-		A33E68C02C52C1BF0045165A /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A33E68BF2C52C1BF0045165A /* GoogleMobileAds */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
 		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
@@ -97,6 +102,11 @@
 		A35628C62B90F55F00171C52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A35628C52B90F55F00171C52 /* StoreKit.framework */; };
 		A35628C82B90F85500171C52 /* LiveBtcP2PKHWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628C72B90F85500171C52 /* LiveBtcP2PKHWidget.swift */; };
 		A35628C92B90F85500171C52 /* LiveBtcP2PKHWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628C72B90F85500171C52 /* LiveBtcP2PKHWidget.swift */; };
+		A366DD132CAF97B600E7786B /* PlusFeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */; };
+		A366DD142CAF97B600E7786B /* PlusFeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */; };
+		A366DD152CAF97B600E7786B /* PlusFeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */; };
+		A366DD162CAF97B600E7786B /* PlusFeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */; };
+		A366DD182CAFAB6A00E7786B /* ReferralInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366DD172CAFAB6A00E7786B /* ReferralInputSheet.swift */; };
 		A36781F62A7E847D006B3149 /* API_v1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781F52A7E847D006B3149 /* API_v1.swift */; };
 		A36781FA2A7E8AD8006B3149 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781F92A7E8AD8006B3149 /* DataManager.swift */; };
 		A36781FD2A7E8B25006B3149 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */; };
@@ -104,6 +114,7 @@
 		A376B17E2AA808BE005BB320 /* DiffValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A376B17D2AA808BE005BB320 /* DiffValueView.swift */; };
 		A376B1802AA81274005BB320 /* GasScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = A376B17F2AA81274005BB320 /* GasScale.swift */; };
 		A3785B4F2B722A340052016E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = A3785B4E2B722A340052016E /* AlertToast */; };
+		A37BD1E42CAF71CD00B9E4B5 /* ReferralBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37BD1E32CAF71C800B9E4B5 /* ReferralBalanceView.swift */; };
 		A37D69152A1E35F500ECF1CA /* AlertsLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
@@ -298,6 +309,11 @@
 		A3E366082B2E295C00A25C63 /* GasIndexChartHistorical.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E366072B2E295C00A25C63 /* GasIndexChartHistorical.swift */; };
 		A3E64F922B7B061600289DC7 /* ControlBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E64F912B7B061600289DC7 /* ControlBar.swift */; };
 		A3E64F942B7B071C00289DC7 /* DragRelocateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E64F932B7B071C00289DC7 /* DragRelocateDelegate.swift */; };
+		A3E913FA2CA9FF58007C9BBA /* ReferralCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E913F92CA9FF58007C9BBA /* ReferralCodeManager.swift */; };
+		A3E913FB2CA9FF58007C9BBA /* ReferralCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E913F92CA9FF58007C9BBA /* ReferralCodeManager.swift */; };
+		A3E913FC2CA9FF58007C9BBA /* ReferralCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E913F92CA9FF58007C9BBA /* ReferralCodeManager.swift */; };
+		A3E913FD2CA9FF58007C9BBA /* ReferralCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E913F92CA9FF58007C9BBA /* ReferralCodeManager.swift */; };
+		A3E913FF2CAA0207007C9BBA /* ShareReferralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E913FE2CAA0207007C9BBA /* ShareReferralView.swift */; };
 		A3EB2A2B2A8582B2004583B3 /* GasTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A2A2A8582B2004583B3 /* GasTabView.swift */; };
 		A3EB2A2D2A858422004583B3 /* ActionsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A2C2A858422004583B3 /* ActionsTabView.swift */; };
 		A3EB2A2F2A8585F5004583B3 /* GasIndexChartMini.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB2A2E2A8585F5004583B3 /* GasIndexChartMini.swift */; };
@@ -382,6 +398,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A3074F4D2CAA23B700EA6A77 /* ReferralsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralsSectionView.swift; sourceTree = "<group>"; };
+		A3074F4F2CAA516200EA6A77 /* APIManager+Referral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIManager+Referral.swift"; sourceTree = "<group>"; };
 		A30946B62B6868A5002D2944 /* APIManager_StatsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager_StatsData.swift; sourceTree = "<group>"; };
 		A30946B82B686CEC002D2944 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		A30946BA2B686D44002D2944 /* StatsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVM.swift; sourceTree = "<group>"; };
@@ -390,6 +408,7 @@
 		A30EB1C32B619B87009BEA31 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		A30EB1C52B63153D009BEA31 /* BorderedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedText.swift; sourceTree = "<group>"; };
 		A317CCEF29CBF497001B8492 /* lightweight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = lightweight.gif; path = ../../../../../Downloads/lightweight.gif; sourceTree = "<group>"; };
+		A31A33372CAF7F5D00FF1CC8 /* ReferralRedeemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralRedeemView.swift; sourceTree = "<group>"; };
 		A31A5D532B76A5950068A4C2 /* CustomActionDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionDataManager.swift; sourceTree = "<group>"; };
 		A31A5D572B76AD6E0068A4C2 /* ActionsManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsManagerView.swift; sourceTree = "<group>"; };
 		A31A5D592B76B6840068A4C2 /* GasCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasCardView.swift; sourceTree = "<group>"; };
@@ -416,6 +435,7 @@
 		A32E564C2A80938300786382 /* TimestampViewLegacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampViewLegacy.swift; sourceTree = "<group>"; };
 		A33250372AA294D000A5B6B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A33250422AA3972B00A5B6B3 /* ServerMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerMessageView.swift; sourceTree = "<group>"; };
+		A333D3192CB0BA6200A8AAFA /* AlertToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertToastManager.swift; sourceTree = "<group>"; };
 		A3381B112B59A1A400EC96BA /* ActionsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsScrollView.swift; sourceTree = "<group>"; };
 		A3381B132B5A04E100EC96BA /* TimestampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampView.swift; sourceTree = "<group>"; };
 		A3381B162B5B405800EC96BA /* GasLevelLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasLevelLabel.swift; sourceTree = "<group>"; };
@@ -428,7 +448,6 @@
 		A33AFD8F2A930133008AE58D /* ActionsListFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsListFocusView.swift; sourceTree = "<group>"; };
 		A33AFD912A930BC3008AE58D /* GasIndexChartFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexChartFocus.swift; sourceTree = "<group>"; };
 		A33DFFC32AFF12FC007CE775 /* GasLevelExplainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasLevelExplainerView.swift; sourceTree = "<group>"; };
-		A33E68BC2C52B9280045165A /* InterstitialAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdsManager.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
 		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
@@ -464,12 +483,15 @@
 		A35628C12B90CE6800171C52 /* LiveBtcSegwitWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveBtcSegwitWidget.swift; sourceTree = "<group>"; };
 		A35628C52B90F55F00171C52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A35628C72B90F85500171C52 /* LiveBtcP2PKHWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveBtcP2PKHWidget.swift; sourceTree = "<group>"; };
+		A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusFeatureManager.swift; sourceTree = "<group>"; };
+		A366DD172CAFAB6A00E7786B /* ReferralInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralInputSheet.swift; sourceTree = "<group>"; };
 		A36781F52A7E847D006B3149 /* API_v1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_v1.swift; sourceTree = "<group>"; };
 		A36781F92A7E8AD8006B3149 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A36781FC2A7E8B25006B3149 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		A36F08612A8C17C7009A4A36 /* AlertConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConditionView.swift; sourceTree = "<group>"; };
 		A376B17D2AA808BE005BB320 /* DiffValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffValueView.swift; sourceTree = "<group>"; };
 		A376B17F2AA81274005BB320 /* GasScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasScale.swift; sourceTree = "<group>"; };
+		A37BD1E32CAF71C800B9E4B5 /* ReferralBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralBalanceView.swift; sourceTree = "<group>"; };
 		A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsLimitPicker.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
@@ -551,6 +573,8 @@
 		A3E57F9C2C3731C8002CA199 /* wtfidid.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = wtfidid.md; sourceTree = "<group>"; };
 		A3E64F912B7B061600289DC7 /* ControlBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBar.swift; sourceTree = "<group>"; };
 		A3E64F932B7B071C00289DC7 /* DragRelocateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragRelocateDelegate.swift; sourceTree = "<group>"; };
+		A3E913F92CA9FF58007C9BBA /* ReferralCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCodeManager.swift; sourceTree = "<group>"; };
+		A3E913FE2CAA0207007C9BBA /* ShareReferralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareReferralView.swift; sourceTree = "<group>"; };
 		A3EB2A2A2A8582B2004583B3 /* GasTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasTabView.swift; sourceTree = "<group>"; };
 		A3EB2A2C2A858422004583B3 /* ActionsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsTabView.swift; sourceTree = "<group>"; };
 		A3EB2A2E2A8585F5004583B3 /* GasIndexChartMini.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexChartMini.swift; sourceTree = "<group>"; };
@@ -576,7 +600,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A33E68C02C52C1BF0045165A /* GoogleMobileAds in Frameworks */,
 				A332503C2AA2958E00A5B6B3 /* FirebaseAnalytics in Frameworks */,
 				A3785B4F2B722A340052016E /* AlertToast in Frameworks */,
 				A35628C62B90F55F00171C52 /* StoreKit.framework in Frameworks */,
@@ -643,6 +666,18 @@
 				A3B253B82A7EB5B0007C668A /* v3_Views */,
 			);
 			path = Legacy;
+			sourceTree = "<group>";
+		};
+		A31A33362CAF7F4F00FF1CC8 /* ReferralViews */ = {
+			isa = PBXGroup;
+			children = (
+				A3074F4D2CAA23B700EA6A77 /* ReferralsSectionView.swift */,
+				A366DD172CAFAB6A00E7786B /* ReferralInputSheet.swift */,
+				A37BD1E32CAF71C800B9E4B5 /* ReferralBalanceView.swift */,
+				A31A33372CAF7F5D00FF1CC8 /* ReferralRedeemView.swift */,
+				A3E913FE2CAA0207007C9BBA /* ShareReferralView.swift */,
+			);
+			path = ReferralViews;
 			sourceTree = "<group>";
 		};
 		A32A163F2A06A78800F04CC7 /* Views_legacy */ = {
@@ -935,6 +970,7 @@
 			isa = PBXGroup;
 			children = (
 				A32081152A42922D00857E02 /* SettingsView.swift */,
+				A31A33362CAF7F4F00FF1CC8 /* ReferralViews */,
 				A3B253BE2A7EC2B0007C668A /* ColorSchemePickerView.swift */,
 				A384F2842A832AD900357771 /* IsFastMainTogglerView.swift */,
 				A384F2862A83C07A00357771 /* EnableLegacyGasView.swift */,
@@ -953,7 +989,10 @@
 		A3B670BF2B4B485300CD6732 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A333D3192CB0BA6200A8AAFA /* AlertToastManager.swift */,
 				A31D227E2B0A9A72008464DB /* HelperViews.swift */,
+				A3E913F92CA9FF58007C9BBA /* ReferralCodeManager.swift */,
+				A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */,
 				A384EB3129BAFD3B005CC9E1 /* Gas.xcdatamodeld */,
 				A31A5D532B76A5950068A4C2 /* CustomActionDataManager.swift */,
 				A3E3655829BC39BC00DC3016 /* AppDelegate.swift */,
@@ -961,7 +1000,6 @@
 				A3B670C32B4B4F7900CD6732 /* APIManager */,
 				A3F2C8412AF809D400A351C3 /* API_v3 */,
 				A36781F52A7E847D006B3149 /* API_v1.swift */,
-				A33E68BC2C52B9280045165A /* InterstitialAdsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -971,6 +1009,7 @@
 			children = (
 				A32D2BD82B5DFC3A009A6228 /* Endpoints.swift */,
 				A3B670C02B4B487000CD6732 /* APIManager.swift */,
+				A3074F4F2CAA516200EA6A77 /* APIManager+Referral.swift */,
 				A3B670C42B4B4F9B00CD6732 /* APIManager_GetLiveData.swift */,
 				A355342B2B4DCFAE006B416F /* APIManager_GetHistoricalData.swift */,
 				A32D2BD62B5DFB23009A6228 /* APIManager_Alerts.swift */,
@@ -1151,7 +1190,6 @@
 				A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				A3B95ED92AA3ED420010657A /* Snappable */,
 				A3785B4E2B722A340052016E /* AlertToast */,
-				A33E68BF2C52C1BF0045165A /* GoogleMobileAds */,
 			);
 			productName = EthGasTracker;
 			productReference = A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */;
@@ -1244,7 +1282,6 @@
 				A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A3B95ED82AA3ED420010657A /* XCRemoteSwiftPackageReference "Snappable" */,
 				A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */,
-				A33E68BE2C52C1BF0045165A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = A384EB2129BAFBC5005CC9E1 /* Products */;
 			projectDirPath = "";
@@ -1307,6 +1344,7 @@
 			files = (
 				A384F2832A83180000357771 /* GasIndexChart.swift in Sources */,
 				A3B670E22B4B647500CD6732 /* SettingsKeys.swift in Sources */,
+				A31A33382CAF7F6200FF1CC8 /* ReferralRedeemView.swift in Sources */,
 				A33AFD892A92F6D9008AE58D /* MainFocusView.swift in Sources */,
 				A31A5D542B76A5950068A4C2 /* CustomActionDataManager.swift in Sources */,
 				A3EB2A2D2A858422004583B3 /* ActionsTabView.swift in Sources */,
@@ -1324,6 +1362,7 @@
 				A3A4D4E52A084FA6008E4CE7 /* BarsChart.swift in Sources */,
 				A3B253C52A7ED04F007C668A /* RepeatingTask.swift in Sources */,
 				A3B253CF2A7F122E007C668A /* GasPriceView.swift in Sources */,
+				A3E913FD2CA9FF58007C9BBA /* ReferralCodeManager.swift in Sources */,
 				A384F2852A832AD900357771 /* IsFastMainTogglerView.swift in Sources */,
 				A355342C2B4DCFAE006B416F /* APIManager_GetHistoricalData.swift in Sources */,
 				A3B670EB2B4B86E700CD6732 /* GasIndexView.swift in Sources */,
@@ -1344,9 +1383,11 @@
 				A3CEC8B02B6D97C900B082B7 /* CustomNumberPadView.swift in Sources */,
 				A35534552B4E62C8006B416F /* GasDataEntity.swift in Sources */,
 				A355343B2B4DD166006B416F /* DateFormatterExtension.swift in Sources */,
+				A3E913FF2CAA0207007C9BBA /* ShareReferralView.swift in Sources */,
 				A36F08622A8C17C7009A4A36 /* AlertConditionView.swift in Sources */,
 				A3B253CB2A7F0D5E007C668A /* LegacyGasPriceView.swift in Sources */,
 				A394E01029EA55F400E45DEF /* NotificationManager.swift in Sources */,
+				A3074F4E2CAA23BB00EA6A77 /* ReferralsSectionView.swift in Sources */,
 				A30946B92B686CEC002D2944 /* Stats.swift in Sources */,
 				A3FB304A2B834652009433C0 /* MainBtcView.swift in Sources */,
 				A35534522B4E4EC5006B416F /* FluctuationRange.swift in Sources */,
@@ -1370,13 +1411,16 @@
 				A3DB1D672A0E4DA500372A58 /* HeatMap.swift in Sources */,
 				A384F2872A83C07A00357771 /* EnableLegacyGasView.swift in Sources */,
 				A33DFFC42AFF12FC007CE775 /* GasLevelExplainerView.swift in Sources */,
+				A3074F502CAA516B00EA6A77 /* APIManager+Referral.swift in Sources */,
 				A33250432AA3972B00A5B6B3 /* ServerMessageView.swift in Sources */,
 				A3EB2A322A85872E004583B3 /* GasPriceMiniView.swift in Sources */,
 				A31A5D5F2B7879D30068A4C2 /* GasIndexEntry.swift in Sources */,
 				A3F2CF262B2531D400E6FDDD /* CurrencyListView.swift in Sources */,
+				A37BD1E42CAF71CD00B9E4B5 /* ReferralBalanceView.swift in Sources */,
 				A35534252B4C4E63006B416F /* ActiveSelectionVM.swift in Sources */,
 				A320811A2A43C85E00857E02 /* MessagesView.swift in Sources */,
 				A3B253D12A7F1276007C668A /* ActionsGridView.swift in Sources */,
+				A366DD152CAF97B600E7786B /* PlusFeatureManager.swift in Sources */,
 				A3556E512B2D4EB300604D56 /* AppDelegate_Messages.swift in Sources */,
 				A394E00E29EA54B300E45DEF /* NotificationDelegate.swift in Sources */,
 				A35534272B4DCA41006B416F /* GasHistoricalChart.swift in Sources */,
@@ -1409,7 +1453,6 @@
 				A376B17E2AA808BE005BB320 /* DiffValueView.swift in Sources */,
 				A3381B1A2B5B419C00EC96BA /* PriceNumberView.swift in Sources */,
 				A31D227B2B098C52008464DB /* SubscriptionView.swift in Sources */,
-				A33E68BD2C52B9280045165A /* InterstitialAdsManager.swift in Sources */,
 				A3B670CF2B4B54D600CD6732 /* CurrentStats.swift in Sources */,
 				A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */,
 				A3F2C8402AF8071800A351C3 /* APIv3.swift in Sources */,
@@ -1418,6 +1461,7 @@
 				A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */,
 				A3B670E92B4B7EC900CD6732 /* MainView.swift in Sources */,
 				A3CB6BD32A9E931A00DE3DD4 /* StatsGraph.swift in Sources */,
+				A366DD182CAFAB6A00E7786B /* ReferralInputSheet.swift in Sources */,
 				A36781FA2A7E8AD8006B3149 /* DataManager.swift in Sources */,
 				A32D2BDE2B5DFE9B009A6228 /* AlertVM.swift in Sources */,
 				A3CB1FE129EC7195006A52A5 /* ThresholdListView.swift in Sources */,
@@ -1434,6 +1478,7 @@
 				A32081162A42922D00857E02 /* SettingsView.swift in Sources */,
 				A32D2BE02B5EC7B9009A6228 /* DeviceTokenManager.swift in Sources */,
 				A35534292B4DCA9C006B416F /* HistoricalDataVM.swift in Sources */,
+				A333D31D2CB0BA6900A8AAFA /* AlertToastManager.swift in Sources */,
 				A3381B122B59A1A400EC96BA /* ActionsScrollView.swift in Sources */,
 				A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */,
 				A35534352B4DD129006B416F /* HistoricalDataCached.swift in Sources */,
@@ -1492,7 +1537,9 @@
 				A3CACAD62B7FF69900B9D721 /* SettingsKeys.swift in Sources */,
 				A3CACAD72B7FF69900B9D721 /* RepeatingTask.swift in Sources */,
 				A3CACAD82B7FF69900B9D721 /* Metadata.swift in Sources */,
+				A366DD142CAF97B600E7786B /* PlusFeatureManager.swift in Sources */,
 				A3CACAD92B7FF69900B9D721 /* SafeRanges.swift in Sources */,
+				A3E913FA2CA9FF58007C9BBA /* ReferralCodeManager.swift in Sources */,
 				A3CACADA2B7FF69900B9D721 /* MinMax.swift in Sources */,
 				A3CACADB2B7FF69900B9D721 /* DateFormatterExtension.swift in Sources */,
 				A3CACADC2B7FF69900B9D721 /* Stats.swift in Sources */,
@@ -1500,6 +1547,7 @@
 				A3CACABA2B7FF51500B9D721 /* ContentView.swift in Sources */,
 				A3CACAB82B7FF51500B9D721 /* WatchEthGasTrackerApp.swift in Sources */,
 				A3CACAC72B7FF61700B9D721 /* LiveDataVM.swift in Sources */,
+				A3074F512CAA516B00EA6A77 /* APIManager+Referral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1520,6 +1568,7 @@
 				A3CACAFC2B8037E400B9D721 /* PriceNumberView.swift in Sources */,
 				A3CACAFD2B8037E400B9D721 /* Gas.xcdatamodeld in Sources */,
 				A3CACAFE2B8037E400B9D721 /* DateFormatterExtension.swift in Sources */,
+				A3E913FC2CA9FF58007C9BBA /* ReferralCodeManager.swift in Sources */,
 				A3CACAFF2B8037E400B9D721 /* InfiniteScrollView.swift in Sources */,
 				A3CACB002B8037E400B9D721 /* HistoricalData.swift in Sources */,
 				A3CACB012B8037E400B9D721 /* MinMax.swift in Sources */,
@@ -1528,11 +1577,13 @@
 				A3CACB032B8037E400B9D721 /* Stats.swift in Sources */,
 				A3CACB042B8037E400B9D721 /* RepeatingTask.swift in Sources */,
 				A3CACB052B8037E400B9D721 /* APIManager_GetLiveData.swift in Sources */,
+				A366DD162CAF97B600E7786B /* PlusFeatureManager.swift in Sources */,
 				A3CACB062B8037E400B9D721 /* GasDataEntity.swift in Sources */,
 				A3CACB072B8037E400B9D721 /* APIManager_GetHistoricalData.swift in Sources */,
 				A3CACB082B8037E400B9D721 /* HistoryRange.swift in Sources */,
 				A3CACB092B8037E400B9D721 /* GasScaleDots.swift in Sources */,
 				A3CACB0A2B8037E400B9D721 /* APIManager_StatsData.swift in Sources */,
+				A3074F522CAA516B00EA6A77 /* APIManager+Referral.swift in Sources */,
 				A3CACB0B2B8037E400B9D721 /* ActionSMView.swift in Sources */,
 				A3CACB0C2B8037E400B9D721 /* APIManager.swift in Sources */,
 				A35628BF2B90CADF00171C52 /* LiveBtcRateWidget.swift in Sources */,
@@ -1577,6 +1628,7 @@
 				A3CEC8EC2B70254C00B082B7 /* PriceNumberView.swift in Sources */,
 				A35628C22B90CE6800171C52 /* LiveBtcSegwitWidget.swift in Sources */,
 				A31A5D5C2B77EEC90068A4C2 /* Gas.xcdatamodeld in Sources */,
+				A3E913FB2CA9FF58007C9BBA /* ReferralCodeManager.swift in Sources */,
 				A3CEC8DA2B70251400B082B7 /* DateFormatterExtension.swift in Sources */,
 				A3CEC8ED2B70255000B082B7 /* InfiniteScrollView.swift in Sources */,
 				A3CEC8E92B70252600B082B7 /* HistoricalData.swift in Sources */,
@@ -1585,11 +1637,13 @@
 				A3CEC8D92B70251400B082B7 /* Stats.swift in Sources */,
 				A3CEC8DC2B70251400B082B7 /* RepeatingTask.swift in Sources */,
 				A3CEC8D42B7024F100B082B7 /* APIManager_GetLiveData.swift in Sources */,
+				A366DD132CAF97B600E7786B /* PlusFeatureManager.swift in Sources */,
 				A3CEC8E02B70252100B082B7 /* GasDataEntity.swift in Sources */,
 				A3CEC8D52B7024F100B082B7 /* APIManager_GetHistoricalData.swift in Sources */,
 				A3CEC8E72B70252600B082B7 /* HistoryRange.swift in Sources */,
 				A3CEC8F72B70265100B082B7 /* GasScaleDots.swift in Sources */,
 				A3CEC8D32B7024F100B082B7 /* APIManager_StatsData.swift in Sources */,
+				A3074F532CAA516B00EA6A77 /* APIManager+Referral.swift in Sources */,
 				A3CEC8F02B70256600B082B7 /* ActionSMView.swift in Sources */,
 				A3CEC8D02B7024EB00B082B7 /* APIManager.swift in Sources */,
 				A35628C02B90CB9B00171C52 /* LiveBtcRateWidget.swift in Sources */,
@@ -1780,7 +1834,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.5.3;
+				MARKETING_VERSION = 4.6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1822,7 +1876,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.5.3;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2119,14 +2173,6 @@
 				minimumVersion = 9.0.0;
 			};
 		};
-		A33E68BE2C52C1BF0045165A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = exactVersion;
-				version = 11.5.0;
-			};
-		};
 		A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast.git";
@@ -2155,11 +2201,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
-		A33E68BF2C52C1BF0045165A /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A33E68BE2C52C1BF0045165A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
 		};
 		A3785B4E2B722A340052016E /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;

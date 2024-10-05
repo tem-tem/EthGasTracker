@@ -6,16 +6,15 @@
 //
 
 import SwiftUI
-import GoogleMobileAds
+import AlertToast
 
 struct MainView: View {
-    @State var interstitial: GADInterstitialAd?
     @Binding var showPurchaseSheet: Bool
     @EnvironmentObject var liveDataVM: LiveDataVM
     @EnvironmentObject var activeSelectionVM: ActiveSelectionVM
     @EnvironmentObject var alertVM: AlertVM
+    @EnvironmentObject var alertToastManager: AlertToastManager
     
-    @StateObject private var interstitialAdManager = InterstitialAdsManager()
     @AppStorage("subbed") var subbed: Bool = false
     
     @AppStorage(SettingsKeys().hapticFeedbackEnabled) private var haptic = true
@@ -40,6 +39,7 @@ struct MainView: View {
                 .tabViewStyle(.page(indexDisplayMode: .never))
 
                 MainMenuView(selectedTab: $selectedTab, color: liveDataVM.gasLevel.color)
+                    .padding(.horizontal)
             }
             .background(Color("BG.L0"))
             .onChange(of: activeSelectionVM.index) { _ in
@@ -69,43 +69,9 @@ struct MainView: View {
                 PurchaseView()
             }
         }
-        .onAppear {
-            startTimer()
-        }
-        .onDisappear {
-            stopTimer()
-        }
-    }
-    
-    
-    
-    func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
-            guard subbed == false else {
-                return
-            }
-            guard interstitialAdManager.loading == false else {
-                return
-            }
-            
-            guard interstitialAdManager.interstitialAdLoaded else {
-                interstitialAdManager.loadInterstitialAd()
-                return
-            }
-            
-            let secondsSinceLastAdShown = Date().timeIntervalSince(interstitialAdManager.lastShownTimestamp)
-            
-            guard secondsSinceLastAdShown > 180 else {
-                return
-            }
-            
-            interstitialAdManager.displayInterstitialAd()
-        }
-    }
-    
-    func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+        .toast(isPresenting: $alertToastManager.isShowing, duration: 5, alert: {
+            AlertToast(displayMode: alertToastManager.displayMode, type: alertToastManager.type, title: alertToastManager.message)
+        })
     }
 }
 

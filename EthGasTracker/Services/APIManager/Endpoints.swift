@@ -26,6 +26,11 @@ struct Endpoints {
     
     let stats: String
     
+    let getReferralCode: String
+    let applyReferral: String
+    let getReferralPoints: String
+    let redeemReferralPoints: String
+    
     init () {
         let env = self.PROD
         self.latest = env + "/api/v4/latest" + "?amount=" + String(AMOUNT_TO_FETCH)
@@ -41,5 +46,10 @@ struct Endpoints {
         self.updateAlert = env + "/api/v1/alerts/update"
         
         self.stats = env + "/api/v1/stats"
+        
+        self.getReferralCode = env + "/api/v4/referrals/user"
+        self.applyReferral = env + "/api/v4/referrals/apply"
+        self.getReferralPoints = env + "/api/v4/referrals/user/points"
+        self.redeemReferralPoints = env + "/api/v4/referrals/user/redeem"
     }
 }

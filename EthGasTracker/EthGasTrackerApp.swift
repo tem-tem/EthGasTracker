@@ -57,7 +57,7 @@ struct EthGasTracker: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 //    @AppStorage("subbed") var subbed: Bool = false
     
-    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = PlusFeatureManager.shared.hasPremiumAccess()
 //    let notificationDelegate = NotificationDelegate()
 //    @Environment(\.scenePhase) var scene
 //    @StateObject private var notificationManager = NotificationManager()
@@ -67,6 +67,7 @@ struct EthGasTracker: App {
     var isCurrentAppearanceDark: Bool {
         return (settingsColorScheme == .dark) || (settingsColorScheme == .none && defaultColorScheme == .dark)
     }
+    @StateObject private var alertToastManager = AlertToastManager()
     
     @StateObject private var activeSelectionVM: ActiveSelectionVM
     @StateObject private var storeVM: StoreVM
@@ -92,6 +93,34 @@ struct EthGasTracker: App {
         _storeVM = StateObject(wrappedValue: StoreVM())
         _networkMonitor = StateObject(wrappedValue: NetworkMonitor())
         _showPurchaseSheet = State(wrappedValue: false)
+        
+        
+        let secret = ReferralCodeManager.shared.getSecretCode()
+        if let userReferralCode = ReferralCodeManager.shared.getReferralCode() {
+            let requestBody = ReferralPointsRequest(referralCode: userReferralCode, secret: secret)
+            apiManager.getReferralPoints(requestBody: requestBody) { response in
+                switch response {
+                case .success(let data):
+                    UserDefaults.standard.set(data.points, forKey: "points")
+                    UserDefaults.standard.set(data.wasReferred, forKey: "wasReferred")
+                    UserDefaults.standard.set(data.updatedAt, forKey: "pointsUpdatedAt")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } else {
+            apiManager.createUser(secret: secret) { response in
+                switch response {
+                case .success(let createdUser):
+                    ReferralCodeManager.shared.setReferralCode(createdUser.referralCode)
+                    let points = createdUser.points
+                    UserDefaults.standard.set(points, forKey: "points")
+                    UserDefaults.standard.set(false, forKey: "wasReferred")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
     
     
@@ -106,17 +135,7 @@ struct EthGasTracker: App {
                 .environmentObject(alertVM)
                 .environmentObject(statsVM)
                 .environmentObject(customActionDM)
-//            MainViewLegacy()
-//                .environmentObject(getLatestViewModel)
-//                .environmentObject(networkMonitor)
-////                .environmentObject(dataController)
-//                .environmentObject(notificationManager)
-//                .environmentObject(appDelegate)
-//                .onAppear(perform: requestNotificationPermission)
-//                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-//                    // Reload all timelines of your widget when the app becomes active.
-////                    WidgetCenter.shared.reloadAllTimelines()
-//                }
+                .environmentObject(alertToastManager)
                 .preferredColorScheme(
                     settingsColorScheme == .dark ?
                         .dark :
@@ -125,8 +144,11 @@ struct EthGasTracker: App {
                 )
                 .onChange(of: storeVM.checked) { didCheck in
                     if (didCheck) {
-                        subbed = !storeVM.purchasedSubscriptions.isEmpty
-                        print(storeVM.purchasedSubscriptions)
+                        if storeVM.purchasedSubscriptions.isEmpty {
+                            subbed = PlusFeatureManager.shared.hasPremiumAccess()
+                        } else {
+                            subbed = true
+                        }
                     }
                 }
                 .onOpenURL { url in
@@ -158,6 +180,7 @@ struct PreviewWrapper<Content: View>: View {
     let content: Content
     
     
+    @StateObject private var alertToastManager = AlertToastManager()
     @StateObject private var activeSelectionVM = ActiveSelectionVM()
     @StateObject private var storeVM = StoreVM()
     @StateObject var networkMonitor = NetworkMonitor()
@@ -191,5 +214,6 @@ struct PreviewWrapper<Content: View>: View {
             .environmentObject(alertVM)
             .environmentObject(statsVM)
             .environmentObject(customActionDM)
+            .environmentObject(alertToastManager)
     }
 }
