@@ -41,3 +41,4 @@ class ActiveSelectionVM: ObservableObject {
         self.historicalData = nil
     }
 }
+

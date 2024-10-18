@@ -18,8 +18,13 @@ struct MainMenuView: View {
                     selectedTab = 0
                 }
             } label: {
-                Image(systemName: "bitcoinsign")
-                    .foregroundStyle(selectedTab == 0 ? Color(.systemOrange) : .secondary)
+                VStack(spacing: 5) {
+                    Image(systemName: "bitcoinsign")
+                    Text("Bitcoin")
+                        .font(.caption)
+                        .bold(selectedTab == 0)
+                }
+                .foregroundStyle(selectedTab == 0 ? Color(.systemOrange) : .secondary)
             }
             Spacer()
             Button {
@@ -27,8 +32,13 @@ struct MainMenuView: View {
                     selectedTab = 1
                 }
             } label: {
-                Image(systemName: "flame.fill")
-                    .foregroundStyle(selectedTab == 1 ? color : .secondary)
+                VStack(spacing: 5) {
+                    Image(systemName: "flame.fill")
+                    Text("ETH")
+                        .font(.caption)
+                        .bold(selectedTab == 1)
+                }
+                .foregroundStyle(selectedTab == 1 ? color : .secondary)
             }
             Spacer()
             Button {
@@ -36,8 +46,13 @@ struct MainMenuView: View {
                     selectedTab = 2
                 }
             } label: {
-                Image(systemName: "gearshape.fill")
-                    .foregroundStyle(selectedTab == 2 ? color : .secondary)
+                VStack(spacing: 5) {
+                    Image(systemName: "gearshape.fill")
+                    Text("Settings")
+                        .font(.caption)
+                        .bold(selectedTab == 2)
+                }
+                .foregroundStyle(selectedTab == 2 ? color : .secondary)
             }
         }
         .padding(.top, 20)

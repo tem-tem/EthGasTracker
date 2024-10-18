@@ -7,6 +7,7 @@
 
 import Foundation
 
+//TODO: find a case where this is unavailable
 class DeviceTokenManager {
     static let shared = DeviceTokenManager()
     private init() {}

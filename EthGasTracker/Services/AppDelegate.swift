@@ -7,8 +7,6 @@
 
 import SwiftUI
 import BackgroundTasks
-import FirebaseCore
-import FirebaseAnalytics
 import AppTrackingTransparency
 
 class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
@@ -29,23 +27,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
                 }
             }
         }
-        
-        
-        FirebaseApp.configure()
-        
-        if NSClassFromString("ATTrackingManager") != nil {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                    switch status {
-                    case .authorized:
-                        Analytics.logEvent("tracking_authorized", parameters: nil)
-                    case .denied:
-                        Analytics.logEvent("tracking_denied", parameters: nil)
-                    default:
-                        break
-                }
-            }
-        }
-        Analytics.logEvent("pickup", parameters: nil)
         return true
     }
 }

@@ -29,83 +29,101 @@ struct ActionsManagerView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ScrollView {
-                Text("Drag blocks to reorder. First 8 shown in widgets.")
-                    .font(.caption)
-                    .padding(.bottom)
-                LazyVGrid(columns: cols, spacing: 10) {
-                    ForEach(customActions) { action in
-                        ZStack {
-                            if isDeleting && !action.isServerAction {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundColor(.red)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                                    .onTapGesture {
-                                        customActionDM.deleteCustomAction(action)
-                                        customActions = customActionDM.actions
-                                        if customActions.filter({ !$0.isServerAction }).count == 0 {
-                                            isDeleting = false
+            ZStack {
+                ScrollView {
+                    LazyVGrid(columns: cols, spacing: 10) {
+                        ForEach(customActions) { action in
+                            ZStack {
+                                if isDeleting && !action.isServerAction {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(.red)
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                                        .onTapGesture {
+                                            customActionDM.deleteCustomAction(action)
+                                            customActions = customActionDM.actions
+                                            if customActions.filter({ !$0.isServerAction }).count == 0 {
+                                                isDeleting = false
+                                            }
+                                            hapticHeavy.impactOccurred()
                                         }
-                                        hapticHeavy.impactOccurred()
-                                    }
-                            }
-                            VStackWithRoundedBorder(padding: 8) {
-                                HStack {
-                                    ActionSMView(
-                                        name: action.name ?? "",
-                                        groupName: action.group ?? "",
-                                        value: CustomActionEntity.calcCost(
-                                            for: Double(action.limit),
-                                            ethPrice: liveDataVM.ethPrice,
-                                            gas: activeSelectionVM.gas ?? liveDataVM.gasLevel.currentGas),
-                                        primaryColor: showingWheel ? .purple : .primary,
-                                        secondaryColor: .secondary
-                                    )
-                                    Spacer()
                                 }
-                                Spacer()
-                                Divider()
-                                Text("\(action.limit)")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
+                                VStackWithRoundedBorder(padding: 8) {
+                                    HStack {
+                                        ActionSMView(
+                                            name: action.name ?? "",
+                                            groupName: action.group ?? "",
+                                            value: CustomActionEntity.calcCost(
+                                                for: Double(action.limit),
+                                                ethPrice: liveDataVM.ethPrice,
+                                                gas: activeSelectionVM.gas ?? liveDataVM.gasLevel.currentGas),
+                                            primaryColor: showingWheel ? .purple : .primary,
+                                            secondaryColor: .secondary
+                                        )
+                                        Spacer()
+                                    }
+                                    Spacer()
+                                    Divider()
+                                    Text("\(action.limit)")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
                             }
-                        }
-                        .background(action.pinned ? Color("BG.L1") : Color("BG.L0"))
-                        .cornerRadius(10)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .onDrag {
-                            self.dragging = action
-                            let provider = NSItemProvider(object: String(describing: action.id) as NSString)
-                            
-                            // Create a UIDragItem with the NSItemProvider
-                            let dragItem = UIDragItem(itemProvider: provider)
-                            
-                            // Set a preview provider for the UIDragItem
-                            dragItem.previewProvider = {
-                                // Generate the drag preview here
-                                let snapshotView = self.createSnapshotView(for: action) // Ensure this is a UIView
-                                let renderer = UIGraphicsImageRenderer(size: snapshotView.bounds.size)
-                                let image = renderer.image { _ in
-                                    snapshotView.drawHierarchy(in: snapshotView.bounds, afterScreenUpdates: true)
+                            .background(action.pinned ? Color("BG.L1") : Color("BG.L0"))
+                            .cornerRadius(10)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .onDrag {
+                                self.dragging = action
+                                let provider = NSItemProvider(object: String(describing: action.id) as NSString)
+                                
+                                // Create a UIDragItem with the NSItemProvider
+                                let dragItem = UIDragItem(itemProvider: provider)
+                                
+                                // Set a preview provider for the UIDragItem
+                                dragItem.previewProvider = {
+                                    // Generate the drag preview here
+                                    let snapshotView = self.createSnapshotView(for: action) // Ensure this is a UIView
+                                    let renderer = UIGraphicsImageRenderer(size: snapshotView.bounds.size)
+                                    let image = renderer.image { _ in
+                                        snapshotView.drawHierarchy(in: snapshotView.bounds, afterScreenUpdates: true)
+                                    }
+                                    
+                                    // Create a UIDragPreview using the rendered image
+                                    let preview = UIDragPreview(view: UIImageView(image: image))
+                                    return preview
                                 }
                                 
-                                // Create a UIDragPreview using the rendered image
-                                let preview = UIDragPreview(view: UIImageView(image: image))
-                                return preview
+                                // Since .onDrag expects a single NSItemProvider, return the original provider
+                                // The dragItem with its previewProvider is not directly used here due to SwiftUI limitations
+                                return provider
                             }
                             
-                            // Since .onDrag expects a single NSItemProvider, return the original provider
-                            // The dragItem with its previewProvider is not directly used here due to SwiftUI limitations
-                            return provider
+                            
+                            .onDrop(of: [.text], delegate: DragRelocateDelegate(item: action, listData: $customActions, current: $dragging))
+                            
                         }
-
-
-                        .onDrop(of: [.text], delegate: DragRelocateDelegate(item: action, listData: $customActions, current: $dragging))
-                    
+                        
                     }
-                    
+                    .padding(10)
+                    .padding(.top, 40)
                 }
-                .padding(10)
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text("Drag blocks to reorder. First 8 shown in widgets.")
+                            .font(.caption)
+                            .padding(.vertical)
+                            .padding(.bottom, 20)
+                        Spacer()
+                    }
+                        .background(
+                            LinearGradient(
+                                colors: [.clear, Color("BG.L0"), Color("BG.L0")],
+                                startPoint: .bottom,
+                                endPoint: .top
+                            )
+                        )
+                    Spacer()
+                }
             }
             Divider()
             ControlBar(

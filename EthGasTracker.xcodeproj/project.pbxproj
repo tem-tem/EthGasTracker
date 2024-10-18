@@ -48,8 +48,6 @@
 		A32D2BE02B5EC7B9009A6228 /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32D2BDF2B5EC7B9009A6228 /* DeviceTokenManager.swift */; };
 		A32E564D2A80938300786382 /* TimestampViewLegacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E564C2A80938300786382 /* TimestampViewLegacy.swift */; };
 		A33250382AA294D000A5B6B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A33250372AA294D000A5B6B3 /* GoogleService-Info.plist */; };
-		A332503C2AA2958E00A5B6B3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A332503B2AA2958E00A5B6B3 /* FirebaseAnalytics */; };
-		A332503E2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		A33250432AA3972B00A5B6B3 /* ServerMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33250422AA3972B00A5B6B3 /* ServerMessageView.swift */; };
 		A333D31D2CB0BA6900A8AAFA /* AlertToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333D3192CB0BA6200A8AAFA /* AlertToastManager.swift */; };
 		A3381B0D2B599B8900EC96BA /* GasCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E366052B2E15A200A25C63 /* GasCharts.swift */; };
@@ -116,6 +114,11 @@
 		A3785B4F2B722A340052016E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = A3785B4E2B722A340052016E /* AlertToast */; };
 		A37BD1E42CAF71CD00B9E4B5 /* ReferralBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37BD1E32CAF71C800B9E4B5 /* ReferralBalanceView.swift */; };
 		A37D69152A1E35F500ECF1CA /* AlertsLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */; };
+		A38107922CBC4C6F0022B7ED /* NotificationPermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38107912CBC4C6F0022B7ED /* NotificationPermissionManager.swift */; };
+		A38107932CBC4C6F0022B7ED /* NotificationPermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38107912CBC4C6F0022B7ED /* NotificationPermissionManager.swift */; };
+		A38107942CBC4C6F0022B7ED /* NotificationPermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38107912CBC4C6F0022B7ED /* NotificationPermissionManager.swift */; };
+		A38107952CBC4C6F0022B7ED /* NotificationPermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38107912CBC4C6F0022B7ED /* NotificationPermissionManager.swift */; };
+		A38107972CBC4D090022B7ED /* AddAlertButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38107962CBC4D040022B7ED /* AddAlertButtonView.swift */; };
 		A384EB2429BAFBC5005CC9E1 /* EthGasTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */; };
 		A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */; };
 		A384EB2B29BAFBC6005CC9E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A384EB2A29BAFBC6005CC9E1 /* Preview Assets.xcassets */; };
@@ -302,6 +305,14 @@
 		A3D357F52A8B051B000CD883 /* AlertFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D357F42A8B051B000CD883 /* AlertFormView.swift */; };
 		A3DB1D672A0E4DA500372A58 /* HeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DB1D662A0E4DA500372A58 /* HeatMap.swift */; };
 		A3DB1D692A0E75EE00372A58 /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DB1D682A0E75EE00372A58 /* HeatMapView.swift */; };
+		A3DEA82A2CB84A9D00CB93CA /* V5_MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA8292CB84A9000CB93CA /* V5_MainView.swift */; };
+		A3DEA8312CB84F9B00CB93CA /* NormalizedChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA8302CB84F9B00CB93CA /* NormalizedChartView.swift */; };
+		A3DEA8332CB8513F00CB93CA /* ChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA8322CB8513F00CB93CA /* ChartRenderer.swift */; };
+		A3DEA8352CB851A800CB93CA /* ChartTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA8342CB851A800CB93CA /* ChartTypes.swift */; };
+		A3DEA8372CB851DE00CB93CA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA8362CB851D900CB93CA /* Utils.swift */; };
+		A3DEA8392CB8543700CB93CA /* ChartSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA8382CB8543700CB93CA /* ChartSelectorView.swift */; };
+		A3DEA83B2CB8555000CB93CA /* V5_ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA83A2CB8554300CB93CA /* V5_ChartView.swift */; };
+		A3DEA83D2CB859D100CB93CA /* NormalizedChart_SwipeResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA83C2CB859D100CB93CA /* NormalizedChart_SwipeResolver.swift */; };
 		A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655829BC39BC00DC3016 /* AppDelegate.swift */; };
 		A3E3655B29BD2EF800DC3016 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3655A29BD2EF800DC3016 /* Fetch.swift */; };
 		A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */; };
@@ -493,6 +504,8 @@
 		A376B17F2AA81274005BB320 /* GasScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasScale.swift; sourceTree = "<group>"; };
 		A37BD1E32CAF71C800B9E4B5 /* ReferralBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralBalanceView.swift; sourceTree = "<group>"; };
 		A37D69142A1E35F500ECF1CA /* AlertsLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsLimitPicker.swift; sourceTree = "<group>"; };
+		A38107912CBC4C6F0022B7ED /* NotificationPermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionManager.swift; sourceTree = "<group>"; };
+		A38107962CBC4D040022B7ED /* AddAlertButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertButtonView.swift; sourceTree = "<group>"; };
 		A384EB2029BAFBC5005CC9E1 /* EthGasTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthGasTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthGasTrackerApp.swift; sourceTree = "<group>"; };
 		A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -564,6 +577,14 @@
 		A3D357F42A8B051B000CD883 /* AlertFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFormView.swift; sourceTree = "<group>"; };
 		A3DB1D662A0E4DA500372A58 /* HeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMap.swift; sourceTree = "<group>"; };
 		A3DB1D682A0E75EE00372A58 /* HeatMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
+		A3DEA8292CB84A9000CB93CA /* V5_MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V5_MainView.swift; sourceTree = "<group>"; };
+		A3DEA8302CB84F9B00CB93CA /* NormalizedChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalizedChartView.swift; sourceTree = "<group>"; };
+		A3DEA8322CB8513F00CB93CA /* ChartRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRenderer.swift; sourceTree = "<group>"; };
+		A3DEA8342CB851A800CB93CA /* ChartTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTypes.swift; sourceTree = "<group>"; };
+		A3DEA8362CB851D900CB93CA /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A3DEA8382CB8543700CB93CA /* ChartSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSelectorView.swift; sourceTree = "<group>"; };
+		A3DEA83A2CB8554300CB93CA /* V5_ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V5_ChartView.swift; sourceTree = "<group>"; };
+		A3DEA83C2CB859D100CB93CA /* NormalizedChart_SwipeResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalizedChart_SwipeResolver.swift; sourceTree = "<group>"; };
 		A3E3655829BC39BC00DC3016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3E3655A29BD2EF800DC3016 /* Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		A3E3656029BD46DF00DC3016 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -600,10 +621,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A332503C2AA2958E00A5B6B3 /* FirebaseAnalytics in Frameworks */,
 				A3785B4F2B722A340052016E /* AlertToast in Frameworks */,
 				A35628C62B90F55F00171C52 /* StoreKit.framework in Frameworks */,
-				A332503E2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				A3B95EDA2AA3ED420010657A /* Snappable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +658,7 @@
 		A30EB1BE2B619337009BEA31 /* AlertsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A38107962CBC4D040022B7ED /* AddAlertButtonView.swift */,
 				A32D2BD42B5DA431009A6228 /* MainAlertsView.swift */,
 				A30EB1BF2B619375009BEA31 /* AlertView.swift */,
 				A3D357F42A8B051B000CD883 /* AlertFormView.swift */,
@@ -879,6 +899,7 @@
 		A384EB2229BAFBC5005CC9E1 /* EthGasTracker */ = {
 			isa = PBXGroup;
 			children = (
+				A3DEA8282CB84A7C00CB93CA /* V5_Views */,
 				A384EB2329BAFBC5005CC9E1 /* EthGasTrackerApp.swift */,
 				A3B670C72B4B522B00CD6732 /* Models */,
 				A3B670E52B4B7DBE00CD6732 /* Views */,
@@ -982,6 +1003,7 @@
 		A3B253C32A7ED042007C668A /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A3DEA8342CB851A800CB93CA /* ChartTypes.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -989,6 +1011,7 @@
 		A3B670BF2B4B485300CD6732 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A38107912CBC4C6F0022B7ED /* NotificationPermissionManager.swift */,
 				A333D3192CB0BA6200A8AAFA /* AlertToastManager.swift */,
 				A31D227E2B0A9A72008464DB /* HelperViews.swift */,
 				A3E913F92CA9FF58007C9BBA /* ReferralCodeManager.swift */,
@@ -1113,6 +1136,28 @@
 			path = LiveGasWidget;
 			sourceTree = "<group>";
 		};
+		A3DEA8282CB84A7C00CB93CA /* V5_Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3DEA82D2CB84F2C00CB93CA /* Charts */,
+				A3DEA8292CB84A9000CB93CA /* V5_MainView.swift */,
+			);
+			path = V5_Views;
+			sourceTree = "<group>";
+		};
+		A3DEA82D2CB84F2C00CB93CA /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				A3DEA83A2CB8554300CB93CA /* V5_ChartView.swift */,
+				A3DEA8382CB8543700CB93CA /* ChartSelectorView.swift */,
+				A3DEA8322CB8513F00CB93CA /* ChartRenderer.swift */,
+				A3DEA8302CB84F9B00CB93CA /* NormalizedChartView.swift */,
+				A3DEA83C2CB859D100CB93CA /* NormalizedChart_SwipeResolver.swift */,
+				A3DEA8362CB851D900CB93CA /* Utils.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		A3E64F902B7B05DB00289DC7 /* ManagerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1186,8 +1231,6 @@
 			);
 			name = EthGasTracker;
 			packageProductDependencies = (
-				A332503B2AA2958E00A5B6B3 /* FirebaseAnalytics */,
-				A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				A3B95ED92AA3ED420010657A /* Snappable */,
 				A3785B4E2B722A340052016E /* AlertToast */,
 			);
@@ -1279,7 +1322,6 @@
 			);
 			mainGroup = A384EB1729BAFBC5005CC9E1;
 			packageReferences = (
-				A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A3B95ED82AA3ED420010657A /* XCRemoteSwiftPackageReference "Snappable" */,
 				A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
@@ -1343,6 +1385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A384F2832A83180000357771 /* GasIndexChart.swift in Sources */,
+				A38107952CBC4C6F0022B7ED /* NotificationPermissionManager.swift in Sources */,
 				A3B670E22B4B647500CD6732 /* SettingsKeys.swift in Sources */,
 				A31A33382CAF7F6200FF1CC8 /* ReferralRedeemView.swift in Sources */,
 				A33AFD892A92F6D9008AE58D /* MainFocusView.swift in Sources */,
@@ -1371,6 +1414,7 @@
 				A32D2BD12B5DA384009A6228 /* MainGasView.swift in Sources */,
 				A3FB30442B834190009433C0 /* BtcDataEntity.swift in Sources */,
 				A33AFD922A930BC3008AE58D /* GasIndexChartFocus.swift in Sources */,
+				A3DEA8332CB8513F00CB93CA /* ChartRenderer.swift in Sources */,
 				A32D2BD92B5DFC3A009A6228 /* Endpoints.swift in Sources */,
 				A394E00329EA467100E45DEF /* PlainGasView.swift in Sources */,
 				A35534492B4E4E4B006B416F /* GasIndexEntity.swift in Sources */,
@@ -1386,6 +1430,7 @@
 				A3E913FF2CAA0207007C9BBA /* ShareReferralView.swift in Sources */,
 				A36F08622A8C17C7009A4A36 /* AlertConditionView.swift in Sources */,
 				A3B253CB2A7F0D5E007C668A /* LegacyGasPriceView.swift in Sources */,
+				A3DEA82A2CB84A9D00CB93CA /* V5_MainView.swift in Sources */,
 				A394E01029EA55F400E45DEF /* NotificationManager.swift in Sources */,
 				A3074F4E2CAA23BB00EA6A77 /* ReferralsSectionView.swift in Sources */,
 				A30946B92B686CEC002D2944 /* Stats.swift in Sources */,
@@ -1438,9 +1483,13 @@
 				A32D2BD72B5DFB23009A6228 /* APIManager_Alerts.swift in Sources */,
 				A3EB2A392A887970004583B3 /* AlertsTabView.swift in Sources */,
 				A35534322B4DD105006B416F /* MinMax.swift in Sources */,
+				A38107972CBC4D090022B7ED /* AddAlertButtonView.swift in Sources */,
+				A3DEA83B2CB8555000CB93CA /* V5_ChartView.swift in Sources */,
+				A3DEA8312CB84F9B00CB93CA /* NormalizedChartView.swift in Sources */,
 				A34DD1362B58CBB200018092 /* DotGridView.swift in Sources */,
 				A3E3655929BC39BC00DC3016 /* AppDelegate.swift in Sources */,
 				A32D2BCC2B5C2CC0009A6228 /* ActionsBlockDenseView.swift in Sources */,
+				A3DEA8372CB851DE00CB93CA /* Utils.swift in Sources */,
 				A32D2BDC2B5DFDC3009A6228 /* Alert.swift in Sources */,
 				A34DD1392B58CEB200018092 /* ActionsBlockView.swift in Sources */,
 				A30EB1C62B63153D009BEA31 /* BorderedText.swift in Sources */,
@@ -1474,7 +1523,10 @@
 				A3E3656129BD46DF00DC3016 /* NetworkMonitor.swift in Sources */,
 				A3F2CF232B2530E300E6FDDD /* Currency.swift in Sources */,
 				A394E01629EB1AE000E45DEF /* ThresholdStorage.swift in Sources */,
+				A3DEA83D2CB859D100CB93CA /* NormalizedChart_SwipeResolver.swift in Sources */,
+				A3DEA8392CB8543700CB93CA /* ChartSelectorView.swift in Sources */,
 				A38A0D7C2B7B0AE700D52073 /* HWheelPicker.swift in Sources */,
+				A3DEA8352CB851A800CB93CA /* ChartTypes.swift in Sources */,
 				A32081162A42922D00857E02 /* SettingsView.swift in Sources */,
 				A32D2BE02B5EC7B9009A6228 /* DeviceTokenManager.swift in Sources */,
 				A35534292B4DCA9C006B416F /* HistoricalDataVM.swift in Sources */,
@@ -1548,6 +1600,7 @@
 				A3CACAB82B7FF51500B9D721 /* WatchEthGasTrackerApp.swift in Sources */,
 				A3CACAC72B7FF61700B9D721 /* LiveDataVM.swift in Sources */,
 				A3074F512CAA516B00EA6A77 /* APIManager+Referral.swift in Sources */,
+				A38107942CBC4C6F0022B7ED /* NotificationPermissionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1608,6 +1661,7 @@
 				A3FB30472B834190009433C0 /* BtcDataEntity.swift in Sources */,
 				A3CACB1F2B8037E400B9D721 /* GasLevel.swift in Sources */,
 				A3CACB202B8037E400B9D721 /* GasIndexEntity.swift in Sources */,
+				A38107932CBC4C6F0022B7ED /* NotificationPermissionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1668,6 +1722,7 @@
 				A3FB30452B834190009433C0 /* BtcDataEntity.swift in Sources */,
 				A3CEC8E42B70252100B082B7 /* GasLevel.swift in Sources */,
 				A3CEC8E32B70252100B082B7 /* GasIndexEntity.swift in Sources */,
+				A38107922CBC4C6F0022B7ED /* NotificationPermissionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1834,7 +1889,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.6.0;
+				MARKETING_VERSION = 4.6.2;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1876,7 +1931,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.6.0;
+				MARKETING_VERSION = 4.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2165,14 +2220,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 		A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast.git";
@@ -2192,16 +2239,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A332503B2AA2958E00A5B6B3 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		A332503D2AA2958E00A5B6B3 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A332503A2AA2958E00A5B6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
 		A3785B4E2B722A340052016E /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A3785B4D2B722A330052016E /* XCRemoteSwiftPackageReference "AlertToast" */;

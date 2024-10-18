@@ -11,9 +11,6 @@ struct GasCardView: View {
     @EnvironmentObject var liveDataVM: LiveDataVM
     @EnvironmentObject var activeSelectionVM: ActiveSelectionVM
     
-    @State private var showingStats = false
-    @State private var showingAlerts = false
-    
     var gas: Double {
         liveDataVM.gasLevel.currentGas
     }
@@ -26,13 +23,6 @@ struct GasCardView: View {
         VStack {
             if !isCollapsed {
                 HStack {
-                    Image(systemName: "chevron.down")
-                        .foregroundColor(.secondary)
-                        .onTapGesture {
-                            withAnimation(.spring(duration: 0.4)) {
-                                isCollapsed.toggle() // Toggle collapsed state
-                            }
-                        }
                     Spacer()
                     VStack {
                         GasLevelLabel(
@@ -43,9 +33,9 @@ struct GasCardView: View {
                         GasScaleDots(gasLevel: liveDataVM.gasLevel)
                     }
                     Spacer()
-                    Image(systemName: "chevron.down")
-                        .foregroundColor(.secondary)
-                        .opacity(0)
+//                    Image(systemName: "chevron.down")
+//                        .foregroundColor(.secondary)
+//                        .opacity(0)
                 }
                 .opacity(isActiveSelection ? 0 : 1)
                 .padding(.top, 10)
@@ -83,21 +73,9 @@ struct GasCardView: View {
             if !isCollapsed {
                 Spacer()
                 HStack {
-                    Button {
-                        showingAlerts.toggle()
-                    } label: {
-                        Image(systemName: "bell.fill")
-                            .foregroundStyle(liveDataVM.gasLevel.color)
-                    }
                     Spacer()
                     TimestampView(timestamp: liveDataVM.timestamp / 1000)
                     Spacer()
-                    Button {
-                        showingStats.toggle()
-                    } label: {
-                        Image(systemName: "chart.bar.xaxis.ascending.badge.clock")
-                            .foregroundStyle(liveDataVM.gasLevel.color)
-                    }
                 }
                 .padding(.horizontal, 15)
                 
@@ -105,7 +83,7 @@ struct GasCardView: View {
                     primaryColor: .primary, secondaryColor: .secondary
                 )
                 .frame(height: CHART_HEIGHT)
-                .padding(.bottom, 10)
+                .padding(.bottom, 5)
             }
         }
         .padding(.horizontal, isCollapsed ? 10 : 0)
@@ -115,14 +93,6 @@ struct GasCardView: View {
         .background(Color("BG.L1"))
         .clipShape(RoundedRectangle(cornerRadius: isCollapsed ? 10 : 20)) // Adjust corner radius when collapsed
         .padding(.horizontal, isCollapsed ? 15 : 5) // Adjust horizontal padding when collapsed
-        .sheet(isPresented: $showingStats) {
-            StatsGraph()
-                .background(Color("BG.L1"))
-        }
-        .sheet(isPresented: $showingAlerts) {
-            MainAlertsView()
-                .background(Color("BG.L1"))
-        }
         .onTapGesture {
             if isCollapsed {
                 withAnimation(.spring(duration: 0.4)) {
@@ -130,27 +100,27 @@ struct GasCardView: View {
                 }
             }
         }
-        .gesture(
-            DragGesture().onEnded { value in
-                
-                let swipeDown = value.translation.height > 0
-                let swipeUp = value.translation.height < 0
-                if swipeDown && !isCollapsed {
-                    withAnimation(.spring(duration: 0.4)) {
-                        isCollapsed.toggle() // Toggle collapsed state
-                    }
-                } else if swipeUp && isCollapsed {
-                    withAnimation(.spring(duration: 0.4)) {
-                        isCollapsed.toggle() // Toggle collapsed state
-                    }
-                }
-//                if value.translation.height > 0 && abs(value.translation.width) < abs(value.translation.height) {
-//                    withAnimation(.easeInOut) {
+//        .gesture(
+//            DragGesture().onEnded { value in
+//                
+//                let swipeDown = value.translation.height > 0
+//                let swipeUp = value.translation.height < 0
+//                if swipeDown && !isCollapsed {
+//                    withAnimation(.spring(duration: 0.4)) {
+//                        isCollapsed.toggle() // Toggle collapsed state
+//                    }
+//                } else if swipeUp && isCollapsed {
+//                    withAnimation(.spring(duration: 0.4)) {
 //                        isCollapsed.toggle() // Toggle collapsed state
 //                    }
 //                }
-            }
-        )
+////                if value.translation.height > 0 && abs(value.translation.width) < abs(value.translation.height) {
+////                    withAnimation(.easeInOut) {
+////                        isCollapsed.toggle() // Toggle collapsed state
+////                    }
+////                }
+//            }
+//        )
     }
 }
 
@@ -159,7 +129,7 @@ struct GasCardView: View {
     PreviewWrapper {
         VStack {
             Spacer()
-            GasCardView(isCollapsed: .constant(true))
+            GasCardView(isCollapsed: .constant(false))
         }
         .background(Color("BG.L0"))
     }

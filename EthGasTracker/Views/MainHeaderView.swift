@@ -43,7 +43,6 @@ struct MainHeaderView: View {
                 .padding(.horizontal)
             }
             Divider()
-                .padding(.horizontal)
         }
     }
 }

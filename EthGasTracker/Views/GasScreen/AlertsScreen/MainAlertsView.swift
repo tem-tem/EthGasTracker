@@ -63,11 +63,8 @@ struct MainAlertsView: View {
                     .foregroundStyle(.secondary)
                     .font(.caption)
                 Spacer()
-                Button {
-                    showingNewAlertForm = true
-                } label: {
-                    BorderedText(value: "Add Alert")
-                }.padding()
+                AddAlertButtonView(showingAlertForm: $showingNewAlertForm)
+                    .padding()
                 Spacer()
             }
         }

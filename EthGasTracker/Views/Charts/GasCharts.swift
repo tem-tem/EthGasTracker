@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-enum ChartTypes: String, CaseIterable {
-    case month = "1M"
-    case week = "7D"
-    case day = "24H"
-    case hour = "1H"
-    case live = "LIVE"
-}
-
-let CHART_HEIGHT = 120.0
 
 struct GasCharts: View {
     let primaryColor: Color
@@ -79,9 +70,9 @@ struct GasCharts: View {
                         .foregroundColor(isActive ? primaryColor : secondaryColor)
                         .padding(.vertical, 4)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 8)
+                            RoundedRectangle(cornerRadius: 12)
                                 .stroke(isActive ? primaryColor : secondaryColor, lineWidth: isActive ? 2 : 1)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
                         )
                     Spacer()
                 }

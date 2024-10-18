@@ -8,7 +8,6 @@
 import SwiftUI
 import StoreKit
 import WidgetKit
-import FirebaseAnalytics
 
 struct SubscriptionView: View {
     var source: String?
@@ -454,11 +453,6 @@ struct PurchaseView: View {
                 Text("Cancel anytime. No strings attached.").font(.caption)
     //            Spacer()
             }.background(Color(.systemBackground)).padding()
-                .onAppear {
-                    if source != nil {
-                        Analytics.logEvent("buy_subscription", parameters: ["source": source!])
-                    }
-                }
         }
         
     }

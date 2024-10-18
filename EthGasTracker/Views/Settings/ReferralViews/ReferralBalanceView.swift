@@ -129,7 +129,7 @@ struct ReferralBalanceView: View {
                     .stroke(Color(.systemGray4), lineWidth: 1)
             )
             
-            Text("Points can be used to unlock Plus features. One invite gives you one point.")
+            Text("Points can be used to unlock Plus features. Invite Friends to get more points.")
                 .font(.caption)
         }
     }

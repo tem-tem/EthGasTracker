@@ -5,7 +5,6 @@
 //  Created by Tem on 8/14/23.
 //
 import SwiftUI
-import FirebaseAnalytics
 
 struct AlertFormView: View {
     @EnvironmentObject var liveDataVM: LiveDataVM
@@ -97,7 +96,7 @@ struct AlertFormView: View {
     
     var body: some View {
         let alreadyExists = alertVM.exists(alert: currentAlert)
-        let didEdit = alert?.id != nil && !alreadyExists
+        let _ = alert?.id != nil && !alreadyExists
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 HStack {
