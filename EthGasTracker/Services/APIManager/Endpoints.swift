@@ -31,6 +31,8 @@ struct Endpoints {
     let getReferralPoints: String
     let redeemReferralPoints: String
     
+    let averages: (AveragesRange, AveragesWeekday?) -> String
+    
     init () {
         let env = self.PROD
         self.latest = env + "/api/v4/latest" + "?amount=" + String(AMOUNT_TO_FETCH)
@@ -51,5 +53,13 @@ struct Endpoints {
         self.applyReferral = env + "/api/v4/referrals/apply"
         self.getReferralPoints = env + "/api/v4/referrals/user/points"
         self.redeemReferralPoints = env + "/api/v4/referrals/user/redeem"
+        
+        self.averages = { (range, weekday) in
+            if let weekday = weekday {
+                return env + "/api/v5/averages/" + String(range.rawValue) + "/" + String(weekday.rawValue)
+            } else {
+                return env + "/api/v5/averages/" + String(range.rawValue)
+            }
+        }
     }
 }

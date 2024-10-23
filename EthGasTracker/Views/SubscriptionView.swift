@@ -47,6 +47,7 @@ struct SubscriptionView: View {
                 .clipShape(Capsule())
                 .sheet(isPresented: $isPresented) {
                     PurchaseView(source: source)
+                        .background(Color("BG.L0"))
                 }
                 .padding(.horizontal)
 //                Text("This is the best way to support the app, and keep it running.")
@@ -64,23 +65,6 @@ struct SubscriptionView: View {
 struct GoodStuff: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .top) {
-                Image(systemName: "circle.slash")
-                    .frame(width: 32, height: 32)
-                    .foregroundColor(Color(.systemRed))
-                    .background(Color(.systemRed).opacity(0.1))
-                    .cornerRadius(7)
-                
-                VStack(alignment: .leading) {
-                    Text("No Ads")
-                        .padding(.top, 5)
-                        .padding(.bottom, 2)
-                    Text("Remove ads.").font(.caption)
-                        .padding(.leading, 2)
-                        .padding(.vertical, 2)
-                        .foregroundStyle(.secondary)
-                }
-            }
             HStack(alignment: .top) {
                 Image(systemName: "infinity")
                     .frame(width: 32, height: 32)
@@ -160,6 +144,22 @@ struct GoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("See Ethereum price and actions in 160+ different currencies.").font(.caption)
+                        .padding(.leading, 2)
+                        .padding(.vertical, 2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            HStack(alignment: .top) {
+                Image(systemName: "slowmo")
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(Color(.systemMint))
+                    .background(Color(.systemMint).opacity(0.1))
+                    .cornerRadius(7)
+                VStack(alignment: .leading) {
+                    Text("More Precise Averages")
+                        .padding(.top, 5)
+                        .padding(.bottom, 2)
+                    Text("Down to the minutes, not just hours.").font(.caption)
                         .padding(.leading, 2)
                         .padding(.vertical, 2)
                         .foregroundStyle(.secondary)
@@ -263,22 +263,6 @@ struct NextGoodStuff: View {
                         .padding(.top, 5)
                         .padding(.bottom, 2)
                     Text("God help us go through testing for all of the screen sizes.").font(.caption)
-                        .padding(.leading, 2)
-                        .padding(.vertical, 2)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            HStack(alignment: .top) {
-                Image(systemName: "slowmo")
-                    .frame(width: 32, height: 32)
-                    .foregroundColor(Color(.systemMint))
-                    .background(Color(.systemMint).opacity(0.1))
-                    .cornerRadius(7)
-                VStack(alignment: .leading) {
-                    Text("More Precise Averages")
-                        .padding(.top, 5)
-                        .padding(.bottom, 2)
-                    Text("Down to the minutes, not just hours.").font(.caption)
                         .padding(.leading, 2)
                         .padding(.vertical, 2)
                         .foregroundStyle(.secondary)
@@ -452,7 +436,8 @@ struct PurchaseView: View {
                 BuyButtons()
                 Text("Cancel anytime. No strings attached.").font(.caption)
     //            Spacer()
-            }.background(Color(.systemBackground)).padding()
+            }
+            .padding()
         }
         
     }

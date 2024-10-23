@@ -50,6 +50,17 @@ struct SettingsView: View {
                     .listRowSeparator(.hidden)
                     
                     Section("Settings") {
+                        #if DEBUG
+                        HStack {
+                            Image(systemName: "star.fill")
+                                .frame(width: 32, height: 32)
+                                .background(.teal, in: RoundedRectangle(cornerRadius: 8))
+                                .foregroundColor(.white)
+                            Toggle("DEBUG SUBSCRIPTION MODE", isOn: $subbed)
+                                .toggleStyle(SwitchToggleStyle(tint: .green))
+                                .tint(liveDataVM.gasLevel.color)
+                        }
+                        #endif
                         HStack {
                             Image(systemName: "water.waves")
                                 .frame(width: 32, height: 32)

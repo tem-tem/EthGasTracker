@@ -77,6 +77,7 @@ struct EthGasTracker: App {
     @StateObject private var historicalDataVM: HistoricalDataVM
     @StateObject private var alertVM: AlertVM
     @StateObject private var statsVM: StatsVM
+    @StateObject private var averagesVM: AveragesViewModel
     
     @State private var showPurchaseSheet: Bool = false
     
@@ -90,6 +91,7 @@ struct EthGasTracker: App {
         _statsVM = StateObject(wrappedValue: StatsVM(apiManager: apiManager))
         _activeSelectionVM = StateObject(wrappedValue: ActiveSelectionVM())
         _storeVM = StateObject(wrappedValue: StoreVM())
+        _averagesVM = StateObject(wrappedValue: AveragesViewModel(apiManager: apiManager))
         _networkMonitor = StateObject(wrappedValue: NetworkMonitor())
         _showPurchaseSheet = State(wrappedValue: false)
         
@@ -133,6 +135,7 @@ struct EthGasTracker: App {
                 .environmentObject(storeVM)
                 .environmentObject(alertVM)
                 .environmentObject(statsVM)
+                .environmentObject(averagesVM)
                 .environmentObject(customActionDM)
                 .environmentObject(alertToastManager)
                 .preferredColorScheme(
@@ -182,6 +185,7 @@ struct PreviewWrapper<Content: View>: View {
     @StateObject private var historicalDataVM: HistoricalDataVM
     @StateObject private var alertVM: AlertVM
     @StateObject private var statsVM: StatsVM
+    @StateObject private var averagesVM: AveragesViewModel
     
     init(@ViewBuilder content: () -> Content) {
         self.content = content()
@@ -193,6 +197,7 @@ struct PreviewWrapper<Content: View>: View {
         _historicalDataVM = StateObject(wrappedValue: HistoricalDataVM(apiManager: apiManager))
         _alertVM = StateObject(wrappedValue: AlertVM(apiManager: apiManager))
         _statsVM = StateObject(wrappedValue: StatsVM(apiManager: apiManager))
+        _averagesVM = StateObject(wrappedValue: AveragesViewModel(apiManager: apiManager))
     }
 
     var body: some View {
@@ -206,5 +211,6 @@ struct PreviewWrapper<Content: View>: View {
             .environmentObject(statsVM)
             .environmentObject(customActionDM)
             .environmentObject(alertToastManager)
+            .environmentObject(averagesVM)
     }
 }
