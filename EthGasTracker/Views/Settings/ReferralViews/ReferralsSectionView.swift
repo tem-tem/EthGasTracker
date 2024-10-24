@@ -9,6 +9,8 @@ import SwiftUI
 import AlertToast
 
 struct ReferralsSectionView: View {
+    @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
+
     @EnvironmentObject var alertToastManager: AlertToastManager
     var showingDebugControls: Bool = false
     @State private var showReferralSheet = false
@@ -116,6 +118,15 @@ struct ReferralsSectionView: View {
             if showingDebugControls {
                 VStack(alignment: .leading) {
                     HStack { Spacer() }
+                    HStack {
+                        Image(systemName: "star.fill")
+                            .frame(width: 32, height: 32)
+                            .background(.teal, in: RoundedRectangle(cornerRadius: 8))
+                            .foregroundColor(.white)
+                        Toggle("DEBUG SUBSCRIPTION MODE", isOn: $subbed)
+                            .toggleStyle(SwitchToggleStyle(tint: .green))
+                    }
+                    
                     Text("Referral code: \(userReferralCode ?? "No code")")
                     Text("Points: \(points)")
                     if PlusFeatureManager.shared.hasPremiumAccess() {

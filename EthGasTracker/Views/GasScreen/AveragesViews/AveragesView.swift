@@ -16,7 +16,9 @@ struct AveragesChartViewController: View {
     @State var range: AveragesRange = .week
     @State var weekday: AveragesWeekday?
     @State private var averagesEntries: [AverageEntry] = []
+    @State private var minuteToEntryMap: [Int: AverageEntry] = [:]
     @State private var activeEntry: AverageEntry?
+    @State private var minuteOfDay = 0
     
     @State private var pending: Bool = false
     
@@ -51,29 +53,39 @@ struct AveragesChartViewController: View {
                                 .padding(.bottom)
                         }
                     } else {
-                        VStack {
-                            AveragesEntryPercentilesView(entry: $activeEntry)
-                            Divider()
-                                .padding(.vertical, 10)
-                            AveragesEntryMinMaxView(entry: $activeEntry)
-                        }
-                        .padding(10)
-                        .background(Color("BG.L1"))
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .padding(.horizontal, 10)
-                        .padding(.bottom, 10)
+                        AveragesEntryPercentilesView(entry: $activeEntry)
+                            .padding(.top)
+//                        VStack {
+//                            AveragesEntryPercentilesView(entry: $activeEntry)
+//                                .padding(.horizontal, 10)
+//                            Divider()
+//                                .padding(.vertical, 5)
+//                            AveragesEntryMinMaxView(entry: $activeEntry)
+//                                .padding(.horizontal, 10)
+//                        }
+//                        .padding(.vertical, 10)
+//                        .background(Color("BG.L1"))
+//                        .clipShape(RoundedRectangle(cornerRadius: 15))
+//                        .padding(.horizontal, 10)
+//                        .padding(.bottom, 10)
                         
                         AveragesEntryAvgTimeView(entry: $activeEntry)
-                            .background(Color("BG.L1"))
+//                            .background(Color("BG.L1"))
+                            .background(.ultraThinMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("BG.L1")))
                             .padding(.horizontal, 10)
                         
                         AveragesChartView(
                             averagesEntries: $averagesEntries,
-                            activeEntry: $activeEntry
+                            activeEntry: $activeEntry,
+                            minuteToEntryMap: $minuteToEntryMap,
+                            minuteOfDay: $minuteOfDay
                         )
-                        .background(Color("BG.L1"))
+//                        .background(Color("BG.L1"))
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("BG.L1")))
                         .padding(.horizontal, 10)
                     }
                 }
@@ -85,17 +97,9 @@ struct AveragesChartViewController: View {
         }
         .onChange(of: range) { _ in
             getAverageEntries()
-            updateActiveEntry()
         }
         .onChange(of: weekday) { _ in
             getAverageEntries()
-            updateActiveEntry()
-        }
-    }
-    
-    func updateActiveEntry() {
-        if let entry = activeEntry {
-            activeEntry = averagesEntries.first { $0.minuteOfDay == entry.minuteOfDay }
         }
     }
     
@@ -111,6 +115,10 @@ struct AveragesChartViewController: View {
                 } else {
                     averagesEntries = filterHourValues(from: entries)
                 }
+                
+                minuteToEntryMap = mapMinutesToEntries(entries: averagesEntries)
+                activeEntry = minuteToEntryMap[getCurrentMinuteOfDay()]
+                minuteOfDay = getCurrentMinuteOfDay()
             case .failure(let error):
                 print(error)
             }
@@ -118,10 +126,34 @@ struct AveragesChartViewController: View {
         }
     }
     
+    func mapMinutesToEntries(entries: [AverageEntry]) -> [Int: AverageEntry] {
+        minuteToEntryMap = Dictionary(uniqueKeysWithValues: averagesEntries
+            .filter { $0.measureName == "normal" }
+            .map { ($0.minuteOfDay, $0) })
+        return minuteToEntryMap
+    }
+    
     func filterHourValues(from entries: [AverageEntry]) -> [AverageEntry] {
         return entries.filter { $0.minuteOfDay % 60 == 0 }
     }
-
+    
+    func getCurrentMinuteOfDay() -> Int {
+        if subbed {
+            // Set current minute of the day when view appears
+            let currentHour = Calendar.current.component(.hour, from: Date())
+            let currentMinute = Calendar.current.component(.minute, from: Date())
+            
+            // Calculate total minutes since the start of the day
+            let totalMinutes = currentHour * 60 + currentMinute
+            
+            // Clamp and round to the nearest 10-minute increment
+            return min(max((totalMinutes / 10) * 10, 0), 1430)
+        } else {
+            // Get current hour in minutes of the day
+            let currentHour = Calendar.current.component(.hour, from: Date())
+            return currentHour * 60
+        }
+    }
 }
 
 struct AveragesEntryTimeView: View {
@@ -146,23 +178,23 @@ struct AveragesEntryMinMaxView: View {
         HStack {
             VStack(alignment: .leading) {
                 Text("Min")
-                    .font(.caption)
+                    .font(.system(.caption, design: .monospaced, weight: .light))
                 Text("\(String(format: "%.1f", entry?.min ?? 0))")
                     .font(.system(.body, design: .monospaced, weight: .bold))
                 HStack { Spacer() }
             }
             Spacer()
-            VStack(alignment: .center) {
-                Text("Fluctuation")
-                    .font(.caption)
-                Text("\(String(format: "%.1f", entry?.deviation ?? 0))")
-                    .font(.system(.body, design: .monospaced, weight: .bold))
-                HStack { Spacer() }
-            }
-            Spacer()
+//            VStack(alignment: .center) {
+//                Text("Approx. Deviation")
+//                    .font(.system(.caption, design: .monospaced, weight: .light))
+//                Text("\(String(format: "%.1f", entry?.deviation ?? 0))")
+//                    .font(.system(.body, design: .monospaced, weight: .bold))
+//                HStack { Spacer() }
+//            }
+//            Spacer()
             VStack(alignment: .trailing) {
                 Text("Max")
-                    .font(.caption)
+                    .font(.system(.caption, design: .monospaced, weight: .light))
                 Text("\(String(format: "%.1f", entry?.max ?? 0))")
                     .font(.system(.body, design: .monospaced, weight: .bold))
                 HStack { Spacer() }
@@ -176,10 +208,28 @@ struct AveragesEntryAvgTimeView: View {
     
     var body: some View {
         VStack(alignment: .center) {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text("Min")
+                        .font(.system(.caption, design: .monospaced, weight: .light))
+                    Text("\(String(format: "%.1f", entry?.min ?? 0))")
+                        .font(.system(.body, design: .monospaced, weight: .black))
+                        
+                }
+                Spacer()
+                Text("Average")
+                    .font(.system(.caption, design: .monospaced, weight: .light))
+                Spacer()
+                VStack(alignment: .trailing) {
+                    Text("Max")
+                        .font(.system(.caption, design: .monospaced, weight: .light))
+                    Text("\(String(format: "%.1f", entry?.min ?? 0))")
+                        .font(.system(.body, design: .monospaced, weight: .black))
+                }
+            }
+            .padding(.horizontal)
+            .padding(.top)
             Spacer()
-            HStack { Spacer() }
-            Text("Average")
-                .font(.caption)
             Text("\(String(format: "%.1f", entry?.avg ?? 0))")
                 .font(.system(size: 120, weight: .black, design: .monospaced))
                 .minimumScaleFactor(0.5)
@@ -194,53 +244,118 @@ struct AveragesEntryAvgTimeView: View {
 struct AveragesEntryPercentilesView: View {
     @Binding var entry: AverageEntry?
     
+    let colors = [
+        Color(.systemGreen),
+        Color(.systemBlue),
+        Color(.systemYellow),
+        Color(.systemOrange),
+        Color(.systemRed)
+    ]
+    
+    func getGradient(_ index: Int) -> LinearGradient {
+        let color = colors[index - 1]
+        
+        return LinearGradient(gradient: Gradient(stops: [
+            .init(color: color.opacity(0), location: 0),
+            .init(color: color.opacity(1), location: 0.5),
+            .init(color: color.opacity(0), location: 1)
+        ]), startPoint: .top, endPoint: .bottom)
+    }
+    
+    let labels = [
+        "p5",
+        "p25",
+        "p50",
+        "p75",
+        "p95"
+    ]
+    
+    func getPercentileList() -> [Double] {
+        return [
+            entry?.p5 ?? 0,
+            entry?.p25 ?? 0,
+            entry?.p50 ?? 0,
+            entry?.p75 ?? 0,
+            entry?.p95 ?? 0
+        ]
+    }
+    
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("p5")
-                    .font(.system(.caption, design: .monospaced, weight: .light))
-                Text(String(format: "%.1f", entry?.p5 ?? 0))
-                HStack { Spacer() }
+        GeometryReader { geo in
+            let sizeStep = geo.size.height * 2.8
+            let percentiles = getPercentileList()
+            
+            ZStack {
+                ForEach((1..<6).reversed(), id: \.self) { i in
+                    Circle()
+                        .stroke(colors[i-1], lineWidth: 1)
+                        .frame(width: sizeStep * CGFloat(i), height: sizeStep * CGFloat(i))
+                        .overlay(
+                            VStack(alignment: .trailing) {
+                                Text(labels[i - 1])
+                                    .font(.system(.caption, design: .monospaced, weight: .light))
+                                Text(String(format: "%.1f", percentiles[i - 1]))
+                                    .font(.system(.body, design: .monospaced, weight: .bold))
+                            }.padding(.trailing)
+                            , alignment: .trailing
+                        )
+                }
             }
-
-            Spacer()
-
-            VStack(alignment: .leading) {
-                Text("p25")
-                    .font(.system(.caption, design: .monospaced, weight: .light))
-                Text(String(format: "%.1f", entry?.p25 ?? 0))
-                HStack { Spacer() }
-            }
-
-            Spacer()
-
-            VStack(alignment: .center) {
-                Text("p50")
-                    .font(.system(.caption, design: .monospaced, weight: .light))
-                Text(String(format: "%.1f", entry?.p50 ?? 0))
-                HStack { Spacer() }
-            }
-
-            Spacer()
-
-            VStack(alignment: .trailing) {
-                Text("p75")
-                    .font(.system(.caption, design: .monospaced, weight: .light))
-                Text(String(format: "%.1f", entry?.p75 ?? 0))
-                HStack { Spacer() }
-            }
-
-            Spacer()
-
-            VStack(alignment: .trailing) {
-                Text("p95")
-                    .font(.system(.caption, design: .monospaced, weight: .light))
-                Text(String(format: "%.1f", entry?.p95 ?? 0))
-                HStack { Spacer() }
-            }
+            .offset(
+                x: -(sizeStep * 5) / 2,
+                y: -(sizeStep * 5) / 2
+            )
+            .padding(.leading)
+//            HStack {
+//                VStack(alignment: .leading) {
+//                    Text("p5")
+//                        .font(.system(.caption, design: .monospaced, weight: .light))
+//                    Text(String(format: "%.1f", entry?.p5 ?? 0))
+//                    HStack { Spacer() }
+//                }
+//                .overlay(
+//                    Circle()
+//                )
+//                
+//                Spacer()
+//                
+//                VStack(alignment: .leading) {
+//                    Text("p25")
+//                        .font(.system(.caption, design: .monospaced, weight: .light))
+//                    Text(String(format: "%.1f", entry?.p25 ?? 0))
+//                    HStack { Spacer() }
+//                }
+//                
+//                Spacer()
+//                
+//                VStack(alignment: .center) {
+//                    Text("p50")
+//                        .font(.system(.caption, design: .monospaced, weight: .light))
+//                    Text(String(format: "%.1f", entry?.p50 ?? 0))
+//                    HStack { Spacer() }
+//                }
+//                
+//                Spacer()
+//                
+//                VStack(alignment: .trailing) {
+//                    Text("p75")
+//                        .font(.system(.caption, design: .monospaced, weight: .light))
+//                    Text(String(format: "%.1f", entry?.p75 ?? 0))
+//                    HStack { Spacer() }
+//                }
+//                
+//                Spacer()
+//                
+//                VStack(alignment: .trailing) {
+//                    Text("p95")
+//                        .font(.system(.caption, design: .monospaced, weight: .light))
+//                    Text(String(format: "%.1f", entry?.p95 ?? 0))
+//                    HStack { Spacer() }
+//                }
+//            }
+//            .font(.system(.caption, design: .monospaced, weight: .bold))
         }
-        .font(.system(.caption, design: .monospaced, weight: .bold))
-
+        .frame(height: 50)
     }
 }
 
@@ -283,15 +398,13 @@ struct AveragesChartMenuView: View {
 struct AveragesChartView: View {
     @Binding var averagesEntries: [AverageEntry]
     @Binding var activeEntry: AverageEntry?
+    @Binding var minuteToEntryMap: [Int: AverageEntry]
+    @Binding var minuteOfDay: Int
     
     @AppStorage("subbed", store: UserDefaults(suiteName: "group.TA.EthGas")) var subbed: Bool = false
     
-    @State private var minuteOfDay = 0
     @AppStorage(SettingsKeys().hapticFeedbackEnabled) private var haptic = true
     let hapticFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-
-    // Dictionary for efficient lookup
-    @State private var minuteToEntryMap: [Int: AverageEntry] = [:]
 
     var body: some View {
         AveragesChartRendererView(
@@ -305,23 +418,6 @@ struct AveragesChartView: View {
                 )
             }
             .onAppear {
-                // Set current minute of the day when view appears
-                let currentHour = Calendar.current.component(.hour, from: Date())
-                let currentMinute = Calendar.current.component(.minute, from: Date())
-                
-                // Calculate total minutes since the start of the day
-                let totalMinutes = currentHour * 60 + currentMinute
-                
-                // Clamp and round to the nearest 10-minute increment
-                minuteOfDay = min(max((totalMinutes / 10) * 10, 0), 1430)
-            }
-            .onAppear {
-                minuteOfDay = getCurrentMinuteOfDay()
-                // Create a hashmap of minuteOfDay -> AverageEntry for faster lookups
-                minuteToEntryMap = Dictionary(uniqueKeysWithValues: averagesEntries
-                    .filter { $0.measureName == "normal" }
-                    .map { ($0.minuteOfDay, $0) })
-                
                 // Set the initial active entry based on the current minute
                 activeEntry = minuteToEntryMap[minuteOfDay]
             }
@@ -333,24 +429,6 @@ struct AveragesChartView: View {
                 // Use the hashmap to find the active entry in constant time
                 activeEntry = minuteToEntryMap[newMinuteOfDay]
             }
-    }
-    
-    func getCurrentMinuteOfDay() -> Int {
-        if subbed {
-            // Set current minute of the day when view appears
-            let currentHour = Calendar.current.component(.hour, from: Date())
-            let currentMinute = Calendar.current.component(.minute, from: Date())
-            
-            // Calculate total minutes since the start of the day
-            let totalMinutes = currentHour * 60 + currentMinute
-            
-            // Clamp and round to the nearest 10-minute increment
-            return min(max((totalMinutes / 10) * 10, 0), 1430)
-        } else {
-            // Get current hour in minutes of the day
-            let currentHour = Calendar.current.component(.hour, from: Date())
-            return currentHour * 60
-        }
     }
 }
 
@@ -559,5 +637,6 @@ struct AveragesChartRendererView: View {
 #Preview {
     PreviewWrapper {
         AveragesChartViewController()
+            .background(Color("BG.L0"))
     }
 }
