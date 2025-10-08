@@ -26,7 +26,7 @@ struct GasLiveChart: View {
                     proxy: proxy
                 )
             }
-            .chartYScale(domain: (Int(liveDataVM.gasDataEntity.min) - 1)...(Int(liveDataVM.gasDataEntity.max) + 1))
+            .chartYScale(domain: (liveDataVM.gasDataEntity.min - 1)...(liveDataVM.gasDataEntity.max + 1))
             .chartYAxis(.hidden)
             .chartXAxis(.hidden)
             .frame(maxHeight: CHART_HEIGHT)
@@ -53,16 +53,16 @@ struct GasLiveChart_ChartItself: View {
     
     @State private var pulseSize: CGFloat = 10
     
-    var entriesMin: Int {
-        Int(round(liveDataVM.gasDataEntity.min)) - 1
+    var entriesMin: Double {
+        liveDataVM.gasDataEntity.min - 1
     }
     
     var body: some View {
         Chart(liveDataVM.gasDataEntity.entries, id: \.index) { entry in
             let count = liveDataVM.gasDataEntity.entries.count
-            let entryGas = isFastMain ? Int(round(entry.fast)) : Int(round(entry.normal))
+            let entryGas = isFastMain ? entry.fast : entry.normal
             let lastEntry = liveDataVM.gasDataEntity.entries[count - 1]
-            let lastEntryGas = isFastMain ? Int(round(lastEntry.fast)) : Int(round(lastEntry.normal))
+            let lastEntryGas = isFastMain ? lastEntry.fast : lastEntry.normal
             if entry.index == lastEntry.index, activeSelectionVM.date == nil, activeSelectionVM.gas == nil {
                 
                 PointMark(
@@ -155,7 +155,7 @@ struct GasLiveChart_ChartItself: View {
 //            .interpolationMethod(.stepCenter)
             
             if let index = activeSelectionVM.index, let gas = activeSelectionVM.gas {
-                let selectedGas = Int(round(gas))
+                let selectedGas = gas
 //                RuleMark(
 //                    xStart: .value("Index", 0),
 //                    xEnd: .value("Index", lastEntry.index),

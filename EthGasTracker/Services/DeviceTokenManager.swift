@@ -17,9 +17,11 @@ class DeviceTokenManager {
 
     var deviceToken: String? {
         get {
+            print("Device token get: \(tokenQueue.sync { _deviceToken } ?? "nil")")
             return tokenQueue.sync { _deviceToken }
         }
         set(newToken) {
+            print("Device token set: \(newToken ?? "nil")")
             tokenQueue.sync { _deviceToken = newToken }
         }
     }

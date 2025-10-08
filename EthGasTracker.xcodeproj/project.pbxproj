@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,7 +18,6 @@
 		A30EB1C02B619375009BEA31 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EB1BF2B619375009BEA31 /* AlertView.swift */; };
 		A30EB1C42B619B87009BEA31 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EB1C32B619B87009BEA31 /* MainMenuView.swift */; };
 		A30EB1C62B63153D009BEA31 /* BorderedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EB1C52B63153D009BEA31 /* BorderedText.swift */; };
-		A317CCF029CBF497001B8492 /* lightweight.gif in Resources */ = {isa = PBXBuildFile; fileRef = A317CCEF29CBF497001B8492 /* lightweight.gif */; };
 		A31A33382CAF7F6200FF1CC8 /* ReferralRedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A33372CAF7F5D00FF1CC8 /* ReferralRedeemView.swift */; };
 		A31A5D542B76A5950068A4C2 /* CustomActionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A5D532B76A5950068A4C2 /* CustomActionDataManager.swift */; };
 		A31A5D582B76AD6E0068A4C2 /* ActionsManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A5D572B76AD6E0068A4C2 /* ActionsManagerView.swift */; };
@@ -77,6 +76,12 @@
 		A33AFD902A930133008AE58D /* ActionsListFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD8F2A930133008AE58D /* ActionsListFocusView.swift */; };
 		A33AFD922A930BC3008AE58D /* GasIndexChartFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFD912A930BC3008AE58D /* GasIndexChartFocus.swift */; };
 		A33DFFC42AFF12FC007CE775 /* GasLevelExplainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DFFC32AFF12FC007CE775 /* GasLevelExplainerView.swift */; };
+		A3443E842E8D888B00928FBA /* AddressTrackerAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3443E832E8D888B00928FBA /* AddressTrackerAPIClient.swift */; };
+		A3443E882E8DC42700928FBA /* WatchlistVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3443E872E8DC42700928FBA /* WatchlistVM.swift */; };
+		A3443FA42E92D13800928FBA /* AddressTrackerDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3443FA32E92D13800928FBA /* AddressTrackerDataController.swift */; };
+		A3443FA52E92D13800928FBA /* AddressTrackerDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3443FA32E92D13800928FBA /* AddressTrackerDataController.swift */; };
+		A3443FA62E92D13800928FBA /* AddressTrackerDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3443FA32E92D13800928FBA /* AddressTrackerDataController.swift */; };
+		A3443FA72E92D13800928FBA /* AddressTrackerDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3443FA32E92D13800928FBA /* AddressTrackerDataController.swift */; };
 		A34D906E29C28EDE002F2310 /* FetcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */; };
 		A34D907029C2918D002F2310 /* FetchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D906F29C2918D002F2310 /* FetchView.swift */; };
 		A34D907229C2B1A9002F2310 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D907129C2B1A9002F2310 /* StatusBar.swift */; };
@@ -432,7 +437,6 @@
 		A30EB1C22B619989009BEA31 /* lightweight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lightweight.gif; sourceTree = "<group>"; };
 		A30EB1C32B619B87009BEA31 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		A30EB1C52B63153D009BEA31 /* BorderedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedText.swift; sourceTree = "<group>"; };
-		A317CCEF29CBF497001B8492 /* lightweight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = lightweight.gif; path = ../../../../../Downloads/lightweight.gif; sourceTree = "<group>"; };
 		A31A33372CAF7F5D00FF1CC8 /* ReferralRedeemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralRedeemView.swift; sourceTree = "<group>"; };
 		A31A5D532B76A5950068A4C2 /* CustomActionDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionDataManager.swift; sourceTree = "<group>"; };
 		A31A5D572B76AD6E0068A4C2 /* ActionsManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsManagerView.swift; sourceTree = "<group>"; };
@@ -478,6 +482,9 @@
 		A33AFD8F2A930133008AE58D /* ActionsListFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsListFocusView.swift; sourceTree = "<group>"; };
 		A33AFD912A930BC3008AE58D /* GasIndexChartFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasIndexChartFocus.swift; sourceTree = "<group>"; };
 		A33DFFC32AFF12FC007CE775 /* GasLevelExplainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasLevelExplainerView.swift; sourceTree = "<group>"; };
+		A3443E832E8D888B00928FBA /* AddressTrackerAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTrackerAPIClient.swift; sourceTree = "<group>"; };
+		A3443E872E8DC42700928FBA /* WatchlistVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistVM.swift; sourceTree = "<group>"; };
+		A3443FA32E92D13800928FBA /* AddressTrackerDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTrackerDataController.swift; sourceTree = "<group>"; };
 		A34D906D29C28EDE002F2310 /* FetcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherViewModel.swift; sourceTree = "<group>"; };
 		A34D906F29C2918D002F2310 /* FetchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchView.swift; sourceTree = "<group>"; };
 		A34D907129C2B1A9002F2310 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
@@ -634,6 +641,10 @@
 		A3FB304B2B84E826009433C0 /* BtcCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtcCardView.swift; sourceTree = "<group>"; };
 		A3FB304D2B84F55F009433C0 /* BtcMempool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtcMempool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A3443E7F2E8D835300928FBA /* WatchlistScreen */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WatchlistScreen; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A384EB1D29BAFBC5005CC9E1 /* Frameworks */ = {
@@ -948,7 +959,6 @@
 				A384EB3829BBE913005CC9E1 /* Info.plist */,
 				A394E00629EA4E3000E45DEF /* EthGasTracker.entitlements */,
 				A384EB2729BAFBC6005CC9E1 /* Assets.xcassets */,
-				A317CCEF29CBF497001B8492 /* lightweight.gif */,
 				A384EB2929BAFBC6005CC9E1 /* Preview Content */,
 			);
 			path = EthGasTracker;
@@ -1051,6 +1061,7 @@
 			children = (
 				A38107912CBC4C6F0022B7ED /* NotificationPermissionManager.swift */,
 				A333D3192CB0BA6200A8AAFA /* AlertToastManager.swift */,
+				A3443FA32E92D13800928FBA /* AddressTrackerDataController.swift */,
 				A31D227E2B0A9A72008464DB /* HelperViews.swift */,
 				A3E913F92CA9FF58007C9BBA /* ReferralCodeManager.swift */,
 				A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */,
@@ -1100,12 +1111,14 @@
 		A3B670D72B4B589A00CD6732 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A3443E832E8D888B00928FBA /* AddressTrackerAPIClient.swift */,
 				A320197A2CC728DA00B7CC29 /* AveragesVM.swift */,
 				A3B670D82B4B58DA00CD6732 /* LiveDataVM.swift */,
 				A35534242B4C4E63006B416F /* ActiveSelectionVM.swift */,
 				A35534282B4DCA9C006B416F /* HistoricalDataVM.swift */,
 				A31D22782B098BFE008464DB /* StoreVM.swift */,
 				A32D2BDD2B5DFE9B009A6228 /* AlertVM.swift */,
+				A3443E872E8DC42700928FBA /* WatchlistVM.swift */,
 				A30946BA2B686D44002D2944 /* StatsVM.swift */,
 			);
 			path = ViewModels;
@@ -1114,6 +1127,7 @@
 		A3B670E52B4B7DBE00CD6732 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3443E7F2E8D835300928FBA /* WatchlistScreen */,
 				A3B670E82B4B7EC900CD6732 /* MainView.swift */,
 				A32D2BD22B5DA3ED009A6228 /* MainHeaderView.swift */,
 				A30EB1C32B619B87009BEA31 /* MainMenuView.swift */,
@@ -1269,6 +1283,9 @@
 				A3CEC8C82B70247E00B082B7 /* PBXTargetDependency */,
 				A3CACAC12B7FF51600B9D721 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				A3443E7F2E8D835300928FBA /* WatchlistScreen */,
+			);
 			name = EthGasTracker;
 			packageProductDependencies = (
 				A3B95ED92AA3ED420010657A /* Snappable */,
@@ -1386,7 +1403,6 @@
 				A33250382AA294D000A5B6B3 /* GoogleService-Info.plist in Resources */,
 				A384EB2829BAFBC6005CC9E1 /* Assets.xcassets in Resources */,
 				A3B95EE02AA462590010657A /* Launch Screen.storyboard in Resources */,
-				A317CCF029CBF497001B8492 /* lightweight.gif in Resources */,
 				A3F2CF1F2B252A6E00E6FDDD /* CurrencyList.json in Resources */,
 				A31D22762B098987008464DB /* GAS ALERT Ethereum Gas Tracker.storekit in Resources */,
 			);
@@ -1521,6 +1537,8 @@
 				A355343E2B4DD17B006B416F /* HistoryRange.swift in Sources */,
 				A3381B1D2B5B42B000EC96BA /* EthPriceView.swift in Sources */,
 				A355344C2B4E4E8C006B416F /* GasLevel.swift in Sources */,
+				A3443E882E8DC42700928FBA /* WatchlistVM.swift in Sources */,
+				A3443E842E8D888B00928FBA /* AddressTrackerAPIClient.swift in Sources */,
 				A3E3656329BD476B00DC3016 /* ContentView.swift in Sources */,
 				A37D69152A1E35F500ECF1CA /* AlertsLimitPicker.swift in Sources */,
 				A32D2BD72B5DFB23009A6228 /* APIManager_Alerts.swift in Sources */,
@@ -1575,6 +1593,7 @@
 				A32081162A42922D00857E02 /* SettingsView.swift in Sources */,
 				A32D2BE02B5EC7B9009A6228 /* DeviceTokenManager.swift in Sources */,
 				A35534292B4DCA9C006B416F /* HistoricalDataVM.swift in Sources */,
+				A3443FA42E92D13800928FBA /* AddressTrackerDataController.swift in Sources */,
 				A333D31D2CB0BA6900A8AAFA /* AlertToastManager.swift in Sources */,
 				A3381B122B59A1A400EC96BA /* ActionsScrollView.swift in Sources */,
 				A394E00A29EA505000E45DEF /* SendThreshold.swift in Sources */,
@@ -1611,6 +1630,7 @@
 				A3CACAE22B7FF98400B9D721 /* APIManager.swift in Sources */,
 				A3CACAE32B7FF98400B9D721 /* APIManager_GetLiveData.swift in Sources */,
 				A3CACAE42B7FF98400B9D721 /* APIManager_GetHistoricalData.swift in Sources */,
+				A3443FA72E92D13800928FBA /* AddressTrackerDataController.swift in Sources */,
 				A3CACAEF2B802FE500B9D721 /* FetchingStatusBar.swift in Sources */,
 				A3CACAE52B7FF98400B9D721 /* APIManager_Alerts.swift in Sources */,
 				A3CACAE62B7FF98400B9D721 /* APIManager_StatsData.swift in Sources */,
@@ -1683,6 +1703,7 @@
 				A366DD162CAF97B600E7786B /* PlusFeatureManager.swift in Sources */,
 				A3CACB062B8037E400B9D721 /* GasDataEntity.swift in Sources */,
 				A3CACB072B8037E400B9D721 /* APIManager_GetHistoricalData.swift in Sources */,
+				A3443FA52E92D13800928FBA /* AddressTrackerDataController.swift in Sources */,
 				A3CACB082B8037E400B9D721 /* HistoryRange.swift in Sources */,
 				A3CACB092B8037E400B9D721 /* GasScaleDots.swift in Sources */,
 				A3CACB0A2B8037E400B9D721 /* APIManager_StatsData.swift in Sources */,
@@ -1747,6 +1768,7 @@
 				A366DD132CAF97B600E7786B /* PlusFeatureManager.swift in Sources */,
 				A3CEC8E02B70252100B082B7 /* GasDataEntity.swift in Sources */,
 				A3CEC8D52B7024F100B082B7 /* APIManager_GetHistoricalData.swift in Sources */,
+				A3443FA62E92D13800928FBA /* AddressTrackerDataController.swift in Sources */,
 				A3CEC8E72B70252600B082B7 /* HistoryRange.swift in Sources */,
 				A3CEC8F72B70265100B082B7 /* GasScaleDots.swift in Sources */,
 				A3CEC8D32B7024F100B082B7 /* APIManager_StatsData.swift in Sources */,
@@ -1931,6 +1953,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EthGasTracker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GAS;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -1943,7 +1966,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7.2;
+				MARKETING_VERSION = 4.8.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1973,6 +1996,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EthGasTracker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GAS;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -1985,7 +2009,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.7.2;
+				MARKETING_VERSION = 4.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

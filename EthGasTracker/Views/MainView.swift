@@ -22,24 +22,30 @@ struct MainView: View {
     let hapticHeavy = UIImpactFeedbackGenerator(style: .heavy)
     
     @State private var timer: Timer?
-    @State private var selectedTab = 1
+    @State private var selectedTab = 2
     
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                MainHeaderView(showGas: selectedTab != 0, showBtc: selectedTab != 1, showEth: selectedTab != 0)
+                MainHeaderView(showGas: selectedTab != 1, showBtc: selectedTab != 2, showEth: selectedTab != 1)
                 TabView(selection: $selectedTab) {
-                    MainBtcView()
+                    MainWatchlistView()
                         .tag(0)
-                    MainGasView()
+                    MainBtcView()
                         .tag(1)
-                    SettingsView()
+                    MainGasView()
                         .tag(2)
+                    SettingsView()
+                        .tag(3)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-
                 MainMenuView(selectedTab: $selectedTab, color: liveDataVM.gasLevel.color)
                     .padding(.horizontal)
+//                .background(Color("BG.L0").ignoresSafeArea())
+                // .tabViewStyle(.page(indexDisplayMode: .never))
+
+//                MainMenuView(selectedTab: $selectedTab, color: liveDataVM.gasLevel.color)
+//                    .padding(.horizontal)
             }
             .background(Color("BG.L0"))
             .onChange(of: activeSelectionVM.index) { _ in

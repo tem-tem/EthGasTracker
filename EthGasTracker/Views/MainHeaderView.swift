@@ -30,7 +30,7 @@ struct MainHeaderView: View {
                 .padding(.horizontal)
                 HStack {
                     HStack {
-                        Text(String(format: "%.f", liveDataVM.gasLevel.currentGas))
+                        Text(String(format: "%.3f", liveDataVM.gasLevel.currentGas))
                             .font(.system(.caption, design: .monospaced))
                         Text("gwei")
                             .font(.system(.caption, design: .monospaced))

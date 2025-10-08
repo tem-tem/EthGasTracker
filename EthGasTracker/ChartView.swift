@@ -8,7 +8,7 @@ import SwiftUI
 //import Charts
 
 struct ChartView: View {
-    @EnvironmentObject var dataController: DataController
+    // @EnvironmentObject var dataController: DataController
     
     var body: some View {
         GeometryReader { geometry in

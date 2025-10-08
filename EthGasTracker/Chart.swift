@@ -9,7 +9,7 @@ import SwiftUI
 import Charts
 
 struct Chart: View {
-    @EnvironmentObject var dataController: DataController
+    // @EnvironmentObject var dataController: DataController
     
     var body: some View {
         GroupBox ( "Line Chart - Step Count") {

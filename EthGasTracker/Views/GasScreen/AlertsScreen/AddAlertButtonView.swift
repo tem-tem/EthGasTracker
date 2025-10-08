@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct AddAlertButtonView: View {
     @Binding var showingAlertForm: Bool
@@ -15,7 +16,12 @@ struct AddAlertButtonView: View {
     var body: some View {
         Button {
             // Request notification permission before showing the alert form
-            NotificationPermissionManager.shared.requestNotificationPermission { granted in
+            NotificationPermissionManager.shared.requestNotificationPermission(onGranted: {
+                // Register for remote notifications only in the app target
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }) { granted in
                 if granted {
                     // check device token and set it
                     if let deviceToken = DeviceTokenManager.shared.deviceToken {

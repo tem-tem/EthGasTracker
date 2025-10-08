@@ -19,13 +19,15 @@ class NotificationPermissionManager {
     }
 
     // Request notification permission (just the permission, without remote notification registration)
-    func requestNotificationPermission(completion: @escaping (Bool) -> Void) {
+    // Extension-safe: caller can supply onGranted to register for remote notifications from the app target.
+    func requestNotificationPermission(onGranted: (() -> Void)? = nil, completion: @escaping (Bool) -> Void) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
                 print("Error requesting notification authorization: \(error.localizedDescription)")
                 completion(false)
                 return
             }
+            if granted { onGranted?() }
             completion(granted)
         }
     }

@@ -39,7 +39,7 @@ struct GasIndexView: View {
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 2) {
-            Text(String(format: "%.f", round(gas)))
+            Text(String(format: "%.3f", gas))
                 .foregroundStyle(isActiveSelection ? .primary : color)
                 .lineLimit(1)
                 .font(.system(size: isActiveSelection ? 120 : 180, weight: isActiveSelection ? .thin : .semibold, design: .default))

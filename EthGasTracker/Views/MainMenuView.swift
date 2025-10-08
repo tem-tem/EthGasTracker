@@ -11,6 +11,8 @@ struct MainMenuView: View {
     @Binding var selectedTab: Int
     var color: Color
     
+    let iconSize: CGFloat = 20.0
+    
     var body: some View {
         HStack {
             Button {
@@ -19,12 +21,26 @@ struct MainMenuView: View {
                 }
             } label: {
                 VStack(spacing: 5) {
-                    Image(systemName: "bitcoinsign")
-                    Text("Bitcoin")
+                    Image(systemName: "arrow.left.arrow.right.circle.fill")
+                        .frame(width: iconSize, height: iconSize)
+                    Text("Tracker")
                         .font(.caption)
-                        .bold(selectedTab == 0)
                 }
-                .foregroundStyle(selectedTab == 0 ? Color(.systemOrange) : .secondary)
+                .foregroundStyle(selectedTab == 0 ? .primary : .secondary)
+                .overlay(alignment: .topTrailing) {
+                    Text("Beta")
+                        .font(.caption)
+                        .foregroundColor(Color("BG.L0"))
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 2)
+                        .background(selectedTab == 0 ? .primary : .secondary)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4)
+                                .stroke(Color("BG.L0"), lineWidth: 1)
+                        )
+                        .offset(x: 10, y: -15)
+                }
             }
             Spacer()
             Button {
@@ -33,12 +49,12 @@ struct MainMenuView: View {
                 }
             } label: {
                 VStack(spacing: 5) {
-                    Image(systemName: "flame.fill")
-                    Text("ETH")
+                    Image(systemName: "bitcoinsign")
+                        .frame(width: iconSize, height: iconSize)
+                    Text("Bitcoin")
                         .font(.caption)
-                        .bold(selectedTab == 1)
                 }
-                .foregroundStyle(selectedTab == 1 ? color : .secondary)
+                .foregroundStyle(selectedTab == 1 ? .primary : .secondary)
             }
             Spacer()
             Button {
@@ -47,12 +63,26 @@ struct MainMenuView: View {
                 }
             } label: {
                 VStack(spacing: 5) {
+                    Image(systemName: "flame.fill")
+                        .frame(width: iconSize, height: iconSize)
+                    Text("ETH")
+                        .font(.caption)
+                }
+                .foregroundStyle(selectedTab == 2 ? .primary : .secondary)
+            }
+            Spacer()
+            Button {
+                withAnimation(.easeInOut) {
+                    selectedTab = 3
+                }
+            } label: {
+                VStack(spacing: 5) {
                     Image(systemName: "gearshape.fill")
+                        .frame(width: iconSize, height: iconSize)
                     Text("Settings")
                         .font(.caption)
-                        .bold(selectedTab == 2)
                 }
-                .foregroundStyle(selectedTab == 2 ? color : .secondary)
+                .foregroundStyle(selectedTab == 3 ? .primary : .secondary)
             }
         }
         .padding(.top, 20)
@@ -64,7 +94,7 @@ struct MainMenuView: View {
 
 #Preview {
     MainMenuView(
-        selectedTab: .constant(1),
+        selectedTab: .constant(0),
         color: .red
         )
 }
