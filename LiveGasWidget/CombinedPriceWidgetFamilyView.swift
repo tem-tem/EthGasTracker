@@ -326,6 +326,7 @@ struct CombinedPriceWidget: Widget {
     }
 }
 
+#if os(iOS)
 // MARK: - Previews
 struct CombinedPriceWidget_Previews: PreviewProvider { // Renamed
     static var previews: some View {
@@ -359,3 +360,5 @@ struct CombinedPriceWidget_Previews: PreviewProvider { // Renamed
         }
     }
 }
+
+#endif

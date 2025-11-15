@@ -120,6 +120,14 @@
 		A362492E2EC8FDD100E16845 /* EthPriceWidgetFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A362492D2EC8FDD100E16845 /* EthPriceWidgetFamilyView.swift */; };
 		A36249302EC8FDE500E16845 /* BtcPriceWidgetFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A362492F2EC8FDE500E16845 /* BtcPriceWidgetFamilyView.swift */; };
 		A36249322EC8FDF200E16845 /* CombinedPriceWidgetFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36249312EC8FDF200E16845 /* CombinedPriceWidgetFamilyView.swift */; };
+		A36249332EC9121300E16845 /* BtcPriceWidgetFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A362492F2EC8FDE500E16845 /* BtcPriceWidgetFamilyView.swift */; };
+		A36249342EC9121300E16845 /* CombinedPriceWidgetFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36249312EC8FDF200E16845 /* CombinedPriceWidgetFamilyView.swift */; };
+		A36249352EC9121300E16845 /* LiveBtcP2PKHWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628C72B90F85500171C52 /* LiveBtcP2PKHWidget.swift */; };
+		A36249362EC9121300E16845 /* LiveGasWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEC8C02B70247C00B082B7 /* LiveGasWidgetBundle.swift */; };
+		A36249372EC9121300E16845 /* LiveBtcRateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628BC2B90C18000171C52 /* LiveBtcRateWidget.swift */; };
+		A36249382EC9121300E16845 /* LiveBtcSegwitWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35628C12B90CE6800171C52 /* LiveBtcSegwitWidget.swift */; };
+		A36249392EC9121300E16845 /* EthPriceWidgetFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A362492D2EC8FDD100E16845 /* EthPriceWidgetFamilyView.swift */; };
+		A362493A2EC9121300E16845 /* LiveGasWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36249242EC8F75600E16845 /* LiveGasWidget.swift */; };
 		A366DD132CAF97B600E7786B /* PlusFeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */; };
 		A366DD142CAF97B600E7786B /* PlusFeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */; };
 		A366DD152CAF97B600E7786B /* PlusFeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366DD122CAF97B600E7786B /* PlusFeatureManager.swift */; };
@@ -1181,9 +1189,9 @@
 				A362492D2EC8FDD100E16845 /* EthPriceWidgetFamilyView.swift */,
 				A362492F2EC8FDE500E16845 /* BtcPriceWidgetFamilyView.swift */,
 				A36249312EC8FDF200E16845 /* CombinedPriceWidgetFamilyView.swift */,
+				A35628C12B90CE6800171C52 /* LiveBtcSegwitWidget.swift */,
 				A3CEC8C02B70247C00B082B7 /* LiveGasWidgetBundle.swift */,
 				A35628BC2B90C18000171C52 /* LiveBtcRateWidget.swift */,
-				A35628C12B90CE6800171C52 /* LiveBtcSegwitWidget.swift */,
 				A35628C72B90F85500171C52 /* LiveBtcP2PKHWidget.swift */,
 				A3CEC8C42B70247E00B082B7 /* Assets.xcassets */,
 				A3CEC8C62B70247E00B082B7 /* Info.plist */,
@@ -1690,13 +1698,13 @@
 				A3CACAF82B8037E400B9D721 /* CustomActionDataManager.swift in Sources */,
 				A3CACAF92B8037E400B9D721 /* FluctuationRange.swift in Sources */,
 				A320196D2CC7273500B7CC29 /* APIManager+Averages.swift in Sources */,
-				A3CACAFB2B8037E400B9D721 /* GasIndexProvider.swift in Sources */,
 				A3CACAFC2B8037E400B9D721 /* PriceNumberView.swift in Sources */,
 				A3CACAFD2B8037E400B9D721 /* Gas.xcdatamodeld in Sources */,
 				A3CACAFE2B8037E400B9D721 /* DateFormatterExtension.swift in Sources */,
 				A3E913FC2CA9FF58007C9BBA /* ReferralCodeManager.swift in Sources */,
 				A3CACAFF2B8037E400B9D721 /* InfiniteScrollView.swift in Sources */,
 				A3CACB002B8037E400B9D721 /* HistoricalData.swift in Sources */,
+				A3CACAFB2B8037E400B9D721 /* GasIndexProvider.swift in Sources */,
 				A3CACB012B8037E400B9D721 /* MinMax.swift in Sources */,
 				A3CACB022B8037E400B9D721 /* Currency.swift in Sources */,
 				A3CACB032B8037E400B9D721 /* Stats.swift in Sources */,
@@ -1714,14 +1722,12 @@
 				A3CACB0C2B8037E400B9D721 /* APIManager.swift in Sources */,
 				A3CACB0D2B8037E400B9D721 /* CurrentStats.swift in Sources */,
 				A3CACB0E2B8037E400B9D721 /* ActionXLView.swift in Sources */,
-				A3CACB0F2B8037E400B9D721 /* GasIndexEntry.swift in Sources */,
 				A3CACB102B8037E400B9D721 /* StoreVM.swift in Sources */,
 				A3CACB112B8037E400B9D721 /* Metadata.swift in Sources */,
 				A3CACB122B8037E400B9D721 /* SettingsKeys.swift in Sources */,
 				A3CACB132B8037E400B9D721 /* Endpoints.swift in Sources */,
 				A3CACB142B8037E400B9D721 /* APIManager_Alerts.swift in Sources */,
 				A3CACB152B8037E400B9D721 /* LiveDataVM.swift in Sources */,
-				A3CACB162B8037E400B9D721 /* SharedDataRepository.swift in Sources */,
 				A3CACB182B8037E400B9D721 /* HistoricalDataCached.swift in Sources */,
 				A3CACB192B8037E400B9D721 /* SafeRanges.swift in Sources */,
 				A3CACB1A2B8037E400B9D721 /* LiveDataResponse.swift in Sources */,
@@ -1732,7 +1738,17 @@
 				A3FB30472B834190009433C0 /* BtcDataEntity.swift in Sources */,
 				A3CACB1F2B8037E400B9D721 /* GasLevel.swift in Sources */,
 				A3CACB202B8037E400B9D721 /* GasIndexEntity.swift in Sources */,
+				A362493A2EC9121300E16845 /* LiveGasWidget.swift in Sources */,
 				A38107932CBC4C6F0022B7ED /* NotificationPermissionManager.swift in Sources */,
+				A36249332EC9121300E16845 /* BtcPriceWidgetFamilyView.swift in Sources */,
+				A36249342EC9121300E16845 /* CombinedPriceWidgetFamilyView.swift in Sources */,
+				A36249392EC9121300E16845 /* EthPriceWidgetFamilyView.swift in Sources */,
+				A36249362EC9121300E16845 /* LiveGasWidgetBundle.swift in Sources */,
+				A36249382EC9121300E16845 /* LiveBtcSegwitWidget.swift in Sources */,
+				A36249352EC9121300E16845 /* LiveBtcP2PKHWidget.swift in Sources */,
+				A36249372EC9121300E16845 /* LiveBtcRateWidget.swift in Sources */,
+				A3CACB162B8037E400B9D721 /* SharedDataRepository.swift in Sources */,
+				A3CACB0F2B8037E400B9D721 /* GasIndexEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1968,7 +1984,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.8.1;
+				MARKETING_VERSION = 4.9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2011,7 +2027,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.8.1;
+				MARKETING_VERSION = 4.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TEMTEM.EthGasTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

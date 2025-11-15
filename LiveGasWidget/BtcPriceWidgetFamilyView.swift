@@ -229,6 +229,7 @@ struct BtcPriceWidget: Widget {
     }
 }
 
+#if os(iOS)
 // MARK: - Previews
 struct BtcPriceWidget_Previews: PreviewProvider {
     static var previews: some View {
@@ -261,3 +262,4 @@ struct BtcPriceWidget_Previews: PreviewProvider {
         }
     }
 }
+#endif

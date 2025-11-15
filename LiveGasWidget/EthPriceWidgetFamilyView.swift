@@ -236,6 +236,7 @@ struct EthPriceWidget: Widget {
     }
 }
 
+#if os(iOS)
 // MARK: - Previews
 struct EthPriceWidget_Previews: PreviewProvider {
     static var previews: some View {
@@ -268,3 +269,4 @@ struct EthPriceWidget_Previews: PreviewProvider {
         }
     }
 }
+#endif
