@@ -15,5 +15,8 @@ struct LiveGasWidgetBundle: WidgetBundle {
         LiveBtcRateWidget()
         LiveBtcRateSegWitWidget()
         LiveBtcRateP2PKHWidget()
+        EthPriceWidget()
+        BtcPriceWidget()
+        CombinedPriceWidget()
     }
 }

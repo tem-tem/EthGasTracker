@@ -29,8 +29,8 @@ struct MainView: View {
             VStack(spacing: 0) {
                 MainHeaderView(showGas: selectedTab != 1, showBtc: selectedTab != 2, showEth: selectedTab != 1)
                 TabView(selection: $selectedTab) {
-                    MainWatchlistView()
-                        .tag(0)
+//                    MainWatchlistView()
+//                        .tag(0)
                     MainBtcView()
                         .tag(1)
                     MainGasView()

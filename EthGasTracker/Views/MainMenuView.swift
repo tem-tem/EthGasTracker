@@ -15,34 +15,34 @@ struct MainMenuView: View {
     
     var body: some View {
         HStack {
-            Button {
-                withAnimation(.easeInOut) {
-                    selectedTab = 0
-                }
-            } label: {
-                VStack(spacing: 5) {
-                    Image(systemName: "arrow.left.arrow.right.circle.fill")
-                        .frame(width: iconSize, height: iconSize)
-                    Text("Tracker")
-                        .font(.caption)
-                }
-                .foregroundStyle(selectedTab == 0 ? .primary : .secondary)
-                .overlay(alignment: .topTrailing) {
-                    Text("Beta")
-                        .font(.caption)
-                        .foregroundColor(Color("BG.L0"))
-                        .padding(.horizontal, 4)
-                        .padding(.vertical, 2)
-                        .background(selectedTab == 0 ? .primary : .secondary)
-                        .clipShape(RoundedRectangle(cornerRadius: 4))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 4)
-                                .stroke(Color("BG.L0"), lineWidth: 1)
-                        )
-                        .offset(x: 10, y: -15)
-                }
-            }
-            Spacer()
+//            Button {
+//                withAnimation(.easeInOut) {
+//                    selectedTab = 0
+//                }
+//            } label: {
+//                VStack(spacing: 5) {
+//                    Image(systemName: "arrow.left.arrow.right.circle.fill")
+//                        .frame(width: iconSize, height: iconSize)
+//                    Text("Tracker")
+//                        .font(.caption)
+//                }
+//                .foregroundStyle(selectedTab == 0 ? .primary : .secondary)
+//                .overlay(alignment: .topTrailing) {
+//                    Text("Beta")
+//                        .font(.caption)
+//                        .foregroundColor(Color("BG.L0"))
+//                        .padding(.horizontal, 4)
+//                        .padding(.vertical, 2)
+//                        .background(selectedTab == 0 ? .primary : .secondary)
+//                        .clipShape(RoundedRectangle(cornerRadius: 4))
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 4)
+//                                .stroke(Color("BG.L0"), lineWidth: 1)
+//                        )
+//                        .offset(x: 10, y: -15)
+//                }
+//            }
+//            Spacer()
             Button {
                 withAnimation(.easeInOut) {
                     selectedTab = 1
